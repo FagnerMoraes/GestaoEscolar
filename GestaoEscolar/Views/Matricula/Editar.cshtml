@@ -1,0 +1,99 @@
+﻿@model GestaoEscolar.Models.Matricula
+
+
+<script>
+    $(function () {
+        $('#AnoLetivoId').val("@Model.AnoLetivoId");
+        $('#TurmaId').val("@Model.TurmaId");
+    });
+
+    $(function () {
+        $('.ajuda-data').datepicker({
+            changeMonth: true,
+            changeYear: true,
+            dateFormat: 'dd/mm/yy',
+            dayNames: ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado', 'Domingo'],
+            dayNamesMin: ['D', 'S', 'T', 'Q', 'Q', 'S', 'S', 'D'],
+            dayNamesShort: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb', 'Dom'],
+            monthNames: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
+            monthNamesShort: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez']
+        });
+
+    });
+</script>
+
+
+@{
+    ViewBag.Title = "Editar";
+    Layout = "~/Views/Shared/_LayoutPadrao.cshtml";
+}
+
+<div class="panel panel-heading">
+    <strong><span class="glyphicon glyphicon-cog"></span><span>&nbsp;</span>Matricula</strong>
+</div>
+
+<h2>Editar</h2>
+
+<div class="panel-body">
+
+
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+
+    
+        @Html.HiddenFor(model => model.Id)
+        @Html.HiddenFor(model => model.AlunoId)
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Aluno.Nome)
+        </div>
+        <div class="editor-field">
+            @Html.DisplayFor(model => model.Aluno.Nome)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Turma.NomeTurma)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("TurmaId", (SelectList)ViewBag.TurmaId, "SELECIONE A TURMA", new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.TurmaId)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.AnoLetivo.Ano)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("AnoLetivoId", (SelectList)ViewBag.AnoLetivoId, "SELECIONE O ANO", new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.TurmaId)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.DataCadastro)
+        </div>
+        <div class="editor-field">
+            <input type="text" class="form-control ajuda-data" id="DataCadastro" name="DataCadastro" value="@ViewBag.DataCadastro"/>
+            @Html.ValidationMessageFor(model => model.DataCadastro)
+        </div>
+
+        <div class="row">
+            <hr />
+            <div class="col-sm-3 col-sm-offset-6">
+                <a class="btn btn-block btn-lg btn-danger" href="@Url.Action("Index", "Matricula")"><span class="glyphicon glyphicon-remove"></span>Cancelar</a>
+            </div>
+            <div class="col-sm-3">
+                <button type="submit" class="btn btn-block btn-lg btn-success" value="Adicionar"><span class="glyphicon glyphicon-floppy-disk"></span>Cadastrar</button>
+            </div>
+        </div>
+    
+    }
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryui")
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/jqueryform")
+    @Scripts.Render("~/Scripts/jquery.maskedinput.min.js")
+}

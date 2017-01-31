@@ -1,0 +1,84 @@
+﻿@model IEnumerable<GestaoEscolar.Models.Conceito>
+@{
+    ViewBag.Title = "BoletimTurma";
+}
+
+<h2>Boletim Turma</h2>
+
+@using (@Html.BeginForm())
+{
+    <p>Selecione a turma:</p>
+    @Html.DropDownList("turmaId", (SelectList)ViewBag.turmaId, "SELECIONE A TURMA", new { @Class = "form-control" , onchange = "this.form.submit();" })
+}
+<br/>
+@using (@Html.BeginForm())
+{
+    foreach (var item in ViewBag.Alunos)
+    {
+    
+    <table class="table table-bordered">
+        <tr>
+            <td colspan="9">
+                <div class="row">
+                    <div class="col-xs-2">
+                        <img src="~/Content/imagens/relatorios/historico/timbre-republica-brasil.jpeg" alt="Timbre Republica" />
+                    </div>
+                    <div class="col-xs-6">
+                        PREFEITURA MUNICIPAL DE MACHADO<br/>
+                        SECRETARIA MUNICIPAL DE EDUCAÇÃO<br/>
+                        E. M. CLOVIS ARAUJO DIAS
+                    </div>
+                </div>
+                
+            </td>
+        </tr>
+        <tr>
+            <th colspan="7">Aluno:@item.Nome</th>
+            <th colspan="2">Ano: @ViewBag.SerieTurma</th>
+        </tr>
+        <tr>
+            <td colspan="9">Professor: @ViewBag.NomeResponsavel</td>
+        </tr>
+        <tr>
+            <th></th>
+            <th colspan="2">1º Bimestre</th>
+            <th colspan="2">2º Bimestre</th>
+            <th colspan="2">3º Bimestre</th>
+            <th colspan="2">4º Bimestre</th>
+        </tr>
+        <tr>
+            <th>Disciplina</th>
+            <th>Nota</th>
+            <th>Falta</th>
+            <th>Nota</th>
+            <th>Falta</th>
+            <th>Nota</th>
+            <th>Falta</th>
+            <th>Nota</th>
+            <th>Falta</th>
+        </tr>
+
+        @foreach (var conceito in @Model)
+        {
+            if (item.Id == conceito.Matricula.AlunoId)
+            {
+            <tr>
+                <td>@conceito.Disciplina.NomeDisciplina</td>
+                <td>@conceito.Conceito1Bim</td>
+                <td>@conceito.Faltas1Bim</td>
+                <td>@conceito.Conceito2Bim</td>
+                <td>@conceito.Faltas2Bim</td>
+                <td>@conceito.Conceito3Bim</td>
+                <td>@conceito.Faltas3Bim</td>
+                <td>@conceito.Conceito4Bim</td>
+                <td>@conceito.Faltas4Bim</td>
+            </tr>
+            }
+        }
+    </table>
+    <hr /> 
+
+    }
+}
+
+

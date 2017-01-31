@@ -1,0 +1,152 @@
+﻿@model GestaoEscolar.Models.Escola
+
+@{
+    ViewBag.Title = "Detalhes";
+    Layout = "~/Views/Shared/_LayoutPadrao.cshtml";
+}
+
+<div class="panel panel-heading font-form">
+    <strong><span class="fa fa-cog"></span><span>&nbsp;</span>Escola</strong>
+</div>
+
+
+<div class="panel-body panel-scroll font-form">
+    <div class="panel panel-default">
+        <div class="panel panel-heading">
+            <strong><span class="fa fa-minus"></span><span>&nbsp;</span>Dados Principais</strong>
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-xs-6">
+                    <div class="form-group">
+                        <label>@Html.DisplayNameFor(model => model.NomeEscola)</label><br />
+                        @Html.DisplayFor(model => model.NomeEscola)
+                    </div>
+                </div>
+                <div class="col-xs-6">
+                    <div class="form-group">
+                        <label>@Html.DisplayNameFor(model => model.Cnpj)</label><br />
+                        @Html.DisplayFor(model => model.Cnpj)
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-6">
+                    <div class="form-group">
+                        <label>@Html.DisplayNameFor(model => model.NomeGestor)</label><br />
+                        @Html.DisplayFor(model => model.NomeGestor)
+                    </div>
+                </div>
+                <div class="col-xs-6">
+                    <div class="form-group">
+                        <label>@Html.DisplayNameFor(model => model.CargoGestor)</label><br />
+                        @Html.DisplayFor(model => model.CargoGestor)
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="panel panel-default">
+        <div class="panel panel-heading">
+            <strong><span class="fa fa-minus"></span><span>&nbsp;</span>Dados de Endereço</strong>
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-xs-6">
+                    <div class="form-group">
+                        <label>@Html.DisplayNameFor(model => model.CidadeEscola)</label><br />
+                        @Html.DisplayFor(model => model.CidadeEscola)
+                    </div>
+                </div>
+                <div class="col-xs-2">
+                    <div class="form-group">
+                        <label>@Html.DisplayNameFor(model => model.UfEscola)</label><br />
+                        @Html.DisplayFor(model => model.UfEscola)
+                    </div>
+                </div>
+                <div class="col-xs-4">
+                    <div class="form-group">
+                        <label>@Html.DisplayNameFor(model => model.CepEscola)</label><br />
+                        @Html.DisplayFor(model => model.CepEscola)
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-6">
+                    <div class="form-group">
+                        <label>@Html.DisplayNameFor(model => model.EndEscola)</label><br />
+                        @Html.DisplayFor(model => model.EndEscola)
+                    </div>
+                </div>
+                <div class="col-xs-2">
+                    <div class="form-group">
+                        <label>@Html.DisplayNameFor(model => model.NumeroEndEscola)</label><br />
+                        @Html.DisplayFor(model => model.NumeroEndEscola)
+                    </div>
+                </div>
+                <div class="col-xs-4">
+                    <div class="form-group">
+                        <label>@Html.DisplayNameFor(model => model.BairroEndEscola)</label><br />
+                        @Html.DisplayFor(model => model.BairroEndEscola)
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-6">
+                    <div class="form-group">
+                        <label>@Html.DisplayNameFor(model => model.ComplementoEndEscola)</label><br />
+                        @Html.DisplayFor(model => model.ComplementoEndEscola)
+                    </div>
+                </div>
+                <div class="col-xs-4">
+                    <div class="form-group">
+                        <label>@Html.DisplayNameFor(model => model.DistritoEscola)</label><br />
+                        @Html.DisplayFor(model => model.DistritoEscola)
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="panel panel-default">
+        <div class="panel panel-heading">
+            <strong><span class="fa fa-minus"></span><span>&nbsp;</span>Dados de Contato</strong>
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-xs-4">
+                    <div class="form-group">
+                        <label>@Html.DisplayNameFor(model => model.TelefoneEscola)</label><br />
+                        @Html.DisplayFor(model => model.TelefoneEscola)
+                    </div>
+                </div>
+                <div class="col-xs-4">
+                    <div class="form-group">
+                        <label>@Html.DisplayNameFor(model => model.FaxEscola)</label><br />
+                        @Html.DisplayFor(model => model.FaxEscola)
+                    </div>
+                </div>
+                <div class="col-xs-4">
+                    <div class="form-group">
+                        <label>@Html.DisplayNameFor(model => model.EmailEscola)</label><br />
+                        @Html.DisplayFor(model => model.EmailEscola)
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="panel panel-footer">
+    <div class="row">
+        <div class="col-sm-3 col-sm-offset-6">
+            <a class="btn btn-block btn-lg btn-info" href="@Url.Action("Index")"><span class="fa fa-reply"></span><span>&nbsp;</span>Voltar</a>
+        </div>
+        <div class="col-sm-3">
+            <a class="btn btn-block btn-lg btn-warning" href="@Url.Action("Editar", new { id = Model.Id })"><span class="fa fa-edit"></span><span>&nbsp;</span>Editar</a>
+        </div>
+    </div>
+</div>
+

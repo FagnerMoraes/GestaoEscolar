@@ -1,0 +1,84 @@
+﻿@model GestaoEscolar.Models.DisciplinaDoProfessorNaTurma
+
+@{
+    ViewBag.Title = "Editar";
+    Layout = "~/Views/Shared/_LayoutPadrao.cshtml";
+}
+
+<script>
+    $(function () {
+        $('#DisciplinaId').val("@Model.DisciplinaId");
+        $('#FuncionarioId').val("@Model.FuncionarioId");
+        $('#TurmaId').val("@Model.TurmaId");
+    });
+
+    $(document).ready(function () {
+        $('#DisciplinaId').addClass("form-control");
+        $('#FuncionarioId').addClass("form-control");
+        $('#TurmaId').addClass("form-control");
+    });
+
+</script>
+
+
+<div class="panel panel-heading">
+    <strong><span class="glyphicon glyphicon-cog"></span><span>&nbsp;</span>Disciplina do Professor na Turma</strong>
+</div>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+
+    @Html.HiddenFor(model => model.Id)
+
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-sm-12">
+
+                <h2>Editar</h2>
+
+                <div class="editor-label">
+                    <strong>Disciplina</strong>
+                </div>
+                <div class="editor-field">
+                    @Html.Hidden("DisciplinaId")
+                    <input type="text" disabled value="@Model.Disciplina.NomeDisciplina" class="form-control"/>
+                   </div>
+
+                <div class="editor-label">
+                    <strong>Professor</strong>
+                </div>
+                <div class="editor-field">
+                    @Html.DropDownList("FuncionarioId")
+                    @Html.ValidationMessageFor(model => model.FuncionarioId)
+                </div>
+
+                <div class="editor-label">
+                    <strong>Turma</strong>
+                </div>
+                <div class="editor-field">
+                    @Html.Hidden("TurmaId")
+                    <input type="text" disabled value="@Model.Turma.NomeTurma" class="form-control"/>
+                </div>
+
+                <div class="row">
+                    <hr />
+                    <div class="col-sm-3 col-sm-offset-6">
+                        <a class="btn btn-block btn-lg btn-danger" href="@Url.Action("GerenciarDisciplinaTurma",new{turmaId = Model.TurmaId})"><span class="glyphicon glyphicon-remove"></span>Cancelar</a>
+                    </div>
+                    <div class="col-sm-3">
+                        <button type="submit" class="btn btn-block btn-lg btn-success" value="Adicionar"><span class="glyphicon glyphicon-floppy-disk"></span>Cadastrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+}
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

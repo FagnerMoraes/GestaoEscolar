@@ -1,0 +1,319 @@
+﻿@model GestaoEscolar.Models.Funcionario
+
+@{
+    ViewBag.Title = "Cadastro Funcionário";
+    Layout = "~/Views/Shared/_LayoutPadrao.cshtml";
+}
+
+<script type="text/javascript">
+    $(function () {
+        $('.ajuda-data').datepicker({
+            changeMonth: true,
+            changeYear: true,
+            dateFormat: 'dd/mm/yy',
+            dayNames: ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado', 'Domingo'],
+            dayNamesMin: ['D', 'S', 'T', 'Q', 'Q', 'S', 'S', 'D'],
+            dayNamesShort: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb', 'Dom'],
+            monthNames: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
+            monthNamesShort: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez']
+        });
+
+    });
+
+    jQuery(function ($) {
+        $("#DataNascimentoFuncionario").mask("99/99/9999");
+        $("#CpfFuncionario").mask("999.999.999-99");
+        $("#DataEmissaoRgFuncionario").mask("99/99/9999");
+        $("#DataAdimissaoFuncionario").mask("99/99/9999");
+
+    });
+</script>
+
+<div class="panel panel-heading">
+    <strong><span class="glyphicon glyphicon-plus-sign"></span><span>&nbsp;</span>Cadastro Funcionário</strong>
+</div>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <div class="panel-body panel-scroll">
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <strong><span class="glyphicon glyphicon-plus"></span><span>&nbsp;</span>Dados Pessoais</strong>
+            </div>
+            <div class="panel-body">
+
+                <div class="row">
+                    <div class="col-sm-3">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.NumRegistroFuncionario)
+                        </div>
+                        <div class="editor-field">
+                            @Html.TextBoxFor(model => model.NumRegistroFuncionario, new { @class = " form-control , upper", @placeholder = "Numero do registro" })
+                            @Html.ValidationMessageFor(model => model.NumRegistroFuncionario)
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="editor-label">
+                            <i class="fa fa-asterisk text-danger"></i>
+                            @Html.LabelFor(model => model.NomeFuncionario)
+                        </div>
+                        <div class="editor-field">
+                            @Html.TextBoxFor(model => model.NomeFuncionario, new { @class = " form-control , upper", @placeholder = "Nome Completo do Funcionário" })
+                            @Html.ValidationMessageFor(model => model.NomeFuncionario)
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="editor-label">
+                            <i class="fa fa-asterisk text-danger"></i>
+                            @Html.LabelFor(model => model.DataNascimentoFuncionario)
+                        </div>
+                        <div class="editor-field">
+                            @Html.TextBoxFor(model => model.DataNascimentoFuncionario, new { @class = "form-control ajuda-data" })
+                            @Html.ValidationMessageFor(model => model.DataNascimentoFuncionario)
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-5">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.SexoFuncionario)
+                        </div>
+                        <div class="editor-field">
+                            <label class="btn btn-primary">
+                                @Html.RadioButtonFor(model => model.SexoFuncionario, "M") Masculino
+                            </label>
+                            <label class="btn btn-info">
+                                @Html.RadioButtonFor(model => model.SexoFuncionario, "F") Feminino
+                            </label>
+                            @Html.ValidationMessageFor(model => model.SexoFuncionario)
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.CpfFuncionario)
+                        </div>
+                        <div class="editor-field">
+                            @Html.TextBoxFor(model => model.CpfFuncionario, new { @class = " form-control", @placeholder = "CPF do Funcionario" })
+                            @Html.ValidationMessageFor(model => model.CpfFuncionario)
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-3">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.RgFuncionario)
+                        </div>
+                        <div class="editor-field">
+                            @Html.TextBoxFor(model => model.RgFuncionario, new { @class = " form-control", @placeholder = "" })
+                            @Html.ValidationMessageFor(model => model.RgFuncionario)
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.UfRgFuncionario)
+                        </div>
+                        <div class="editor-field">
+                            <select class="form-control" name="UfRgFuncionario" id="UfRgFuncionario">
+                                <option value="AC">AC</option>
+                                <option value="AL">AL</option>
+                                <option value="AP">AP</option>
+                                <option value="AM">AM</option>
+                                <option value="BA">BA</option>
+                                <option value="CE">CE</option>
+                                <option value="DF">DF</option>
+                                <option value="ES">ES</option>
+                                <option value="GO">GO</option>
+                                <option value="MA">MA</option>
+                                <option value="MT">MT</option>
+                                <option value="MS">MS</option>
+                                <option value="MG">MG</option>
+                                <option value="PA">PA</option>
+                                <option value="PB">PB</option>
+                                <option value="PR">PR</option>
+                                <option value="PE">PE</option>
+                                <option value="PI">PI</option>
+                                <option value="RJ">RJ</option>
+                                <option value="RN">RN</option>
+                                <option value="RS">RS</option>
+                                <option value="RO">RO</option>
+                                <option value="RR">RR</option>
+                                <option value="SC">SC</option>
+                                <option value="SP">SP</option>
+                                <option value="SE">SE</option>
+                                <option value="TO">TO</option>
+                            </select>
+                            @Html.ValidationMessageFor(model => model.UfRgFuncionario)
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.OrgaoRgFuncionario)
+                        </div>
+                        <div class="editor-field">
+                            @Html.TextBoxFor(model => model.OrgaoRgFuncionario, new { @class = " form-control", @placeholder = "Nome Completo do aluno" })
+                            @Html.ValidationMessageFor(model => model.OrgaoRgFuncionario)
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.DataEmissaoRgFuncionario)
+                        </div>
+                        <div class="editor-field">
+                            @Html.TextBoxFor(model => model.DataEmissaoRgFuncionario, new { @class = "form-control ajuda-data" })
+                            @Html.ValidationMessageFor(model => model.DataEmissaoRgFuncionario)
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <strong><span class="glyphicon glyphicon-plus"></span><span>&nbsp;</span>Endereço</strong>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-sm-8">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.CidadeEndFuncionario)
+                        </div>
+                        <div class="editor-field">
+                            @Html.TextBoxFor(model => model.CidadeEndFuncionario, new { @class = " form-control , upper", @placeholder = "Digite Cidade " })
+                            @Html.ValidationMessageFor(model => model.CidadeEndFuncionario)
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.UfEndFuncionario)
+                        </div>
+                        <div class="editor-field">
+                            <select class="form-control" name="UfEndFuncionario" id="UfEndFuncionario">
+                                <option value="AC">AC</option>
+                                <option value="AL">AL</option>
+                                <option value="AP">AP</option>
+                                <option value="AM">AM</option>
+                                <option value="BA">BA</option>
+                                <option value="CE">CE</option>
+                                <option value="DF">DF</option>
+                                <option value="ES">ES</option>
+                                <option value="GO">GO</option>
+                                <option value="MA">MA</option>
+                                <option value="MT">MT</option>
+                                <option value="MS">MS</option>
+                                <option value="MG">MG</option>
+                                <option value="PA">PA</option>
+                                <option value="PB">PB</option>
+                                <option value="PR">PR</option>
+                                <option value="PE">PE</option>
+                                <option value="PI">PI</option>
+                                <option value="RJ">RJ</option>
+                                <option value="RN">RN</option>
+                                <option value="RS">RS</option>
+                                <option value="RO">RO</option>
+                                <option value="RR">RR</option>
+                                <option value="SC">SC</option>
+                                <option value="SP">SP</option>
+                                <option value="SE">SE</option>
+                                <option value="TO">TO</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.LogradouroEndFuncionario)
+                        </div>
+                        <div class="editor-field">
+                            @Html.TextBoxFor(model => model.LogradouroEndFuncionario, new { @class = " form-control , upper", @placeholder = "Praça, Rua, Avenida " })
+                            @Html.ValidationMessageFor(model => model.LogradouroEndFuncionario)
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.NumLogradouroEndFuncionario)
+                        </div>
+                        <div class="editor-field">
+                            @Html.TextBoxFor(model => model.NumLogradouroEndFuncionario, new { @class = " form-control", @placeholder = "Ex: 111" })
+                            @Html.ValidationMessageFor(model => model.NumLogradouroEndFuncionario)
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.BairroEndFuncionario)
+                        </div>
+                        <div class="editor-field">
+                            @Html.TextBoxFor(model => model.BairroEndFuncionario, new { @class = " form-control , upper", @placeholder = "Bairro " })
+                            @Html.ValidationMessageFor(model => model.BairroEndFuncionario)
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <strong><span class="glyphicon glyphicon-plus"></span><span>&nbsp;</span>Vinculação</strong>
+            </div>
+            <div class="panel-body">
+                <div class="editor-label">
+                    <i class="fa fa-asterisk text-danger"></i>
+                    <strong>Escola</strong>
+                </div>
+                <div class="editor-field">
+                    @Html.DropDownList("EscolaId", (SelectList)ViewBag.EscolaId, "SELECIONE A ESCOLA", new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.EscolaId)
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="editor-label">
+                            <i class="fa fa-asterisk text-danger"></i>
+                            @Html.LabelFor(model => model.DataAdimissaoFuncionario)
+                        </div>
+                        <div class="editor-field">
+                            @Html.TextBoxFor(model => model.DataAdimissaoFuncionario, new { @class = "form-control ajuda-data" })
+                            @Html.ValidationMessageFor(model => model.DataAdimissaoFuncionario)
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="editor-label">
+                            <i class="fa fa-asterisk text-danger"></i>
+                            <strong>Cargo</strong>
+                        </div>
+                        <div class="editor-field">
+                            @Html.DropDownList("TipoFuncionarioId", (SelectList)ViewBag.TipoFuncionarioId, "SELECIONE O CARGO", new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.TipoFuncionarioId)
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="panel panel-footer">
+        <div class="row">
+            <div class="col-sm-5">
+                <h5><strong>Atenção!</strong> O campo com <i class="fa fa-asterisk text-danger"></i>é obrigatório</h5>
+            </div>
+            <div class="col-md-3 col-md-offset-1">
+                <a class="btn btn-block btn-lg btn-danger" href="@Url.Action("Index")"><span class="glyphicon glyphicon-remove"></span>Cancelar</a>
+            </div>
+            <div class="col-md-3">
+                <button type="submit" class="btn btn-block btn-lg btn-success" value="Adicionar"><span class="glyphicon glyphicon-floppy-disk"></span>Salvar</button>
+            </div>
+        </div>
+    </div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryui")
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/jqueryform")
+    @Scripts.Render("~/Scripts/bootstrap-tooltip.js")
+}

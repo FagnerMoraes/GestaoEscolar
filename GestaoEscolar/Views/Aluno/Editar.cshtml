@@ -1,0 +1,890 @@
+﻿@model GestaoEscolar.Models.Aluno
+@{
+    ViewBag.Title = "Editar";
+    Layout = "~/Views/Shared/_LayoutPadrao.cshtml";
+}
+
+<script>
+    $(function ($) {
+        $(".input-group-addon").tooltip();
+    });
+
+    $(function () {
+        $('.ajuda-data').datepicker({
+            changeMonth: true,
+            changeYear: true,
+            dateFormat: 'dd/mm/yy',
+            dayNames: ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado', 'Domingo'],
+            dayNamesMin: ['D', 'S', 'T', 'Q', 'Q', 'S', 'S', 'D'],
+            dayNamesShort: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb', 'Dom'],
+            monthNames: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
+            monthNamesShort: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez']
+        });
+    });
+
+    jQuery(function ($) {
+        $("#IdentificacaoUnica").mask("999999");
+        $("#DataNascimento").mask("99/99/9999");
+        $("#Nis").mask("99999999999");
+        $("#DataExpRg").mask("99/99/9999");
+        $("#NumeroNovaCertidaoCivil").mask("999999-99-99-9999-9-99999-999-9999999-99");
+        $("#DataEmissaoCertidao").mask("99/99/9999");
+        $("#CepResidencia").mask("99999-999");
+        $("#Cpf").mask("999.999.999-99");
+        $("#TelPai").mask("(99)9999-9999");
+        $("#TelMae").mask("(99)9999-9999");
+    });
+
+    $(function () {
+        $('#EstadoCivilAluno').val("@Model.EstadoCivilAluno");
+        $('#RacaCor').val("@Model.RacaCor");
+        $('#Situacao').val("@Model.Situacao");
+        $('#UfNaturalidade').val("@Model.UfNaturalidade");
+        $('#LocalZonaResidencia').val("@Model.LocalZonaResidencia");
+        $('#UfResidencia').val("@Model.UfResidencia");
+        $('#UfRg').val("@Model.UfRg");
+        $('#TipoCertidaoCivil').val("@Model.TipoCertidaoCivil");
+    });
+
+</script>
+
+<div class="panel panel-heading">
+    <strong><span class="fa fa-plus-sign"></span><span>&nbsp;</span>Editar Aluno</strong>
+</div>
+
+@using (Html.BeginForm(new { @class = "form-inline" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    
+    @Html.HiddenFor(model => model.Id)
+
+
+
+    <div class="panel-body panel-scroll">
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <strong><span class="fa fa-minus"></span><span>&nbsp;</span>Dados Pessoais</strong>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-sm-2">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.IdentificacaoUnica)
+                        </div>
+                        <div class="editor-field">
+                            <div class="input-group">
+                                @Html.TextBoxFor(model => model.IdentificacaoUnica, new { @class = " form-control", @placeholder = "6 NÚMEROS" })
+                                <span class="input-group-addon" data-toggle="tooltip" data-placement="bottom" title="Identificador Unico do Aluno no Educacenso do INEP com 6 digitos ">?</span>
+                                @Html.ValidationMessageFor(model => model.IdentificacaoUnica)
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="col-sm-7">
+
+                        <div class="editor-label">
+                            <i class="fa fa-asterisk text-danger"></i>
+                            @Html.LabelFor(model => model.Nome)
+                        </div>
+                        <div class="editor-field">
+                            @Html.TextBoxFor(model => model.Nome, new { @class = " form-control , upper", @placeholder = "Nome Completo do aluno" })
+                            @Html.ValidationMessageFor(model => model.Nome)
+                        </div>
+                    </div>
+
+                    <div class="col-sm-3">
+                        <div class="editor-label">
+                            <i class="fa fa-asterisk text-danger"></i>
+                            @Html.LabelFor(model => model.DataNascimento)
+                        </div>
+                        <div class="editor-field">
+                            @Html.TextBoxFor(model => model.DataNascimento, new { @class = "form-control ajuda-data" })
+                            @Html.ValidationMessageFor(model => model.DataNascimento)
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="row">
+
+                    <div class="col-sm-2">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.Nis)
+                        </div>
+                        <div class="editor-field">
+                            <div class="input-group">
+                                @Html.TextBoxFor(model => model.Nis, new { @class = "form-control", @placeholder = "11 NÚMEROS" })
+                                <span class="input-group-addon" data-toggle="tooltip" data-placement="bottom" title="NIS - Número de Identificação Social que esta presente no cartão do Bolsa Família, são os 11 primeiros digitos ">?</span>
+                                @Html.ValidationMessageFor(model => model.Nis)
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-2">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.EstadoCivilAluno)
+                        </div>
+                        <div class="editor-field">
+                            <select class="form-control" name="EstadoCivilAluno" id="EstadoCivilAluno">
+                                <option value="SOLTEIRO">SOLTEIRO</option>
+                                <option value="CASADO">CASADO</option>
+                                <option value="VIUVO">VIUVO</option>
+                            </select>
+                        </div>
+                    </div>
+
+
+                    <div class="col-sm-5">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.ProfissaoAluno)
+                        </div>
+                        <div class="editor-field">
+                            @Html.TextBoxFor(model => model.ProfissaoAluno, new { @class = " form-control , upper", @placeholder = "Profissão do aluno" })
+                            @Html.ValidationMessageFor(model => model.ProfissaoAluno)
+                        </div>
+                    </div>
+
+                    <div class="col-sm-3">
+                        <div class="editor-label">
+                            <i class="fa fa-asterisk text-danger"></i>
+                            @Html.LabelFor(model => model.Sexo)
+                        </div>
+                        <div class="editor-field">
+                            <select class="form-control" name="Sexo" id="Sexo">
+                                <option value=""></option>
+                                <option value="M">MASCULINO</option>
+                                <option value="F">FEMININO</option>
+                            </select>
+
+                            @Html.ValidationMessageFor(model => model.Sexo)
+                        </div>
+                    </div>
+
+
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-5">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.ReligiaoAluno)
+                        </div>
+                        <div class="editor-field">
+                            @Html.TextBoxFor(model => model.ReligiaoAluno, new { @class = " form-control , upper", @placeholder = "Religião do aluno" })
+                            @Html.ValidationMessageFor(model => model.ReligiaoAluno)
+                        </div>
+                    </div>
+
+
+                    <div class="col-sm-3">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.RacaCor)
+                        </div>
+                        <div class="editor-field">
+                            <select class="form-control" name="RacaCor" id="RacaCor">
+                                <option value="BRANCA">BRANCA</option>
+                                <option value="NEGRA">NEGRA</option>
+                                <option value="PARDA">PARDA</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-4">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.Situacao)
+                        </div>
+                        <div class="editor-field">
+                            <select class="form-control" name="Situacao" id="Situacao" disabled>
+                                <option value="ATIVO">ATIVO</option>
+                                <option value="INATIVO">INATIVO</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <strong><span class="fa fa-minus"></span><span>&nbsp;</span>Dados Documentos</strong>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-sm-3">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.Rg)
+                        </div>
+                        <div class="editor-field">
+                            @Html.TextBoxFor(model => model.Rg, new { @class = "form-control", @placeholder = "SOMENTE NÚMERO" })
+                            @Html.ValidationMessageFor(model => model.Rg)
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.OrgaoExpRg)
+                        </div>
+                        <div class="editor-field">
+                            @Html.TextBoxFor(model => model.OrgaoExpRg, new { @class = "form-control , upper" })
+                            @Html.ValidationMessageFor(model => model.OrgaoExpRg)
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.UfRg)
+                        </div>
+                        <div class="editor-field">
+                            <select class="form-control" name="UfRg" id="UfRg">
+                                <option value="AC">AC</option>
+                                <option value="AL">AL</option>
+                                <option value="AP">AP</option>
+                                <option value="AM">AM</option>
+                                <option value="BA">BA</option>
+                                <option value="CE">CE</option>
+                                <option value="DF">DF</option>
+                                <option value="ES">ES</option>
+                                <option value="GO">GO</option>
+                                <option value="MA">MA</option>
+                                <option value="MT">MT</option>
+                                <option value="MS">MS</option>
+                                <option value="MG">MG</option>
+                                <option value="PA">PA</option>
+                                <option value="PB">PB</option>
+                                <option value="PR">PR</option>
+                                <option value="PE">PE</option>
+                                <option value="PI">PI</option>
+                                <option value="RJ">RJ</option>
+                                <option value="RN">RN</option>
+                                <option value="RS">RS</option>
+                                <option value="RO">RO</option>
+                                <option value="RR">RR</option>
+                                <option value="SC">SC</option>
+                                <option value="SP">SP</option>
+                                <option value="SE">SE</option>
+                                <option value="TO">TO</option>
+                            </select>
+                            @Html.ValidationMessageFor(model => model.UfRg)
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.DataExpRg)
+                        </div>
+                        <div class="editor-field">
+                            @Html.TextBoxFor(model => model.DataExpRg, new { @class = "form-control ajuda-data" })
+                            @Html.ValidationMessageFor(model => model.DataExpRg)
+                        </div>
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="col-sm-3">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.Cpf)
+                        </div>
+                        <div class="editor-field">
+                            @Html.TextBoxFor(model => model.Cpf, new { @class = "form-control", @placeholder = "" })
+                            @Html.ValidationMessageFor(model => model.Cpf)
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.NumeroNovaCertidaoCivil)
+                        </div>
+                        <div class="editor-field">
+                            @Html.TextBoxFor(model => model.NumeroNovaCertidaoCivil, new { @class = "form-control", @placeholder = "SOMENTE NUMEROS" })
+                            @Html.ValidationMessageFor(model => model.NumeroNovaCertidaoCivil)
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.DataEmissaoCertidao)
+                        </div>
+                        <div class="editor-field">
+                            @Html.TextBoxFor(model => model.DataEmissaoCertidao, new { @class = "form-control ajuda-data" })
+                            @Html.ValidationMessageFor(model => model.DataEmissaoCertidao)
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <strong><span class="fa fa-minus"></span><span>&nbsp;</span>Dados de Endereço</strong>
+            </div>
+            <div class="panel-body">
+
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.EnderecoResidencia)
+                        </div>
+                        <div class="editor-field">
+                            @Html.TextBoxFor(model => model.EnderecoResidencia, new { @class = "form-control , upper", @placeholder = "Ex: Rua Exemplo" })
+                            @Html.ValidationMessageFor(model => model.EnderecoResidencia)
+                        </div>
+                    </div>
+                    <div class="col-sm-1">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.NumeroResidencia)
+                        </div>
+                        <div class="editor-field">
+                            @Html.TextBoxFor(model => model.NumeroResidencia, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.NumeroResidencia)
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.ComplementoResidencia)
+                        </div>
+                        <div class="editor-field">
+                            @Html.TextBoxFor(model => model.ComplementoResidencia, new { @class = "form-control , upper", @placeholder = "Ex: Fundos" })
+                            @Html.ValidationMessageFor(model => model.ComplementoResidencia)
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.BairroResidencia)
+                        </div>
+                        <div class="editor-field">
+                            @Html.TextBoxFor(model => model.BairroResidencia, new { @class = "form-control , upper", @placeholder = "" })
+                            @Html.ValidationMessageFor(model => model.BairroResidencia)
+                        </div>
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="col-sm-2">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.LocalZonaResidencia)
+                        </div>
+                        <div class="editor-field">
+                            <select class="form-control" name="LocalZonaResidencia" id="LocalZonaResidencia">
+                                <option value="RURAL">RURAL</option>
+                                <option value="URBANA">URBANA</option>
+
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.CepResidencia)
+                        </div>
+                        <div class="editor-field">
+                            @Html.TextBoxFor(model => model.CepResidencia, new { @class = "form-control", @placeholder = "8 NÚMEROS" })
+                            @Html.ValidationMessageFor(model => model.CepResidencia)
+                        </div>
+                    </div>
+
+                    <div class="col-sm-2">
+
+                        <div class="editor-label">
+                            <label for="UfResidencia">UF</label>
+                        </div>
+                        <div class="editor-field">
+                            <select class="form-control" name="UfResidencia" id="UfResidencia">
+                                <option value="AC">AC</option>
+                                <option value="AL">AL</option>
+                                <option value="AP">AP</option>
+                                <option value="AM">AM</option>
+                                <option value="BA">BA</option>
+                                <option value="CE">CE</option>
+                                <option value="DF">DF</option>
+                                <option value="ES">ES</option>
+                                <option value="GO">GO</option>
+                                <option value="MA">MA</option>
+                                <option value="MT">MT</option>
+                                <option value="MS">MS</option>
+                                <option value="MG">MG</option>
+                                <option value="PA">PA</option>
+                                <option value="PB">PB</option>
+                                <option value="PR">PR</option>
+                                <option value="PE">PE</option>
+                                <option value="PI">PI</option>
+                                <option value="RJ">RJ</option>
+                                <option value="RN">RN</option>
+                                <option value="RS">RS</option>
+                                <option value="RO">RO</option>
+                                <option value="RR">RR</option>
+                                <option value="SC">SC</option>
+                                <option value="SP">SP</option>
+                                <option value="SE">SE</option>
+                                <option value="TO">TO</option>
+
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.CidadeResidencia)
+                        </div>
+                        <div class="editor-field">
+                            @Html.TextBoxFor(model => model.CidadeResidencia, new { @class = "form-control , upper", @placeholder = "Cidade de residencia" })
+                            @Html.ValidationMessageFor(model => model.CidadeResidencia)
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <strong><span class="fa fa-minus"></span><span>&nbsp;</span>Dados Responsaveis</strong>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.Responsavel)
+                        </div>
+                        <div class="editor-field">
+                            @Html.TextBoxFor(model => model.Responsavel, new { @class = " form-control , upper", @placeholder = "Nome do responsavel" })
+                            @Html.ValidationMessageFor(model => model.Responsavel)
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.ParentescoResponsavel)
+                        </div>
+                        <div class="editor-field">
+                            @Html.TextBoxFor(model => model.ParentescoResponsavel, new { @class = " form-control , upper", @placeholder = "Parentesco do Responsavel" })
+                            @Html.ValidationMessageFor(model => model.ParentescoResponsavel)
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-5">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.NomePai)
+                        </div>
+                        <div class="editor-field">
+                            @Html.TextBoxFor(model => model.NomePai, new { @class = " form-control , upper", @placeholder = "Nome do Pai" })
+                            @Html.ValidationMessageFor(model => model.NomePai)
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.ProfPai)
+                        </div>
+                        <div class="editor-field">
+                            @Html.TextBoxFor(model => model.ProfPai, new { @class = " form-control , upper", @placeholder = "Profissao do Pai" })
+                            @Html.ValidationMessageFor(model => model.ProfPai)
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.TelPai)
+                        </div>
+                        <div class="editor-field">
+                            @Html.TextBoxFor(model => model.TelPai, new { @class = " form-control", @placeholder = "" })
+                            @Html.ValidationMessageFor(model => model.TelPai)
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-5">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.NomeMae)
+                        </div>
+                        <div class="editor-field">
+                            @Html.TextBoxFor(model => model.NomeMae, new { @class = " form-control , upper", @placeholder = "Nome da Mae" })
+                            @Html.ValidationMessageFor(model => model.NomeMae)
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.ProfMae)
+                        </div>
+                        <div class="editor-field">
+                            @Html.TextBoxFor(model => model.ProfMae, new { @class = " form-control , upper", @placeholder = "Profissao da Mae" })
+                            @Html.ValidationMessageFor(model => model.ProfMae)
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.TelMae)
+                        </div>
+                        <div class="editor-field">
+                            @Html.TextBoxFor(model => model.TelMae, new { @class = " form-control", @placeholder = "" })
+                            @Html.ValidationMessageFor(model => model.TelMae)
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-2">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.Nacionalidade)
+                        </div>
+                        <div class="editor-field">
+                            @Html.TextBoxFor(model => model.Nacionalidade, new { @class = " form-control , upper", @placeholder = "Nacionalidade" })
+                            @Html.ValidationMessageFor(model => model.Nacionalidade)
+                        </div>
+                    </div>
+
+                    <div class="col-sm-3">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.PaisOrigem)
+                        </div>
+                        <div class="editor-field">
+                            @Html.TextBoxFor(model => model.PaisOrigem, new { @class = " form-control , upper", @placeholder = "Pais de Origem" })
+                            @Html.ValidationMessageFor(model => model.PaisOrigem)
+                        </div>
+                    </div>
+
+                    <div class="col-sm-2">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.UfNaturalidade)
+                        </div>
+                        <div class="editor-field">
+                            <select class="form-control" name="UfNaturalidade" id="UfNaturalidade">
+                                <option value="AC">AC</option>
+                                <option value="AL">AL</option>
+                                <option value="AP">AP</option>
+                                <option value="AM">AM</option>
+                                <option value="BA">BA</option>
+                                <option value="CE">CE</option>
+                                <option value="DF">DF</option>
+                                <option value="ES">ES</option>
+                                <option value="GO">GO</option>
+                                <option value="MA">MA</option>
+                                <option value="MT">MT</option>
+                                <option value="MS">MS</option>
+                                <option value="MG">MG</option>
+                                <option value="PA">PA</option>
+                                <option value="PB">PB</option>
+                                <option value="PR">PR</option>
+                                <option value="PE">PE</option>
+                                <option value="PI">PI</option>
+                                <option value="RJ">RJ</option>
+                                <option value="RN">RN</option>
+                                <option value="RS">RS</option>
+                                <option value="RO">RO</option>
+                                <option value="RR">RR</option>
+                                <option value="SC">SC</option>
+                                <option value="SP">SP</option>
+                                <option value="SE">SE</option>
+                                <option value="TO">TO</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-5">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.Naturalidade)
+                        </div>
+                        <div class="editor-field">
+                            @Html.TextBoxFor(model => model.Naturalidade, new { @class = " form-control , upper", @placeholder = "Cidade de Origem" })
+                            @Html.ValidationMessageFor(model => model.Naturalidade)
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.PessoaAutoBuscarAluno)
+                        </div>
+                        <div class="editor-field">
+                            @Html.TextBoxFor(model => model.PessoaAutoBuscarAluno, new { @class = "form-control , upper", @placeholder = "Pessoa Auto Buscar Aluno" })
+                            @Html.ValidationMessageFor(model => model.PessoaAutoBuscarAluno)
+                        </div>
+
+                    </div>
+
+                    <div class="col-sm-4">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.HorDispReunioesPaisAluno)
+                        </div>
+                        <div class="editor-field">
+
+                            <label class="btn btn-success">
+                                @Html.RadioButtonFor(model => model.HorDispReunioesPaisAluno, "sim") &nbsp;&nbsp;Sim&nbsp;&nbsp;
+                            </label>
+                            <label class="btn btn-danger">
+                                @Html.RadioButtonFor(model => model.HorDispReunioesPaisAluno, "nao") &nbsp;&nbsp;Não&nbsp;&nbsp;
+                            </label>
+                            @Html.ValidationMessageFor(model => model.HorDispReunioesPaisAluno)
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <strong><span class="fa fa-minus"></span><span>&nbsp;</span>Dados Adicionais</strong>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+
+                    <div class="col-sm-3">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.ProblemaSaudeAluno)
+                        </div>
+                        <div class="editor-field">
+                            <label class="btn btn-success">
+                                @Html.RadioButtonFor(model => model.ProblemaSaudeAluno, "sim", new { @class = "ProblemaSaudeAluno" }) &nbsp;&nbsp;Sim&nbsp;&nbsp;
+                            </label>
+                            <label class="btn btn-danger">
+                                @Html.RadioButtonFor(model => model.ProblemaSaudeAluno, "nao", new { @class = "ProblemaSaudeAluno", @checked = true }) &nbsp;&nbsp;Não&nbsp;&nbsp;
+                            </label>
+                            @Html.ValidationMessageFor(model => model.ProblemaSaudeAluno)
+                        </div>
+                    </div>
+
+                    <div class="col-sm-9">
+                        <div id="DivDescProblemaSaudeAluno">
+                            <div class="editor-label ">
+                                @Html.LabelFor(model => model.DescProblemaSaudeAluno)
+                            </div>
+                            <div class="editor-field ">
+                                @Html.TextAreaFor(model => model.DescProblemaSaudeAluno, new { @class = "form-control , upper", @placeholder = "Descreva o problema de saúde do aluno" })
+                                @Html.ValidationMessageFor(model => model.DescProblemaSaudeAluno)
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.MedicamentoUsadoAluno)
+                        </div>
+                        <div class="editor-field">
+                            @Html.TextAreaFor(model => model.MedicamentoUsadoAluno, new { @class = "form-control , upper", @placeholder = "Descreva os medicamentos que o aluno faz uso" })
+                            @Html.ValidationMessageFor(model => model.MedicamentoUsadoAluno)
+                        </div>
+
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.AlergiasAluno)
+                        </div>
+                        <div class="editor-field">
+                            @Html.TextAreaFor(model => model.AlergiasAluno, new { @class = "form-control , upper", @placeholder = "Descreva as alegias do aluno" })
+                            @Html.ValidationMessageFor(model => model.AlergiasAluno)
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.RecursoParticipacaoProvas)
+                        </div>
+                        <div class="editor-field">
+                            @Html.TextAreaFor(model => model.RecursoParticipacaoProvas, new { @class = "form-control , upper", @placeholder = "Descreva os recursos para que o aluno possa realizar as provas" })
+                            @Html.ValidationMessageFor(model => model.RecursoParticipacaoProvas)
+                        </div>
+                    </div>
+
+
+                </div>
+
+
+
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.AcompFonoaudiologoAluno)
+                        </div>
+                        <div class="editor-field">
+                            <label class="btn btn-success">
+                                @Html.RadioButtonFor(model => model.AcompFonoaudiologoAluno, "sim") &nbsp;&nbsp;Sim&nbsp;&nbsp;
+                            </label>
+                            <label class="btn btn-danger">
+                                @Html.RadioButtonFor(model => model.AcompFonoaudiologoAluno, "nao", new { @checked = true }) &nbsp;&nbsp;Não&nbsp;&nbsp;
+                            </label>
+                            @Html.ValidationMessageFor(model => model.AcompFonoaudiologoAluno)
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.AcompPscicologoAluno)
+                        </div>
+                        <div class="editor-field">
+                            <label class="btn btn-success">
+                                @Html.RadioButtonFor(model => model.AcompPscicologoAluno, "sim") &nbsp;&nbsp;Sim&nbsp;&nbsp;
+                            </label>
+                            <label class="btn btn-danger">
+                                @Html.RadioButtonFor(model => model.AcompPscicologoAluno, "nao", new { @checked = true }) &nbsp;&nbsp;Não&nbsp;&nbsp;
+                            </label>
+                            @Html.ValidationMessageFor(model => model.AcompPscicologoAluno)
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.AcompApaeAluno)
+                        </div>
+                        <div class="editor-field">
+                            <label class="btn btn-success">
+                                @Html.RadioButtonFor(model => model.AcompApaeAluno, "sim") &nbsp;&nbsp;Sim&nbsp;&nbsp;
+                            </label>
+                            <label class="btn btn-danger">
+                                @Html.RadioButtonFor(model => model.AcompApaeAluno, "nao", new { @checked = true }) &nbsp;&nbsp;Não&nbsp;&nbsp;
+                            </label>
+                            @Html.ValidationMessageFor(model => model.AcompApaeAluno)
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="row">
+
+                    <div class="col-sm-3">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.DefFisicaAluno)
+                        </div>
+                        <div class="editor-field">
+                            <label class="btn btn-success">
+                                @Html.RadioButtonFor(model => model.DefFisicaAluno, "sim", new { @class = "DefFisicaAluno" }) &nbsp;&nbsp;Sim&nbsp;&nbsp;
+                            </label>
+                            <label class="btn btn-danger">
+                                @Html.RadioButtonFor(model => model.DefFisicaAluno, "nao", new { @class = "DefFisicaAluno", @checked = true }) &nbsp;&nbsp;Não&nbsp;&nbsp;
+                            </label>
+                            @Html.ValidationMessageFor(model => model.DefFisicaAluno)
+                        </div>
+                    </div>
+
+                    <div class="col-sm-9">
+                        <div id="DivDescDefFisicaAluno">
+                            <div class="editor-label ">
+                                @Html.LabelFor(model => model.DescDefFisicaAluno)
+                            </div>
+                            <div class="editor-field ">
+                                @Html.TextAreaFor(model => model.DescDefFisicaAluno, new { @class = "form-control , upper", @placeholder = "Descreva a deficiência fisica do aluno" })
+                                @Html.ValidationMessageFor(model => model.DescDefFisicaAluno)
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="row">
+
+                    <div class="col-sm-3">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.DefVisualAluno)
+                        </div>
+                        <div class="editor-field">
+                            <label class="btn btn-success">
+                                @Html.RadioButtonFor(model => model.DefVisualAluno, "sim", new { @class = "DefVisualAluno" }) &nbsp;&nbsp;Sim&nbsp;&nbsp;
+                            </label>
+                            <label class="btn btn-danger">
+                                @Html.RadioButtonFor(model => model.DefVisualAluno, "nao", new { @class = "DefVisualAluno", @checked = true }) &nbsp;&nbsp;Não&nbsp;&nbsp;
+                            </label>
+                            @Html.ValidationMessageFor(model => model.DefVisualAluno)
+                        </div>
+                    </div>
+
+                    <div class="col-sm-9">
+                        <div id="DivDescDefVisualAluno">
+                            <div class="editor-label ">
+                                @Html.LabelFor(model => model.DescDefVisualAluno)
+                            </div>
+                            <div class="editor-field ">
+                                @Html.TextAreaFor(model => model.DescDefVisualAluno, new { @class = "form-control , upper", @placeholder = "Descreva a deficiência visual do aluno" })
+                                @Html.ValidationMessageFor(model => model.DescDefVisualAluno)
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="row">
+
+                    <div class="col-sm-3">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.DefAuditivaAluno)
+                        </div>
+                        <div class="editor-field">
+                            <label class="btn btn-success">
+                                @Html.RadioButtonFor(model => model.DefAuditivaAluno, "sim", new { @class = "DefAuditivaAluno" }) &nbsp;&nbsp;Sim&nbsp;&nbsp;
+                            </label>
+                            <label class="btn btn-danger">
+                                @Html.RadioButtonFor(model => model.DefAuditivaAluno, "nao", new { @class = "DefAuditivaAluno", @checked = true }) &nbsp;&nbsp;Não&nbsp;&nbsp;
+                            </label>
+                            @Html.ValidationMessageFor(model => model.DefAuditivaAluno)
+                        </div>
+                    </div>
+
+                    <div class="col-sm-9">
+                        <div id="DivDescDefAuditivaAluno">
+                            <div class="editor-label ">
+                                @Html.LabelFor(model => model.DescDefAuditivaAluno)
+                            </div>
+                            <div class="editor-field ">
+                                @Html.TextAreaFor(model => model.DescDefAuditivaAluno, new { @class = "form-control , upper", @placeholder = "Descreva a deficiência auditiva do aluno" })
+                                @Html.ValidationMessageFor(model => model.DescDefAuditivaAluno)
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="row">
+
+                    <div class="col-sm-3">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.AltaHabilidade)
+                        </div>
+                        <div class="editor-field">
+                            <label class="btn btn-success">
+                                @Html.RadioButtonFor(model => model.AltaHabilidade, "sim", new { @class = "AltaHabilidade" }) &nbsp;&nbsp;Sim&nbsp;&nbsp;
+                            </label>
+                            <label class="btn btn-danger">
+                                @Html.RadioButtonFor(model => model.AltaHabilidade, "nao", new { @class = "AltaHabilidade", @checked = true }) &nbsp;&nbsp;Não&nbsp;&nbsp;
+                            </label>
+                            @Html.ValidationMessageFor(model => model.AltaHabilidade)
+                        </div>
+                    </div>
+
+                    <div class="col-sm-9">
+                        <div id="DivDescAltaHabilidade">
+                            <div class="editor-label ">
+                                @Html.LabelFor(model => model.DescAltaHabilidade)
+                            </div>
+                            <div class="editor-field ">
+                                @Html.TextAreaFor(model => model.DescAltaHabilidade, new { @class = "form-control , upper", @placeholder = "Descreva as altas habilidades do aluno" })
+                                @Html.ValidationMessageFor(model => model.DescAltaHabilidade)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="panel panel-footer">
+        <div class="row">
+            <div class="col-sm-5">
+                <h5><strong>Atenção!</strong> O campo com <i class="fa fa-asterisk text-danger"></i>é obrigatório</h5>
+            </div>
+            <div class="col-sm-3 col-sm-offset-1">
+                <a class="btn btn-block btn-lg btn-danger" href="@Url.Action("Index")"><span class="fa fa-remove"></span>Cancelar</a>
+            </div>
+            <div class="col-sm-3">
+                <button type="submit" class="btn btn-block btn-lg btn-success" value="Adicionar"><span class="fa fa-floppy-disk"></span>Salvar</button>
+            </div>
+        </div>
+    </div>
+
+}
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryui")
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/jqueryform")
+    @Scripts.Render("~/Scripts/bootstrap-tooltip.js")
+    @Scripts.Render("~/Scripts/jquery.maskedinput.min.js")
+}

@@ -1,0 +1,185 @@
+﻿@model GestaoEscolar.Models.Conceito
+
+@{
+    ViewBag.Title = "Detalhes";
+    Layout = "~/Views/Shared/_LayoutPadrao.cshtml";
+}
+
+<div class="panel panel-heading">
+    <strong><span class="glyphicon glyphicon-cog"></span><span>&nbsp;</span>Detalhes</strong>
+</div>
+
+<div class="panel-body">
+
+
+
+    <table class="table table-bordered">
+        <tr>
+            <th colspan="2"></th>
+            <th colspan="2">1º Bimestre</th>
+            <th colspan="2">2º Bimestre</th>
+            <th colspan="2">3º Bimestre</th>
+            <th colspan="2">4º Bimestre</th>
+        </tr>
+        <tr>
+            <th>Aluno</th>
+            <th>Disciplina</th>
+            <th>Nota</th>
+            <th>Faltas</th>
+            <th>Nota</th>
+            <th>Faltas</th>
+            <th>Nota</th>
+            <th>Faltas</th>
+            <th>Nota</th>
+            <th>Faltas</th>
+        </tr>
+        <tr>
+            <td>
+                @Html.DisplayFor(model => model.Matricula.Aluno.Nome)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.Disciplina.NomeDisciplina)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.Conceito1Bim)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.Faltas1Bim)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.Conceito2Bim)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.Faltas2Bim)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.Conceito3Bim)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.Faltas3Bim)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.Conceito4Bim)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.Faltas4Bim)
+            </td>
+        </tr>
+    </table>
+    <div class="row">
+        <hr />
+        <div class="col-md-3 col-md-offset-6">
+            <a class="btn btn-block btn-lg btn-danger" href="@Url.Action("Index", "Conceito")">
+                <span class="glyphicon glyphicon-chevron-left"></span><span>&nbsp;</span>Voltar
+            </a>
+        </div>
+        <div class="col-md-3">
+            <a class="btn btn-block btn-lg btn-warning" href="@Url.Action("ConceitoAluno", "Conceito", new { turmaId = Model.Matricula.TurmaId, disciplinaId = Model.DisciplinaId, alunoId = Model.MatriculaId, periodo = 1})">
+                <span class="glyphicon glyphicon-edit"></span><span>&nbsp;</span>Editar
+            </a>
+        </div>
+    </div>
+
+
+
+
+
+    @*    <fieldset>
+    <legend>Conceito</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.DisciplinaId)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.DisciplinaId)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Matricula.Aluno.Nome)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Matricula.Aluno.Nome)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Conceito1Bim)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Conceito1Bim)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Conceito2Bim)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Conceito2Bim)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Conceito3Bim)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Conceito3Bim)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Conceito4Bim)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Conceito4Bim)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.ConceitoFinal)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ConceitoFinal)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Faltas1Bim)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Faltas1Bim)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Faltas2Bim)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Faltas2Bim)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Faltas3Bim)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Faltas3Bim)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Faltas4Bim)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Faltas4Bim)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.FaltasTotal)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.FaltasTotal)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Situacao)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Situacao)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Editar", new { id=Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>*@
+</div>

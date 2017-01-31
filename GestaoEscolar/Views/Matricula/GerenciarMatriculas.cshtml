@@ -1,0 +1,144 @@
+﻿@using GestaoEscolar.Models
+@using Microsoft.Ajax.Utilities
+@{
+    ViewBag.Title = "GerenciarMatriculas";
+}
+<script>
+    $(document).ready(function () {
+        $('#turmaId').addClass("form-control");
+        $('#anoLetivoId').addClass("form-control");
+    });
+
+
+</script>
+
+<h5><strong><span class="glyphicon glyphicon-cog"></span><span>&nbsp;</span>Gerenciar Matriculas</strong></h5>
+
+<div class="col-md-12">
+    <div class="row">
+        @using (@Html.BeginForm("GerenciarMatriculas", "Matricula", FormMethod.Get))
+            {
+            <div class="col-sm-5">
+                <label>Turma </label>
+                @Html.DropDownList("turmaId", (SelectList)ViewBag.TurmaId, "Selecione a turma", new { onchange = "this.form.submit();" })
+            </div>
+                <div class="col-sm-2">
+                    <label>Ano </label>
+                    @Html.DropDownList("anoLetivoId", (SelectList)ViewBag.AnoLetivoId, new { onchange = "this.form.submit();" })
+                </div>
+                <div class="col-sm-3">
+                    <label>Total de Vagas: </label>
+                    @ViewBag.QtdAluno<br />
+                    <label>Vagas Abertas: </label>
+                    @ViewBag.QtdVagas
+                </div>
+        }
+    </div>
+    <br />
+</div>
+@if (ViewBag.turmaSelecionada != null)
+{
+
+    using (@Html.BeginForm("Enturmar", "Matricula", FormMethod.Post))
+    {
+        <div class="col-sm-6">
+            <div class="panel panel-success">
+                @Html.Hidden("turmaSelecionada")
+                @Html.Hidden("anoLetivoselecionado")
+
+                <div class="panel-heading">
+                    <h4>Alunos sem turma </h4>
+                </div>
+                <div class="panel-body" style="height: 300px; overflow: scroll">
+                    <table class="table table-hover">
+                        <tr>
+                            <th>
+                                <span class="glyphicon glyphicon-ok"></span>
+                            </th>
+                            <th>
+                                Nome do Aluno
+                            </th>
+                            <th>
+                                Sexo
+                            </th>
+                        </tr>
+                        @foreach (var item in @ViewBag.NaoMatriculados)
+                        {
+                        <tr>
+                            <td>
+                                <input type="checkbox" value="@item.Id" name="alunos" />
+                            </td>
+                            <td>
+                                @item.Nome
+                            </td>
+                            <td>
+                                @item.Sexo
+                            </td>
+                        </tr>
+
+                        }
+                    </table>
+                </div>
+
+                <div class="panel-footer">
+                    <input type="submit" class="btn btn-success btn-block" value="Entumar" />
+                </div>
+
+            </div>
+        </div>
+
+    }
+
+    using (@Html.BeginForm("Desenturmar", "Matricula", FormMethod.Post))
+    {
+
+        <div class="col-sm-6">
+            <div class="panel panel-success">
+                @Html.Hidden("turmaSelecionada")
+                @Html.Hidden("anoLetivoselecionado")
+
+                <div class="panel-heading">
+                    <h4>Alunos Matriculados </h4>
+                </div>
+
+                <div class="panel-body" style="height: 300px; overflow: scroll">
+                    <table class="table table-hover">
+                        <tr>
+                            <th>
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </th>
+                            <th>
+                                Nome do Aluno
+                            </th>
+                            <th>
+                                Sexo
+                            </th>
+                        </tr>
+                        @foreach (var item in @ViewBag.Matriculados)
+                        {
+                        <tr>
+                            <td>
+                                <input type="checkbox" value="@item.Id" name="alunos" />
+                            </td>
+                            <td>
+                                @item.Nome
+                            </td>
+                            <td>
+                                @item.Sexo
+                            </td>
+                        </tr>
+
+                        }
+                    </table>
+                </div>
+                <div class="bottom panel-footer ">
+                    <input type="submit" class="btn btn-danger btn-block" value="Dentumar" />
+                </div>
+            </div>
+        </div>
+
+    }
+}
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

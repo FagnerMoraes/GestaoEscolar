@@ -1,0 +1,259 @@
+﻿@using System.Globalization
+@model IEnumerable<GestaoEscolar.Models.Conceito>
+@{
+    ViewBag.Title = "FichaIndividual";
+    Layout = "~/Views/Shared/_LayoutRelatorios.cshtml";
+}
+
+<div class="container para-barra">
+    <div class="row text-center barra">
+        <div class="col-xs-3 espacamento">
+            <img src="~/Content/imagens/relatorios/historico/timbre-republica-brasil.jpeg" alt="Timbre Republica" />
+        </div>
+        <div class="col-xs-6 espacamento">
+            Ficha Individual<br />
+            Escola:Municipal Clóvis Araújo Dias<br />
+            Autorização:nº 872/98 de 11/11/1992<br />
+            Endereço: Bairro São Luiz-Machado - MG<br />
+            Telefone: 88692901<br />
+            Email: emclovisaraujodias@yahoo.com.br<br />
+            SRE VARGINHA
+        </div>
+        <div class="col-xs-3 espacamento">
+            <img src="~/Content/imagens/relatorios/historico/timbre-estado-minas.jpg" alt="Timbre Estado" />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-9 barra espacamento">Nível de Ensino: @ViewBag.NivelEnsino</div>
+        <div class="col-xs-3 barra espacamento">Período:</div>
+    </div>
+    <div class="row">
+        <div class="col-xs-6 barra espacamento">Turno: @ViewBag.Turno</div>
+        <div class="col-xs-3 barra espacamento">Ano: @ViewBag.Ano</div>
+        <div class="col-xs-3 barra espacamento">Turma: @ViewBag.Turma</div>
+    </div>
+    <div class="row">
+        <div class="col-xs-9 barra espacamento">Aluno: @ViewBag.Aluno </div>
+        <div class="col-xs-3 barra espacamento">Matricula: @ViewBag.Matricula </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-6 barra espacamento">Data de Nascimento: @ViewBag.Nascimento</div>
+        <div class="col-xs-3 barra espacamento">Sexo: @ViewBag.Sexo</div>
+        <div class="col-xs-3 barra espacamento">Estado Cvil: @ViewBag.EstadoCivil</div>
+    </div>
+    <div class="row">
+        <div class="col-xs-4 barra espacamento">Nacionalidade: @ViewBag.Nacionalidade</div>
+        <div class="col-xs-5 barra espacamento">Naturalidade: @ViewBag.Naturalidade</div>
+        <div class="col-xs-3 barra espacamento">Profissão: @ViewBag.Profissao</div>
+    </div>
+    <div class="row">
+        <div class="col-xs-6 barra espacamento">Pai: @ViewBag.Pai</div>
+        <div class="col-xs-6 barra espacamento">Mãe: @ViewBag.Mae</div>
+    </div>
+    <div class="row">
+        <div class="col-xs-9 barra espacamento">Logradouro: @ViewBag.Logradouro</div>
+        <div class="col-xs-1 barra espacamento ">N: @ViewBag.Numero</div>
+        <div class="col-xs-2 barra espacamento ">Compl: @ViewBag.Complemento</div>
+    </div>
+    <div class="row">
+        <div class="col-xs-9 barra espacamento">Bairro: @ViewBag.Bairro</div>
+        <div class="col-xs-3 barra espacamento">CEP: @ViewBag.Cep</div>
+    </div>
+    <div class="row">
+        <div class="col-xs-7 barra espacamento">Municipio: @ViewBag.Municipio</div>
+        <div class="col-xs-2 barra espacamento">UF: @ViewBag.Uf</div>
+        <div class="col-xs-3 barra espacamento">Tel: @ViewBag.Telefone</div>
+    </div>
+    <div class="row">
+        <div class="col-xs-6 barra espacamento">Condição do Aluno: @ViewBag.CondicaoAluno</div>
+        <div class="col-xs-3 barra espacamento">Dias Letivos Anuais: @ViewBag.AnoLetivoAnual</div>
+        <div class="col-xs-3 barra espacamento">Dias Letivos Cursados:</div>
+    </div>
+    <div class="row text-center">
+        <div class="col-xs-5 barra espacamento">Disciplinas</div>
+        <div class="col-xs-2 barra espacamento text-center ">Carga Horaria</div>
+        <div class="col-xs-1 barra espacamento ">1ºbim</div>
+        <div class="col-xs-1 barra espacamento">2ºbim</div>
+        <div class="col-xs-1 barra espacamento">3ºbim</div>
+        <div class="col-xs-1 barra espacamento">4ºbim</div>
+        <div class="col-xs-1 barra text-center small-text ">
+            CONCEITO<br />
+            FINAL
+        </div>
+    </div>
+
+    @foreach (var item in Model)
+    {
+        <div class="row text-center">
+            <div class="col-xs-5 barra espacamento-disciplina text-justify">@item.Disciplina.NomeDisciplina.ToUpper()</div>
+            <div class="col-xs-2 barra espacamento-disciplina ">
+                <span>&nbsp;</span>    
+            </div>
+            <div class="col-xs-1 barra espacamento-disciplina">
+                @if (!String.IsNullOrEmpty(item.Conceito1Bim))
+                {
+                    @item.Conceito1Bim
+                }
+                else
+                {
+                <span>&nbsp;</span>    
+                }
+            </div>
+            <div class="col-xs-1 barra espacamento-disciplina">
+                @if (!String.IsNullOrEmpty(item.Conceito2Bim))
+                {
+                    @item.Conceito2Bim
+                }
+                else
+                {
+                <span>&nbsp;</span>    
+                }
+            </div>
+            <div class="col-xs-1 barra espacamento-disciplina">
+                @if (!String.IsNullOrEmpty(item.Conceito3Bim))
+                {
+                    @item.Conceito3Bim
+                }
+                else
+                {
+                <span>&nbsp;</span>    
+                }
+            </div>
+            <div class="col-xs-1 barra espacamento-disciplina">
+                @if (!String.IsNullOrEmpty(item.Conceito4Bim))
+                {
+                    @item.Conceito4Bim
+                }
+                else
+                {
+                <span>&nbsp;</span>    
+                }
+            </div>
+            <div class="col-xs-1 barra espacamento-disciplina">
+                @if (!String.IsNullOrEmpty(item.ConceitoFinal))
+                {
+                    @item.ConceitoFinal
+                }
+                else
+                {
+                <span>&nbsp;</span>    
+                }
+            </div>
+        </div>
+    }
+
+
+    <div class="row">
+        <div class="col-xs-5 barra espacamento-disciplina">ARTE</div>
+        <div class="col-xs-2 barra espacamento-disciplina"><span>&nbsp;</span></div>
+        <div class="col-xs-1 barra espacamento-disciplina"><span>&nbsp;</span></div>
+        <div class="col-xs-1 barra espacamento-disciplina"><span>&nbsp;</span></div>
+        <div class="col-xs-1 barra espacamento-disciplina"><span>&nbsp;</span></div>
+        <div class="col-xs-1 barra espacamento-disciplina"><span>&nbsp;</span></div>
+        <div class="col-xs-1 barra espacamento-disciplina"><span>&nbsp;</span></div>
+    </div>
+    <div class="row">
+        <div class="col-xs-5 barra espacamento-disciplina">ED FÍSICA</div>
+        <div class="col-xs-2 barra espacamento-disciplina"><span>&nbsp;</span></div>
+        <div class="col-xs-1 barra espacamento-disciplina"><span>&nbsp;</span></div>
+        <div class="col-xs-1 barra espacamento-disciplina"><span>&nbsp;</span></div>
+        <div class="col-xs-1 barra espacamento-disciplina"><span>&nbsp;</span></div>
+        <div class="col-xs-1 barra espacamento-disciplina"><span>&nbsp;</span></div>
+        <div class="col-xs-1 barra espacamento-disciplina"><span>&nbsp;</span></div>
+    </div>
+    <div class="row">
+        <div class="col-xs-5 barra espacamento-disciplina">HISTÓRIA</div>
+        <div class="col-xs-2 barra espacamento-disciplina"><span>&nbsp;</span></div>
+        <div class="col-xs-1 barra espacamento-disciplina"><span>&nbsp;</span></div>
+        <div class="col-xs-1 barra espacamento-disciplina"><span>&nbsp;</span></div>
+        <div class="col-xs-1 barra espacamento-disciplina"><span>&nbsp;</span></div>
+        <div class="col-xs-1 barra espacamento-disciplina"><span>&nbsp;</span></div>
+        <div class="col-xs-1 barra espacamento-disciplina"><span>&nbsp;</span></div>
+    </div>
+    <div class="row">
+        <div class="col-xs-5 barra espacamento-disciplina">GEOGRAFIA</div>
+        <div class="col-xs-2 barra espacamento-disciplina"><span>&nbsp;</span></div>
+        <div class="col-xs-1 barra espacamento-disciplina"><span>&nbsp;</span></div>
+        <div class="col-xs-1 barra espacamento-disciplina"><span>&nbsp;</span></div>
+        <div class="col-xs-1 barra espacamento-disciplina"><span>&nbsp;</span></div>
+        <div class="col-xs-1 barra espacamento-disciplina"><span>&nbsp;</span></div>
+        <div class="col-xs-1 barra espacamento-disciplina"><span>&nbsp;</span></div>
+    </div>
+    <div class="row">
+        <div class="col-xs-5 barra espacamento-disciplina">ENSINO RELIGIOSO</div>
+        <div class="col-xs-2 barra espacamento-disciplina"><span>&nbsp;</span></div>
+        <div class="col-xs-1 barra espacamento-disciplina"><span>&nbsp;</span></div>
+        <div class="col-xs-1 barra espacamento-disciplina"><span>&nbsp;</span></div>
+        <div class="col-xs-1 barra espacamento-disciplina"><span>&nbsp;</span></div>
+        <div class="col-xs-1 barra espacamento-disciplina"><span>&nbsp;</span></div>
+        <div class="col-xs-1 barra espacamento-disciplina"><span>&nbsp;</span></div>
+    </div>
+    <div class="row">
+        <div class="col-xs-5 barra espacamento-disciplina">CIÊNCIAS DA NATUREZA</div>
+        <div class="col-xs-2 barra espacamento-disciplina"><span>&nbsp;</span></div>
+        <div class="col-xs-1 barra espacamento-disciplina"><span>&nbsp;</span></div>
+        <div class="col-xs-1 barra espacamento-disciplina"><span>&nbsp;</span></div>
+        <div class="col-xs-1 barra espacamento-disciplina"><span>&nbsp;</span></div>
+        <div class="col-xs-1 barra espacamento-disciplina"><span>&nbsp;</span></div>
+        <div class="col-xs-1 barra espacamento-disciplina"><span>&nbsp;</span></div>
+    </div>
+    <div class="row">
+        <div class="col-xs-5 barra espacamento-disciplina">INFORMÁTICA</div>
+        <div class="col-xs-2 barra espacamento-disciplina"><span>&nbsp;</span></div>
+        <div class="col-xs-1 barra espacamento-disciplina"><span>&nbsp;</span></div>
+        <div class="col-xs-1 barra espacamento-disciplina"><span>&nbsp;</span></div>
+        <div class="col-xs-1 barra espacamento-disciplina"><span>&nbsp;</span></div>
+        <div class="col-xs-1 barra espacamento-disciplina"><span>&nbsp;</span></div>
+        <div class="col-xs-1 barra espacamento-disciplina"><span>&nbsp;</span></div>
+    </div>
+    <div class="row">
+        <div class="col-xs-5 barra espacamento-disciplina">LITERATURA INFANTO JUVENIL</div>
+        <div class="col-xs-2 barra espacamento-disciplina"><span>&nbsp;</span></div>
+        <div class="col-xs-1 barra espacamento-disciplina"><span>&nbsp;</span></div>
+        <div class="col-xs-1 barra espacamento-disciplina"><span>&nbsp;</span></div>
+        <div class="col-xs-1 barra espacamento-disciplina"><span>&nbsp;</span></div>
+        <div class="col-xs-1 barra espacamento-disciplina"><span>&nbsp;</span></div>
+        <div class="col-xs-1 barra espacamento-disciplina"><span>&nbsp;</span></div>
+    </div>
+
+
+
+    <div class="row">
+        <div class="col-xs-5 barra espacamento-disciplina">FALTAS/HORAS</div>
+        <div class="col-xs-2 barra espacamento-disciplina"><span>&nbsp;</span></div>
+        <div class="col-xs-1 barra espacamento-disciplina"><span>&nbsp;</span></div>
+        <div class="col-xs-1 barra espacamento-disciplina"><span>&nbsp;</span></div>
+        <div class="col-xs-1 barra espacamento-disciplina"><span>&nbsp;</span></div>
+        <div class="col-xs-1 barra espacamento-disciplina"><span>&nbsp;</span></div>
+        <div class="col-xs-1 barra espacamento-disciplina"><span>&nbsp;</span></div>
+    </div>
+    <div class="row">
+        <div class="col-xs-6 barra espacamento">Carga Horaria Total: @ViewBag.ChTotal</div>
+        <div class="col-xs-6 barra espacamento">Total Faltas/Horas:</div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 barra espacamento">
+            Observação:
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <div class="col-xs-12 barra"></div>
+            <br />
+            <br />
+            <br />
+            <br />
+            <div class="col-xs-5 assinatura-barra text-center">
+                Assinatura do(a) Secretário(a) - nº Reg ou Aut. 258906
+            </div>
+            <div class="col-xs-2"></div>
+            <div class="col-xs-5 assinatura-barra text-center">
+                Assinatura do(a) Diretor(a) - nº Reg ou Aut.416775
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@Styles.Render("~/Content/Relatorio/EstiloFichaIndividual.css")

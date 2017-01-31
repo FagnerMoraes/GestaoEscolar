@@ -1,0 +1,34 @@
+﻿@model GestaoEscolar.Models.TipoFuncionario
+
+
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 class="modal-title">Adicionar Novo Tipo de Funcionario</h3>
+</div>
+
+
+@using (Html.BeginForm("Adicionar", "TipoFuncionario", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="modal-body">
+        <div class="row">
+            <div class="2"></div>
+            <div class="col-sm-8">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.DescricaoFuncionario)
+                </div>
+                <div class="editor-field">
+                    @Html.TextBoxFor(model => model.DescricaoFuncionario, new { @class = " form-control", @placeholder = "Ex: Professor" })
+                    @Html.ValidationMessageFor(model => model.DescricaoFuncionario)
+                </div>
+            </div>
+            <div class="2"></div>
+        </div>
+    </div>
+
+    <div class="modal-footer">
+        <input class="btn btn-primary" type="submit" value="Adicionar" />
+        <button class="btn btn-warning" data-dismiss="modal">Close</button>
+    </div>
+}

@@ -1,0 +1,243 @@
+﻿@model GestaoEscolar.Models.Escola
+
+@{
+    ViewBag.Title = "Cadastro Escola";
+    Layout = "~/Views/Shared/_LayoutPadrao.cshtml";
+}
+
+<div class="panel panel-heading font-form">
+    <strong><span class="glyphicon glyphicon-plus-sign"></span><span>&nbsp;</span>Cadastro Escola</strong>
+</div>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <div class="panel-body panel-scroll font-form">
+        
+        <div class="panel panel-default">
+            <div class="panel panel-heading">
+                <strong><span class="glyphicon glyphicon-cloud"></span><span>&nbsp;</span>Dados Principais</strong>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-sm-8">
+                        <div class="editor-label">
+                            <i class="fa fa-asterisk text-danger"></i>
+                            @Html.LabelFor(model => model.NomeEscola)
+                        </div>
+                        <div class="editor-field">
+                            @Html.TextBoxFor(model => model.NomeEscola, new { @class = "form-control , upper", @placeholder = "Nome da escola" })
+                            @Html.ValidationMessageFor(model => model.NomeEscola)
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="editor-label">
+                            <i class="fa fa-asterisk text-danger"></i>
+                            @Html.LabelFor(model => model.Cnpj)
+                        </div>
+                        <div class="editor-field">
+                            @Html.TextBoxFor(model => model.Cnpj, new { @class = " form-control", @placeholder = "" })
+                            @Html.ValidationMessageFor(model => model.Cnpj)
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-8">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.NomeGestor)
+                        </div>
+                        <div class="editor-field">
+                            @Html.TextBoxFor(model => model.NomeGestor, new { @class = "form-control , upper", @placeholder = "Nome do gestor" })
+                            @Html.ValidationMessageFor(model => model.NomeGestor)
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.CargoGestor)
+                        </div>
+                        <div class="editor-field">
+                            @Html.TextBoxFor(model => model.CargoGestor, new { @class = " form-control , upper", @placeholder = "" })
+                            @Html.ValidationMessageFor(model => model.CargoGestor)
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel panel-heading">
+                <strong><span class="glyphicon glyphicon-cloud"></span><span>&nbsp;</span>Dados de Endereço</strong>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-sm-8">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.CidadeEscola)
+                        </div>
+                        <div class="editor-field">
+                            @Html.TextBoxFor(model => model.CidadeEscola, new { @class = " form-control , upper", @placeholder = "Nome da cidade" })
+                            @Html.ValidationMessageFor(model => model.CidadeEscola)
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.UfEscola)
+                        </div>
+                        <div class="editor-field">
+                            <select class="form-control" name="UfEscola" id="UfEscola">
+                                <option value="AC">AC</option>
+                                <option value="AL">AL</option>
+                                <option value="AP">AP</option>
+                                <option value="AM">AM</option>
+                                <option value="BA">BA</option>
+                                <option value="CE">CE</option>
+                                <option value="DF">DF</option>
+                                <option value="ES">ES</option>
+                                <option value="GO">GO</option>
+                                <option value="MA">MA</option>
+                                <option value="MT">MT</option>
+                                <option value="MS">MS</option>
+                                <option value="MG">MG</option>
+                                <option value="PA">PA</option>
+                                <option value="PB">PB</option>
+                                <option value="PR">PR</option>
+                                <option value="PE">PE</option>
+                                <option value="PI">PI</option>
+                                <option value="RJ">RJ</option>
+                                <option value="RN">RN</option>
+                                <option value="RS">RS</option>
+                                <option value="RO">RO</option>
+                                <option value="RR">RR</option>
+                                <option value="SC">SC</option>
+                                <option value="SP">SP</option>
+                                <option value="SE">SE</option>
+                                <option value="TO">TO</option>
+                            </select>
+                            @Html.ValidationMessageFor(model => model.UfEscola)
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.CepEscola)
+                        </div>
+                        <div class="editor-field">
+                            @Html.TextBoxFor(model => model.CepEscola, new { @class = " form-control", @placeholder = "" })
+                            @Html.ValidationMessageFor(model => model.CepEscola)
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-8">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.EndEscola)
+                        </div>
+                        <div class="editor-field">
+                            @Html.TextBoxFor(model => model.EndEscola, new { @class = " form-control , upper", @placeholder = "Logradouro" })
+                            @Html.ValidationMessageFor(model => model.EndEscola)
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.NumeroEndEscola)
+                        </div>
+                        <div class="editor-field">
+                            @Html.TextBoxFor(model => model.NumeroEndEscola, new { @class = " form-control", @placeholder = "" })
+                            @Html.ValidationMessageFor(model => model.NumeroEndEscola)
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.ComplementoEndEscola)
+                        </div>
+                        <div class="editor-field">
+                            @Html.TextBoxFor(model => model.ComplementoEndEscola, new { @class = " form-control , upper", @placeholder = "" })
+                            @Html.ValidationMessageFor(model => model.ComplementoEndEscola)
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.BairroEndEscola)
+                        </div>
+                        <div class="editor-field">
+                            @Html.TextBoxFor(model => model.BairroEndEscola, new { @class = " form-control , upper", @placeholder = "bairro" })
+                            @Html.ValidationMessageFor(model => model.BairroEndEscola)
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.DistritoEscola)
+                        </div>
+                        <div class="editor-field">
+                            <select class="form-control" name="DistritoEscola" id="DistritoEscola">
+                                <option value="RURAL">RURAL</option>
+                                <option value="URBANO">URBANO</option>
+                            </select>
+                            @Html.ValidationMessageFor(model => model.DistritoEscola)
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel panel-heading">
+                <strong><span class="glyphicon glyphicon-cloud"></span><span>&nbsp;</span>Dados de Contato</strong>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.TelefoneEscola)
+                        </div>
+                        <div class="editor-field">
+                            @Html.TextBoxFor(model => model.TelefoneEscola, new { @class = " form-control", @placeholder = "" })
+                            @Html.ValidationMessageFor(model => model.TelefoneEscola)
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.FaxEscola)
+                        </div>
+                        <div class="editor-field">
+                            @Html.TextBoxFor(model => model.FaxEscola, new { @class = " form-control", @placeholder = "" })
+                            @Html.ValidationMessageFor(model => model.FaxEscola)
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.EmailEscola)
+                        </div>
+                        <div class="editor-field">
+                            @Html.TextBoxFor(model => model.EmailEscola, new { @class = " form-control , upper", @placeholder = "exemplo@exemplo.com" })
+                            @Html.ValidationMessageFor(model => model.EmailEscola)
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="panel panel-footer">
+        <div class="row">
+            <div class="col-xs-5">                
+                    <h5><strong>Atenção!</strong> O campo com <i class="fa fa-asterisk text-danger"></i>é obrigatório</h5>                
+            </div>
+            <div class="col-xs-3 col-xs-offset-1">
+                <a class="btn btn-block btn-lg btn-danger" href="@Url.Action("Index")"><span class="glyphicon glyphicon-remove"></span>Cancelar</a>
+            </div>
+            <div class="col-xs-3">
+                <button type="submit" class="btn btn-block btn-lg btn-success" value="Adicionar"><span class="glyphicon glyphicon-floppy-disk"></span>Salvar</button>
+            </div>
+        </div>
+    </div>
+
+}
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

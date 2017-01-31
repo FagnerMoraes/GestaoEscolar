@@ -1,0 +1,38 @@
+﻿@model GestaoEscolar.Models.Usuario
+@{
+    ViewBag.Title = "LogIn";
+    Layout = "~/Views/Shared/_LayoutLogin.cshtml";
+}
+    @using (Html.BeginForm())
+    {
+    <div class="form-signin">
+        <div class="panel">
+            <div class="panel-heading">
+                <div class="text-center"><h2 class="form-signin-heading">LOGIN</h2></div>
+                @Html.LabelFor(model => model.Login, new { @Class = "sr-only" })
+            </div>
+            <div class="panel-body">
+                <div class="text-center">
+                    @Html.ValidationSummary(true)
+                </div>
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-user fa-fw"></i></span>
+                    @Html.TextBoxFor(model => model.Login, new { @class = "form-control", placeholder = "Usuario" })
+                    @Html.ValidationMessageFor(model => model.Login)
+                </div>
+
+                @Html.LabelFor(model => model.Senha, new { @Class = "sr-only" })
+
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-key fa-fw"></i></span>
+
+                    @Html.PasswordFor(model => model.Senha, new { @class = "form-control", placeholder = "Senha" })
+                    @Html.ValidationMessageFor(model => model.Senha)
+                </div>
+                <br />
+                <button type="submit" class="btn btn-lg btn-primary btn-block" value="LogIn">ENTRAR</button>
+            </div>
+        </div>
+    </div>
+    }
+@Styles.Render("~/Content/signin.css")

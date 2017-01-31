@@ -1,0 +1,87 @@
+﻿/*definição da base do relatório*/
+
+
+.corpo-ficha {
+    margin: auto;
+    width: 1024px;
+    border: 1px black solid;
+    font-family: Arial, sans-serif;
+}
+
+.cabeca {
+    position:relative;
+    height: 180px;
+    text-align: center;
+    border: 1px black solid;
+}
+
+.Cabecalho-esquerdo {
+    position:absolute;
+    display: inline-block;
+    height: 100%;
+    width: 24.4%;
+    top:20px;
+    left: -30px;
+}
+.Cabecalho-direito {
+    position:absolute;
+    display: inline-block;
+    height: 100%;
+    width: 24.3%;
+    top: 20px;
+    left: 800px;
+}
+.Cabecalho-centro {
+    position:absolute;
+    display: inline-block;
+    height: 100%;
+    width: 50%;
+    left: 250px;
+    top:10px;
+}
+
+.dados-ficha {
+    width: 1024px;
+    position: relative;
+    padding: 0;
+    min-height: 872px;
+    border: 1px black solid;
+}
+
+
+.barra {
+   /*border-right: 2px black solid;
+   border-bottom: 2px black solid;*/ 
+
+   border: 1px black solid;
+}
+
+.small-text {
+    font-size: 70%; 
+    padding-top: 1px;
+    padding-bottom: 2px;
+}
+
+.small-titulo {
+    font-size: 75%;
+    padding-top: 5px;
+    padding-bottom: 10px;
+
+}
+
+.espacamento {
+    padding-top: 5px;
+    padding-bottom: 6px;
+}
+.espacamento-disciplina {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.para-barra {
+    border: 2px black solid;
+}
+
+.assinatura-barra {
+    border-top: 2px black solid;
+}

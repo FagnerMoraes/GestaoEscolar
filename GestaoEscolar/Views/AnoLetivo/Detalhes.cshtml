@@ -1,0 +1,61 @@
+﻿@model GestaoEscolar.Models.AnoLetivo
+
+@{
+    ViewBag.Title = "Detalhes";
+    Layout = "~/Views/Shared/_LayoutPadrao.cshtml";
+}
+
+<div class="panel panel-heading">
+    <strong><span class="fa fa-cog"></span><span>&nbsp;</span>Ano Letivo</strong>
+</div>
+
+<div class="panel-body panel-scroll">
+    <div class="panel panel-default">
+        <div class="panel panel-heading">
+            <strong><span class="fa fa-cloud"></span><span>&nbsp;</span>Detalhes do Ano</strong>
+        </div>
+
+        <div class="panel-body">
+            <div class="col-md-6">
+                <div class="">
+                    <strong>@Html.DisplayNameFor(model => model.Ano)</strong>
+
+                </div>
+                <div class="display-field">
+                    @Html.DisplayFor(model => model.Ano)
+                </div>
+
+                <div class="display-label">
+                    <strong>@Html.DisplayNameFor(model => model.MediaAno)</strong>
+                </div>
+                <div class="display-field">
+                    @Html.DisplayFor(model => model.MediaAno)
+                </div>
+
+                <div class="display-label">
+                    <strong>@Html.DisplayNameFor(model => model.QtdDiasLetivosAno)</strong>
+                </div>
+                <div class="display-field">
+                    @Html.DisplayFor(model => model.QtdDiasLetivosAno)
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="panel panel-footer">
+    <div class="row">
+        <div class="col-sm-3 col-sm-offset-6">
+            <a class="btn btn-block btn-lg btn-info" href="@Url.Action("Index")"><span class="fa fa-reply"></span><span>&nbsp;</span>Voltar</a>
+        </div>
+        <div class="col-sm-3">
+            <a class="btn btn-block btn-lg btn-warning" href="@Url.Action("Editar", new { id = Model.Id })"><span class="fa fa-edit"></span><span>&nbsp;</span>Editar</a>
+        </div>
+    </div>
+</div>
+
+
+
+
+

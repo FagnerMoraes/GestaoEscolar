@@ -1,0 +1,86 @@
+﻿@model IEnumerable<GestaoEscolar.Models.Bimestre>
+@{
+    ViewBag.Title = "NotasTurma";
+    Layout = "~/Views/Shared/_LayoutPadrao.cshtml";
+}
+
+<script>
+    $(function () {
+        $('#periodo').val("@ViewBag.Bimestre");
+    });
+</script>
+
+<div class="panel panel-heading">
+    <strong><span class="glyphicon glyphicon-cog"></span><span>&nbsp;</span>Conceito do Aluno</strong>
+</div>
+
+<div class="panel-body">
+
+    @using (@Html.BeginForm("NotasTurma", "Conceito", FormMethod.Get))
+    {
+        <div class="row">
+            <div class="col-xs-4 col-md-4">
+                <div class="form-group">
+                    <label class="control-label">Turmas:</label>
+                    @Html.DropDownList("TurmaId", (SelectList)ViewBag.TurmaId, "SELECIONE A TURMA", new { @class = "form-control", onchange = "this.form.submit();" })
+                </div>
+            </div>
+            <div class="col-xs-4 col-md-4">
+                <label class="control-label">Disciplina:</label>
+                @Html.DropDownList("DisciplinaId", (SelectList)ViewBag.DisciplinaId, "SELECIONE A DISCIPLINA", new { @class = "form-control" })
+            </div>
+            <div class="col-xs-4 col-md-4">
+                <label class="control-label">Periodo:</label>
+                <select id="periodo" class="form-control" name="periodo" onchange=" this.form.submit(); ">
+                    <option value="">SELECIONE O PERIODO</option>
+                    <option value="1">1º Bimestre</option>
+                    <option value="2">2º Bimestre</option>
+                    <option value="3">3º Bimestre</option>
+                    <option value="4">4º Bimestre</option>
+                </select>
+            </div>
+        </div>
+    }
+</div>
+
+
+@using (@Html.BeginForm("NotasTurma", "Conceito", FormMethod.Post))
+{
+    @Html.Hidden("turmaId")
+    @Html.Hidden("disciplinaId")
+    @Html.Hidden("periodo")
+    
+    <table class="table table-hover table-bordered">
+        <tr class="row">
+            <th class="col-xs-6 col-md-6">Aluno
+            </th>
+            <th class="col-xs-3 col-md-3">Nota
+            </th>
+            <th class="col-xs-3 col-md-3">Falta
+            </th>
+
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr class="row">
+                <td class="col-xs-6 col-md-6">
+                    <input type="hidden" name="MatriculaId" value="@item.MatriculaId"/>
+                    @item.Aluno
+                </td>
+                <td class="col-xs-3 col-md-3">
+                    <select class="form-control" name="Nota">
+                        <option value="A">A</option>
+                        <option value="B">B</option>
+                        <option value="C">C</option>
+                    </select>
+                </td>
+                <td class="col-xs-3 col-md-3">
+                    <input type="text" class="form-control" name="Falta" />
+                </td>
+            </tr>
+        }
+
+    </table>
+
+    <button type="submit" class="btn btn-lg btn-block btn-success"><span class="glyphicon glyphicon-floppy-disk"></span>Gravar</button>
+}

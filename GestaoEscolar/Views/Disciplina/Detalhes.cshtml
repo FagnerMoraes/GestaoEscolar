@@ -1,0 +1,60 @@
+﻿@model GestaoEscolar.Models.Disciplina
+
+@{
+    ViewBag.Title = "Detalhes";
+    Layout = "~/Views/Shared/_LayoutPadrao.cshtml";
+}
+<div class="panel panel-heading">
+    <strong><span class="glyphicon glyphicon-cog"></span><span>&nbsp;</span>Escola</strong>
+</div>
+
+<div class="panel-body panel-scroll">
+    <div class="panel panel-default">
+        <div class="panel panel-heading">
+            <strong><span class="glyphicon glyphicon-cloud"></span><span>&nbsp;</span>Dados Principais</strong>
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-xs-6">
+                    <div class="form-group">
+                        <label>@Html.DisplayNameFor(model => model.NomeDisciplina)</label><br />
+                        @Html.DisplayFor(model => model.NomeDisciplina)
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-4">
+                    <div class="form-group">
+                        <label>@Html.DisplayNameFor(model => model.MaximoPontos)</label><br />
+                        @Html.DisplayFor(model => model.MaximoPontos)
+                    </div>
+                </div>
+                <div class="col-xs-4">
+                    <div class="form-group">
+                        <label>@Html.DisplayNameFor(model => model.MediaPontos)</label><br />
+                        @Html.DisplayFor(model => model.MediaPontos)
+                    </div>
+                </div>
+                <div class="col-xs-4">
+                    <div class="form-group">
+                        <label>@Html.DisplayNameFor(model => model.MinimoPonto)</label><br />
+                        @Html.DisplayFor(model => model.MinimoPonto)
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="panel panel-footer">
+    <div class="row">
+        <div class="col-sm-3 col-sm-offset-6">
+            <a class="btn btn-block btn-lg btn-info" href="@Url.Action("Index")"><span class="fa fa-reply"></span><span>&nbsp;</span>Voltar</a>
+        </div>
+        <div class="col-sm-3">
+            <a class="btn btn-block btn-lg btn-warning" href="@Url.Action("Editar", new { id = Model.Id })"><span class="fa fa-edit"></span><span>&nbsp;</span>Editar</a>
+        </div>
+    </div>
+</div>
+

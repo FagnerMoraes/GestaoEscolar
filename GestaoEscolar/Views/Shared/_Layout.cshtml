@@ -1,0 +1,30 @@
+﻿<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="windows-1252" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/themes/base/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Styles.Render("~/Content/bootstrap")
+    @Scripts.Render("~/bundles/jquery", "~/bundles/bootstrap")
+
+
+</head>
+<body>
+
+    @Html.Partial("_Menu")
+    <section class="container">
+        @RenderBody()
+    </section>
+    <br />
+    <br />
+
+    <footer class="footer">
+        <div class="container">
+            <p class="text-muted">&copy; @DateTime.Now.Year - SISGSE</p>
+        </div>
+    </footer>
+    @RenderSection("scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,95 @@
+﻿@model IEnumerable<GestaoEscolar.Models.DisciplinaDoProfessorNaTurma>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutPadrao.cshtml";
+}
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#TurmaId').addClass("form-control");
+    });
+</script>
+
+
+<div class="panel panel-heading">
+    <strong><span class="glyphicon glyphicon-cog"></span><span>&nbsp;</span>Escola</strong>
+</div>
+
+<div class="panel-body">
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <p>
+                <a href="@Url.Action("GerenciarDisciplinaTurma", "DisciplinaDoProfessorNaTurma")" class="btn btn-block btn-lg btn-success"><span class="glyphicon glyphicon-plus"></span>Novo Cadastro</a>
+            </p>
+            <div class=" panel panel-success">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h4>Disciplinas nas turmas</h4>
+                        </div>
+                        <div class="col-md-6">
+                            @using (@Html.BeginForm("Index", "DisciplinaDoProfessorNaTurma", FormMethod.Get))
+                            {
+                                @Html.DropDownList("TurmaId", (SelectList)ViewBag.TurmaId, "SELECIONE A TURMA", new { onchange = "this.form.submit();", @class = "form-control" })
+
+                            }
+                        </div>
+                    </div>
+                </div>
+                <table class="table table-hover">
+                    <tr>
+                        <th>TURMA
+                        </th>
+                        <th>DISCIPLINA
+                        </th>
+                        <th>PROFESSOR
+                        </th>
+
+                        <th>AÇÕES
+                        </th>
+                    </tr>
+
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Turma.NomeTurma)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Disciplina.NomeDisciplina)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Funcionario.NomeFuncionario)
+                            </td>
+
+                            <td>
+                                <a class="btn btn-primary btn-warning" title="Editar" href="@Url.Action("GerenciarDisciplinaTurma", "DisciplinaDoProfessorNaTurma", new { id = item.Id })">
+                                    <span class="glyphicon glyphicon-edit"></span>
+                                </a>
+
+                                <a class="btn btn-primary btn-info" title="Detalhes" href="@Url.Action("GerenciarDisciplinaTurma", "DisciplinaDoProfessorNaTurma", new { id = item.Id })">
+                                    <span class="glyphicon glyphicon-list-alt"></span>
+                                </a>
+
+                                <a class="btn btn-primary btn-danger" title="Excluir" data-toggle="modal" data-target="#myModalDiscProf">
+                                    <span class="glyphicon glyphicon-trash"></span>
+                                </a>
+
+                                <div class="modal fade" id="myModalDiscProf" role="dialog">
+                                    <div class="modal-dialog">
+                                        <!-- Modal content-->
+                                        <div class="modal-content">
+                                            @Html.Action("Excluir", "DisciplinaDoProfessorNaTurma", new { id = item.Id })
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

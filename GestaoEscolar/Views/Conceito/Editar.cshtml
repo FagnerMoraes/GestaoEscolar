@@ -1,0 +1,131 @@
+﻿@model GestaoEscolar.Models.Conceito
+
+@{
+    ViewBag.Title = "Editar";
+    Layout = "~/Views/Shared/_LayoutPadrao.cshtml";
+}
+
+<h2>Editar</h2>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Conceito</legend>
+
+        @Html.HiddenFor(model => model.Id)
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.DisciplinaId)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.DisciplinaId)
+            @Html.ValidationMessageFor(model => model.DisciplinaId)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.MatriculaId)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.MatriculaId)
+            @Html.ValidationMessageFor(model => model.MatriculaId)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Conceito1Bim)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Conceito1Bim)
+            @Html.ValidationMessageFor(model => model.Conceito1Bim)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Conceito2Bim)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Conceito2Bim)
+            @Html.ValidationMessageFor(model => model.Conceito2Bim)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Conceito3Bim)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Conceito3Bim)
+            @Html.ValidationMessageFor(model => model.Conceito3Bim)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Conceito4Bim)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Conceito4Bim)
+            @Html.ValidationMessageFor(model => model.Conceito4Bim)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ConceitoFinal)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ConceitoFinal)
+            @Html.ValidationMessageFor(model => model.ConceitoFinal)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Faltas1Bim)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Faltas1Bim)
+            @Html.ValidationMessageFor(model => model.Faltas1Bim)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Faltas2Bim)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Faltas2Bim)
+            @Html.ValidationMessageFor(model => model.Faltas2Bim)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Faltas3Bim)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Faltas3Bim)
+            @Html.ValidationMessageFor(model => model.Faltas3Bim)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Faltas4Bim)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Faltas4Bim)
+            @Html.ValidationMessageFor(model => model.Faltas4Bim)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.FaltasTotal)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.FaltasTotal)
+            @Html.ValidationMessageFor(model => model.FaltasTotal)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Situacao)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Situacao)
+            @Html.ValidationMessageFor(model => model.Situacao)
+        </div>
+
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

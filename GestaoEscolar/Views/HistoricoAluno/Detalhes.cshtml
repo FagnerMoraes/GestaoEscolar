@@ -1,0 +1,250 @@
+﻿@model GestaoEscolar.Models.HistoricoAluno
+
+@{
+    ViewBag.Title = "Detalhes";
+    Layout = "~/Views/Shared/_LayoutPadrao.cshtml";
+}
+
+<div class="panel panel-heading">
+    <strong><span class="fa fa-cog"></span><span>&nbsp;</span>Detalhe do histórico Aluno</strong>
+</div>
+
+<div class="panel-body">
+
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="display-label">
+                @Html.DisplayNameFor(model => model.Aluno.Nome)
+            </div>
+            <div class="display-field">
+                @Html.DisplayFor(model => model.Aluno.Nome)
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="display-label">
+                @Html.DisplayNameFor(model => model.TurmaAnoHistorico)
+            </div>
+            <div class="display-field">
+                @Html.DisplayFor(model => model.TurmaAnoHistorico)
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="display-label">
+                @Html.DisplayNameFor(model => model.AnoHistoricoAluno)
+            </div>
+            <div class="display-field">
+                @Html.DisplayFor(model => model.AnoHistoricoAluno)
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="display-label">
+                @Html.DisplayNameFor(model => model.DataHistoricoAluno)
+            </div>
+            <div class="display-field">
+                @Html.DisplayFor(model => model.DataHistoricoAluno)
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="display-label">
+                @Html.DisplayNameFor(model => model.EscolaAnoAluno)
+            </div>
+            <div class="display-field">
+                @Html.DisplayFor(model => model.EscolaAnoAluno)
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="display-label">
+                @Html.DisplayNameFor(model => model.CidadeEscolaAnoAluno)
+            </div>
+            <div class="display-field">
+                @Html.DisplayFor(model => model.CidadeEscolaAnoAluno)
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="display-label">
+                @Html.DisplayNameFor(model => model.UfEscolaAnoAluno)
+            </div>
+            <div class="display-field">
+                @Html.DisplayFor(model => model.UfEscolaAnoAluno)
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-3">
+            <div class="display-label">
+                @Html.DisplayNameFor(model => model.DiasLetivos)
+            </div>
+            <div class="display-field">
+                @Html.DisplayFor(model => model.DiasLetivos)
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="display-label">
+                @Html.DisplayNameFor(model => model.QtdFaltaHoraAnoBasica)
+            </div>
+            <div class="display-field">
+                @Html.DisplayFor(model => model.QtdFaltaHoraAnoBasica)
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="display-label">
+                @Html.DisplayNameFor(model => model.ChCurricularBasica)
+            </div>
+            <div class="display-field">
+                @Html.DisplayFor(model => model.ChCurricularBasica)
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="display-label">
+                @Html.DisplayNameFor(model => model.ChCurricularArtes)
+            </div>
+            <div class="display-field">
+                @Html.DisplayFor(model => model.ChCurricularArtes)
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-3">
+            <div class="display-label">
+                @Html.DisplayNameFor(model => model.AprovPortugues)
+            </div>
+            <div class="display-field">
+                @Html.DisplayFor(model => model.AprovPortugues)
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="display-label">
+                @Html.DisplayNameFor(model => model.AprovMatematica)
+            </div>
+            <div class="display-field">
+                @Html.DisplayFor(model => model.AprovMatematica)
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="display-label">
+                @Html.DisplayNameFor(model => model.AprovGeografia)
+            </div>
+            <div class="display-field">
+                @Html.DisplayFor(model => model.AprovGeografia)
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="display-label">
+                @Html.DisplayNameFor(model => model.AprovHistoria)
+            </div>
+            <div class="display-field">
+                @Html.DisplayFor(model => model.AprovHistoria)
+            </div>
+
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-3">
+            <div class="display-label">
+                @Html.DisplayNameFor(model => model.AprovCiencia)
+            </div>
+            <div class="display-field">
+                @Html.DisplayFor(model => model.AprovCiencia)
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="display-label">
+                @Html.DisplayNameFor(model => model.AprovEduFisica)
+            </div>
+            <div class="display-field">
+                @Html.DisplayFor(model => model.AprovEduFisica)
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="display-label">
+                @Html.DisplayNameFor(model => model.AprovEnsReligioso)
+            </div>
+            <div class="display-field">
+                @Html.DisplayFor(model => model.AprovEnsReligioso)
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="display-label">
+                @Html.DisplayNameFor(model => model.AprovArte)
+            </div>
+            <div class="display-field">
+                @Html.DisplayFor(model => model.AprovArte)
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-3">
+            <div class="display-label">
+                @Html.DisplayNameFor(model => model.AprovInformatica)
+            </div>
+            <div class="display-field">
+                @Html.DisplayFor(model => model.AprovInformatica)
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="display-label">
+                @Html.DisplayNameFor(model => model.AprovLitInfantilJuvenil)
+            </div>
+            <div class="display-field">
+                @Html.DisplayFor(model => model.AprovLitInfantilJuvenil)
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="display-label">
+                @Html.DisplayNameFor(model => model.AprovAtividadeLingMat)
+            </div>
+            <div class="display-field">
+                @Html.DisplayFor(model => model.AprovAtividadeLingMat)
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="display-label">
+                @Html.DisplayNameFor(model => model.AprovAtividadesEspMot)
+            </div>
+            <div class="display-field">
+                @Html.DisplayFor(model => model.AprovAtividadesEspMot)
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="display-label">
+                @Html.DisplayNameFor(model => model.AprovFormacaoPessoal)
+            </div>
+            <div class="display-field">
+                @Html.DisplayFor(model => model.AprovFormacaoPessoal)
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="display-label">
+                @Html.DisplayNameFor(model => model.SituacaoAluno)
+            </div>
+            <div class="display-field">
+                @Html.DisplayFor(model => model.SituacaoAluno)
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="panel panel-footer">
+    <div class="row">
+        <div class="col-sm-3 col-sm-offset-6">
+            <a class="btn btn-block btn-lg btn-info" href="@Url.Action("Index")"><span class="fa fa-reply"></span><span>&nbsp;</span>Voltar</a>
+        </div>
+        <div class="col-sm-3">
+            <a class="btn btn-block btn-lg btn-warning" href="@Url.Action("Editar", new { id = Model.Id })"><span class="fa fa-edit"></span><span>&nbsp;</span>Editar</a>
+        </div>
+    </div>
+</div>

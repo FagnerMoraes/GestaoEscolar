@@ -1,0 +1,78 @@
+﻿@model GestaoEscolar.Models.DisciplinaDoProfessorNaTurma
+
+@{
+    ViewBag.Title = "Adicionar";
+}
+
+
+<script>
+
+    $(document).ready(function () {
+        $('#DisciplinaId').addClass("form-control");
+        $('#FuncionarioId').addClass("form-control");
+        $('#TurmaId').addClass("form-control");
+    });
+
+</script>
+
+<div class="panel panel-heading">
+    <strong><span class="glyphicon glyphicon-cog"></span><span>&nbsp;</span>Disciplina do Professor na Turma</strong>
+</div>
+
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-sm-12">
+
+                <h2>Adicionar</h2>
+
+                <div class="editor-label">
+                    <strong>Disciplina</strong>
+                </div>
+                <div class="editor-field">
+                    @Html.DropDownList("DisciplinaId")
+                    @Html.ValidationMessageFor(model => model.DisciplinaId)
+                </div>
+
+                <div class="editor-label">
+                    <strong>Professor</strong>
+                </div>
+                <div class="editor-field">
+                    @Html.DropDownList("FuncionarioId")
+                    @Html.ValidationMessageFor(model => model.FuncionarioId)
+                </div>
+
+                <div class="editor-label">
+                    <strong>Turma</strong>
+                </div>
+                <div class="editor-field">
+                    @Html.DropDownList("TurmaId")
+                    @Html.ValidationMessageFor(model => model.TurmaId)
+                </div>
+
+                <div class="row">
+                    <hr />
+                    <div class="col-sm-3 col-sm-offset-6">
+                        <a class="btn btn-block btn-lg btn-danger" href="@Url.Action("Index")"><span class="glyphicon glyphicon-remove"></span>Cancelar</a>
+                    </div>
+                    <div class="col-sm-3">
+                        <button type="submit" class="btn btn-block btn-lg btn-success" value="Adicionar"><span class="glyphicon glyphicon-floppy-disk"></span>Salvar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+}
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

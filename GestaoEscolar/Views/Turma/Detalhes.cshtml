@@ -1,0 +1,90 @@
+﻿@model GestaoEscolar.Models.Turma
+
+@{
+    ViewBag.Title = "Detalhes";
+    Layout = "~/Views/Shared/_LayoutPadrao.cshtml";
+}
+
+<div class="panel panel-heading">
+    <strong><span class="fa fa-cog"></span><span>&nbsp;</span>Turma</strong>
+</div>
+
+
+<div class="panel-body panel-scroll">
+    <div class="panel panel-default">
+        <div class="panel panel-heading">
+            <strong><span class="glyphicon glyphicon-cloud"></span><span>&nbsp;</span>Detalhes da Turma</strong>
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-xs-6">
+                    <div class="form-group">
+                        <label>@Html.DisplayNameFor(model => model.Escola.NomeEscola)</label><br />
+                        @Html.DisplayFor(model => model.Escola.NomeEscola)
+                    </div>
+                </div>
+                <div class="col-xs-6">
+                    <div class="form-group">
+                        <label>@Html.DisplayNameFor(model => model.NomeTurma)</label><br />
+                        @Html.DisplayFor(model => model.NomeTurma)
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-4">
+                    <div class="form-group">
+                        <label>@Html.DisplayNameFor(model => model.Serie)</label><br />
+                        @Html.DisplayFor(model => model.Serie)
+                    </div>
+                </div>
+                <div class="col-xs-4">
+                    <div class="form-group">
+                        <label>@Html.DisplayNameFor(model => model.NivelTurma)</label><br />
+                        @Html.DisplayFor(model => model.NivelTurma)
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-4">
+                    <div class="form-group">
+                        <label>@Html.DisplayNameFor(model => model.HorarioFuncionamento)</label><br />
+                        @Html.DisplayFor(model => model.HorarioFuncionamento)
+                    </div>
+                </div>
+                <div class="col-xs-3">
+                    <div class="form-group">
+                        <label>@Html.DisplayNameFor(model => model.ModalidadeEnsino)</label><br />
+                        @Html.DisplayFor(model => model.ModalidadeEnsino)
+                    </div>
+                </div>
+                <div class="col-xs-3">
+                    <div class="form-group">
+                        <label>@Html.DisplayNameFor(model => model.QtdAlunos)</label><br />
+                        @Html.DisplayFor(model => model.QtdAlunos)
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="panel panel-default">
+        <div class="panel panel-heading">
+            <strong><span class="fa fa-cloud"></span><span>&nbsp;</span>Alunos da Turma</strong>
+        </div>
+        <div class="panel-body">
+
+        </div>
+        </div>
+</div>
+
+<div class="panel panel-footer">
+    <div class="row">
+        <div class="col-sm-3 col-sm-offset-6">
+            <a class="btn btn-block btn-lg btn-info" href="@Url.Action("Index")"><span class="fa fa-reply"></span><span>&nbsp;</span>Voltar</a>
+        </div>
+        <div class="col-sm-3">
+            <a class="btn btn-block btn-lg btn-warning" href="@Url.Action("Editar", new { id = Model.Id })"><span class="fa fa-edit"></span><span>&nbsp;</span>Editar</a>
+        </div>
+    </div>
+</div>
+

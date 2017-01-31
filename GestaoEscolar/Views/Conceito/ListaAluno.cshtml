@@ -1,0 +1,105 @@
+﻿@model PagedList.IPagedList<GestaoEscolar.Models.Matricula>
+@using PagedList.Mvc
+
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
+@{
+    ViewBag.Title = "Lista";
+    Layout = "~/Views/Shared/_LayoutPadrao.cshtml";
+
+}
+<link href="~/Content/jquery-ui.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-ui-1.11.4.js"></script>
+
+<script type="text/javascript">
+    $(function () {
+        $("#termoBusca").autocomplete({
+            source: '@Url.Action("GetAlunos")'
+        });
+    });
+</script>
+
+
+<div class="panel panel-heading">
+    <strong><span class="glyphicon glyphicon-cog"></span><span>&nbsp;</span>Gerenciar Conceito Aluno</strong>
+</div>
+
+<div class="panel-body panel-scroll">
+
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <div class="panel panel-success">
+
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <h5>Alunos Cadastrados</h5>
+                        </div>
+                        <div class="col-md-8">
+                            @using (@Html.BeginForm("ListaAluno", "Conceito", FormMethod.Post))
+                            {
+                                <div class="input-group">
+                                    <input type="text" class="form-control" name="termoBusca" id="termoBusca" placeholder="Buscar por...">
+
+                                    <span class="input-group-btn">
+                                        <button type="submit" class="btn btn-default">Buscar <span class="fa fa-search"></span></button>
+                                    </span>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-body panel-scroll">
+                    <table class="table table-hover">
+                        <tr>
+                            <th>
+                                Nome Aluno
+                            </th>
+                            <th>
+                                Nascimento
+                            </th>
+
+                            <th>
+                                AÇÕES
+                            </th>
+
+                        </tr>
+
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Aluno.Nome)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Aluno.DataNascimento)
+                                </td>
+
+                                <td>
+                                    <a class="btn btn-default" title="Conceito" href="@Url.Action("NotaAluno", "Conceito",  new {alunoId = item.AlunoId, periodo = 1})">
+                                        <div><i class="fa fa-book fa-fw text-danger" aria-hidden="true"></i>CONCEITO</div>
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+
+                    </table>
+                </div>
+                <div class="panel-footer">
+                    <div class="text-center">
+                        @Html.PagedListPager(Model, page => Url.Action("ListaAluno", new { pagina = page }))
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/Scripts/jquery.confirm.js"></script>
+<script>
+    $(".confirm").confirm({
+        text: "Tem certeza que deseja excluir?",
+        confirmButton: "Sim",
+        cancelButton: "Não"
+    });
+</script>

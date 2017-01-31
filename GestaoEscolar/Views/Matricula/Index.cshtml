@@ -1,0 +1,90 @@
+﻿@model PagedList.IPagedList<GestaoEscolar.Models.Matricula>
+@using PagedList.Mvc
+
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutPadrao.cshtml";
+}
+
+<div class="panel panel-heading">
+    <strong><span class="glyphicon glyphicon-cog"></span><span>&nbsp;</span>Matricula</strong>
+</div>
+
+<div class="panel-body panel-scroll">
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <p>
+                <a href="@Url.Action("Adicionar", "Matricula")" class="btn btn-block btn-lg btn-success"><span class="glyphicon glyphicon-plus"></span>Nova Matricula</a>
+            </p>
+            <div class=" panel panel-success">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <h4>Alunos Matriculados</h4>
+                        </div>
+                    </div>
+                </div>
+                <table class="table table-hover">
+                    <tr>
+                        <th>Nome Aluno
+                        </th>
+                        <th>Nome Turma
+                        </th>
+                        <th>Data Cadastro
+                        </th>
+
+                        <th>AÇÕES
+                        </th>
+                    </tr>
+
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Aluno.Nome)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Turma.NomeTurma)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.DataCadastro)
+                            </td>
+
+                            <td>
+                                <a class="btn btn-default" title="Editar" href="@Url.Action("Editar", "Matricula", new {id = item.Id})">
+                                    <span class="glyphicon glyphicon-edit"></span>
+                                </a>
+
+                                <a class="btn btn-default" title="Detalhes" href="@Url.Action("Detalhes", "Matricula", new {id = item.Id})">
+                                    <span class="glyphicon glyphicon-list-alt"></span>
+                                </a>
+
+                                <a class="btn btn-primary btn-danger confirm" title="Excluir" href="@Url.Action("Excluir", "Matricula", new {id = item.Id})">
+                                    <span class="glyphicon glyphicon-trash"></span>
+                                </a>
+
+                            </td>
+                        </tr>
+                    }
+
+                </table>
+                <div class="panel-footer">
+                    <div class=" text-center">
+                        @Html.PagedListPager(Model, page => Url.Action("Index", new { pagina = page }))
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/Scripts/jquery.confirm.js"></script>
+<script>
+    $(".confirm").confirm({
+        text: "Tem certeza que deseja excluir?",
+        confirmButton: "Sim",
+        cancelButton: "Não"
+    });
+</script>

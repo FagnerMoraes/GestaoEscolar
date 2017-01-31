@@ -1,0 +1,62 @@
+﻿@model GestaoEscolar.Models.AnoLetivo
+
+@{
+    ViewBag.Title = "Cadastro Ano Letivo";
+    Layout = "~/Views/Shared/_LayoutPadrao.cshtml";
+}
+
+<div class="panel panel-heading">
+    <strong><span class="glyphicon glyphicon-plus-sign"></span><span>&nbsp;</span>Cadastro Ano Letivo</strong>
+</div>
+
+@using (Html.BeginForm(new { @class = "form-inline" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <div class="panel-body panel-scroll">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Ano)
+            </div>
+            <div class="editor-field">
+                @Html.TextBoxFor(model => model.Ano, new { @class = "form-control", placeholder = "Ex: 2000" })
+                @Html.ValidationMessageFor(model => model.Ano)
+            </div>
+            <div class="editor-label">
+                @Html.LabelFor(model => model.MediaAno)
+            </div>
+            <div class="editor-field">
+                <select class="form-control" name="MediaAno">
+                    <option value="A">A</option>
+                    <option value="B">B</option>
+                    <option value="C">C</option>
+                </select>
+                @Html.ValidationMessageFor(model => model.MediaAno)
+            </div>
+            <div class="editor-label">
+                @Html.LabelFor(model => model.QtdDiasLetivosAno)
+            </div>
+            <div class="editor-field">
+                @Html.TextBoxFor(model => model.QtdDiasLetivosAno, new { @class = "form-control", placeholder = "Ex: 200" })
+                @Html.ValidationMessageFor(model => model.QtdDiasLetivosAno)
+            </div>
+        </div>
+
+    <div class="panel panel-footer">
+        <div class="row">
+            <div class="col-sm-5">
+                <h5><strong>Atenção!</strong> O campo com <i class="fa fa-asterisk text-danger"></i>é obrigatório</h5>
+            </div>
+            <div class="col-md-3 col-md-offset-1">
+                <a class="btn btn-block btn-lg btn-danger" href="@Url.Action("Index")"><span class="glyphicon glyphicon-remove"></span>Cancelar</a>
+            </div>
+            <div class="col-md-3">
+                <button type="submit" class="btn btn-block btn-lg btn-success" value="Adicionar"><span class="glyphicon glyphicon-floppy-disk"></span>Salvar</button>
+            </div>
+        </div>
+    </div>
+
+}
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

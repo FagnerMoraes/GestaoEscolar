@@ -1,0 +1,147 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/bootstrap")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <div id="wrapper">
+        <nav class="navbar navbar-default navbar-cls-top " role="navigation" style="margin-bottom: 0">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink(" SISGSE", "Index", "Home", new { @area = "" }, new { @class = " navbar-brand " })
+            </div>
+            <div class="navbar-collapse square-btn-adjust">
+                @if (Request.IsAuthenticated)
+                {
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                <span class="glyphicon glyphicon-user"></span>
+                                @Html.Encode(User.Identity.Name)<span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a class="btn btn-primary btn-link" title="Editar" href="@Url.Action("LogOut", "Usuario")">
+                                    <span class="glyphicon glyphicon-off"></span>
+                                    LogOut
+                                </a>
+
+                                </li>
+                            </ul>
+                        </li>
+                        <li></li>
+                    </ul>
+                }
+                else
+                {
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>@Html.ActionLink("Registrar", "Registrar", "Usuario")</li>
+
+                        <li>@Html.ActionLink("LogIn", "LogIn", "Usuario")</li>
+                    </ul>
+                        
+                }
+            </div>
+
+
+
+
+
+        </nav>
+        <!-- /. NAV TOP  -->
+        <nav class="navbar-default navbar-side" role="navigation">
+            <div class="sidebar-collapse">
+                <ul class="nav" id="main-menu">
+                    <li class="text-center">
+                        <img src="assets/img/find_user.png" class="user-image img-responsive" />
+                    </li>
+
+
+                    <li>
+                        <a href="#"><i class="glyphicon glyphicon-user fa-3x"></i>Dashboard</a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa fa-desktop fa-3x"></i>UI Elements</a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa fa-qrcode fa-3x"></i>Tabs & Panels</a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa fa-bar-chart-o fa-3x"></i>Morris Charts</a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa fa-table fa-3x"></i>Table Examples</a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa fa-edit fa-3x"></i>Forms </a>
+                    </li>
+
+
+                    <li>
+                        <a href="#"><i class="fa fa-sitemap fa-3x"></i>Multi-Level Dropdown<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <a href="#">Second Level Link</a>
+                            </li>
+                            <li>
+                                <a href="#">Second Level Link</a>
+                            </li>
+                            <li>
+                                <a href="#">Second Level Link<span class="fa arrow"></span></a>
+                                <ul class="nav nav-third-level">
+                                    <li>
+                                        <a href="#">Third Level Link</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Third Level Link</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Third Level Link</a>
+                                    </li>
+
+                                </ul>
+
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a class="active-menu" href="#"><i class="fa fa-square-o fa-3x"></i>Blank Page</a>
+                    </li>
+                </ul>
+
+            </div>
+
+        </nav>
+        <!-- /. NAV SIDE  -->
+        <div id="page-wrapper">
+            <div id="page-inner">
+                <div class="row">
+                    <div class="col-md-12">
+                        @RenderBody()
+                    </div>
+                </div>
+                <!-- /. ROW  -->
+                <hr />
+
+            </div>
+            <!-- /. PAGE INNER  -->
+        </div>
+        <!-- /. PAGE WRAPPER  -->
+    </div>
+    <footer>
+        <p>&copy; @DateTime.Now.Year - SISGSE</p>
+    </footer>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

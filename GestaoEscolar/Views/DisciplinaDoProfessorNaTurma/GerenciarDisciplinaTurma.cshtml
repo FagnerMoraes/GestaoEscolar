@@ -1,0 +1,114 @@
+﻿@model IEnumerable<GestaoEscolar.Models.DisciplinaDoProfessorNaTurma>
+@{
+    ViewBag.Title = "GerenciarDisciplinaTurma";
+    Layout = "~/Views/Shared/_LayoutPadrao.cshtml";
+}
+
+<div class="panel panel-heading">
+    <strong><span class="glyphicon glyphicon-cog"></span><span>&nbsp;</span>Gerenciamento da Disciplina na Turma</strong>
+</div>
+
+<div class="panel-body panel-scroll">
+
+    @using (Html.BeginForm("GerenciarDisciplinaTurma", "DisciplinaDoProfessorNaTurma", FormMethod.Get))
+    {
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="editor-label">
+                    Turma
+                </div>
+                <div class="editor-field">
+                    @Html.DropDownList("TurmaId", (SelectList)ViewBag.TurmaId, "SELECIONE A TURMA", new { @class = "form-control", onchange = "this.form.submit();" })
+                </div>
+                <br />
+            </div>
+        </div>
+    }
+
+    @if (ViewBag.turmaSelecionada != null)
+    {
+        using (Html.BeginForm())
+        {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+
+        @Html.Hidden("turmaSelecionada")
+        
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="editor-label">
+                    Disciplina
+                </div>
+                <div class="editor-field">
+                    @Html.DropDownList("DisciplinaId", (SelectList)ViewBag.DisciplinaId, "SELECIONE A DISCIPLINA", new { @class = "form-control", required = "required" })
+                </div>
+
+                <div class="editor-label">
+                    Professor
+                </div>
+                <div class="editor-field">
+                    @Html.DropDownList("FuncionarioId", (SelectList)ViewBag.FuncionarioId, "SELECIONE O PROFESSOR", new { @class = "form-control", required = "required" })
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <br />
+                <br />
+                <button type="submit" class="btn btn-block btn-lg btn-success" value="Adicionar"><span class="glyphicon glyphicon-plus"></span>Adicionar</button>
+            </div>
+        </div>
+        <br />
+        }
+    }
+
+    <div class=" panel panel-success">
+        <div class="panel-heading">
+            <h3>Disciplinas do professor na turma </h3>
+        </div>
+        <table class="table table-hover">
+            <tr>
+                <th>
+                    DISCIPLINA
+                </th>
+                <th>
+                    PROFESSOR
+                </th>
+                <th>AÇÕES
+                </th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Disciplina.NomeDisciplina)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Funcionario.NomeFuncionario)
+                    </td>
+                    <td>
+                        <a class="btn btn-default" title="Editar" href="@Url.Action("Editar", "DisciplinaDoProfessorNaTurma", new { id = item.Id })">
+                            <span class="glyphicon glyphicon-edit"></span>
+                        </a>
+                        <a class="btn btn-primary btn-danger confirm" title="Excluir" href="@Url.Action("Excluir", "DisciplinaDoProfessorNaTurma", new { id = item.Id })">
+                            <span class="glyphicon glyphicon-trash"></span>
+                        </a>
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+<script src="~/Scripts/jquery.confirm.js"></script>
+<script>
+    $(".confirm").confirm({
+        text: "Tem certeza que deseja excluir?",
+        confirmButton: "Sim",
+        cancelButton: "Não"
+    });
+</script>

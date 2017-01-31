@@ -1,0 +1,120 @@
+﻿@model List<GestaoEscolar.Models.Conceito>
+@{
+    ViewBag.Title = "GerenciarNotasTurma";
+}
+
+<script>
+    $(document).ready(function () {
+        $('#turmaId').addClass("form-control");
+        $('#DisciplinaId').addClass("form-control");
+    });
+</script>
+
+<h2>GerenciarNotasTurma</h2>
+
+@using (@Html.BeginForm("GerenciarNotasTurma", "Conceito", FormMethod.Get))
+{
+    <div>
+        @Html.DropDownList("turmaId", (SelectList)ViewBag.turmaId, "Selecione a turma", new { onchange = "this.form.submit();" })
+    </div>
+
+    <div>
+        @Html.DropDownList("DisciplinaId", (SelectList)ViewBag.DisciplinaId, "Selecione a disciplina", new { onchange = "this.form.submit();" })
+    </div>
+    
+    <div>
+        <select class="form-control" name="etapa" id="etapa" onchange="this.form.submit();">
+            <option value="1">1º Bimestre</option>
+            <option value="2">2º Bimestre</option>
+            <option value="3">3º Bimestre</option>
+            <option value="4">4º Bimestre</option>
+        </select>
+    </div>
+}
+
+<hr />
+
+@using (@Html.BeginForm("GerenciarNotasTurma", "Conceito", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    @Html.Hidden("turmaId")
+    @Html.Hidden("DisciplinaId")
+
+    <table class="table table-bordered">
+        <tr>
+            <th></th>
+            <th colspan="2">1º Bimestre</th>
+            <th colspan="2">2º Bimestre</th>
+            <th colspan="2">3º Bimestre</th>
+            <th colspan="2">4º Bimestre</th>
+
+        </tr>
+        <tr>
+            <th>Aluno
+            </th>
+            <th>Nota
+            </th>
+            <th>Falta
+            </th>
+            <th>Nota
+            </th>
+            <th>Falta
+            </th>
+            <th>Nota
+            </th>
+            <th>Falta
+            </th>
+            <th>Nota
+            </th>
+            <th>Falta
+            </th>
+        </tr>
+
+
+        @if (Model != null)
+        {
+            foreach (var item in @Model)
+            {
+            <tr>
+                <td class="col-md-4">
+                    <input type="hidden" value="@item.Id" name="id" id="id"/>
+                    <input type="hidden" value="@item.Matricula.Id" name="Matricula" id="Matricula"/>
+                    @item.Matricula.Aluno.Nome
+                </td>
+
+                <td class="col-md-1">
+                    <input type="text" name="Conceito1Bim" id="Conceito1Bim" class="form-control" value="@item.Conceito1Bim"/>
+                </td>
+                <td class="col-md-1">
+                    <input type="text" name="Faltas1Bim" id="Faltas1Bim" class="form-control" value="@item.Faltas1Bim"/>
+
+                </td>
+                <td class="col-md-1">
+                    <input type="text" name="Conceito2Bim" id="Conceito2Bim" class="form-control" value="@item.Conceito2Bim"/>
+                </td>
+                <td class="col-md-1">
+                    <input type="text" name="Faltas2Bim" id="Faltas2Bim" class="form-control" value="@item.Faltas2Bim"/>
+                </td>
+                <td class="col-md-1">
+                    <input type="text" name="Conceito3Bim" id="Conceito3Bim" class="form-control" value="@item.Conceito3Bim"/>
+                </td>
+                <td class="col-md-1">
+                    <input type="text" name="Faltas3Bim" id="Faltas3Bim" class="form-control" value="@item.Faltas3Bim"/>
+                </td>
+                <td class="col-md-1">
+                    <input type="text" name="Conceito4Bim" id="Conceito4Bim" class="form-control" value="@item.Conceito4Bim"/>
+                </td>
+                <td class="col-md-1">
+                    <input type="text" name="Faltas4Bim" id="Faltas4Bim" class="form-control" value="@item.Faltas4Bim"/>
+                </td>
+
+            </tr>
+            }
+        }
+
+    </table>
+    
+    <button type="submit" class="btn btn-lg btn-block btn-success"><span class="glyphicon glyphicon-floppy-disk"></span>Gravar</button>
+}

@@ -1,0 +1,106 @@
+﻿@model GestaoEscolar.Models.Funcionario
+
+@{
+    ViewBag.Title = "Detalhes";
+    Layout = "~/Views/Shared/_LayoutPadrao.cshtml";
+}
+
+<div class="panel panel-heading">
+    <strong><span class="fa fa-cog"></span><span>&nbsp;</span>Funcionário</strong>
+</div>
+
+<div class="panel-body panel-scroll font-form">
+    <div class="panel panel-default">
+        <div class="panel panel-heading">
+            <strong><span class="fa fa-plus"></span><span>&nbsp;</span>Dados do Funcionário</strong>
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-sm-12">
+                    <strong>@Html.DisplayNameFor(model => model.Escola.NomeEscola)</strong><br />
+                    @Html.DisplayFor(model => model.Escola.NomeEscola)<br />
+                </div>
+                <div class="col-sm-12">
+                    <strong>@Html.DisplayNameFor(model => model.TipoFuncionario.DescricaoFuncionario)</strong><br />
+                    @Html.DisplayFor(model => model.TipoFuncionario.DescricaoFuncionario)<br />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-3">
+                    <strong>@Html.DisplayNameFor(model => model.NumRegistroFuncionario)</strong><br />
+                    @Html.DisplayFor(model => model.NumRegistroFuncionario)<br />
+                </div>
+                <div class="col-sm-9">
+                    <strong>@Html.DisplayNameFor(model => model.NomeFuncionario)</strong><br />
+                    @Html.DisplayFor(model => model.NomeFuncionario)<br />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-3">
+                    <strong>@Html.DisplayNameFor(model => model.DataNascimentoFuncionario)</strong><br />
+                    @Html.DisplayFor(model => model.DataNascimentoFuncionario)<br />
+                </div>
+                <div class="col-sm-6">
+                    <strong>@Html.DisplayNameFor(model => model.CidadeEndFuncionario)</strong><br />
+                    @Html.DisplayFor(model => model.CidadeEndFuncionario)<br />
+                </div>
+                <div class="col-sm-3">
+                    <strong>@Html.DisplayNameFor(model => model.UfEndFuncionario)</strong><br />
+                    @Html.DisplayFor(model => model.UfEndFuncionario)<br />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-3">
+                    <strong>@Html.DisplayNameFor(model => model.LogradouroEndFuncionario)</strong><br />
+                    @Html.DisplayFor(model => model.LogradouroEndFuncionario)<br />
+                </div>
+                <div class="col-sm-3">
+                    <strong>@Html.DisplayNameFor(model => model.NumLogradouroEndFuncionario)</strong><br />
+                    @Html.DisplayFor(model => model.NumLogradouroEndFuncionario)<br />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-3">
+                    <strong>@Html.DisplayNameFor(model => model.DataAdimissaoFuncionario)</strong><br />
+                    @Html.DisplayFor(model => model.DataAdimissaoFuncionario)<br />
+                </div>
+                <div class="col-sm-3">
+                    <strong>@Html.DisplayNameFor(model => model.CpfFuncionario)</strong><br />
+                    @Html.DisplayFor(model => model.CpfFuncionario)<br />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-3">
+                    <strong>@Html.DisplayNameFor(model => model.RgFuncionario)</strong><br />
+                    @Html.DisplayFor(model => model.RgFuncionario)<br />
+                </div>
+                <div class="col-sm-3">
+                    <strong>@Html.DisplayNameFor(model => model.UfRgFuncionario)</strong><br />
+                    @Html.DisplayFor(model => model.UfRgFuncionario)<br />
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-3">
+                    <strong>@Html.DisplayNameFor(model => model.OrgaoRgFuncionario)</strong><br />
+                    @Html.DisplayFor(model => model.OrgaoRgFuncionario)<br />
+                </div>
+                <div class="col-sm-3">
+                    <strong>@Html.DisplayNameFor(model => model.DataEmissaoRgFuncionario)</strong><br />
+                    @Html.DisplayFor(model => model.DataEmissaoRgFuncionario)<br />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="panel panel-footer">
+    <div class="row">
+        <div class="col-sm-3 col-sm-offset-6">
+            <a class="btn btn-block btn-lg btn-info" href="@Url.Action("Index")"><span class="fa fa-reply"></span><span>&nbsp;</span>Voltar</a>
+        </div>
+        <div class="col-sm-3">
+            <a class="btn btn-block btn-lg btn-warning" href="@Url.Action("Editar", new { id = Model.Id })"><span class="fa fa-edit"></span><span>&nbsp;</span>Editar</a>
+        </div>
+    </div>
+</div>

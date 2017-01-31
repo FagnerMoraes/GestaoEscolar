@@ -1,0 +1,24 @@
+﻿.corpo-declaracao{
+    margin: auto;
+    width: 860px;
+    height: 1024px ;
+    position: relative;
+    font-family:Arial, 'DejaVu Sans', 'Liberation Sans', Freesans, sans-serif;
+    font-size: 14px;
+}
+
+.titulo-declaracao{
+    text-align: center;
+}
+
+.texto-declaracao{
+    text-align: justify;
+}
+
+.cidade-data{
+    text-align: center;
+}
+
+.assinatura-secretaria{
+
+}

@@ -1,0 +1,150 @@
+﻿body {
+    /*font-size: .95em;*/
+}
+
+
+.upper {
+    text-transform: uppercase;
+}
+
+
+header, footer, nav, section {
+    display: block;
+}
+
+fieldset {
+    border: 1px solid #ddd;
+    padding: 0 1.4em 1.4em 1.4em;
+    margin: 0 0 1.5em 0;
+}
+
+legend {
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+textarea {
+    min-height: 75px;
+}
+
+.editor-label {
+    margin: 1em 0 0 0;
+}
+
+.editor-field {
+    margin: 0.5em 0 0 0;
+}
+
+
+.field-validation-error {
+    color: #f00;
+}
+
+.field-validation-valid {
+    display: none;
+}
+
+.input-validation-error {
+    border: 1px solid #f00;
+    background-color: #fee;
+}
+
+.validation-summary-errors {
+    font-weight: bold;
+    color: #f00;
+}
+
+.validation-summary-valid {
+    display: none;
+}
+
+.bg-gray a {
+    color: #777;
+}
+
+.lbl-default {
+    min-height: 450px;
+}
+
+.panel-scroll {
+    height: 340px;
+    overflow: scroll;
+}
+
+
+
+footer {
+    position: fixed;
+    height: 50px;
+    bottom: 0;
+    width: 100%;
+}
+
+
+/*Custom*/
+#custom-bootstrap-menu.navbar-default .navbar-brand {
+    color: rgba(255, 225, 31, 1);
+}
+
+#custom-bootstrap-menu.navbar-default {
+    font-size: 17px;
+    background-color: rgba(22, 184, 62, 1);
+    border-width: 0px;
+    border-radius: 0px;
+}
+
+    #custom-bootstrap-menu.navbar-default .navbar-nav > li > a {
+        color: rgba(255, 225, 31, 1);
+        background-color: rgba(22, 184, 62, 1);
+    }
+
+        #custom-bootstrap-menu.navbar-default .navbar-nav > li > a:hover,
+        #custom-bootstrap-menu.navbar-default .navbar-nav > li > a:focus {
+            color: rgba(22, 81, 184, 1);
+            background-color: rgba(255, 225, 31, 1);
+        }
+
+    #custom-bootstrap-menu.navbar-default .navbar-nav > .active > a,
+    #custom-bootstrap-menu.navbar-default .navbar-nav > .active > a:hover,
+    #custom-bootstrap-menu.navbar-default .navbar-nav > .active > a:focus {
+        color: rgba(255, 225, 31, 0.97);
+        background-color: rgba(22, 81, 184, 1);
+    }
+
+    #custom-bootstrap-menu.navbar-default .navbar-toggle {
+        border-color: #1651b8;
+    }
+
+        #custom-bootstrap-menu.navbar-default .navbar-toggle:hover,
+        #custom-bootstrap-menu.navbar-default .navbar-toggle:focus {
+            background-color: #1651b8;
+        }
+
+        #custom-bootstrap-menu.navbar-default .navbar-toggle .icon-bar {
+            background-color: #1651b8;
+        }
+
+        #custom-bootstrap-menu.navbar-default .navbar-toggle:hover .icon-bar,
+        #custom-bootstrap-menu.navbar-default .navbar-toggle:focus .icon-bar {
+            background-color: #16b83e;
+        }
+
+/*Modal persolanizado*/
+@media (min-width: 768px) {
+    #myModalEscola .modal-dialog,
+    #myModalTipoFuncionario .modal-dialog,
+    #myModalAluno .modal-dialog,
+    #myModalMatricula .modal-dialog,
+    #myModalFuncionario .modal-dialog,
+    #myModalHistorico .modal-dialog,
+    #myModalDisciplina .modal-dialog,
+    #myModalAno .modal-dialog,
+    #myModalTurma .modal-dialog,
+    #myModalDiscProf .modal-dialog {
+        width: 768px;
+        margin: 30px auto;
+    }
+}
+
+
+/*Asterisco*/

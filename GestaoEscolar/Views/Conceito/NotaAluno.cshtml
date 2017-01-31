@@ -1,0 +1,121 @@
+﻿@model IEnumerable<GestaoEscolar.Models.Conceito>
+@{
+    ViewBag.Title = "NotaAluno";
+    Layout = "~/Views/Shared/_LayoutPadrao.cshtml";
+}
+
+<script>
+    $(function () {
+        $('#periodo').val("@ViewBag.Periodo");
+    });
+
+</script>
+
+<div class="panel panel-heading">
+    <strong><span class="glyphicon glyphicon-cog"></span><span>&nbsp;</span>Conceito do Aluno</strong>
+</div>
+
+
+
+<div class="panel-body panel-scroll">
+    <table class="table table-bordered table-hover">
+        <thead>
+            @using (@Html.BeginForm("NotaAluno", "Conceito", FormMethod.Get))
+            {
+                @Html.Hidden("AlunoId")
+
+                <tr>
+                    <th>
+                        <h4>Aluno: @ViewBag.NomeAluno</h4>
+                        <h5>Turma: @ViewBag.Turma</h5>
+                    </th>
+                    <th>
+                        <div class="">
+                            <h5 class="control-label">Selecione o Bimestre:</h5>
+                            <select id="periodo" class="form-control" name="periodo" onchange="this.form.submit(); ">
+                                <option value="1">1º Bimestre</option>
+                                <option value="2">2º Bimestre</option>
+                                <option value="3">3º Bimestre</option>
+                                <option value="4">4º Bimestre</option>
+                            </select>
+                        </div>
+                    </th>
+                    <th>
+                        <a class="btn btn-default" title="Boletim" href="@Url.Action("Boletim", "Relatorio", new { id = ViewBag.AlunoId, periodo = ViewBag.Periodo})">
+                            <div><i class="fa fa-edit fa-fw text-danger" aria-hidden="true"></i>Gerar Boletim</div>
+                        </a>
+                    </th>
+                </tr>
+                <tr>
+                    <th>
+                        Disciplina
+                    </th>
+                    <th>
+                        Conceito
+                    </th>
+                    <th>
+                        Faltas
+                    </th>
+
+                    <th>
+                        AÇÕES
+                    </th>
+
+                </tr>
+            }
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                int p = 0;
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Disciplina.NomeDisciplina)
+                    </td>
+                    @switch (p = Convert.ToInt32(ViewBag.Periodo))
+                    {
+                        case 1:
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Conceito1Bim)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Faltas1Bim)
+                            </td>
+                            break;
+                        case 2:
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Conceito2Bim)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Faltas2Bim)
+                            </td>
+                            break;
+                        case 3:
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Conceito3Bim)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Faltas3Bim)
+                            </td>
+                            break;
+                        case 4:
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Conceito4Bim)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Faltas4Bim)
+                            </td>
+                            break;
+                    }
+
+                    <td>
+                        <a class="btn btn-default" title="Editar" href="@Url.Action("ConceitoAluno", "Conceito", new { turmaId = item.Matricula.TurmaId, disciplinaId = item.DisciplinaId,periodo = ViewBag.Periodo, alunoId = item.Matricula.Id})">
+                            <div><i class="fa fa-edit fa-fw text-danger" aria-hidden="true"></i>EDITAR</div>
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+</div>

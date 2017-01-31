@@ -1,0 +1,123 @@
+﻿@model IEnumerable<GestaoEscolar.Models.Bimestre>
+@{
+    ViewBag.Title = "Boletim";
+}
+
+<div class="center-block col-lg-10">
+
+    <table class="table table-condensed table-bordered">
+        <tr>
+            <td colspan="9">
+                <div class="row">
+                    <div class="col-md-2">
+                    </div>
+                    <div class="col-md-6">
+                        PREFEITURA MUNICIPAL DE MACHADO<br />
+                        SECRETARIA MUNICIPAL DE EDUCAÇÃO<br />
+                        E. M. CLOVIS ARAUJO DIAS
+                    </div>
+                    <div class="col-md-1"></div>
+                    <div class="col-md-3">
+                        <strong>BOLETIM ESCOLAR</strong>
+                        <br />
+                        Ano Letivo: @ViewBag.AnoLetivo
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="5">
+                <strong>Aluno:</strong><br />
+                @ViewBag.Aluno
+            </td>
+            <td colspan="2">
+                <strong>Turno:</strong><br />
+                @ViewBag.Turno
+            </td>
+            <td colspan="2">
+                <strong>Serie:</strong><br />
+                @ViewBag.Serie
+            </td>
+        </tr>
+        <tr>
+            <td colspan="5">
+                <strong>Professor:</strong><br />
+                @ViewBag.NomeResponsavel
+            </td>
+            <td colspan="2">
+                <strong>Curso:</strong><br />
+                @ViewBag.Nivel
+            </td>
+            <td colspan="2">
+                <strong>Periodo:</strong><br />
+                @ViewBag.Periodo
+            </td>
+        </tr>
+    </table>
+
+    <div>
+        <div>
+            @foreach (var item in Model)
+            {
+                <div style="min-height: 75px" class="col-md-2 fa-border text-center">
+                    <div class="">
+                        @Html.DisplayFor(modelItem => item.Disciplina)
+                    </div>
+                    <hr />
+                    <div class="">
+                        @Html.DisplayFor(modelItem => item.Nota)
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+
+    <div>
+        <div style="min-height: 75px" class="text-center col-md-2 fa-border">
+
+        </div>
+        <div style="min-height: 75px" class="text-center col-md-2 fa-border">
+            ATITUDES<br />
+            VALORES ETICOS
+            <select class="form-control">
+                <option value="S">S</option>
+                <option value="N">N</option>
+                <option value="AV">AV</option>
+            </select>
+        </div>
+        <div style="min-height: 75px" class="text-center col-md-2 fa-border">
+            COMPROMISSO/<br />
+            ASSIDUIDADE
+            <select class="form-control">
+                <option value="S">S</option>
+                <option value="N">N</option>
+                <option value="AV">AV</option>
+            </select>
+        </div>
+        <div style="min-height: 75px" class="text-center col-md-2 fa-border">
+            CRIATIVIDADE/<br />
+            CRITICIDADE
+            <select class="form-control">
+                <option value="S">S</option>
+                <option value="N">N</option>
+                <option value="AV">AV</option>
+            </select>
+        </div>
+        <div style="min-height: 75px" class="text-center col-md-2 fa-border">
+            PARTICIPACAO<br />
+            DA FAMILIA
+            <select class="form-control">
+                <option value="S">S</option>
+                <option value="N">N</option>
+                <option value="AV">AV</option>
+            </select>
+        </div>
+        <div style="min-height: 75px" class="text-center col-md-2 fa-border">
+            TOTAL DE<br />
+            FALTAS
+            <div class="text-center col-md-2 fa-border form-control">
+                @ViewBag.Falta
+            </div>
+        </div>
+    </div>
+</div>

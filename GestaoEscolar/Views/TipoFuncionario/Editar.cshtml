@@ -1,0 +1,53 @@
+﻿@model GestaoEscolar.Models.TipoFuncionario
+
+@{
+    ViewBag.Title = "Editar";
+    Layout = "~/Views/Shared/_LayoutPadrao.cshtml";
+}
+
+<div class="panel panel-heading">
+    <strong><span class="glyphicon glyphicon-plus-sign"></span><span>&nbsp;</span>Editar Cargo</strong>
+</div>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <div class="panel-body panel-scroll">
+
+        <div class="row">
+            <div class="2"></div>
+            <div class="col-sm-8">
+                <div class="editor-label">
+                    <h5><i class="fa fa-asterisk text-danger"></i>Cargo</h5>
+                </div>
+                <div class="editor-field">
+                    @Html.TextBoxFor(model => model.DescricaoFuncionario, new { @class = " form-control , upper", @placeholder = "Ex: Professor" })
+                    @Html.ValidationMessageFor(model => model.DescricaoFuncionario)
+                </div>
+            </div>
+            <div class="2"></div>
+        </div>
+    </div>
+
+    <div class="panel panel-footer">
+        <div class="row">
+            <div class="col-sm-5">
+                <h5><strong>Atenção!</strong> O campo com <i class="fa fa-asterisk text-danger"></i>é obrigatório</h5>
+            </div>
+            <div class="col-md-3 col-md-offset-1">
+                <a class="btn btn-block btn-lg btn-danger" href="@Url.Action("Index")"><span class="glyphicon glyphicon-remove"></span>Cancelar</a>
+            </div>
+            <div class="col-md-3">
+                <button type="submit" class="btn btn-block btn-lg btn-success" value="Adicionar"><span class="glyphicon glyphicon-floppy-disk"></span>Salvar</button>
+            </div>
+        </div>
+    </div>
+
+}
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

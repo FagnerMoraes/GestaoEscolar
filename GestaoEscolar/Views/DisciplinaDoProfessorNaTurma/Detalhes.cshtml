@@ -1,0 +1,45 @@
+﻿@model GestaoEscolar.Models.DisciplinaDoProfessorNaTurma
+
+@{
+    ViewBag.Title = "Detalhes";
+    Layout = "~/Views/Shared/_LayoutPadrao.cshtml";
+}
+
+<div class="panel panel-heading">
+    <strong><span class="glyphicon glyphicon-cog"></span><span>&nbsp;</span>Escola</strong>
+</div>
+
+<div class="panel-body">
+
+    <h2>Detalhes</h2>
+
+    <div class="col-sm-12">
+        <div class="form-group">
+            <label>@Html.DisplayNameFor(model => model.Disciplina.NomeDisciplina)</label><br />
+            @Html.DisplayFor(model => model.Disciplina.NomeDisciplina)
+        </div>
+    </div>
+    <div class="col-sm-12">
+        <div class="form-group">
+            <label>@Html.DisplayNameFor(model => model.Funcionario.NomeFuncionario)</label><br />
+            @Html.DisplayFor(model => model.Funcionario.NomeFuncionario)
+        </div>
+    </div>
+    <div class="col-sm-12">
+        <div class="form-group">
+            <label>@Html.DisplayNameFor(model => model.Turma.NomeTurma)</label><br />
+            @Html.DisplayFor(model => model.Turma.NomeTurma)
+        </div>
+    </div>
+
+
+    <div class="row">
+        <hr />
+        <div class="col-sm-3 col-sm-offset-6">
+            <a class="btn btn-block btn-lg btn-info" href="@Url.Action("Index")"><span class="glyphicon glyphicon-arrow-left"></span>Voltar</a>
+        </div>
+        <div class="col-sm-3">
+            <a class="btn btn-block btn-lg btn-warning" href="@Url.Action("GerenciarDisciplinaTurma", new { id = Model.Id })"><span class="glyphicon glyphicon-edit"></span>Editar</a>
+        </div>
+    </div>
+</div>

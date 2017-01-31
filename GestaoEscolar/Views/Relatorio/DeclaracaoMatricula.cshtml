@@ -1,0 +1,47 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>DeclaracaoMatricula</title>
+</head>
+<body>
+    <div>
+        <section class="corpo-declaracao">
+    E.M.Clóvis de Araújo Dias<br />
+    Lei Mun. N° 872-11/11/1992<br />
+    Bairro São Luiz<br />
+    CEP 37750-000- Machado/MG<br />
+    (35) 88692901<br />
+
+    <h2 class="titulo-declaracao">Declaração</h2>
+
+    <p class="texto-declaracao">
+        Declaro para devidos fins que @ViewBag.Nome, natural de @ViewBag.Naturalidade - @ViewBag.UFNaturalidade, filho(a) de @ViewBag.Pai e @ViewBag.Mae,
+         nascido(a) no dia @ViewBag.DataNascimento. Está cursando o @ViewBag.Serie do @ViewBag.Ciclo nesta escola .
+	
+        <br /><br />Por ser verdade, firmo a presente.</p> <br /><br />
+
+    <div class="cidade-data">
+        Machado, 16 de julho de 2014
+        <br /><br /><br /><br />
+        <div class="assinatura-secretaria">
+        Maria Arléia Moraes Carvalho<br />
+        SECRETÁRIA Aut.258906
+        </div>
+
+    </div>
+
+    
+
+</section>
+
+
+    </div>
+</body>
+</html>
+@Styles.Render("~/Content/EstiloDeclaracaoMatricula.css")

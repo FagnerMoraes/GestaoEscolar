@@ -1,0 +1,159 @@
+﻿@model GestaoEscolar.Models.Turma
+
+@{
+    ViewBag.Title = "Editar";
+    Layout = "~/Views/Shared/_LayoutPadrao.cshtml";
+}
+
+<script>
+    $(function () {
+        $('#Serie').val("@Model.Serie");
+        $('#NivelTurma').val("@Model.NivelTurma");
+        $('#HorarioFuncionamento').val("@Model.HorarioFuncionamento");
+        $('#ModalidadeEnsino').val("@Model.ModalidadeEnsino");
+    });
+
+    $(document).ready(function () {
+        $('#EscolaId').addClass("form-control");
+        $('#FuncionarioId').addClass("form-control");
+    });
+
+</script>
+
+<div class="panel panel-heading">
+    <strong><span class="glyphicon glyphicon-edit"></span><span>&nbsp;</span>Editar Turma</strong>
+</div>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <div class="panel-body panel-scroll">
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="editor-label">
+                    <i class="fa fa-asterisk text-danger"></i>
+                    @Html.LabelFor(model => model.Escola.NomeEscola)
+                </div>
+                <div class="editor-field">
+                    @Html.DropDownList("EscolaId")
+                    @Html.ValidationMessageFor(model => model.EscolaId)
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="editor-label">
+                    <i class="fa fa-asterisk text-danger"></i>
+                    @Html.LabelFor(model => model.FuncionarioId)
+                </div>
+                <div class="editor-field">
+                    @Html.DropDownList("FuncionarioId")
+                    @Html.ValidationMessageFor(model => model.FuncionarioId)
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="editor-label">
+                    <i class="fa fa-asterisk text-danger"></i>
+                    @Html.LabelFor(model => model.NomeTurma)
+                </div>
+                <div class="editor-field">
+                    @Html.TextBoxFor(model => model.NomeTurma, new { @class = " form-control , upper", @placeholder = "Nome da turma" })
+                    @Html.ValidationMessageFor(model => model.NomeTurma)
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="editor-label">
+                    <i class="fa fa-asterisk text-danger"></i>
+                    @Html.LabelFor(model => model.Serie)
+                </div>
+                <div class="editor-field">
+                    <select class="form-control" name="Serie" id="Serie">
+                        <option value="PRE DE 4">PRE DE 4</option>
+                        <option value="PRE DE 5">PRE DE 5</option>
+                        <option value="1ANO">1º ANO</option>
+                        <option value="2ANO">2º ANO</option>
+                        <option value="3ANO">3º ANO</option>
+                        <option value="4ANO">4º ANO</option>
+                        <option value="5ANO">5º ANO</option>
+                    </select>
+                    @Html.ValidationMessageFor(model => model.Serie)
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="editor-label">
+                    <i class="fa fa-asterisk text-danger"></i>
+                    @Html.LabelFor(model => model.NivelTurma)
+                </div>
+                <div class="editor-field">
+                    <select class="form-control" name="NivelTurma" id="NivelTurma">
+                        <option value="FUNDAMENTAL">FUNDAMENTAL</option>
+                        <option value="OUTROS">OUTROS</option>
+                    </select>
+                    @Html.ValidationMessageFor(model => model.NivelTurma)
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.HorarioFuncionamento)
+                </div>
+                <div class="editor-field">
+                    <select class="form-control" name="HorarioFuncionamento" id="HorarioFuncionamento">
+                        <option value="MATUTINO">MATUTINO</option>
+                        <option value="VESPERTINO">VESPERTINO</option>
+                        <option value="NOTURNO">NOTURNO</option>
+                    </select>
+                    @Html.ValidationMessageFor(model => model.HorarioFuncionamento)
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.ModalidadeEnsino)
+                </div>
+                <div class="editor-field">
+                    <select class="form-control" name="ModalidadeEnsino" id="ModalidadeEnsino">
+                        <option value="REGULAR">REGULAR</option>
+                    </select>
+                    @Html.ValidationMessageFor(model => model.ModalidadeEnsino)
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="editor-label">
+                    <i class="fa fa-asterisk text-danger"></i>
+                    @Html.LabelFor(model => model.QtdAlunos)
+                </div>
+                <div class="editor-field">
+                    @Html.TextBoxFor(model => model.QtdAlunos, new { @class = " form-control", @placeholder = "Número Alunos" })
+                    @Html.ValidationMessageFor(model => model.QtdAlunos)
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="panel panel-footer">
+        <div class="row">
+            <div class="col-sm-5">
+                <h5><strong>Atenção!</strong> O campo com <i class="fa fa-asterisk text-danger"></i>é obrigatório</h5>
+            </div>
+            <div class="col-md-3 col-md-offset-1">
+                <a class="btn btn-block btn-lg btn-danger" href="@Url.Action("Index")"><span class="glyphicon glyphicon-remove"></span>Cancelar</a>
+            </div>
+            <div class="col-md-3">
+                <button type="submit" class="btn btn-block btn-lg btn-success" value="Adicionar"><span class="glyphicon glyphicon-floppy-disk"></span>Salvar</button>
+            </div>
+        </div>
+    </div>
+
+
+}
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

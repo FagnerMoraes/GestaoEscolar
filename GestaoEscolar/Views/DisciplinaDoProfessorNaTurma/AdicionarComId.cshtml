@@ -1,0 +1,76 @@
+﻿@model IEnumerable<GestaoEscolar.Models.DisciplinaDoProfessorNaTurma>
+@{
+    ViewBag.Title = "AdicionarComId";
+}
+
+<h2>AdicionarComId</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    
+    <h3>@ViewBag.Nometurma</h3>
+    @Html.Hidden("TurmaId")
+    
+       
+    <div class="editor-label">
+        Disciplina
+    </div>
+    <div class="editor-field">
+        @Html.DropDownList("DisciplinaId")
+    </div>
+
+    <div class="editor-label">
+        Professor
+    </div>
+    <div class="editor-field">
+        @Html.DropDownList("FuncionarioId")
+    </div>
+    
+    <p>
+        <input type="submit" value="Adicionar" />
+    </p>
+}
+
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Disciplina.NomeDisciplina)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Funcionario.NomeFuncionario)
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Disciplina.NomeDisciplina)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Funcionario.NomeFuncionario)
+        </td>
+    </tr>
+}
+
+</table>
+
+
+
+
+
+
+
+
+
+
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

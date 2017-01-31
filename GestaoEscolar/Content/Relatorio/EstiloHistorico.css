@@ -1,0 +1,1576 @@
+﻿/*definição da base do relatório*/
+
+
+.corpo-historico {
+    margin: auto;
+    width: 1024px;
+    border: 1px black solid;
+    text-align: center;
+    font-family: Arial, sans-serif;
+}
+
+.cabeca {
+    position:relative;
+    height: 180px;
+    border: 1px black solid;
+}
+
+.Cabecalho-esquerdo {
+    position:absolute;
+    display: inline-block;
+    height: 100%;
+    width: 24.4%;
+    top:20px;
+    left: -30px;
+}
+.Cabecalho-direito {
+    position:absolute;
+    display: inline-block;
+    height: 100%;
+    width: 24.3%;
+    top: 20px;
+    left: 800px;
+}
+.Cabecalho-centro {
+    position:absolute;
+    display: inline-block;
+    height: 100%;
+    width: 50%;
+    margin: auto;
+    left: 250px;
+    top:10px;
+}
+.Cabecalho-centro-dados-escola {
+    display: inline-block;
+    margin: 0;
+
+}
+
+
+
+
+.sub-cabeca {
+    height: 280px;
+    border: 1px black solid;
+}
+
+.sub-cabeca-titulo {
+    background-color: #a9a9a9;
+    border-bottom: 1px black solid;
+    font-size: 20px;
+}
+
+.sub-cabeca-corpo {
+    text-align: justify;
+}
+
+    .sub-cabeca-corpo span {
+        text-decoration: underline;
+        text-transform: uppercase;
+    }
+
+    .sub-cabeca-corpo-centro span {
+        text-decoration: underline;
+        text-transform: uppercase;
+    }
+
+.sub-cabeca-corpo-esquerdo {
+    display: inline-block;
+    width: 30%;
+    vertical-align: text-top;
+    padding-top: 30px;
+}
+
+.sub-cabeca-corpo-direito {
+    display: inline-block;
+    width: 30%;
+    vertical-align: text-top;
+    padding-top: 30px;
+}
+
+
+.sub-cabeca-corpo-centro {
+    display: inline-block;
+    width: 30%;
+}
+
+.dados-historico {
+    width: 1024px;
+    position: relative;
+    margin: auto;
+    padding: 0;
+    height: 872px;
+    border: 1px black solid;
+}
+
+.sub-cabeca-historico-escolar {
+    text-align: center;
+    background-color: #a9a9a9;
+    border-bottom: 1px black solid;
+    font-size: 20px;
+}
+
+
+.assinatura-historico{
+    text-decoration: overline;
+}
+
+
+.barra {
+    position: absolute;
+    display: inline-block;
+    border: 1px black solid;
+    text-align: center;
+}
+.barra-escura {
+    background-color: #a9a9a9;
+    width: 200px;
+    height: 37px;
+    left: 0;
+    
+}
+.barra-titulo-base-nacional {
+    width: 250px;
+    height: 37px;
+    left: 200px;
+    font-size: 12px;
+}
+.barra-parte-diversificada {
+    width: 80px;
+    height: 37px;
+    left: 450px;
+    font-size: 10px;
+}
+.barra-projeto-integral {
+    width: 120px;
+    height: 37px;
+    left: 530px;
+    font-size: 10px;
+}
+.barra-areas-conhecimento {
+    width: 200px;
+    height: 177px;
+    left: 0;
+    top: 65px;
+    font-size: 15px;
+    
+}
+.barra-rotacionada {
+    /*Chrome e Safari*/
+    -webkit-transform: rotate(-90deg);
+    /*Mozila*/
+    -moz-transform: rotate(-90deg);
+}
+
+
+.barra-portugues {
+    width: 177px;
+    height: 30px;
+    top: 139px;
+    
+    left: 126.3px;
+}
+.barra-matematica {
+    width: 177px;
+    height: 30px;
+    top: 139px;
+    
+    left: 156.3px;
+}
+.barra-geografia {
+    width: 177px;
+    height: 30px;
+    top: 139px;
+    
+    left: 186.3px;
+}
+.barra-historia {
+    width: 177px;
+    height: 30px;
+    top: 139px;
+    
+    left: 216.3px;
+}
+.barra-ciencias {
+    width: 177px;
+    height: 30px;
+    top: 139px;
+    
+    left: 246.3px;
+}
+.barra-edu-fisica {
+    width: 177px;
+    height: 30px;
+    top: 139px;
+    
+    left: 276.3px;
+}
+.barra-ensino-religioso {
+    width: 177px;
+    height: 30px;
+    top: 139px;
+    
+    left: 306.3px;
+}
+.barra-arte {
+    width: 177px;
+    left: 341.3px;
+    height: 40px;
+    top: 134px;
+}
+.barra-informatica {
+    width: 177px;
+    left: 381.3px;
+    height: 40px;
+    top: 134px;
+}
+.barra-literatura-inf-juvenil {
+    width: 177px;
+    left: 421.3px;
+    height: 40px;
+    top: 134px;
+}
+.barra-atv-linguagem-matematica {
+    width: 177px;
+    left: 461.3px;
+    height: 40px;
+    top: 134px;
+}
+.barra-atv-esportiva-motora {
+    width: 177px;
+    left: 501.3px;
+    height: 40px;
+    top: 134px;
+}
+.barra-formacao-pessoal-social {
+    width: 177px;
+    left: 541.3px;
+    height: 40px;
+    top: 134px;
+}
+.barra-total-ch-curricular {
+    left: 563px;
+    height: 40px;
+    top: 116px;
+    width: 214px;
+}
+.barra-faltas-horas {
+    left: 603px;
+    height: 40px;
+    top: 116px;
+    width: 214px;
+}
+.barra-situacao-aluno {
+    left: 643px;
+    height: 40px;
+    top: 116px;
+    width: 214px;
+}
+
+
+.barra-ciclo-inicial-alfabetizacao {
+    width: 262px;
+    height: 31px;
+    top: 357px;
+    left: -117px;   
+}
+.barra-ciclo-complementar-alfabetizacao {
+    width: 195px;
+    height: 31px;
+    top: 584.5px;
+    left: -83px;
+    font-size: 10px;   
+}
+.barra-fase-introdutoria {
+    width: 88px;
+    height: 35px;
+    top: 268px;
+    left: 3px;
+    font-size: 12px;
+}
+.barra-fase-1 {
+    width: 88px;
+    height: 35px;
+    top: 355px;
+    left: 3px;
+    font-size: 12px;
+}
+.barra-fase-2 {
+    width: 88px;
+    height: 35px;
+    top: 442px;
+    left: 3px;
+    font-size: 12px;
+}
+.barra-fase-3 {
+    width: 88px;
+    height: 35px;
+    top: 529px;
+    left: 3px;
+    font-size: 12px;
+}
+.barra-fase-4 {
+    width: 108px;
+    height: 35px;
+    top: 626px;
+    left: -7px;
+    font-size: 12px;
+}
+.barra-ciclo-da-alfabetizacao {
+    width: 262px;
+    height: 30px;
+    top: 358px;
+    left: -52px;   
+}
+.barra-ciclo-complementar {
+    width: 195px;
+    height: 30px;
+    top: 585px;
+    left: -19px;
+    font-size: 12px;   
+}
+.barra-observacoes {
+    width: 253px;
+    height: 669px;
+    left: 770px;
+    text-align: justify;
+}
+
+
+.conceito {
+    font-size: 16px;
+}
+
+.barra-primeiro-ano {
+    width: 88px;
+    height: 30px;
+    top: 271px;
+    left: 64px;
+    font-size: 12px;
+}
+.barra-primeiro-ano-aproveitamento {
+    width: 77px;
+    height: 30px;
+    top: 242px;
+    left: 123px;
+    font-size: 10px;
+}
+.barra-primeiro-ano-ch-curricular {
+    width: 77px;
+    height: 30px;
+    top: 271px;
+    left: 123px;
+    font-size: 10px;
+}
+.barra-primeiro-ano-faltas-horas {
+    width: 77px;
+    height: 30px;
+    top: 300px;
+    left: 123px;
+    font-size: 10px;
+}
+
+.barra-primeiro-ano-conceito-portugues {
+    width: 30px;
+    height: 30px;
+    top: 242px;
+    left: 200px;
+}
+.barra-primeiro-ano-conceito-matematica {
+    width: 30px;
+    height: 30px;
+    top: 242px;
+    left: 230px;
+}
+.barra-primeiro-ano-conceito-geografia {
+    width: 30px;
+    height: 30px;
+    top: 242px;
+    left: 260px;
+}
+.barra-primeiro-ano-conceito-historia {
+    width: 30px;
+    height: 30px;
+    top: 242px;
+    left: 290px;
+}
+.barra-primeiro-ano-conceito-ciencias {
+    width: 30px;
+    height: 30px;
+    top: 242px;
+    left: 320px;
+}
+.barra-primeiro-ano-conceito-edu-fisica {
+    width: 30px;
+    height: 30px;
+    top: 242px;
+    left: 350px;
+}
+.barra-primeiro-ano-conceito-ensino-religioso {
+    width: 30px;
+    height: 30px;
+    top: 242px;
+    left: 380px;
+}
+.barra-primeiro-ano-conceito-arte {
+    width: 40px;
+    height: 30px;
+    top: 242px;
+    left: 410px;
+}
+.barra-primeiro-ano-conceito-informatica {
+    width: 40px;
+    height: 30px;
+    top: 242px;
+    left: 450px;
+}
+.barra-primeiro-ano-conceito-literatura-inf-juvenil {
+    width: 40px;
+    height: 30px;
+    top: 242px;
+    left: 490px;
+}
+.barra-primeiro-ano-conceito-atv-linguagem-matematica {
+    width: 40px;
+    height: 30px;
+    top: 242px;
+    left: 530px;
+}
+.barra-primeiro-ano-conceito-atv-esportiva-motora {
+    width: 40px;
+    height: 30px;
+    top: 242px;
+    left: 570px;
+}
+.barra-primeiro-ano-conceito-formacao-pessoal-social {
+    width: 40px;
+    height: 30px;
+    top: 242px;
+    left: 610px;
+}
+.barra-primeiro-ano-valor-ch-curricular-basica {
+    width: 210px;
+    height: 30px;
+    top: 271px;
+    left: 200px;
+    font-size: 10px;
+}
+.barra-primeiro-ano-ch-curricular-arte {
+    width: 40px;
+    height: 30px;
+    top: 271px;
+    left: 410px;
+    font-size: 10px; 
+}
+.barra-primeiro-ano-ch-curricular-informatica {
+    width: 40px;
+    height: 30px;
+    top: 271px;
+    left: 450px;
+    font-size: 10px; 
+}
+.barra-primeiro-ano-ch-curricular-literatura-inf-juvenil {
+    width: 40px;
+    height: 30px;
+    top: 271px;
+    left: 490px;
+    font-size: 10px; 
+}
+.barra-primeiro-ano-ch-curricular-projeto-tempo-integral {
+    width: 120px;
+    height: 30px;
+    top: 271px;
+    left: 530px;
+    font-size: 10px; 
+}
+.barra-primeiro-ano-valor-falta-horas-base-nacional-comum {
+    width: 250px;
+    height: 30px;
+    top: 300px;
+    left: 200px;
+    font-size: 10px;
+}
+.barra-primeiro-ano-valor-falta-horas-parte-diversificada {
+    width: 80px;
+    height: 30px;
+    top: 300px;
+    left: 450px;
+    font-size: 10px;
+}
+.barra-primeiro-ano-valor-falta-horas-projeto-tempo-integral {
+    width: 120px;
+    height: 30px;
+    top: 300px;
+    left: 530px;
+    font-size: 10px;
+}
+
+.barra-primeiro-ano-valor-total-ch-curricular {
+    width: 88px;
+    height: 40px;
+    top: 266px;
+    left: 626px;
+    font-size: 12px;
+}
+.barra-primeiro-ano-valor-total-faltas-horas {
+    width: 88px;
+    height: 40px;
+    top: 266px;
+    left: 666px;
+    font-size: 12px;
+}
+.barra-primeiro-ano-valor-total-situacao-aluno {
+    width: 88px;
+    height: 40px;
+    top: 266px;
+    left: 706px;
+    font-size: 12px;
+    background-color: #a9a9a9;
+}
+
+
+
+.barra-segundo-ano {
+    width: 88px;
+    height: 30px;
+    top: 358px;
+    left: 64px;
+    font-size: 12px;
+}
+.barra-segundo-ano-aproveitamento {
+    width: 77px;
+    height: 30px;
+    top: 329px;
+    left: 123px;
+    font-size: 10px;
+}
+.barra-segundo-ano-ch-curricular {
+    width: 77px;
+    height: 30px;
+    top: 358px;
+    left: 123px;
+    font-size: 10px;
+}
+.barra-segundo-ano-faltas-horas {
+    width: 77px;
+    height: 30px;
+    top: 387px;
+    left: 123px;
+    font-size: 10px;
+}
+
+.barra-segundo-ano-conceito-portugues {
+    width: 30px;
+    height: 30px;
+    top: 329px;
+    left: 200px;
+}
+.barra-segundo-ano-conceito-matematica {
+    width: 30px;
+    height: 30px;
+    top: 329px;
+    left: 230px; 
+}
+.barra-segundo-ano-conceito-geografia {
+    width: 30px;
+    height: 30px;
+    top: 329px;
+    left: 260px;
+}
+.barra-segundo-ano-conceito-historia {
+    width: 30px;
+    height: 30px;
+    top: 329px;
+    left: 290px;
+}
+.barra-segundo-ano-conceito-ciencias {
+    width: 30px;
+    height: 30px;
+    top: 329px;
+    left: 320px; 
+}
+.barra-segundo-ano-conceito-edu-fisica {
+    width: 30px;
+    height: 30px;
+    top: 329px;
+    left: 350px;
+}
+.barra-segundo-ano-conceito-ensino-religioso {
+    width: 30px;
+    height: 30px;
+    top: 329px;
+    left: 380px;
+}
+.barra-segundo-ano-conceito-arte {
+    width: 40px;
+    height: 30px;
+    top: 329px;
+    left: 410px;
+}
+.barra-segundo-ano-conceito-informatica {
+    width: 40px;
+    height: 30px;
+    top: 329px;
+    left: 450px;
+}
+.barra-segundo-ano-conceito-literatura-inf-juvenil {
+    width: 40px;
+    height: 30px;
+    top: 329px;
+    left: 490px; 
+}
+.barra-segundo-ano-conceito-atv-linguagem-matematica {
+    width: 40px;
+    height: 30px;
+    top: 329px;
+    left: 530px; 
+}
+.barra-segundo-ano-conceito-atv-esportiva-motora {
+    width: 40px;
+    height: 30px;
+    top: 329px;
+    left: 570px; 
+}
+.barra-segundo-ano-conceito-formacao-pessoal-social {
+    width: 40px;
+    height: 30px;
+    top: 329px;
+    left: 610px; 
+}
+
+.barra-segundo-ano-valor-ch-curricular-basica {
+    width: 210px;
+    height: 30px;
+    top: 358px;
+    left: 200px;
+    font-size: 10px;
+}
+.barra-segundo-ano-ch-curricular-arte {
+    width: 40px;
+    height: 30px;
+    top: 358px;
+    left: 410px;
+    font-size: 10px; 
+}
+.barra-segundo-ano-ch-curricular-informatica {
+    width: 40px;
+    height: 30px;
+    top: 358px;
+    left: 450px;
+    font-size: 10px; 
+}
+.barra-segundo-ano-ch-curricular-literatura-inf-juvenil {
+    width: 40px;
+    height: 30px;
+    top: 358px;
+    left: 490px;
+    font-size: 10px; 
+}
+.barra-segundo-ano-ch-curricular-projeto-tempo-integral {
+    width: 120px;
+    height: 30px;
+    top: 358px;
+    left: 530px;
+    font-size: 10px; 
+}
+
+.barra-segundo-ano-valor-falta-horas-base-nacional-comum {
+    width: 250px;
+    height: 30px;
+    top: 387px;
+    left: 200px;
+    font-size: 10px;
+}
+.barra-segundo-ano-valor-falta-horas-parte-diversificada {
+    width: 80px;
+    height: 30px;
+    top: 387px;
+    left: 450px;
+    font-size: 10px;
+}
+.barra-segundo-ano-valor-falta-horas-projeto-tempo-integral {
+    width: 120px;
+    height: 30px;
+    top: 387px;
+    left: 530px;
+    font-size: 10px;
+}
+
+.barra-segundo-ano-valor-total-ch-curricular {
+    width: 88px;
+    height: 40px;
+    top: 353px;
+    left: 626px;
+    font-size: 12px;
+}
+.barra-segundo-ano-valor-total-faltas-horas {
+    width: 88px;
+    height: 40px;
+    top: 353px;
+    left: 666px;
+    font-size: 12px;
+}
+.barra-segundo-ano-valor-total-situacao-aluno {
+    width: 88px;
+    height: 40px;
+    top: 353px;
+    left: 706px;
+    font-size: 12px;
+    background-color: #a9a9a9;
+}
+
+
+.barra-terceiro-ano {
+    width: 88px;
+    height: 30px;
+    top: 445px;
+    left: 64px;
+    font-size: 12px;
+}
+.barra-terceiro-ano-aproveitamento {
+    width: 77px;
+    height: 30px;
+    top: 416px;
+    left: 123px;
+    font-size: 10px;
+}
+.barra-terceiro-ano-ch-curricular {
+    width: 77px;
+    height: 30px;
+    top: 445px;
+    left: 123px;
+    font-size: 10px;
+}
+.barra-terceiro-ano-faltas-horas {
+    width: 77px;
+    height: 30px;
+    top: 474px;
+    left: 123px;
+    font-size: 10px;
+}
+
+.barra-terceiro-ano-conceito-portugues {
+    width: 30px;
+    height: 30px;
+    top: 416px;
+    left: 200px; 
+}
+.barra-terceiro-ano-conceito-matematica {
+    width: 30px;
+    height: 30px;
+    top: 416px;
+    left: 230px;
+}
+.barra-terceiro-ano-conceito-geografia {
+    width: 30px;
+    height: 30px;
+    top: 416px;
+    left: 260px;
+}
+.barra-terceiro-ano-conceito-historia {
+    width: 30px;
+    height: 30px;
+    top: 416px;
+    left: 290px;
+}
+.barra-terceiro-ano-conceito-ciencias {
+    width: 30px;
+    height: 30px;
+    top: 416px;
+    left: 320px;
+}
+.barra-terceiro-ano-conceito-edu-fisica {
+    width: 30px;
+    height: 30px;
+    top: 416px;
+    left: 350px;
+}
+.barra-terceiro-ano-conceito-ensino-religioso {
+    width: 30px;
+    height: 30px;
+    top: 416px;
+    left: 380px; 
+}
+.barra-terceiro-ano-conceito-arte {
+    width: 40px;
+    height: 30px;
+    top: 416px;
+    left: 410px; 
+}
+.barra-terceiro-ano-conceito-informatica {
+    width: 40px;
+    height: 30px;
+    top: 416px;
+    left: 450px; 
+}
+.barra-terceiro-ano-conceito-literatura-inf-juvenil {
+    width: 40px;
+    height: 30px;
+    top: 416px;
+    left: 490px; 
+}
+.barra-terceiro-ano-conceito-atv-linguagem-matematica {
+    width: 40px;
+    height: 30px;
+    top: 416px;
+    left: 530px; 
+}
+.barra-terceiro-ano-conceito-atv-esportiva-motora {
+    width: 40px;
+    height: 30px;
+    top: 416px;
+    left: 570px; 
+}
+.barra-terceiro-ano-conceito-formacao-pessoal-social {
+    width: 40px;
+    height: 30px;
+    top: 416px;
+    left: 610px; 
+}
+
+.barra-terceiro-ano-valor-ch-curricular-basica {
+    width: 210px;
+    height: 30px;
+    top: 445px;
+    left: 200px;
+    font-size: 10px;
+}
+.barra-terceiro-ano-ch-curricular-arte {
+    width: 40px;
+    height: 30px;
+    top: 445px;
+    left: 410px;
+    font-size: 10px; 
+}
+.barra-terceiro-ano-ch-curricular-informatica {
+    width: 40px;
+    height: 30px;
+    top: 445px;
+    left: 450px;
+    font-size: 10px; 
+}
+.barra-terceiro-ano-ch-curricular-literatura-inf-juvenil {
+    width: 40px;
+    height: 30px;
+    top: 445px;
+    left: 490px;
+    font-size: 10px; 
+}
+.barra-terceiro-ano-ch-curricular-projeto-tempo-integral {
+    width: 120px;
+    height: 30px;
+    top: 445px;
+    left: 530px;
+    font-size: 10px; 
+}
+
+.barra-terceiro-ano-valor-falta-horas-base-nacional-comum {
+    width: 250px;
+    height: 30px;
+    top: 474px;
+    left: 200px;
+    font-size: 10px;
+}
+.barra-terceiro-ano-valor-falta-horas-parte-diversificada {
+    width: 80px;
+    height: 30px;
+    top: 474px;
+    left: 450px;
+    font-size: 10px;
+}
+.barra-terceiro-ano-valor-falta-horas-projeto-tempo-integral {
+    width: 120px;
+    height: 30px;
+    top: 474px;
+    left: 530px;
+    font-size: 10px;
+}
+.barra-terceiro-ano-valor-total-ch-curricular {
+    width: 88px;
+    height: 40px;
+    top: 440px;
+    left: 626px;
+    font-size: 12px;
+}
+.barra-terceiro-ano-valor-total-faltas-horas {
+    width: 88px;
+    height: 40px;
+    top: 440px;
+    left: 666px;
+    font-size: 12px;
+}
+.barra-terceiro-ano-valor-total-situacao-aluno {
+    width: 88px;
+    height: 40px;
+    top: 440px;
+    left: 706px;
+    font-size: 12px;
+    background-color: #a9a9a9;
+}
+
+
+.barra-quarto-ano {
+    width: 88px;
+    height: 30px;
+    top: 532px;
+    left: 64px;
+    font-size: 12px;
+}
+.barra-quarto-ano-aproveitamento {
+    width: 77px;
+    height: 30px;
+    top: 503px;
+    left: 123px;
+    font-size: 10px;
+}
+.barra-quarto-ano-ch-curricular {
+    width: 77px;
+    height: 30px;
+    top: 532px;
+    left: 123px;
+    font-size: 10px;
+}
+.barra-quarto-ano-faltas-horas {
+    width: 77px;
+    height: 30px;
+    top: 561px;
+    left: 123px;
+    font-size: 10px;
+}
+
+.barra-quarto-ano-conceito-portugues {
+    width: 30px;
+    height: 30px;
+    top: 503px;
+    left: 200px;
+}
+.barra-quarto-ano-conceito-matematica {
+    width: 30px;
+    height: 30px;
+    top: 503px;
+    left: 230px;
+}
+.barra-quarto-ano-conceito-geografia {
+    width: 30px;
+    height: 30px;
+    top: 503px;
+    left: 260px; 
+}
+.barra-quarto-ano-conceito-historia {
+    width: 30px;
+    height: 30px;
+    top: 503px;
+    left: 290px; 
+}
+.barra-quarto-ano-conceito-ciencias {
+    width: 30px;
+    height: 30px;
+    top: 503px;
+    left: 320px; 
+}
+.barra-quarto-ano-conceito-edu-fisica {
+    width: 30px;
+    height: 30px;
+    top: 503px;
+    left: 350px; 
+}
+.barra-quarto-ano-conceito-ensino-religioso {
+    width: 30px;
+    height: 30px;
+    top: 503px;
+    left: 380px; 
+}
+.barra-quarto-ano-conceito-arte {
+    width: 40px;
+    height: 30px;
+    top: 503px;
+    left: 410px; 
+}
+.barra-quarto-ano-conceito-informatica {
+    width: 40px;
+    height: 30px;
+    top: 503px;
+    left: 450px; 
+}
+.barra-quarto-ano-conceito-literatura-inf-juvenil {
+    width: 40px;
+    height: 30px;
+    top: 503px;
+    left: 490px; 
+}
+.barra-quarto-ano-conceito-atv-linguagem-matematica {
+    width: 40px;
+    height: 30px;
+    top: 503px;
+    left: 530px; 
+}
+.barra-quarto-ano-conceito-atv-esportiva-motora {
+    width: 40px;
+    height: 30px;
+    top: 503px;
+    left: 570px; 
+}
+.barra-quarto-ano-conceito-formacao-pessoal-social {
+    width: 40px;
+    height: 30px;
+    top: 503px;
+    left: 610px; 
+}
+
+.barra-quarto-ano-valor-ch-curricular-basica {
+    width: 210px;
+    height: 30px;
+    top: 532px;
+    left: 200px;
+    font-size: 10px;
+}
+.barra-quarto-ano-ch-curricular-arte {
+    width: 40px;
+    height: 30px;
+    top: 532px;
+    left: 410px;
+    font-size: 10px; 
+}
+.barra-quarto-ano-ch-curricular-informatica {
+    width: 40px;
+    height: 30px;
+    top: 532px;
+    left: 450px;
+    font-size: 10px; 
+}
+.barra-quarto-ano-ch-curricular-literatura-inf-juvenil {
+    width: 40px;
+    height: 30px;
+    top: 532px;
+    left: 490px;
+    font-size: 10px; 
+}
+.barra-quarto-ano-ch-curricular-projeto-tempo-integral {
+    width: 120px;
+    height: 30px;
+    top: 532px;
+    left: 530px;
+    font-size: 10px; 
+}
+
+.barra-quarto-ano-valor-falta-horas-base-nacional-comum {
+    width: 250px;
+    height: 30px;
+    top: 561px;
+    left: 200px;
+    font-size: 10px;
+}
+.barra-quarto-ano-valor-falta-horas-parte-diversificada {
+    width: 80px;
+    height: 30px;
+    top: 561px;
+    left: 450px;
+    font-size: 10px;
+}
+.barra-quarto-ano-valor-falta-horas-projeto-tempo-integral {
+    width: 120px;
+    height: 30px;
+    top: 561px;
+    left: 530px;
+    font-size: 10px;
+}
+
+.barra-quarto-ano-valor-total-ch-curricular {
+    width: 88px;
+    height: 40px;
+    top: 527px;
+    left: 626px;
+    font-size: 12px;
+}
+.barra-quarto-ano-valor-total-faltas-horas {
+    width: 88px;
+    height: 40px;
+    top: 527px;
+    left: 666px;
+    font-size: 12px;
+}
+.barra-quarto-ano-valor-total-situacao-aluno {
+    width: 88px;
+    height: 40px;
+    top: 527px;
+    left: 706px;
+    font-size: 12px;
+    background-color: #a9a9a9;
+}
+
+
+.barra-quinta-ano {
+    width: 108px;
+    height: 30px;
+    top: 629px;
+    left: 54px;
+    font-size: 12px;
+}
+.barra-quinta-ano-aproveitamento {
+    width: 77px;
+    height: 30px;
+    top: 590px;
+    left: 123px;
+    font-size: 10px;
+}
+.barra-quinta-ano-ch-curricular {
+    width: 77px;
+    height: 30px;
+    top: 619px;
+    left: 123px;
+    font-size: 10px;
+}
+.barra-quinta-ano-faltas-horas {
+    width: 77px;
+    height: 50px;
+    top: 648px;
+    left: 123px;
+    font-size: 10px;
+}
+
+.barra-quinta-ano-conceito-portugues {
+    width: 30px;
+    height: 30px;
+    top: 590px;
+    left: 200px; 
+}
+.barra-quinta-ano-conceito-matematica {
+    width: 30px;
+    height: 30px;
+    top: 590px;
+    left: 230px; 
+}
+.barra-quinta-ano-conceito-geografia {
+    width: 30px;
+    height: 30px;
+    top: 590px;
+    left: 260px; 
+}
+.barra-quinta-ano-conceito-historia {
+    width: 30px;
+    height: 30px;
+    top: 590px;
+    left: 290px; 
+}
+.barra-quinta-ano-conceito-ciencias {
+    width: 30px;
+    height: 30px;
+    top: 590px;
+    left: 320px; 
+}
+.barra-quinta-ano-conceito-edu-fisica {
+    width: 30px;
+    height: 30px;
+    top: 590px;
+    left: 350px; 
+}
+.barra-quinta-ano-conceito-ensino-religioso {
+    width: 30px;
+    height: 30px;
+    top: 590px;
+    left: 380px; 
+}
+.barra-quinta-ano-conceito-arte {
+    width: 40px;
+    height: 30px;
+    top: 590px;
+    left: 410px; 
+}
+.barra-quinta-ano-conceito-informatica {
+    width: 40px;
+    height: 30px;
+    top: 590px;
+    left: 450px; 
+}
+.barra-quinta-ano-conceito-literatura-inf-juvenil {
+    width: 40px;
+    height: 30px;
+    top: 590px;
+    left: 490px; 
+}
+.barra-quinta-ano-conceito-atv-linguagem-matematica {
+    width: 40px;
+    height: 30px;
+    top: 590px;
+    left: 530px; 
+}
+.barra-quinta-ano-conceito-atv-esportiva-motora {
+    width: 40px;
+    height: 30px;
+    top: 590px;
+    left: 570px; 
+}
+.barra-quinta-ano-conceito-formacao-pessoal-social {
+    width: 40px;
+    height: 30px;
+    top: 590px;
+    left: 610px; 
+}
+
+.barra-quinta-ano-valor-ch-curricular-basica {
+    width: 210px;
+    height: 30px;
+    top: 619px;
+    left: 200px;
+    font-size: 10px;
+}
+.barra-quinta-ano-ch-curricular-arte {
+    width: 40px;
+    height: 30px;
+    top: 619px;
+    left: 410px;
+    font-size: 10px; 
+}
+.barra-quinta-ano-ch-curricular-informatica {
+    width: 40px;
+    height: 30px;
+    top: 619px;
+    left: 450px;
+    font-size: 10px; 
+}
+.barra-quinta-ano-ch-curricular-literatura-inf-juvenil {
+    width: 40px;
+    height: 30px;
+    top: 619px;
+    left: 490px;
+    font-size: 10px; 
+}
+.barra-quinta-ano-ch-curricular-projeto-tempo-integral {
+    width: 120px;
+    height: 30px;
+    top: 619px;
+    left: 530px;
+    font-size: 10px; 
+}
+
+.barra-quinta-ano-valor-falta-horas-base-nacional-comum {
+    width: 250px;
+    height: 50px;
+    top: 648px;
+    left: 200px;
+    font-size: 10px;
+}
+.barra-quinta-ano-valor-falta-horas-parte-diversificada {
+    width: 80px;
+    height: 50px;
+    top: 648px;
+    left: 450px;
+    font-size: 10px;
+}
+.barra-quinta-ano-valor-falta-horas-projeto-tempo-integral {
+    width: 120px;
+    height: 50px;
+    top: 648px;
+    left: 530px;
+    font-size: 10px;
+}
+
+.barra-quinta-ano-valor-total-ch-curricular {
+    width: 108px;
+    height: 40px;
+    top: 624px;
+    left: 616px;
+    font-size: 12px;
+}
+.barra-quinta-ano-valor-total-faltas-horas {
+    width: 108px;
+    height: 40px;
+    top: 624px;
+    left: 656px;
+    font-size: 12px;
+}
+.barra-quinta-ano-valor-total-situacao-aluno {
+    width: 108px;
+    height: 40px;
+    top: 624px;
+    left: 696px;
+    font-size: 12px;
+    background-color: #a9a9a9;
+}
+
+
+/*rodapé dos quadros do histórico*/
+.barra-rodape-ciclo {
+    width: 200px;
+    height: 30px;
+    top: 697px;
+    left: 0;
+    font-size: 10px;
+}
+.barra-rodape-fase-introdutoria {
+    width: 100px;
+    height: 30px;
+    top: 726px;
+    left: 0;
+    font-size: 12px;
+}
+.barra-rodape-fase-1 {
+    width: 100px;
+    height: 30px;
+    top: 755px;
+    left: 0;
+    font-size: 12px;
+}
+.barra-rodape-fase-2 {
+    width: 100px;
+    height: 30px;
+    top: 784px;
+    left: 0;
+    font-size: 12px;
+}
+.barra-rodape-fase-3 {
+    width: 100px;
+    height: 30px;
+    top: 813px;
+    left: 0;
+    font-size: 12px;
+}
+.barra-rodape-fase-4 {
+    width: 100px;
+    height: 30px;
+    top: 842px;
+    left: 0;
+    font-size: 12px;
+}
+
+.barra-rodape-primeiro-ano {
+    width: 100px;
+    height: 30px;
+    top: 726px;
+    left: 100px;
+    font-size: 12px;
+}
+.barra-rodape-segundo-ano {
+    width: 100px;
+    height: 30px;
+    top: 755px;
+    left: 100px;
+    font-size: 12px;
+}
+.barra-rodape-terceiro-ano {
+    width: 100px;
+    height: 30px;
+    top: 784px;
+    left: 100px;
+    font-size: 12px;
+}
+.barra-rodape-quarto-ano {
+    width: 100px;
+    height: 30px;
+    top: 813px;
+    left: 100px;
+    font-size: 12px;
+}
+.barra-rodape-quinto-ano {
+    width: 100px;
+    height: 30px;
+    top: 842px;
+    left: 100px;
+    font-size: 12px;
+}
+
+.barra-rodape-ano {
+    width: 100px;
+    height: 30px;
+    top: 697px;
+    left: 200px;
+    font-size: 12px;
+}
+.barra-rodape-valor-primeiro-ano {
+    width: 100px;
+    height: 30px;
+    top: 726px;
+    left: 200px;
+    font-size: 12px;
+}
+.barra-rodape-valor-segundo-ano {
+    width: 100px;
+    height: 30px;
+    top: 755px;
+    left: 200px;
+    font-size: 12px;
+}
+.barra-rodape-valor-terceiro-ano {
+    width: 100px;
+    height: 30px;
+    top: 784px;
+    left: 200px;
+    font-size: 12px;
+}
+.barra-rodape-valor-quarto-ano {
+    width: 100px;
+    height: 30px;
+    top: 813px;
+    left: 200px;
+    font-size: 12px;
+}
+.barra-rodape-valor-quinto-ano {
+    width: 100px;
+    height: 30px;
+    top: 842px;
+    left: 200px;
+    font-size: 12px;
+}
+
+
+.barra-rodape-dias-letivos {
+    width: 110px;
+    height: 30px;
+    top: 697px;
+    left: 300px;
+    font-size: 12px;
+}
+.barra-rodape-valor-dias-letivos-primeiro-ano {
+    width: 110px;
+    height: 30px;
+    top: 726px;
+    left: 300px;
+    font-size: 12px;
+}
+.barra-rodape-valor-dias-letivos-segundo-ano {
+    width: 110px;
+    height: 30px;
+    top: 755px;
+    left: 300px;
+    font-size: 12px;
+}
+.barra-rodape-valor-dias-letivos-terceiro-ano {
+    width: 110px;
+    height: 30px;
+    top: 784px;
+    left: 300px;
+    font-size: 12px;
+}
+.barra-rodape-valor-dias-letivos-quarto-ano {
+    width: 110px;
+    height: 30px;
+    top: 813px;
+    left: 300px;
+    font-size: 12px;
+}
+.barra-rodape-valor-dias-letivos-quinto-ano {
+    width: 110px;
+    height: 30px;
+    top: 842px;
+    left: 300px;
+    font-size: 12px;
+}
+
+.barra-rodape-estabelecimento {
+    width: 370px;
+    height: 30px;
+    top: 697px;
+    left: 410px;
+    font-size: 12px;
+}
+.barra-rodape-valor-estabelecimento-primeiro-ano {
+    width: 370px;
+    height: 30px;
+    top: 726px;
+    left: 410px;
+    font-size: 12px;
+}
+.barra-rodape-valor-estabelecimento-segundo-ano {
+    width: 370px;
+    height: 30px;
+    top: 755px;
+    left: 410px;
+    font-size: 12px;
+}
+.barra-rodape-valor-estabelecimento-terceiro-ano {
+    width: 370px;
+    height: 30px;
+    top: 784px;
+    left: 410px;
+    font-size: 12px;
+}
+.barra-rodape-valor-estabelecimento-quarto-ano {
+    width: 370px;
+    height: 30px;
+    top: 813px;
+    left: 410px;
+    font-size: 12px;
+}
+.barra-rodape-valor-estabelecimento-quinto-ano {
+    width: 370px;
+    height: 30px;
+    top: 842px;
+    left: 410px;
+    font-size: 12px;
+}
+
+
+.barra-rodape-municipio-estado {
+    width: 244px;
+    height: 30px;
+    top: 697px;
+    left: 779px;
+    font-size: 12px;
+}
+.barra-rodape-valor-municipio-estado-primeiro-ano {
+    width: 244px;
+    height: 30px;
+    top: 726px;
+    left: 779px;
+    font-size: 12px;
+}
+.barra-rodape-valor-municipio-estado-segundo-ano {
+    width: 244px;
+    height: 30px;
+    top: 755px;
+    left: 779px;
+    font-size: 12px;
+}
+.barra-rodape-valor-municipio-estado-terceiro-ano {
+    width: 244px;
+    height: 30px;
+    top: 784px;
+    left: 779px;
+    font-size: 12px;
+}
+.barra-rodape-valor-municipio-estado-quarto-ano {
+    width: 244px;
+    height: 30px;
+    top: 813px;
+    left: 779px;
+    font-size: 12px;
+}
+.barra-rodape-valor-municipio-estado-quinto-ano {
+    width: 244px;
+    height: 30px;
+    top: 842px;
+    left: 779px;
+    font-size: 12px;
+}
+
+
+
+.rodape-historico {
+    margin: auto;
+    width: 1024px;
+    height: 130px;
+    text-align: center;
+    font-family: Arial, sans-serif;
+}
+
+.rodape-corpo-esquerdo {
+    display: inline-block;
+    width: 30%;
+    padding-top: 30px;
+}
+
+.rodape-corpo-direito {
+    display: inline-block;
+    width: 30%;
+    
+    padding-top: 30px;
+}
+
+
+.rodape-corpo-centro {
+    
+    display: inline-block;
+    width: 30%;
+    vertical-align: text-top;
+   
+}

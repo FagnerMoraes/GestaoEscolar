@@ -1,0 +1,77 @@
+﻿@model GestaoEscolar.Models.Disciplina
+
+@{
+    ViewBag.Title = "Cadastro Disciplina";
+    Layout = "~/Views/Shared/_LayoutPadrao.cshtml";
+}
+
+<div class="panel panel-heading">
+    <strong><span class="glyphicon glyphicon-plus-sign"></span><span>&nbsp;</span>Cadastro Disciplina</strong>
+</div>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <div class="panel-body panel-scroll">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.NomeDisciplina)
+                </div>
+                <div class="editor-field">
+                    @Html.TextBoxFor(model => model.NomeDisciplina, new { @class = " form-control , upper", @placeholder = "Nome da Disciplina" })
+                    @Html.ValidationMessageFor(model => model.NomeDisciplina)
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-4">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.MaximoPontos)
+                </div>
+                <div class="editor-field">
+                    @Html.TextBoxFor(model => model.MaximoPontos, new { @class = " form-control , upper", @placeholder = "Ex: A ou 10" })
+                    @Html.ValidationMessageFor(model => model.MaximoPontos)
+                </div>
+            </div>
+            <div class="col-xs-4">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.MediaPontos)
+                </div>
+                <div class="editor-field">
+                    @Html.TextBoxFor(model => model.MediaPontos, new { @class = " form-control , upper", @placeholder = "Ex: A ou 10" })
+                    @Html.ValidationMessageFor(model => model.MediaPontos)
+                </div>
+            </div>
+            <div class="col-xs-4">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.MinimoPonto)
+                </div>
+                <div class="editor-field">
+                    @Html.TextBoxFor(model => model.MinimoPonto, new { @class = " form-control , upper", @placeholder = "Ex: A ou 10" })
+                    @Html.ValidationMessageFor(model => model.MinimoPonto)
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="panel panel-footer">
+        <div class="row">
+            <div class="col-sm-5">
+                <h5><strong>Atenção!</strong> O campo com <i class="fa fa-asterisk text-danger"></i>é obrigatório</h5>
+            </div>
+            <div class="col-md-3 col-md-offset-1">
+                <a class="btn btn-block btn-lg btn-danger" href="@Url.Action("Index")"><span class="glyphicon glyphicon-remove"></span>Cancelar</a>
+            </div>
+            <div class="col-md-3">
+                <button type="submit" class="btn btn-block btn-lg btn-success" value="Adicionar"><span class="glyphicon glyphicon-floppy-disk"></span>Salvar</button>
+            </div>
+        </div>
+    </div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

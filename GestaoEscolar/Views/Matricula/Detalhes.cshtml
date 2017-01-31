@@ -1,0 +1,49 @@
+﻿@model GestaoEscolar.Models.Matricula
+
+@{
+    ViewBag.Title = "Detalhes";
+    Layout = "~/Views/Shared/_LayoutPadrao.cshtml";
+}
+
+<div class="panel panel-heading">
+    <strong><span class="fa fa-cog"></span><span>&nbsp;</span>Matricula</strong>
+</div>
+
+<div class="panel-body">
+    <div class=" panel panel-default">
+        <div class="panel panel-heading">
+            <strong><span class="fa fa-plus"></span><span>&nbsp;</span>Dados da Matricula</strong>
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-sm-6">
+                    <strong>@Html.DisplayNameFor(model => model.Aluno.Nome)</strong><br />
+                    @Html.DisplayFor(model => model.Aluno.Nome)<br />
+                </div>
+                <div class="col-sm-3">
+                    <strong>@Html.DisplayNameFor(model => model.Turma.NomeTurma)</strong><br />
+                    @Html.DisplayFor(model => model.Turma.NomeTurma)<br />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-3">
+                    <strong>@Html.DisplayNameFor(model => model.DataCadastro)</strong><br />
+                    @Html.DisplayFor(model => model.DataCadastro)<br />
+                </div>
+            </div>
+
+            <div class="row">
+                <hr />
+                <div class="col-sm-3 col-sm-offset-6">
+                    <a class="btn btn-block btn-lg btn-info" href="@Url.Action("Index")"><span class="glyphicon glyphicon-arrow-left"></span>Voltar</a>
+                </div>
+                <div class="col-sm-3">
+                    <a class="btn btn-block btn-lg btn-warning" href="@Url.Action("Editar", new { id = Model.Id })"><span class="glyphicon glyphicon-edit"></span>Editar</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
