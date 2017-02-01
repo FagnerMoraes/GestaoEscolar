@@ -1,4 +1,4 @@
-﻿@model GestaoEscolar.Models.Turma
+﻿@model IEnumerable<GestaoEscolar.Models.DisciplinaDoProfessorNaTurma>
 
 @{
     ViewBag.Title = "Detalhes";
@@ -19,48 +19,48 @@
             <div class="row">
                 <div class="col-xs-6">
                     <div class="form-group">
-                        <label>@Html.DisplayNameFor(model => model.Escola.NomeEscola)</label><br />
-                        @Html.DisplayFor(model => model.Escola.NomeEscola)
+                        <label>Nome Escola</label><br />
+                        <input class="form-control" value="@ViewBag.Escola" disabled />
                     </div>
                 </div>
                 <div class="col-xs-6">
                     <div class="form-group">
-                        <label>@Html.DisplayNameFor(model => model.NomeTurma)</label><br />
-                        @Html.DisplayFor(model => model.NomeTurma)
+                        <label>Nome da Turma</label><br />
+                        <input class="form-control" value="@ViewBag.NomeTurma" disabled />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-6">
+                    <div class="form-group">
+                        <label>Serie</label><br />
+                        <input class="form-control" value="@ViewBag.Serie" disabled />
+                    </div>
+                </div>
+                <div class="col-xs-6">
+                    <div class="form-group">
+                        <label>Nivel da Turma</label><br />
+                        <input class="form-control" value="@ViewBag.NivelTurma" disabled />
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="col-xs-4">
                     <div class="form-group">
-                        <label>@Html.DisplayNameFor(model => model.Serie)</label><br />
-                        @Html.DisplayFor(model => model.Serie)
+                        <label>Turno de Funcionamento</label><br />
+                        <input class="form-control" value="@ViewBag.HorarioFuncionamento" disabled />
                     </div>
                 </div>
                 <div class="col-xs-4">
                     <div class="form-group">
-                        <label>@Html.DisplayNameFor(model => model.NivelTurma)</label><br />
-                        @Html.DisplayFor(model => model.NivelTurma)
+                        <label>Modalidade de Ensino</label><br />
+                        <input class="form-control" value="@ViewBag.ModalidadeEnsino" disabled />
                     </div>
                 </div>
-            </div>
-            <div class="row">
                 <div class="col-xs-4">
                     <div class="form-group">
-                        <label>@Html.DisplayNameFor(model => model.HorarioFuncionamento)</label><br />
-                        @Html.DisplayFor(model => model.HorarioFuncionamento)
-                    </div>
-                </div>
-                <div class="col-xs-3">
-                    <div class="form-group">
-                        <label>@Html.DisplayNameFor(model => model.ModalidadeEnsino)</label><br />
-                        @Html.DisplayFor(model => model.ModalidadeEnsino)
-                    </div>
-                </div>
-                <div class="col-xs-3">
-                    <div class="form-group">
-                        <label>@Html.DisplayNameFor(model => model.QtdAlunos)</label><br />
-                        @Html.DisplayFor(model => model.QtdAlunos)
+                        <label>Quantidade de Alunos</label><br />
+                        <input class="form-control" value="@ViewBag.QtdAlunos" disabled />
                     </div>
                 </div>
             </div>
@@ -69,22 +69,75 @@
 
     <div class="panel panel-default">
         <div class="panel panel-heading">
-            <strong><span class="fa fa-cloud"></span><span>&nbsp;</span>Alunos da Turma</strong>
+            <strong><span class="fa fa-cloud"></span><span>&nbsp;</span>Disciplinas da Turma</strong>
         </div>
         <div class="panel-body">
 
+            <table class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <a href="@Url.Action("GerenciarDisciplinaTurma", "DisciplinaDoProfessorNaTurma", new { turmaId = ViewBag.Id })" class="btn btn-block btn-lg btn-success"><i class="fa fa-plus"></i><i>&nbsp;</i>Adicionar Disciplina</a>
+                    </tr>
+                    <tr>
+                        <th>
+                            Disciplinas
+                        </th>
+                        <th>
+                            Professor
+                        </th>
+                        <th>
+                            Ação
+                        </th>
+                    </tr>
+                </thead>
+                @foreach (var item in Model)
+                {
+                    <tbody>
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Disciplina.NomeDisciplina)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Funcionario.NomeFuncionario)
+                            </td>
+                            <td>
+                                <a class="btn btn-default" title="Editar" href="@Url.Action("Editar", "DisciplinaDoProfessorNaTurma", new { id = item.Id })">
+                                    <span class="fa fa-edit"></span>
+                                </a>
+                                <a class="btn btn-primary btn-danger confirm" title="Excluir" href="@Url.Action("ExcluirDaTurma", "DisciplinaDoProfessorNaTurma", new { id = item.Id })">
+                                    <span class="fa fa-trash"></span>
+                                </a>
+                            </td>
+                        </tr>
+                    </tbody>
+                }
+
+            </table>
+
         </div>
-        </div>
+    </div>
 </div>
 
 <div class="panel panel-footer">
     <div class="row">
         <div class="col-sm-3 col-sm-offset-6">
-            <a class="btn btn-block btn-lg btn-info" href="@Url.Action("Index")"><span class="fa fa-reply"></span><span>&nbsp;</span>Voltar</a>
+            <a class="btn btn-block btn-lg btn-default" href="@Url.Action("Index")"><span class="fa fa-reply"></span><span>&nbsp;</span>Voltar</a>
         </div>
         <div class="col-sm-3">
-            <a class="btn btn-block btn-lg btn-warning" href="@Url.Action("Editar", new { id = Model.Id })"><span class="fa fa-edit"></span><span>&nbsp;</span>Editar</a>
+            <a class="btn btn-block btn-lg btn-primary" href="@Url.Action("Editar", new { id = ViewBag.Id })"><span class="fa fa-edit"></span><span>&nbsp;</span>Editar</a>
         </div>
     </div>
 </div>
 
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+<script src="~/Scripts/jquery.confirm.js"></script>
+<script>
+    $(".confirm").confirm({
+        text: "Tem certeza que deseja excluir?",
+        confirmButton: "Sim",
+        cancelButton: "Não"
+    });
+</script>

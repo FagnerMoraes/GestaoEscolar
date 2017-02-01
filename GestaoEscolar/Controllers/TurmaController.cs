@@ -52,7 +52,19 @@ namespace GestaoEscolar.Controllers
             {
                 return HttpNotFound();
             }
-            return View(turma);
+
+            ViewBag.Id = turma.Id;
+            ViewBag.Escola = turma.Escola.NomeEscola;
+            ViewBag.NomeTurma = turma.NomeTurma;
+            ViewBag.Serie = turma.Serie;
+            ViewBag.NivelTurma = turma.NivelTurma;
+            ViewBag.HorarioFuncionamento = turma.HorarioFuncionamento;
+            ViewBag.ModalidadeEnsino = turma.ModalidadeEnsino;
+            ViewBag.QtdAlunos = turma.QtdAlunos;
+            
+            var disciplinas = _banco.DisciplinaDoProfessoresNasTurmas.Where(x => x.TurmaId == turma.Id).ToList();
+            
+            return View(disciplinas);
         }
 
         public ActionResult Editar(long id)

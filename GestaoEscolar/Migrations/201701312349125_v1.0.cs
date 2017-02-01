@@ -3,7 +3,7 @@ namespace GestaoEscolar.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class Banco : DbMigration
+    public partial class v10 : DbMigration
     {
         public override void Up()
         {
@@ -82,7 +82,7 @@ namespace GestaoEscolar.Migrations
                     {
                         Id = c.Int(nullable: false, identity: true),
                         AnoHistoricoAluno = c.Int(nullable: false),
-                        TurmaAnoHistorico = c.String(nullable: false, maxLength: 10, storeType: "nvarchar"),
+                        TurmaAnoHistorico = c.String(nullable: false, maxLength: 100, storeType: "nvarchar"),
                         DataHistoricoAluno = c.DateTime(storeType: "date"),
                         EscolaAnoAluno = c.String(maxLength: 200, unicode: false),
                         CidadeEscolaAnoAluno = c.String(maxLength: 200, unicode: false),
@@ -216,12 +216,12 @@ namespace GestaoEscolar.Migrations
                         BairroEndFuncionario = c.String(maxLength: 200, unicode: false),
                         NumLogradouroEndFuncionario = c.String(maxLength: 5, unicode: false),
                         CepEndFuncionario = c.String(maxLength: 10, unicode: false),
-                        DataAdimissaoFuncionario = c.DateTime(nullable: false, storeType: "date"),
+                        DataAdimissaoFuncionario = c.DateTime(storeType: "date"),
                         CpfFuncionario = c.String(maxLength: 20, unicode: false),
                         RgFuncionario = c.String(maxLength: 20, unicode: false),
                         UfRgFuncionario = c.String(maxLength: 2, unicode: false),
                         OrgaoRgFuncionario = c.String(maxLength: 200, unicode: false),
-                        DataEmissaoRgFuncionario = c.DateTime(nullable: false, storeType: "date"),
+                        DataEmissaoRgFuncionario = c.DateTime(storeType: "date"),
                     })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.Escola", t => t.EscolaId, cascadeDelete: true)

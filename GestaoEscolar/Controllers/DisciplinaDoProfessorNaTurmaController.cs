@@ -162,5 +162,15 @@ namespace GestaoEscolar.Controllers
             _banco.SaveChanges();
             return RedirectToAction("GerenciarDisciplinaTurma", new { turmaId = turma });
         }
+
+        public ActionResult ExcluirDaTurma(long id)
+        {
+            var valor = _banco.DisciplinaDoProfessoresNasTurmas.First(x => x.Id == id);
+            var turma = valor.TurmaId;
+            _banco.DisciplinaDoProfessoresNasTurmas.Remove(valor);
+            _banco.SaveChanges();
+            return RedirectToAction("Detalhes","Turma", new { Id = turma });
+        }
+
     }
 }

@@ -7,13 +7,13 @@ namespace GestaoEscolar.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.1-30610")]
-    public sealed partial class AtualizarDataFuncionario : IMigrationMetadata
+    public sealed partial class v10 : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(AtualizarDataFuncionario));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(v10));
         
         string IMigrationMetadata.Id
         {
-            get { return "201605120210093_AtualizarDataFuncionario"; }
+            get { return "201701312349125_v1.0"; }
         }
         
         string IMigrationMetadata.Source

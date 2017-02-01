@@ -172,17 +172,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201605030047522_Banco.cs" />
-    <Compile Include="Migrations\201605030047522_Banco.Designer.cs">
-      <DependentUpon>201605030047522_Banco.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201605120210093_AtualizarDataFuncionario.cs" />
-    <Compile Include="Migrations\201605120210093_AtualizarDataFuncionario.Designer.cs">
-      <DependentUpon>201605120210093_AtualizarDataFuncionario.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201607231655540_NomeTurmaAumentado.cs" />
-    <Compile Include="Migrations\201607231655540_NomeTurmaAumentado.Designer.cs">
-      <DependentUpon>201607231655540_NomeTurmaAumentado.cs</DependentUpon>
+    <Compile Include="Migrations\201701312349125_v1.0.cs" />
+    <Compile Include="Migrations\201701312349125_v1.0.Designer.cs">
+      <DependentUpon>201701312349125_v1.0.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Aluno.cs" />
@@ -403,14 +395,8 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201605030047522_Banco.resx">
-      <DependentUpon>201605030047522_Banco.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201605120210093_AtualizarDataFuncionario.resx">
-      <DependentUpon>201605120210093_AtualizarDataFuncionario.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201607231655540_NomeTurmaAumentado.resx">
-      <DependentUpon>201607231655540_NomeTurmaAumentado.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201701312349125_v1.0.resx">
+      <DependentUpon>201701312349125_v1.0.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
