@@ -351,7 +351,6 @@
     <Content Include="Views\Shared\_LayoutRelatorios.cshtml" />
     <Content Include="Views\Relatorio\Historico.cshtml" />
     <Content Include="Views\Shared\_Menu.cshtml" />
-    <Content Include="Views\Conta\LogOn.cshtml" />
     <Content Include="Views\Usuario\LogIn.cshtml" />
     <Content Include="Views\Usuario\Registrar.cshtml" />
     <Content Include="Views\Turma\Index.cshtml" />
