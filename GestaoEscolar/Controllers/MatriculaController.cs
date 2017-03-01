@@ -186,6 +186,11 @@ namespace GestaoEscolar.Controllers
         [HttpPost]
         public ActionResult Enturmar(int turmaSelecionada, int anoLetivoselecionado, List<int> alunos)
         {
+            if(alunos == null)
+            {
+                return RedirectToAction("GerenciarMatriculas", new { turmaId = turmaSelecionada, anoLetivoId = anoLetivoselecionado });
+            }
+
             var novaMatricula = new Matricula
             {
                 TurmaId = turmaSelecionada,
@@ -270,6 +275,10 @@ namespace GestaoEscolar.Controllers
         [HttpPost]
         public ActionResult Desenturmar(int turmaSelecionada, int anoLetivoselecionado, List<int> alunos)
         {
+            if (alunos == null)
+            {
+                return RedirectToAction("GerenciarMatriculas", new { turmaId = turmaSelecionada, anoLetivoId = anoLetivoselecionado });
+            }
 
             foreach (var aluno in alunos)
             {
@@ -292,8 +301,7 @@ namespace GestaoEscolar.Controllers
 
             return RedirectToAction("GerenciarMatriculas", new { turmaId = turmaSelecionada, anoLetivoId = anoLetivoselecionado });
         }
-
-
+        
 
         public ActionResult Detalhes(long id)
         {

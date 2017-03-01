@@ -61,9 +61,7 @@ namespace GestaoEscolar.Controllers
                 .Select(y => y.Nome).ToList();
             
             return Json(aluno, JsonRequestBehavior.AllowGet);
-        }
-
-        
+        }        
 
         public ActionResult Adicionar()
         {
@@ -96,7 +94,6 @@ namespace GestaoEscolar.Controllers
             return Json(nomealunos.All(x => x.ToUpper() != nome.ToUpper()), JsonRequestBehavior.AllowGet);
         }
 
-
         public ActionResult Detalhes(long id)
         {
             var aluno = _banco.Alunos.First(x => x.Id == id);
@@ -108,6 +105,7 @@ namespace GestaoEscolar.Controllers
             }
             return View(aluno);
         }
+
         public ActionResult Editar(long id)
         {
             Aluno aluno = _banco.Alunos.Find(id);
@@ -131,7 +129,6 @@ namespace GestaoEscolar.Controllers
             return View(aluno);
         }
         
-
         public ActionResult Excluir(long id)
         {
             var aluno = _banco.Alunos.First(x => x.Id == id);

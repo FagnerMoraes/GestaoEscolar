@@ -1,14 +1,13 @@
 ﻿@model IEnumerable<GestaoEscolar.Models.DisciplinaDoProfessorNaTurma>
 @{
     ViewBag.Title = "GerenciarDisciplinaTurma";
-    Layout = "~/Views/Shared/_LayoutPadrao.cshtml";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <div class="panel panel-heading">
     <strong><span class="glyphicon glyphicon-cog"></span><span>&nbsp;</span>Gerenciamento da Disciplina na Turma</strong>
 </div>
 
-<div class="panel-body panel-scroll">
 
     @using (Html.BeginForm("GerenciarDisciplinaTurma", "DisciplinaDoProfessorNaTurma", FormMethod.Get))
     {
@@ -60,9 +59,9 @@
         }
     }
 
-    <div class=" panel panel-success">
+    <div class="panel panel-success">
         <div class="panel-heading">
-            <h3>Disciplinas do professor na turma </h3>
+            <h4>Disciplinas do professor na turma </h4>
         </div>
         <table class="table table-hover">
             <tr>
@@ -98,7 +97,6 @@
 
         </table>
     </div>
-</div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

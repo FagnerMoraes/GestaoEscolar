@@ -369,7 +369,6 @@
     <Content Include="Views\Conceito\BoletimTurma.cshtml" />
     <Content Include="Views\Turma\Editar.cshtml" />
     <Content Include="Views\Shared\_LayoutLogin.cshtml" />
-    <Content Include="Views\Shared\_LayoutDefault.cshtml" />
     <Content Include="Views\Shared\_LayoutPadrao.cshtml" />
     <Content Include="Views\Conceito\Detalhes.cshtml" />
     <Content Include="Views\Conceito\Editar.cshtml" />
@@ -380,13 +379,15 @@
     <Content Include="Views\AnoLetivo\Editar.cshtml" />
     <Content Include="Views\AnoLetivo\Detalhes.cshtml" />
     <Content Include="Views\Relatorio\FichaIndividual.cshtml" />
-    <Content Include="Views\Shared\_AddTipoFunc.cshtml" />
+    <Content Include="Views\Relatorio\_ModalDecMatricula.cshtml" />
     <Content Include="Views\DisciplinaDoProfessorNaTurma\GerenciarDisciplinaTurma.cshtml" />
     <Content Include="Views\Relatorio\DiarioTurma.cshtml" />
     <Content Include="Views\Relatorio\Boletim.cshtml" />
     <Content Include="Views\Aluno\Index.cshtml" />
     <Content Include="Views\Conceito\ListaAluno.cshtml" />
     <Content Include="Views\Conceito\NotaAluno.cshtml" />
+    <Content Include="Views\Shared\_LayoutLista.cshtml" />
+    <Content Include="Views\Relatorio\_ModalHistorico.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

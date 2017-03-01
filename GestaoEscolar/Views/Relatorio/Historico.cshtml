@@ -29,10 +29,9 @@
             Certificamos que <span>*@ViewBag.Nome*</span> natural de <span>*@ViewBag.Naturalidade*</span>
             UF <span>*@ViewBag.UFNaturalidade*</span> de nacionalidade <span>*@ViewBag.Nacionalidade*</span> do sexo <span>*@ViewBag.Sexo*</span> nascido(a) em <span>*@ViewBag.DataNascimento*</span>
             filho(a) de <span>*@ViewBag.Pai*</span> e <span>*@ViewBag.Mae*</span>.<br />
-            Carteira de identidade nº <span>*@ViewBag.Rg*</span> Orgão expedidor/Estado: <span>*@ViewBag.Orgao / @ViewBag.UfRg*</span> concluiu em <span>**</span><br />
+            Carteira de identidade nº <span>*@ViewBag.Rg*</span> Orgão expedidor/Estado: <span>*@ViewBag.Orgao / @ViewBag.UfRg*</span> concluiu em <span>*@ViewBag.DateHistorico*</span><br />
             <span>*TURMA* DO CLICLO COMPLEMENTAR DE ALFABETIZAÇÃO</span> do ensino <span>*FUNDAMENTAL*</span> , conforme Histórico Escolar e observações no anverso e verso.
         <br />
-            <br />
             <br />
             Fundamentação legal: RESOLUÇÃO CNE/CEB Nº 07 DE 14/12/2010, LDBEN n.° 9394/96. de 23/12/1996
         </section>
@@ -310,6 +309,13 @@ C (Regular) - alcançou parcialmente os objetivos de estudo.
     <div class="barra barra-rodape-valor-municipio-estado-quarto-ano">@ViewBag.Ano4CidadeEscolaAnoAluno</div>
     <div class="barra barra-rodape-valor-municipio-estado-quinto-ano">@ViewBag.Ano5CidadeEscolaAnoAluno</div>
 </section>
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
 <footer class="rodape-historico">
     <div class="rodape-corpo-esquerdo">
         
@@ -318,7 +324,7 @@ C (Regular) - alcançou parcialmente os objetivos de estudo.
     </div>
     <div class="rodape-corpo-centro">
         <br />
-        MACHADO, *03 DE AGOSTO DE 2014*<br />
+        MACHADO, *@ViewBag.DateHistorico*<br />
         Municipio e data de expedição
     </div>
     <div class="rodape-corpo-direito">

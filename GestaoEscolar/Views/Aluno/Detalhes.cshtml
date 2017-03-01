@@ -5,352 +5,371 @@
     Layout = "~/Views/Shared/_LayoutPadrao.cshtml";
 }
 
+<script>
+    jQuery(function ($) {
+        $("#IdentificacaoUnica").mask("999999");
+        $("#DataNascimento").mask("99/99/9999");
+        $("#Nis").mask("99999999999");
+        $("#DataExpRg").mask("99/99/9999");
+        $("#NumeroNovaCertidaoCivil").mask("999999-99-99-9999-9-99999-999-9999999-99");
+        $("#DataEmissaoCertidao").mask("99/99/9999");
+        $("#CepResidencia").mask("99999-999");
+        $("#Cpf").mask("999.999.999-99");
+        $("#TelPai").mask("(99)9999-9999");
+        $("#TelMae").mask("(99)9999-9999");
+    });
+</script>
+
 <div class="panel panel-heading">
     <strong><span class="fa fa-cog"></span><span>&nbsp;</span>Detalhe Aluno</strong>
 </div>
 
-<div class="panel-body panel-scroll">
-    <div class="panel panel-default">
-        <div class="panel panel-heading">
-            <strong><span class="fa fa-plus"></span><span>&nbsp;</span>Dados Pessoais</strong>
-        </div>
-        <div class="panel-body">
-            <div class="row">
-                <div class="col-sm-9">
-                    <strong>@Html.DisplayNameFor(model => model.Nome)</strong><br />
-                    @Html.DisplayFor(model => model.Nome)<br />
-                </div>
-                <div class="col-sm-3">
-                    <strong>@Html.DisplayNameFor(model => model.DataNascimento)</strong><br />
-                    @Html.DisplayFor(model => model.DataNascimento)<br />
-                </div>
+<div class="panel-body">
+
+    <div class="col-sm-9 panel-scroll">
+        <div class="panel panel-default">
+            <div class="panel panel-heading">
+                <strong><span class="fa fa-plus"></span><span>&nbsp;</span>Dados Pessoais</strong>
             </div>
-
-            <div class="row">
-                <div class="col-sm-3">
-                    <strong>@Html.DisplayNameFor(model => model.IdentificacaoUnica)</strong><br />
-                    @Html.DisplayFor(model => model.IdentificacaoUnica)<br />
-                </div>
-                <div class="col-sm-3">
-                    <strong>@Html.DisplayNameFor(model => model.Nis)</strong><br />
-                    @Html.DisplayFor(model => model.Nis)<br />
-                </div>
-
-                <div class="col-sm-3">
-                    <strong>@Html.DisplayNameFor(model => model.Sexo)</strong><br />
-                    @Html.DisplayFor(model => model.Sexo)<br />
-                </div>
-                <div class="col-sm-3">
-                    <strong>@Html.DisplayNameFor(model => model.EstadoCivilAluno)</strong><br />
-                    @Html.DisplayFor(model => model.EstadoCivilAluno)<br />
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-sm-3">
-                    <strong>@Html.DisplayNameFor(model => model.ProfissaoAluno)</strong><br />
-                    @Html.DisplayFor(model => model.ProfissaoAluno)<br />
-                </div>
-                <div class="col-sm-3">
-                    <strong>@Html.DisplayNameFor(model => model.ReligiaoAluno)</strong><br />
-                    @Html.DisplayFor(model => model.ReligiaoAluno)<br />
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-sm-9">
+                        <strong>@Html.DisplayNameFor(model => model.Nome)</strong><br />
+                        @Html.TextBoxFor(model => model.Nome, new { @class="form-control", @disabled="true" })<br />
+                    </div>
+                    <div class="col-sm-3">
+                        <strong>@Html.DisplayNameFor(model => model.DataNascimento)</strong><br />
+                        @Html.TextBoxFor(model => model.DataNascimento, new { @class = "form-control", @disabled = "true" })<br />
+                    </div>
                 </div>
 
-                <div class="col-sm-6">
-                    <strong>@Html.DisplayNameFor(model => model.Situacao)</strong><br />
-                    @Html.DisplayFor(model => model.Situacao)<br />
-                </div>
-            </div>
+                <div class="row">
+                    <div class="col-sm-3">
+                        <strong>@Html.DisplayNameFor(model => model.IdentificacaoUnica)</strong><br />
+                        @Html.TextBoxFor(model => model.IdentificacaoUnica, new { @class = "form-control", @disabled = "true" })<br />
+                    </div>
+                    <div class="col-sm-3">
+                        <strong>@Html.DisplayNameFor(model => model.Nis)</strong><br />
+                        @Html.TextBoxFor(model => model.Nis, new { @class = "form-control", @disabled = "true" })<br />
+                    </div>
 
-            <div class="row">
-                <div class="col-sm-3">
-                    <strong>@Html.DisplayNameFor(model => model.Nacionalidade)</strong><br />
-                    @Html.DisplayFor(model => model.Nacionalidade)<br />
+                    <div class="col-sm-3">
+                        <strong>@Html.DisplayNameFor(model => model.Sexo)</strong><br />
+                        @Html.TextBoxFor(model => model.Sexo, new { @class = "form-control", @disabled = "true" })<br />
+                    </div>
+                    <div class="col-sm-3">
+                        <strong>@Html.DisplayNameFor(model => model.EstadoCivilAluno)</strong><br />
+                        @Html.TextBoxFor(model => model.EstadoCivilAluno, new { @class = "form-control", @disabled = "true" })<br />
+                    </div>
                 </div>
-                <div class="col-sm-3">
-                    <strong>@Html.DisplayNameFor(model => model.PaisOrigem)</strong><br />
-                    @Html.DisplayFor(model => model.PaisOrigem)<br />
-                </div>
-                <div class="col-sm-3">
-                    <strong>@Html.DisplayNameFor(model => model.UfNaturalidade)</strong><br />
-                    @Html.DisplayFor(model => model.UfNaturalidade)<br />
-                </div>
-                <div class="col-sm-3">
-                    <strong>@Html.DisplayNameFor(model => model.Naturalidade)</strong><br />
-                    @Html.DisplayFor(model => model.Naturalidade)<br />
-                </div>
-            </div>
-        </div>
-    </div>
 
+                <div class="row">
+                    <div class="col-sm-3">
+                        <strong>@Html.DisplayNameFor(model => model.ProfissaoAluno)</strong><br />
+                        @Html.TextBoxFor(model => model.ProfissaoAluno, new { @class = "form-control", @disabled = "true" })<br />
+                    </div>
+                    <div class="col-sm-3">
+                        <strong>@Html.DisplayNameFor(model => model.ReligiaoAluno)</strong><br />
+                        @Html.TextBoxFor(model => model.ReligiaoAluno, new { @class = "form-control", @disabled = "true" })<br />
+                    </div>
 
-    <div class=" panel panel-default">
-        <div class="panel panel-heading">
-            <strong><span class="fa fa-plus"></span><span>&nbsp;</span>Dados Endereço</strong>
-        </div>
-        <div class="panel-body">
-            <div class="row">
-                <div class="col-sm-2">
-                    <strong>@Html.DisplayNameFor(model => model.LocalZonaResidencia)</strong><br />
-                    @Html.DisplayFor(model => model.LocalZonaResidencia)<br />
+                    <div class="col-sm-6">
+                        <strong>@Html.DisplayNameFor(model => model.Situacao)</strong><br />
+                        @Html.TextBoxFor(model => model.Situacao, new { @class = "form-control", @disabled = "true" })<br />
+                    </div>
                 </div>
-                <div class="col-sm-2">
-                    <strong>@Html.DisplayNameFor(model => model.CepResidencia)</strong><br />
-                    @Html.DisplayFor(model => model.CepResidencia)<br />
-                </div>
-                <div class="col-sm-2">
-                    <strong>@Html.DisplayNameFor(model => model.UfResidencia)</strong><br />
-                    @Html.DisplayFor(model => model.UfResidencia)<br />
-                </div>
-                <div class="col-sm-6">
-                    <strong>@Html.DisplayNameFor(model => model.CidadeResidencia)</strong><br />
-                    @Html.DisplayFor(model => model.CidadeResidencia)<br />
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-5">
-                    <strong>@Html.DisplayNameFor(model => model.EnderecoResidencia)</strong><br />
-                    @Html.DisplayFor(model => model.EnderecoResidencia)<br />
-                </div>
-                <div class="col-sm-1">
-                    <strong>@Html.DisplayNameFor(model => model.NumeroResidencia)</strong><br />
-                    @Html.DisplayFor(model => model.NumeroResidencia)<br />
-                </div>
-                <div class="col-sm-2">
-                    <strong>@Html.DisplayNameFor(model => model.ComplementoResidencia)</strong><br />
-                    @Html.DisplayFor(model => model.ComplementoResidencia)<br />
-                </div>
-                <div class="col-sm-4">
-                    <strong>@Html.DisplayNameFor(model => model.BairroResidencia)</strong><br />
-                    @Html.DisplayFor(model => model.BairroResidencia)<br />
+
+                <div class="row">
+                    <div class="col-sm-3">
+                        <strong>@Html.DisplayNameFor(model => model.Nacionalidade)</strong><br />
+                        @Html.TextBoxFor(model => model.Nacionalidade, new { @class = "form-control", @disabled = "true" })<br />
+                    </div>
+                    <div class="col-sm-3">
+                        <strong>@Html.DisplayNameFor(model => model.PaisOrigem)</strong><br />
+                        @Html.TextBoxFor(model => model.PaisOrigem, new { @class = "form-control", @disabled = "true" })<br />
+                    </div>
+                    <div class="col-sm-3">
+                        <strong>@Html.DisplayNameFor(model => model.UfNaturalidade)</strong><br />
+                        @Html.TextBoxFor(model => model.UfNaturalidade, new { @class = "form-control", @disabled = "true" })<br />
+                    </div>
+                    <div class="col-sm-3">
+                        <strong>@Html.DisplayNameFor(model => model.Naturalidade)</strong><br />
+                        @Html.TextBoxFor(model => model.Naturalidade, new { @class = "form-control", @disabled = "true" })<br />
+                    </div>
                 </div>
             </div>
         </div>
 
-    </div>
-
-    <div class=" panel panel-default">
-        <div class="panel panel-heading">
-            <strong><span class="fa fa-plus"></span><span>&nbsp;</span>Dados Responsaveis</strong>
-        </div>
-        <div class="panel-body">
-            <div class="row">
-                <div class="col-sm-9">
-                    <strong>@Html.DisplayNameFor(model => model.Responsavel)</strong><br />
-                    @Html.DisplayFor(model => model.Responsavel)<br />
-                </div>
-                <div class="col-sm-3">
-                    <strong>@Html.DisplayNameFor(model => model.ParentescoResponsavel)</strong><br />
-                    @Html.DisplayFor(model => model.ParentescoResponsavel)<br />
-                </div>
+        <div class="panel panel-default">
+            <div class="panel panel-heading">
+                <strong><span class="fa fa-plus"></span><span>&nbsp;</span>Dados Endereço</strong>
             </div>
-
-            <div class="row">
-                <div class="col-sm-6">
-                    <strong>@Html.DisplayNameFor(model => model.NomePai)</strong><br />
-                    @Html.DisplayFor(model => model.NomePai)<br />
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-sm-2">
+                        <strong>@Html.DisplayNameFor(model => model.LocalZonaResidencia)</strong><br />
+                        @Html.TextBoxFor(model => model.LocalZonaResidencia, new { @class = "form-control", @disabled = "true" })<br />
+                    </div>
+                    <div class="col-sm-2">
+                        <strong>@Html.DisplayNameFor(model => model.CepResidencia)</strong><br />
+                        @Html.TextBoxFor(model => model.CepResidencia, new { @class = "form-control", @disabled = "true" })<br />
+                    </div>
+                    <div class="col-sm-2">
+                        <strong>@Html.DisplayNameFor(model => model.UfResidencia)</strong><br />
+                        @Html.TextBoxFor(model => model.UfResidencia, new { @class = "form-control", @disabled = "true" })<br />
+                    </div>
+                    <div class="col-sm-6">
+                        <strong>@Html.DisplayNameFor(model => model.CidadeResidencia)</strong><br />
+                        @Html.TextBoxFor(model => model.CidadeResidencia, new { @class = "form-control", @disabled = "true" })<br />
+                    </div>
                 </div>
-                <div class="col-sm-3">
-                    <strong>@Html.DisplayNameFor(model => model.ProfPai)</strong><br />
-                    @Html.DisplayFor(model => model.ProfPai)<br />
-                </div>
-
-                <div class="col-sm-3">
-                    <strong>@Html.DisplayNameFor(model => model.TelPai)</strong><br />
-                    @Html.DisplayFor(model => model.TelPai)<br />
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-sm-6">
-                    <strong>@Html.DisplayNameFor(model => model.NomeMae)</strong><br />
-                    @Html.DisplayFor(model => model.NomeMae)<br />
-                </div>
-                <div class="col-sm-3">
-                    <strong>@Html.DisplayNameFor(model => model.ProfMae)</strong><br />
-                    @Html.DisplayFor(model => model.ProfMae)<br />
-                </div>
-
-                <div class="col-sm-3">
-                    <strong>@Html.DisplayNameFor(model => model.TelMae)</strong><br />
-                    @Html.DisplayFor(model => model.TelMae)<br />
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-sm-9">
-                    <strong>@Html.DisplayNameFor(model => model.PessoaAutoBuscarAluno)</strong><br />
-                    @Html.DisplayFor(model => model.PessoaAutoBuscarAluno)<br />
-                </div>
-                <div class="col-sm-3">
-                    <strong>@Html.DisplayNameFor(model => model.HorDispReunioesPaisAluno)</strong><br />
-                    @Html.DisplayFor(model => model.HorDispReunioesPaisAluno)<br />
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-    <div class=" panel panel-default">
-        <div class="panel panel-heading">
-            <strong><span class="fa fa-plus"></span><span>&nbsp;</span>Dados Adicionais</strong>
-        </div>
-        <div class="panel-body">
-            <div class="row">
-                <div class="col-sm-5">
-                    <strong>@Html.DisplayNameFor(model => model.ProblemaSaudeAluno)</strong><br />
-                    @Html.DisplayFor(model => model.ProblemaSaudeAluno)<br />
-                </div>
-                <div class="col-sm-7">
-                    <strong>@Html.DisplayNameFor(model => model.DescProblemaSaudeAluno)</strong><br />
-                    @Html.DisplayFor(model => model.DescProblemaSaudeAluno)<br />
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-5">
-                    <strong>@Html.DisplayNameFor(model => model.DefFisicaAluno)</strong><br />
-                    @Html.DisplayFor(model => model.DefFisicaAluno)<br />
-                </div>
-                <div class="col-sm-7">
-                    <strong>@Html.DisplayNameFor(model => model.DescDefFisicaAluno)</strong><br />
-                    @Html.DisplayFor(model => model.DescDefFisicaAluno)<br />
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-5">
-                    <strong>@Html.DisplayNameFor(model => model.DefVisualAluno)</strong><br />
-                    @Html.DisplayFor(model => model.DefVisualAluno)<br />
-                </div>
-                <div class="col-sm-7">
-                    <strong>@Html.DisplayNameFor(model => model.DescDefVisualAluno)</strong><br />
-                    @Html.DisplayFor(model => model.DescDefVisualAluno)<br />
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-5">
-                    <strong>@Html.DisplayNameFor(model => model.DefAuditivaAluno)</strong><br />
-                    @Html.DisplayFor(model => model.DefAuditivaAluno)<br />
-                </div>
-                <div class="col-sm-7">
-                    <strong>@Html.DisplayNameFor(model => model.DescDefAuditivaAluno)</strong><br />
-                    @Html.DisplayFor(model => model.DescDefAuditivaAluno)<br />
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-6">
-                    <strong>@Html.DisplayNameFor(model => model.MedicamentoUsadoAluno)</strong><br />
-                    @Html.DisplayFor(model => model.MedicamentoUsadoAluno)<br />
-                </div>
-                <div class="col-sm-6">
-                    <strong>@Html.DisplayNameFor(model => model.AlergiasAluno)</strong><br />
-                    @Html.DisplayFor(model => model.AlergiasAluno)<br />
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-6">
-                    <strong>@Html.DisplayNameFor(model => model.AltaHabilidade)</strong><br />
-                    @Html.DisplayFor(model => model.AltaHabilidade)<br />
-                </div>
-                <div class="col-sm-6">
-                    <strong>@Html.DisplayNameFor(model => model.DescAltaHabilidade)</strong><br />
-                    @Html.DisplayFor(model => model.DescAltaHabilidade)<br />
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-4">
-                    <strong>@Html.DisplayNameFor(model => model.AcompFonoaudiologoAluno)</strong><br />
-                    @Html.DisplayFor(model => model.AcompFonoaudiologoAluno)<br />
-                </div>
-                <div class="col-sm-4">
-                    <strong>@Html.DisplayNameFor(model => model.AcompPscicologoAluno)</strong><br />
-                    @Html.DisplayFor(model => model.AcompPscicologoAluno)<br />
-                </div>
-                <div class="col-sm-4">
-                    <strong>@Html.DisplayNameFor(model => model.AcompApaeAluno)</strong><br />
-                    @Html.DisplayFor(model => model.AcompApaeAluno)<br />
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-4">
-                    <strong>@Html.DisplayNameFor(model => model.RecursoParticipacaoProvas)</strong><br />
-                    @Html.DisplayFor(model => model.RecursoParticipacaoProvas)<br />
+                <div class="row">
+                    <div class="col-sm-5">
+                        <strong>@Html.DisplayNameFor(model => model.EnderecoResidencia)</strong><br />
+                        @Html.TextBoxFor(model => model.EnderecoResidencia, new { @class = "form-control", @disabled = "true" })<br />
+                    </div>
+                    <div class="col-sm-1">
+                        <strong>@Html.DisplayNameFor(model => model.NumeroResidencia)</strong><br />
+                        @Html.TextBoxFor(model => model.NumeroResidencia, new { @class = "form-control", @disabled = "true" })<br />
+                    </div>
+                    <div class="col-sm-2">
+                        <strong>@Html.DisplayNameFor(model => model.ComplementoResidencia)</strong><br />
+                        @Html.TextBoxFor(model => model.ComplementoResidencia, new { @class = "form-control", @disabled = "true" })<br />
+                    </div>
+                    <div class="col-sm-4">
+                        <strong>@Html.DisplayNameFor(model => model.BairroResidencia)</strong><br />
+                        @Html.TextBoxFor(model => model.BairroResidencia, new { @class = "form-control", @disabled = "true" })<br />
+                    </div>
                 </div>
             </div>
 
         </div>
-    </div>
 
+        <div class="panel panel-default">
+            <div class="panel panel-heading">
+                <strong><span class="fa fa-plus"></span><span>&nbsp;</span>Dados Responsaveis</strong>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-sm-9">
+                        <strong>@Html.DisplayNameFor(model => model.Responsavel)</strong><br />
+                        @Html.TextBoxFor(model => model.Responsavel, new { @class = "form-control", @disabled = "true" })<br />
+                    </div>
+                    <div class="col-sm-3">
+                        <strong>@Html.DisplayNameFor(model => model.ParentescoResponsavel)</strong><br />
+                        @Html.TextBoxFor(model => model.ParentescoResponsavel, new { @class = "form-control", @disabled = "true" })<br />
+                    </div>
+                </div>
 
+                <div class="row">
+                    <div class="col-sm-6">
+                        <strong>@Html.DisplayNameFor(model => model.NomePai)</strong><br />
+                        @Html.TextBoxFor(model => model.NomePai, new { @class = "form-control", @disabled = "true" })<br />
+                    </div>
+                    <div class="col-sm-3">
+                        <strong>@Html.DisplayNameFor(model => model.ProfPai)</strong><br />
+                        @Html.TextBoxFor(model => model.ProfPai, new { @class = "form-control", @disabled = "true" })<br />
+                    </div>
 
+                    <div class="col-sm-3">
+                        <strong>@Html.DisplayNameFor(model => model.TelPai)</strong><br />
+                        @Html.TextBoxFor(model => model.TelPai, new { @class = "form-control", @disabled = "true" })<br />
+                    </div>
+                </div>
 
+                <div class="row">
+                    <div class="col-sm-6">
+                        <strong>@Html.DisplayNameFor(model => model.NomeMae)</strong><br />
+                        @Html.TextBoxFor(model => model.NomeMae, new { @class = "form-control", @disabled = "true" })<br />
+                    </div>
+                    <div class="col-sm-3">
+                        <strong>@Html.DisplayNameFor(model => model.ProfMae)</strong><br />
+                        @Html.TextBoxFor(model => model.ProfMae, new { @class = "form-control", @disabled = "true" })<br />
+                    </div>
 
-    <div class=" panel panel-default">
-        <div class="panel panel-heading">
-            <strong><span class="fa fa-plus"></span><span>&nbsp;</span>Dados Documentos</strong>
+                    <div class="col-sm-3">
+                        <strong>@Html.DisplayNameFor(model => model.TelMae)</strong><br />
+                        @Html.TextBoxFor(model => model.TelMae, new { @class = "form-control", @disabled = "true" })<br />
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-9">
+                        <strong>@Html.DisplayNameFor(model => model.PessoaAutoBuscarAluno)</strong><br />
+                        @Html.TextBoxFor(model => model.PessoaAutoBuscarAluno, new { @class = "form-control", @disabled = "true" })<br />
+                    </div>
+                    <div class="col-sm-3">
+                        <strong>@Html.DisplayNameFor(model => model.HorDispReunioesPaisAluno)</strong><br />
+                        @Html.TextBoxFor(model => model.HorDispReunioesPaisAluno, new { @class = "form-control", @disabled = "true" })<br />
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="panel-body">
-            <div class="row">
-                <div class="col-sm-3">
-                    <strong>@Html.DisplayNameFor(model => model.Cpf)</strong><br />
-                    @Html.DisplayFor(model => model.Cpf)<br />
-                </div>
-                <div class="col-sm-2">
-                    <strong>@Html.DisplayNameFor(model => model.Rg)</strong><br />
-                    @Html.DisplayFor(model => model.Rg)<br />
-                </div>
-                <div class="col-sm-3">
-                    <strong>@Html.DisplayNameFor(model => model.OrgaoExpRg)</strong><br />
-                    @Html.DisplayFor(model => model.OrgaoExpRg)<br />
-                </div>
-                <div class="col-sm-2">
-                    <strong>@Html.DisplayNameFor(model => model.UfRg)</strong><br />
-                    @Html.DisplayFor(model => model.UfRg)<br />
-                </div>
-                <div class="col-sm-2">
-                    <strong>@Html.DisplayNameFor(model => model.DataExpRg)</strong><br />
-                    @Html.DisplayFor(model => model.DataExpRg)<br />
-                </div>
+
+        <div class="panel panel-default">
+            <div class="panel panel-heading">
+                <strong><span class="fa fa-plus"></span><span>&nbsp;</span>Dados Adicionais</strong>
             </div>
-            <div class="row">
-                <div class="col-sm-3">
-                    <strong>@Html.DisplayNameFor(model => model.CertidaoCivil)</strong><br />
-                    @Html.DisplayFor(model => model.CertidaoCivil)<br />
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-sm-5">
+                        <strong>@Html.DisplayNameFor(model => model.ProblemaSaudeAluno)</strong><br />
+                        @Html.TextBoxFor(model => model.ProblemaSaudeAluno, new { @class = "form-control", @disabled = "true" })<br />
+                    </div>
+                    <div class="col-sm-7">
+                        <strong>@Html.DisplayNameFor(model => model.DescProblemaSaudeAluno)</strong><br />
+                        @Html.TextAreaFor(model => model.DescProblemaSaudeAluno, new { @class = "form-control", @disabled = "true" })<br />
+                    </div>
                 </div>
-                <div class="col-sm-3">
-                    <strong>@Html.DisplayNameFor(model => model.TipoCertidaoCivil)</strong><br />
-                    @Html.DisplayFor(model => model.TipoCertidaoCivil)<br />
+                <div class="row">
+                    <div class="col-sm-5">
+                        <strong>@Html.DisplayNameFor(model => model.DefFisicaAluno)</strong><br />
+                        @Html.TextBoxFor(model => model.DefFisicaAluno, new { @class = "form-control", @disabled = "true" })<br />
+                    </div>
+                    <div class="col-sm-7">
+                        <strong>@Html.DisplayNameFor(model => model.DescDefFisicaAluno)</strong><br />
+                        @Html.TextAreaFor(model => model.DescDefFisicaAluno, new { @class = "form-control", @disabled = "true" })<br />
+                    </div>
                 </div>
+                <div class="row">
+                    <div class="col-sm-5">
+                        <strong>@Html.DisplayNameFor(model => model.DefVisualAluno)</strong><br />
+                        @Html.TextBoxFor(model => model.DefVisualAluno, new { @class = "form-control", @disabled = "true" })<br />
+                    </div>
+                    <div class="col-sm-7">
+                        <strong>@Html.DisplayNameFor(model => model.DescDefVisualAluno)</strong><br />
+                        @Html.TextAreaFor(model => model.DescDefVisualAluno, new { @class = "form-control", @disabled = "true" })<br />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-5">
+                        <strong>@Html.DisplayNameFor(model => model.DefAuditivaAluno)</strong><br />
+                        @Html.TextBoxFor(model => model.DefAuditivaAluno, new { @class = "form-control", @disabled = "true" })<br />
+                    </div>
+                    <div class="col-sm-7">
+                        <strong>@Html.DisplayNameFor(model => model.DescDefAuditivaAluno)</strong><br />
+                        @Html.TextAreaFor(model => model.DescDefAuditivaAluno, new { @class = "form-control", @disabled = "true" })<br />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <strong>@Html.DisplayNameFor(model => model.MedicamentoUsadoAluno)</strong><br />
+                        @Html.TextBoxFor(model => model.MedicamentoUsadoAluno, new { @class = "form-control", @disabled = "true" })<br />
+                    </div>
+                    <div class="col-sm-6">
+                        <strong>@Html.DisplayNameFor(model => model.AlergiasAluno)</strong><br />
+                        @Html.TextBoxFor(model => model.AlergiasAluno, new { @class = "form-control", @disabled = "true" })<br />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <strong>@Html.DisplayNameFor(model => model.AltaHabilidade)</strong><br />
+                        @Html.TextBoxFor(model => model.AltaHabilidade, new { @class = "form-control", @disabled = "true" })<br />
+                    </div>
+                    <div class="col-sm-6">
+                        <strong>@Html.DisplayNameFor(model => model.DescAltaHabilidade)</strong><br />
+                        @Html.TextAreaFor(model => model.DescAltaHabilidade, new { @class = "form-control", @disabled = "true" })<br />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4">
+                        <strong>@Html.DisplayNameFor(model => model.AcompFonoaudiologoAluno)</strong><br />
+                        @Html.TextBoxFor(model => model.AcompFonoaudiologoAluno, new { @class = "form-control", @disabled = "true" })<br />
+                    </div>
+                    <div class="col-sm-4">
+                        <strong>@Html.DisplayNameFor(model => model.AcompPscicologoAluno)</strong><br />
+                        @Html.TextBoxFor(model => model.AcompPscicologoAluno, new { @class = "form-control", @disabled = "true" })<br />
+                    </div>
+                    <div class="col-sm-4">
+                        <strong>@Html.DisplayNameFor(model => model.AcompApaeAluno)</strong><br />
+                        @Html.TextBoxFor(model => model.AcompApaeAluno, new { @class = "form-control", @disabled = "true" })<br />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <strong>@Html.DisplayNameFor(model => model.RecursoParticipacaoProvas)</strong><br />
+                        @Html.TextAreaFor(model => model.RecursoParticipacaoProvas, new { @class = "form-control", @disabled = "true" })<br />
+                    </div>
+                </div>
+
             </div>
-            <div class="row">
-                <div class="col-sm-6">
-                    <strong>@Html.DisplayNameFor(model => model.NumeroNovaCertidaoCivil)</strong><br />
-                    @Html.DisplayFor(model => model.NumeroNovaCertidaoCivil)<br />
-                </div>
-                <div class="col-sm-2">
-                    <strong>@Html.DisplayNameFor(model => model.NumeroDoTermo)</strong><br />
-                    @Html.DisplayFor(model => model.NumeroDoTermo)<br />
-                </div>
-                <div class="col-sm-2">
-                    <strong>@Html.DisplayNameFor(model => model.Folha)</strong><br />
-                    @Html.DisplayFor(model => model.Folha)<br />
-                </div>
-                <div class="col-sm-2">
-                    <strong>@Html.DisplayNameFor(model => model.Livro)</strong><br />
-                    @Html.DisplayFor(model => model.Livro)<br />
-                </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel panel-heading">
+                <strong><span class="fa fa-plus"></span><span>&nbsp;</span>Dados Documentos</strong>
             </div>
-            <div class="row">
-                <div class="col-sm-5">
-                    <strong>@Html.DisplayNameFor(model => model.NomeCartorioCertidao)</strong><br />
-                    @Html.DisplayFor(model => model.NomeCartorioCertidao)<br />
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-sm-3">
+                        <strong>@Html.DisplayNameFor(model => model.Cpf)</strong><br />
+                        @Html.TextBoxFor(model => model.Cpf, new { @class = "form-control", @disabled = "true" })<br />
+                    </div>
+                    <div class="col-sm-2">
+                        <strong>RG</strong><br />
+                        @Html.TextBoxFor(model => model.Rg, new { @class = "form-control", @disabled = "true" })<br />
+                    </div>
+                    <div class="col-sm-3">
+                        <strong>@Html.DisplayNameFor(model => model.OrgaoExpRg)</strong><br />
+                        @Html.TextBoxFor(model => model.OrgaoExpRg, new { @class = "form-control", @disabled = "true" })<br />
+                    </div>
+                    <div class="col-sm-2">
+                        <strong>@Html.DisplayNameFor(model => model.UfRg)</strong><br />
+                        @Html.TextBoxFor(model => model.UfRg, new { @class = "form-control", @disabled = "true" })<br />
+                    </div>
+                    <div class="col-sm-2">
+                        <strong>@Html.DisplayNameFor(model => model.DataExpRg)</strong><br />
+                        @Html.TextBoxFor(model => model.DataExpRg, new { @class = "form-control", @disabled = "true" })<br />
+                    </div>
                 </div>
-                <div class="col-sm-3">
-                    <strong>@Html.DisplayNameFor(model => model.DataEmissaoCertidao)</strong><br />
-                    @Html.DisplayFor(model => model.DataEmissaoCertidao)<br />
+                <div class="row">
+                    <div class="col-sm-3">
+                        <strong>@Html.DisplayNameFor(model => model.CertidaoCivil)</strong><br />
+                        @Html.TextBoxFor(model => model.CertidaoCivil, new { @class = "form-control", @disabled = "true" })<br />
+                    </div>
+                    <div class="col-sm-3">
+                        <strong>@Html.DisplayNameFor(model => model.TipoCertidaoCivil)</strong><br />
+                        @Html.TextBoxFor(model => model.TipoCertidaoCivil, new { @class = "form-control", @disabled = "true" })<br />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <strong>@Html.DisplayNameFor(model => model.NumeroNovaCertidaoCivil)</strong><br />
+                        @Html.TextBoxFor(model => model.NumeroNovaCertidaoCivil, new { @class = "form-control", @disabled = "true" })<br />
+                    </div>
+                    <div class="col-sm-2">
+                        <strong>Nº Termo</strong><br />
+                        @Html.TextBoxFor(model => model.NumeroDoTermo, new { @class = "form-control", @disabled = "true" })<br />
+                    </div>
+                    <div class="col-sm-2">
+                        <strong>@Html.DisplayNameFor(model => model.Folha)</strong><br />
+                        @Html.TextBoxFor(model => model.Folha, new { @class = "form-control", @disabled = "true" })<br />
+                    </div>
+                    <div class="col-sm-2">
+                        <strong>@Html.DisplayNameFor(model => model.Livro)</strong><br />
+                        @Html.TextBoxFor(model => model.Livro, new { @class = "form-control", @disabled = "true" })<br />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-5">
+                        <strong>@Html.DisplayNameFor(model => model.NomeCartorioCertidao)</strong><br />
+                        @Html.TextBoxFor(model => model.NomeCartorioCertidao, new { @class = "form-control", @disabled = "true" })<br />
+                    </div>
+                    <div class="col-sm-3">
+                        <strong>Data Emissão</strong><br />
+                        @Html.TextBoxFor(model => model.DataEmissaoCertidao, new { @class = "form-control", @disabled = "true" })<br />
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+
+    <div class="col-sm-3">
+        <a class="btn btn-block btn-primary" href="@Url.Action("DeclaracaoMatricula","Relatorio", new { id = Model.Id })"><span class="fa fa-list"></span><span>&nbsp;</span>Declaração de Matricula</a>
+
+        <a class="btn btn-block btn-primary" href="@Url.Action("Historico","Relatorio", new { id = Model.Id })"><span class="fa fa-list"></span><span>&nbsp;</span>Histórico do Aluno</a>
+    </div>
+
 </div>
 <div class="panel panel-footer">
     <div class="row">

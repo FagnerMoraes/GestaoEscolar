@@ -37,6 +37,7 @@
 
     $(function () {
         $('#EstadoCivilAluno').val("@Model.EstadoCivilAluno");
+        $('#Sexo').val("@Model.Sexo");
         $('#RacaCor').val("@Model.RacaCor");
         $('#Situacao').val("@Model.Situacao");
         $('#UfNaturalidade').val("@Model.UfNaturalidade");
@@ -237,6 +238,7 @@
                         </div>
                         <div class="editor-field">
                             <select class="form-control" name="UfRg" id="UfRg">
+                                <option value=""></option>
                                 <option value="AC">AC</option>
                                 <option value="AL">AL</option>
                                 <option value="AP">AP</option>
@@ -866,14 +868,14 @@
 
     <div class="panel panel-footer">
         <div class="row">
-            <div class="col-sm-5">
+            <div class="col-xs-5">
                 <h5><strong>Atenção!</strong> O campo com <i class="fa fa-asterisk text-danger"></i>é obrigatório</h5>
             </div>
-            <div class="col-sm-3 col-sm-offset-1">
-                <a class="btn btn-block btn-lg btn-danger" href="@Url.Action("Index")"><span class="fa fa-remove"></span>Cancelar</a>
+            <div class="col-xs-3 col-xs-offset-1">
+                <a class="btn btn-block btn-lg btn-danger" href="@Url.Action("Index")"><span class="glyphicon glyphicon-remove"></span>Cancelar</a>
             </div>
-            <div class="col-sm-3">
-                <button type="submit" class="btn btn-block btn-lg btn-success" value="Adicionar"><span class="fa fa-floppy-disk"></span>Salvar</button>
+            <div class="col-xs-3">
+                <button type="submit" class="btn btn-block btn-lg btn-success" value="Adicionar"><span class="glyphicon glyphicon-floppy-disk"></span>Salvar</button>
             </div>
         </div>
     </div>

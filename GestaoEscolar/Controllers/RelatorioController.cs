@@ -5,6 +5,7 @@ using System.Web.Mvc;
 using GestaoEscolar.Models;
 using Rotativa;
 using Rotativa.Options;
+using System.Diagnostics;
 
 
 namespace GestaoEscolar.Controllers
@@ -101,12 +102,12 @@ namespace GestaoEscolar.Controllers
             }
 
             int tfalta = 0;
-            foreach(var f in bimestre)
+            foreach (var f in bimestre)
             {
                 tfalta = (tfalta + Convert.ToInt32(f.Falta));
-                
+
             }
-            
+
             ViewBag.Falta = tfalta;
             ViewBag.Aluno = matricula.Aluno.Nome;
             ViewBag.AnoLetivo = matricula.AnoLetivo.Ano;
@@ -148,7 +149,8 @@ namespace GestaoEscolar.Controllers
                 ViewBag.UfRg = aluno.UfRg ?? "-------";
 
 
-                ViewBag.DateHistorico = DateTime.Now.ToString("dd DE  MMMMMMMMMMMMMM DE yyyy");
+                ViewBag.DateHistorico = "14 DE DEZEMBRO DE 2016";
+                //DateTime.Now.ToString("dd DE  MMMMMMMMMMMMMM DE yyyy");
 
             }
 
@@ -704,6 +706,15 @@ namespace GestaoEscolar.Controllers
             //return View(notas);
         }
 
+        public JsonResult GetAlunos(string term)
+        {
+            List<string> aluno;
+
+            aluno = _banco.Alunos.Where(x => x.Nome.ToUpper().Contains(term.ToUpper()))
+                .Select(y => y.Nome).ToList();
+
+            return Json(aluno, JsonRequestBehavior.AllowGet);
+        }
 
     }
 }
