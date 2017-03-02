@@ -5,6 +5,14 @@
     Layout = "~/Views/Shared/_LayoutPadrao.cshtml";
 }
 
+<script>
+    jQuery(function ($) {
+        $("#DataNascimentoFuncionario").mask("99/99/9999");
+        $("#DataEmissaoRgFuncionario").mask("99/99/9999"); 
+        $("#DataAdimissaoFuncionario").mask("99/99/9999");
+    });
+</script>
+
 <div class="panel panel-heading">
     <strong><span class="fa fa-cog"></span><span>&nbsp;</span>Funcionário</strong>
 </div>
@@ -18,76 +26,76 @@
             <div class="row">
                 <div class="col-sm-12">
                     <strong>@Html.DisplayNameFor(model => model.Escola.NomeEscola)</strong><br />
-                    @Html.DisplayFor(model => model.Escola.NomeEscola)<br />
+                    @Html.TextBoxFor(model => model.Escola.NomeEscola, new { @class = "form-control", @disabled = "true" })<br />
                 </div>
                 <div class="col-sm-12">
                     <strong>@Html.DisplayNameFor(model => model.TipoFuncionario.DescricaoFuncionario)</strong><br />
-                    @Html.DisplayFor(model => model.TipoFuncionario.DescricaoFuncionario)<br />
+                    @Html.TextBoxFor(model => model.TipoFuncionario.DescricaoFuncionario, new { @class = "form-control", @disabled = "true" })<br />
                 </div>
             </div>
             <div class="row">
                 <div class="col-sm-3">
                     <strong>@Html.DisplayNameFor(model => model.NumRegistroFuncionario)</strong><br />
-                    @Html.DisplayFor(model => model.NumRegistroFuncionario)<br />
+                    @Html.TextBoxFor(model => model.NumRegistroFuncionario, new { @class = "form-control", @disabled = "true" })<br />
                 </div>
                 <div class="col-sm-9">
                     <strong>@Html.DisplayNameFor(model => model.NomeFuncionario)</strong><br />
-                    @Html.DisplayFor(model => model.NomeFuncionario)<br />
+                    @Html.TextBoxFor(model => model.NomeFuncionario, new { @class = "form-control", @disabled = "true" })<br />
                 </div>
             </div>
             <div class="row">
                 <div class="col-sm-3">
                     <strong>@Html.DisplayNameFor(model => model.DataNascimentoFuncionario)</strong><br />
-                    @Html.DisplayFor(model => model.DataNascimentoFuncionario)<br />
+                    @Html.TextBoxFor(model => model.DataNascimentoFuncionario, new { @class = "form-control", @disabled = "true" })<br />
                 </div>
                 <div class="col-sm-6">
                     <strong>@Html.DisplayNameFor(model => model.CidadeEndFuncionario)</strong><br />
-                    @Html.DisplayFor(model => model.CidadeEndFuncionario)<br />
+                    @Html.TextBoxFor(model => model.CidadeEndFuncionario, new { @class = "form-control", @disabled = "true" })<br />
                 </div>
                 <div class="col-sm-3">
                     <strong>@Html.DisplayNameFor(model => model.UfEndFuncionario)</strong><br />
-                    @Html.DisplayFor(model => model.UfEndFuncionario)<br />
+                    @Html.TextBoxFor(model => model.UfEndFuncionario, new { @class = "form-control", @disabled = "true" })<br />
                 </div>
             </div>
             <div class="row">
                 <div class="col-sm-3">
                     <strong>@Html.DisplayNameFor(model => model.LogradouroEndFuncionario)</strong><br />
-                    @Html.DisplayFor(model => model.LogradouroEndFuncionario)<br />
+                    @Html.TextBoxFor(model => model.LogradouroEndFuncionario, new { @class = "form-control", @disabled = "true" })<br />
                 </div>
                 <div class="col-sm-3">
                     <strong>@Html.DisplayNameFor(model => model.NumLogradouroEndFuncionario)</strong><br />
-                    @Html.DisplayFor(model => model.NumLogradouroEndFuncionario)<br />
+                    @Html.TextBoxFor(model => model.NumLogradouroEndFuncionario, new { @class = "form-control", @disabled = "true" })<br />
                 </div>
             </div>
             <div class="row">
                 <div class="col-sm-3">
                     <strong>@Html.DisplayNameFor(model => model.DataAdimissaoFuncionario)</strong><br />
-                    @Html.DisplayFor(model => model.DataAdimissaoFuncionario)<br />
+                    @Html.TextBoxFor(model => model.DataAdimissaoFuncionario, new { @class = "form-control", @disabled = "true" })<br />
                 </div>
                 <div class="col-sm-3">
                     <strong>@Html.DisplayNameFor(model => model.CpfFuncionario)</strong><br />
-                    @Html.DisplayFor(model => model.CpfFuncionario)<br />
+                    @Html.TextBoxFor(model => model.CpfFuncionario, new { @class = "form-control", @disabled = "true" })<br />
                 </div>
             </div>
             <div class="row">
                 <div class="col-sm-3">
                     <strong>@Html.DisplayNameFor(model => model.RgFuncionario)</strong><br />
-                    @Html.DisplayFor(model => model.RgFuncionario)<br />
+                    @Html.TextBoxFor(model => model.RgFuncionario, new { @class = "form-control", @disabled = "true" })<br />
                 </div>
                 <div class="col-sm-3">
                     <strong>@Html.DisplayNameFor(model => model.UfRgFuncionario)</strong><br />
-                    @Html.DisplayFor(model => model.UfRgFuncionario)<br />
+                    @Html.TextBoxFor(model => model.UfRgFuncionario, new { @class = "form-control", @disabled = "true" })<br />
                 </div>
             </div>
 
             <div class="row">
                 <div class="col-sm-3">
                     <strong>@Html.DisplayNameFor(model => model.OrgaoRgFuncionario)</strong><br />
-                    @Html.DisplayFor(model => model.OrgaoRgFuncionario)<br />
+                    @Html.TextBoxFor(model => model.OrgaoRgFuncionario, new { @class = "form-control", @disabled = "true" })<br />
                 </div>
                 <div class="col-sm-3">
                     <strong>@Html.DisplayNameFor(model => model.DataEmissaoRgFuncionario)</strong><br />
-                    @Html.DisplayFor(model => model.DataEmissaoRgFuncionario)<br />
+                    @Html.TextBoxFor(model => model.DataEmissaoRgFuncionario, new { @class = "form-control", @disabled = "true" })<br />
                 </div>
             </div>
         </div>
@@ -97,10 +105,10 @@
 <div class="panel panel-footer">
     <div class="row">
         <div class="col-sm-3 col-sm-offset-6">
-            <a class="btn btn-block btn-lg btn-info" href="@Url.Action("Index")"><span class="fa fa-reply"></span><span>&nbsp;</span>Voltar</a>
+            <a class="btn btn-block btn-lg btn-default" href="@Url.Action("Index")"><span class="fa fa-reply"></span><span>&nbsp;</span>Voltar</a>
         </div>
         <div class="col-sm-3">
-            <a class="btn btn-block btn-lg btn-warning" href="@Url.Action("Editar", new { id = Model.Id })"><span class="fa fa-edit"></span><span>&nbsp;</span>Editar</a>
+            <a class="btn btn-block btn-lg btn-primary" href="@Url.Action("Editar", new { id = Model.Id })"><span class="fa fa-edit"></span><span>&nbsp;</span>Editar</a>
         </div>
     </div>
 </div>
