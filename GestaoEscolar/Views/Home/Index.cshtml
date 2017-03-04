@@ -1,12 +1,9 @@
 ﻿@{
     ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_LayoutPadrao.cshtml";
+    Layout = "~/Views/Shared/_LayoutLista.cshtml";
 }
 
-<div class="panel panel-heading font-form">
-    <strong><span class="fa fa-cog"></span><span>&nbsp;</span>Inicio do sistema</strong>
-</div>
-<div class="panel-body panel-scroll">
+
     @if (@ViewBag.Escola == false)
     {
         <div class="alert alert-danger">
@@ -79,6 +76,5 @@
         </div>
     </div>
 
-</div>
 
 

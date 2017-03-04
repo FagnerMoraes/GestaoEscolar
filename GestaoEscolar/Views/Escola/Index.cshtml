@@ -2,75 +2,72 @@
 
 @{
     ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_LayoutPadrao.cshtml";
+    Layout = "~/Views/Shared/_LayoutLista.cshtml";
 }
 
-<div class="panel panel-heading font-form">
-    <strong><span class="fa fa-cog"></span><span>&nbsp;</span>Escola</strong>
-</div>
 
-<div class="panel-body panel-scroll font-form">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <p>
-                <a href="@Url.Action("Adicionar", "Escola")" class="btn btn-block btn-lg btn-success"><span class="fa fa-plus"></span><span>&nbsp;</span>Nova Escola</a>
-            </p>
-            <div class="panel panel-success">
+<div class="row">
+    <div class="col-md-8 col-md-offset-2">
+        <p>
+            <a href="@Url.Action("Adicionar", "Escola")" class="btn btn-block btn-lg btn-success"><span class="fa fa-plus"></span><span>&nbsp;</span>Nova Escola</a>
+        </p>
+        <div class="panel panel-success">
 
-                <div class="panel-heading">
-                    <div class="row">
-                        <div class="col-md-4">
-                            <h4>Escolas Cadastradas</h4>
-                        </div>
-                        <div class="col-md-8">
-                            @using (@Html.BeginForm("Index", "Escola", FormMethod.Get))
-                            {
-                                <div class="input-group">
-                                    <input type="text" class="form-control" name="termoBusca" id="termoBusca" placeholder="Buscar por...">
-                                    <span class="input-group-btn">
-                                        <button type="submit" class="btn btn-default">Buscar <span class="fa fa-search"></span></button>
-                                    </span>
-                                </div>
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-md-4">
+                        <h4>Escolas Cadastradas</h4>
+                    </div>
+                    <div class="col-md-8">
+                        @using (@Html.BeginForm("Index", "Escola", FormMethod.Get))
+                        {
+                            <div class="input-group">
+                                <input type="text" class="form-control" name="termoBusca" id="termoBusca" placeholder="Buscar por...">
+                                <span class="input-group-btn">
+                                    <button type="submit" class="btn btn-default">Buscar <span class="fa fa-search"></span></button>
+                                </span>
+                            </div>
 
 
-                            }
-                        </div>
+                        }
                     </div>
                 </div>
-                <table class="table table-hover">
-                    <tr>
-                        <th>Escola
-                        </th>
-
-                        <th>AÇÕES
-                        </th>
-                    </tr>
-
-                    @foreach (var item in Model)
-                    {
-                        <tr>
-                            <td class="col-xs-9">
-                                @Html.DisplayFor(modelItem => item.NomeEscola)
-                            </td>
-
-                            <td class="col-xs-3">
-                                <a class="btn btn-default" title="Editar" href="@Url.Action("Editar", "Escola", new {id = item.Id})">
-                                    <span class="fa fa-edit"></span>
-                                </a>
-
-                                <a class="btn btn-default" title="Detalhes" href="@Url.Action("Detalhes", "Escola", new {id = item.Id})">
-                                    <span class="fa fa-list-alt"></span>
-                                </a>
-
-                                <a class="btn btn-primary btn-danger confirm" title="Excluir" href="@Url.Action("Excluir", "Escola", new {id = item.Id})">
-                                    <span class="fa fa-trash"></span>
-                                </a>
-                            </td>
-                        </tr>
-                    }
-
-                </table>
             </div>
+            <table class="table table-hover">
+                <tr>
+                    <th>
+                        Escola
+                    </th>
+
+                    <th>
+                        AÇÕES
+                    </th>
+                </tr>
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td class="col-xs-9">
+                            @Html.DisplayFor(modelItem => item.NomeEscola)
+                        </td>
+
+                        <td class="col-xs-3">
+                            <a class="btn btn-default" title="Editar" href="@Url.Action("Editar", "Escola", new {id = item.Id})">
+                                <span class="fa fa-edit"></span>
+                            </a>
+
+                            <a class="btn btn-default" title="Detalhes" href="@Url.Action("Detalhes", "Escola", new {id = item.Id})">
+                                <span class="fa fa-list-alt"></span>
+                            </a>
+
+                            <a class="btn btn-primary btn-danger confirm" title="Excluir" href="@Url.Action("Excluir", "Escola", new {id = item.Id})">
+                                <span class="fa fa-trash"></span>
+                            </a>
+                        </td>
+                    </tr>
+                }
+
+            </table>
         </div>
     </div>
 </div>

@@ -3,60 +3,57 @@
 
 @{
     ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_LayoutPadrao.cshtml";
+    Layout = "~/Views/Shared/_LayoutLista.cshtml";
 }
 
-<div class="panel panel-heading">
-    <strong><span class="glyphicon glyphicon-cog"></span><span>&nbsp;</span>Cargos</strong>
-</div>
 
-<div class="panel-body panel-scroll">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <p>
-                <a href="@Url.Action("Adicionar", "TipoFuncionario")" class="btn btn-block btn-lg btn-success"><span class="fa fa-plus"></span><span>&nbsp;</span>Novo Cargo</a>
-            </p>
-            <div class="panel panel-success">
-                <div class="panel-heading">
-                    <h4>Cargos Cadastrados</h4>
-                </div>
-                <table class="table table-hover">
+<div class="row">
+    <div class="col-md-8 col-md-offset-2">
+        <p>
+            <a href="@Url.Action("Adicionar", "TipoFuncionario")" class="btn btn-block btn-lg btn-success"><span class="fa fa-plus"></span><span>&nbsp;</span>Novo Cargo</a>
+        </p>
+        <div class="panel panel-success">
+            <div class="panel-heading">
+                <h4>Cargos Cadastrados</h4>
+            </div>
+            <table class="table table-hover">
+                <tr>
+                    <th>
+                        Cargo
+                    </th>
+
+                    <th>
+                        AÇÕES
+                    </th>
+                </tr>
+
+                @foreach (var item in Model)
+                {
                     <tr>
-                        <th>Cargo
-                        </th>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DescricaoFuncionario)
+                        </td>
+                        <td>
+                            <a class="btn btn-default" title="Editar" href="@Url.Action("Editar", "TipoFuncionario", new { id = item.Id })">
+                                <span class="fa fa-edit"></span>
+                            </a>
 
-                        <th>AÇÕES
-                        </th>
+                            <a class="btn btn-default" title="Detalhes" href="@Url.Action("Detalhes", "TipoFuncionario", new { id = item.Id })">
+                                <span class="fa fa-list-alt"></span>
+                            </a>
+
+                            <a class="btn btn-primary btn-danger confirm" title="Excluir" href="@Url.Action("Excluir", "TipoFuncionario", new { id = item.Id })">
+                                <span class="fa fa-trash"></span>
+                            </a>
+
+                        </td>
                     </tr>
+                }
 
-                    @foreach (var item in Model)
-                    {
-                        <tr>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.DescricaoFuncionario)
-                            </td>
-                            <td>
-                                <a class="btn btn-default" title="Editar" href="@Url.Action("Editar", "TipoFuncionario", new { id = item.Id })">
-                                    <span class="fa fa-edit"></span>
-                                </a>
-
-                                <a class="btn btn-default" title="Detalhes" href="@Url.Action("Detalhes", "TipoFuncionario", new { id = item.Id })">
-                                    <span class="fa fa-list-alt"></span>
-                                </a>
-
-                                <a class="btn btn-primary btn-danger confirm" title="Excluir" href="@Url.Action("Excluir", "TipoFuncionario", new { id = item.Id })">
-                                    <span class="fa fa-trash"></span>
-                                </a>
-
-                            </td>
-                        </tr>
-                    }
-
-                </table>
-                <div class="panel-footer">
-                    <div class=" text-center">
-                        @Html.PagedListPager(Model, page => Url.Action("Index", new { pagina = page }))
-                    </div>
+            </table>
+            <div class="panel-footer">
+                <div class=" text-center">
+                    @Html.PagedListPager(Model, page => Url.Action("Index", new { pagina = page }))
                 </div>
             </div>
         </div>
