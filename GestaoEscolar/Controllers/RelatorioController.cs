@@ -706,15 +706,28 @@ namespace GestaoEscolar.Controllers
             //return View(notas);
         }
 
-        public JsonResult GetAlunos(string term)
+        public ActionResult ModalHistorico(int? turmaId, int? alunoId)
         {
-            List<string> aluno;
+            ViewBag.turmaId = new SelectList(_banco.Turmas, "Id", "NomeTurma");
 
-            aluno = _banco.Alunos.Where(x => x.Nome.ToUpper().Contains(term.ToUpper()))
-                .Select(y => y.Nome).ToList();
+            var alunos = (from al in _banco.Alunos join mat in _banco.Matriculas on al.Id equals mat.AlunoId where mat.TurmaId == turmaId select new { Id = mat.Aluno.Id, Nome = al.Nome }).ToList();
 
-            return Json(aluno, JsonRequestBehavior.AllowGet);
+            ViewBag.AlunoId = new SelectList(alunos, "Id", "Nome");
+
+            return View();
         }
+
+        public ActionResult ModalDecMatricula(int? turmaId, int? alunoId)
+        {
+            ViewBag.turmaId = new SelectList(_banco.Turmas, "Id", "NomeTurma");
+
+            var alunos = (from al in _banco.Alunos join mat in _banco.Matriculas on al.Id equals mat.AlunoId where mat.TurmaId == turmaId select new { Id = mat.Aluno.Id, Nome = al.Nome }).ToList();
+
+            ViewBag.AlunoId = new SelectList(alunos, "Id", "Nome");
+
+            return View();
+        }
+
 
     }
 }

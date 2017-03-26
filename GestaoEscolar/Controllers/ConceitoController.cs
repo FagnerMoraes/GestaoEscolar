@@ -413,7 +413,7 @@ namespace GestaoEscolar.Controllers
                 return RedirectToAction("NotaAluno", new { turmaId, matricula.Matricula.AlunoId, disciplinaId, periodo });
             }
             return RedirectToAction("ConceitoAluno", new { turmaId, alunoId, disciplinaId });
-        }
+        }   
 
 
         public ActionResult BoletimTurma(int? turmaId)

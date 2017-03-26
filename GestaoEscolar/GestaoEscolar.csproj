@@ -378,7 +378,6 @@
     <Content Include="Views\AnoLetivo\Editar.cshtml" />
     <Content Include="Views\AnoLetivo\Detalhes.cshtml" />
     <Content Include="Views\Relatorio\FichaIndividual.cshtml" />
-    <Content Include="Views\Relatorio\_ModalDecMatricula.cshtml" />
     <Content Include="Views\DisciplinaDoProfessorNaTurma\GerenciarDisciplinaTurma.cshtml" />
     <Content Include="Views\Relatorio\DiarioTurma.cshtml" />
     <Content Include="Views\Relatorio\Boletim.cshtml" />
@@ -386,7 +385,9 @@
     <Content Include="Views\Conceito\ListaAluno.cshtml" />
     <Content Include="Views\Conceito\NotaAluno.cshtml" />
     <Content Include="Views\Shared\_LayoutLista.cshtml" />
-    <Content Include="Views\Relatorio\_ModalHistorico.cshtml" />
+    <Content Include="Views\Aluno\_ListaAlunos.cshtml" />
+    <Content Include="Views\Relatorio\ModalHistorico.cshtml" />
+    <Content Include="Views\Relatorio\ModalDecMatricula.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

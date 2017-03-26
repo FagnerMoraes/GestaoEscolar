@@ -5,6 +5,7 @@
 
 
 
+
 <div class="row">
     <div class="col-sm-4">
         @using (@Html.BeginForm("Index", "Aluno", FormMethod.Post))
@@ -28,35 +29,17 @@
             <div class="panel-body panel-scroll">
                 <table class="table table-hover">
                     <tr>
-                        <td data-toggle="modal" data-target="#myModalDeclaracaoMatricula">
-                            <h4><i class="fa fa-file-text fa-fw text-danger" aria-hidden="true"></i>DECLARAÇÃO DE MATRICULA</h4>
+                        <td>
+                            <h4><a href="@Url.Action("ModalDecMatricula","Relatorio")"><i class="fa fa-file-text fa-fw text-danger" aria-hidden="true"></i>DECLARAÇÃO DE MATRICULA</a></h4>
                         </td>
                     </tr>
                     <tr>
-                        <td data-toggle="modal" data-target="#myModalHistoricoAluno">
-                            <h4><i class="fa fa-file-text fa-fw text-danger" aria-hidden="true"></i>HISTÓRICO DO ALUNO</h4>
+                        <td>
+                            <h4><a href="@Url.Action("ModalHistorico","Relatorio")"><i class="fa fa-file-text fa-fw text-danger" aria-hidden="true"></i>HISTÓRICO DO ALUNO</a></h4>
                         </td>
                     </tr>
                 </table>
             </div>
-        </div>
-    </div>
-</div>
-<!-- Modal Declaração Matricula -->
-<div class="modal fade" id="myModalDeclaracaoMatricula" role="dialog">
-    <div class="modal-dialog">
-        <!-- Modal content-->
-        <div class="modal-content">
-            @Html.Partial("_ModalDecMatricula")
-        </div>
-    </div>
-</div>
-<!-- Modal Historico -->
-<div class="modal fade" id="myModalHistoricoAluno" role="dialog">
-    <div class="modal-dialog">
-        <!-- Modal content-->
-        <div class="modal-content">
-            @Html.Partial("_ModalHistorico")
         </div>
     </div>
 </div>

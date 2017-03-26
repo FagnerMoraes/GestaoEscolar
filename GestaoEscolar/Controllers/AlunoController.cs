@@ -32,6 +32,9 @@ namespace GestaoEscolar.Controllers
 
             var aluno = _banco.Alunos.OrderBy(x => x.Nome).ToPagedList(numeroPagina,tamanhoPagina);
 
+
+            
+
             return View(aluno);
         }
 
@@ -49,6 +52,9 @@ namespace GestaoEscolar.Controllers
                 Where(x => x.Nome.ToUpper().Contains(termoBusca.ToUpper())).
                 ToPagedList(numeroPagina, tamanhoPagina);
             }
+
+            if (Request.IsAjaxRequest())
+                return PartialView("_ListaAlunos", aluno);
 
             return View(aluno);
         }
