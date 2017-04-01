@@ -16,7 +16,7 @@
 
     <div class="panel-body panel-scroll">
         <div class="row">
-            <div class="col-xs-12">
+            <div class="col-sm-12">
                 <div class="editor-label">
                     @Html.LabelFor(model => model.NomeDisciplina)
                 </div>
@@ -27,7 +27,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-xs-4">
+            <div class="col-sm-4">
                 <div class="editor-label">
                     @Html.LabelFor(model => model.MaximoPontos)
                 </div>
@@ -36,7 +36,7 @@
                     @Html.ValidationMessageFor(model => model.MaximoPontos)
                 </div>
             </div>
-            <div class="col-xs-4">
+            <div class="col-sm-4">
                 <div class="editor-label">
                     @Html.LabelFor(model => model.MediaPontos)
                 </div>
@@ -45,7 +45,7 @@
                     @Html.ValidationMessageFor(model => model.MediaPontos)
                 </div>
             </div>
-            <div class="col-xs-4">
+            <div class="col-sm-4">
                 <div class="editor-label">
                     @Html.LabelFor(model => model.MinimoPonto)
                 </div>
@@ -59,13 +59,13 @@
 
     <div class="panel panel-footer">
         <div class="row">
-            <div class="col-xs-5">
+            <div class="col-sm-5">
                 <h5><strong>Atenção!</strong> O campo com <i class="fa fa-asterisk text-danger"></i>é obrigatório</h5>
             </div>
-            <div class="col-xs-3 col-xs-offset-1">
+            <div class="col-sm-3 col-sm-offset-1">
                 <a class="btn btn-block btn-lg btn-danger" href="@Url.Action("Index")"><span class="glyphicon glyphicon-remove"></span>Cancelar</a>
             </div>
-            <div class="col-xs-3">
+            <div class="col-sm-3">
                 <button type="submit" class="btn btn-block btn-lg btn-success" value="Adicionar"><span class="glyphicon glyphicon-floppy-disk"></span>Salvar</button>
             </div>
         </div>
