@@ -13,6 +13,7 @@ namespace GestaoEscolar
         public DbSet<Aluno> Alunos { get; set; }
         public DbSet<AnoLetivo> AnoLetivos { get; set; }
         public DbSet<Conceito> Conceitos { get; set; }
+        public DbSet<ConceitoFormacao> ConceitoFormacaos { get; set; }
         public DbSet<Disciplina> Disciplinas { get; set; }
         public DbSet<DisciplinaDoProfessorNaTurma> DisciplinaDoProfessoresNasTurmas { get; set; }
         public DbSet<Escola> Escolas { get; set; }
@@ -112,8 +113,15 @@ namespace GestaoEscolar
             modelBuilder.Entity<Conceito>().Property(x => x.Faltas4Bim).HasColumnType("varchar").HasMaxLength(3);
             modelBuilder.Entity<Conceito>().Property(x => x.FaltasTotal).HasColumnType("varchar").HasMaxLength(3);
             modelBuilder.Entity<Conceito>().Property(x => x.Situacao).HasColumnType("varchar").HasMaxLength(20);
-            
-            
+
+
+            //Dados ConceitoFormacao
+            modelBuilder.Entity<ConceitoFormacao>().Property(x => x.Periodo).IsRequired();
+            modelBuilder.Entity<ConceitoFormacao>().Property(x => x.AtitVal).HasColumnType("varchar").HasMaxLength(3);
+            modelBuilder.Entity<ConceitoFormacao>().Property(x => x.CompAssid).HasColumnType("varchar").HasMaxLength(3);
+            modelBuilder.Entity<ConceitoFormacao>().Property(x => x.CriCriti).HasColumnType("varchar").HasMaxLength(3);
+            modelBuilder.Entity<ConceitoFormacao>().Property(x => x.PartFamilia).HasColumnType("varchar").HasMaxLength(3);
+
 
             //Dados Disciplina
 

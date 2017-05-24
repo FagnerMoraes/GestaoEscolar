@@ -33,7 +33,7 @@ namespace GestaoEscolar.Controllers
                     return RedirectToAction("Index", "Home");
                 }
                 
-                ModelState.AddModelError("", "Dados do Login estão incorreto");
+                ModelState.AddModelError("", "Dados do Login estão incorretos");
             }
 
             return View(usuario);

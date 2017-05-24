@@ -16,9 +16,6 @@
     });
 </script>
 
-<div class="panel panel-heading">
-    <strong><span class="glyphicon glyphicon-cog"></span><span>&nbsp;</span>Gerenciar Conceito Aluno</strong>
-</div>
 <div class="row">
     <div class="col-md-8 col-md-offset-2">
         <div class="panel panel-success">
@@ -40,7 +37,7 @@
                     </div>
                 </div>
             </div>
-            <div class="panel-body panel-scroll">
+            
                 <table class="table table-hover">
                     <tr>
                         <th>
@@ -70,7 +67,6 @@
                         </tr>
                     }
                 </table>
-            </div>
             <div class="panel-footer">
                 <div class="text-center">
                     @Html.PagedListPager(Model, page => Url.Action("ListaAluno", new { pagina = page }))

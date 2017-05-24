@@ -2,22 +2,20 @@
 @{
     ViewBag.Title = "Boletim";
 }
-
 <div class="center-block col-lg-10">
-
     <table class="table table-condensed table-bordered">
         <tr>
-            <td colspan="9">
+            <td colspan="16">
                 <div class="row">
-                    <div class="col-md-2">
+                    <div class="col-xs-2">
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-xs-6">
                         PREFEITURA MUNICIPAL DE MACHADO<br />
                         SECRETARIA MUNICIPAL DE EDUCAÇÃO<br />
                         E. M. CLOVIS ARAUJO DIAS
                     </div>
-                    <div class="col-md-1"></div>
-                    <div class="col-md-3">
+                    <div class="col-xs-1"></div>
+                    <div class="col-xs-3">
                         <strong>BOLETIM ESCOLAR</strong>
                         <br />
                         Ano Letivo: @ViewBag.AnoLetivo
@@ -26,98 +24,94 @@
             </td>
         </tr>
         <tr>
-            <td colspan="5">
+            <td colspan="8">
                 <strong>Aluno:</strong><br />
                 @ViewBag.Aluno
             </td>
-            <td colspan="2">
+            <td colspan="4">
                 <strong>Turno:</strong><br />
                 @ViewBag.Turno
             </td>
-            <td colspan="2">
+            <td colspan="4">
                 <strong>Serie:</strong><br />
                 @ViewBag.Serie
             </td>
         </tr>
         <tr>
-            <td colspan="5">
+            <td colspan="8">
                 <strong>Professor:</strong><br />
                 @ViewBag.NomeResponsavel
             </td>
-            <td colspan="2">
+            <td colspan="4">
                 <strong>Curso:</strong><br />
                 @ViewBag.Nivel
             </td>
-            <td colspan="2">
+            <td colspan="4">
                 <strong>Periodo:</strong><br />
                 @ViewBag.Periodo
             </td>
         </tr>
-    </table>
-
-    <div>
-        <div>
-            @foreach (var item in Model)
-            {
-                <div style="min-height: 75px" class="col-md-2 fa-border text-center">
-                    <div class="">
-                        @Html.DisplayFor(modelItem => item.Disciplina)
-                    </div>
-                    <hr />
-                    <div class="">
-                        @Html.DisplayFor(modelItem => item.Nota)
-                    </div>
-                </div>
-            }
-        </div>
-    </div>
-
-    <div>
-        <div style="min-height: 75px" class="text-center col-md-2 fa-border">
-
-        </div>
-        <div style="min-height: 75px" class="text-center col-md-2 fa-border">
-            ATITUDES<br />
-            VALORES ETICOS
-            <select class="form-control">
-                <option value="S">S</option>
-                <option value="N">N</option>
-                <option value="AV">AV</option>
-            </select>
-        </div>
-        <div style="min-height: 75px" class="text-center col-md-2 fa-border">
-            COMPROMISSO/<br />
-            ASSIDUIDADE
-            <select class="form-control">
-                <option value="S">S</option>
-                <option value="N">N</option>
-                <option value="AV">AV</option>
-            </select>
-        </div>
-        <div style="min-height: 75px" class="text-center col-md-2 fa-border">
-            CRIATIVIDADE/<br />
-            CRITICIDADE
-            <select class="form-control">
-                <option value="S">S</option>
-                <option value="N">N</option>
-                <option value="AV">AV</option>
-            </select>
-        </div>
-        <div style="min-height: 75px" class="text-center col-md-2 fa-border">
-            PARTICIPACAO<br />
-            DA FAMILIA
-            <select class="form-control">
-                <option value="S">S</option>
-                <option value="N">N</option>
-                <option value="AV">AV</option>
-            </select>
-        </div>
-        <div style="min-height: 75px" class="text-center col-md-2 fa-border">
-            TOTAL DE<br />
-            FALTAS
-            <div class="text-center col-md-2 fa-border form-control">
+        <tr>
+            <td colspan="16"><strong>Base Nacional Comum</strong></td>
+        </tr>
+        <tr class="text-center">
+            <td colspan="2"><strong>Português&nbsp;&nbsp;&nbsp;&nbsp;</strong><hr />A</td>
+            <td colspan="2"><strong>Matemática</strong><hr />A</td>
+            <td colspan="2"><strong>Geografia&nbsp;</strong><hr />B</td>
+            <td colspan="2"><strong>História&nbsp;&nbsp;</strong><hr />A</td>
+            <td colspan="2"><strong>Ciências&nbsp;&nbsp;&nbsp;</strong><hr />A</td>
+            <td colspan="2"><strong>Ed. Fisica</strong><hr />A</td>
+            <td colspan="2"><strong>En. Religioso</strong><hr />-</td>
+            <td colspan="2"><strong>&nbsp;&nbsp;Artes&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong><hr />-</td>
+        </tr>
+        <tr>
+            <td colspan="6"><strong>Parte Diversificada</strong></td>
+            <td colspan="10"><strong>Processo de Formação: S - N - AV</strong></td>
+        </tr>
+        <tr class="text-center">
+            <td colspan="2"><strong>Informática</strong><hr />A</td>
+            <td colspan="2"><strong>Lit.Inf. Juvenil</strong><hr />A</td>
+            <td colspan="2"><strong></strong><br /></td>
+            <td colspan="2">
+                <strong>
+                    ATITUDES E<br />
+                    VALORES
+                </strong>
+                <hr />
+                @ViewBag.AtitVal
+            </td>
+            <td colspan="2">
+                <strong>
+                    COMPROMISSO/<br />
+                    ASSIDUIDADE
+                </strong>
+                <hr />
+                @ViewBag.CompAssid
+            </td>
+            <td colspan="2">
+                <strong>
+                    CRIATIVIDADE/<br />
+                    CRITICIDADE
+                </strong>
+                <hr />
+                @ViewBag.CriCriti
+            </td>
+            <td colspan="2">
+                <strong>
+                    PARTICIPACAO<br />
+                    DA FAMILIA
+                </strong>
+                <hr />
+                @ViewBag.PartFamilia
+            </td>
+            <td colspan="2">
+                <strong>
+                    TOTAL<br/> FALTAS
+                </strong>
+                <hr />
                 @ViewBag.Falta
-            </div>
-        </div>
-    </div>
+            </td>
+
+        </tr>
+    </table>
 </div>

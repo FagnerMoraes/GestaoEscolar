@@ -1,0 +1,122 @@
+﻿@model GestaoEscolar.Models.ConceitoFormacao
+
+@{
+    ViewBag.Title = "Editar";
+    Layout = "~/Views/Shared/_LayoutPadrao.cshtml";
+}
+<script>
+    $(function () {
+        $('#Id').val("@Model.Id");
+        $('#Periodo').val("@Model.Periodo");
+        $('#AtitVal').val("@Model.AtitVal");
+        $('#CompAssid').val("@Model.CompAssid");
+        $('#CriCriti').val("@Model.CriCriti");
+        $('#PartFamilia').val("@Model.PartFamilia");
+        $('#MatriculaId').val("@Model.MatriculaId");
+    });
+</script>
+
+<div class="panel panel-heading">
+    <strong><span class="fa fa-plus"></span><span>&nbsp;</span>Editar Formação</strong>
+</div>
+
+
+@using (Html.BeginForm(new { @class = "form-inline" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    
+
+    @Html.Hidden("MatriculaId")
+    @Html.Hidden("Periodo")
+
+    <div class="panel-body panel-scroll">
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="editor-label">
+                    <strong>
+                        ATITUDES E VALORES
+                    </strong>
+                </div>
+                <div class="editor-field">
+                    <select class="form-control" name="AtitVal" id="AtitVal">
+                        <option value="">Selecione</option>
+                        <option value="S">S</option>
+                        <option value="N">N</option>
+                        <option value="AV">AV</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="editor-label">
+                    <strong>
+                        COMPROMISSO/ASSIDUIDADE
+                    </strong>
+                </div>
+                <div class="editor-field">
+                    <select class="form-control" name="CompAssid" id="CompAssid">
+                        <option value="">Selecione</option>
+                        <option value="S">S</option>
+                        <option value="N">N</option>
+                        <option value="AV">AV</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="editor-label">
+                    <strong>
+                        CRIATIVIDADE/CRITICIDADE
+                    </strong>
+                </div>
+                <div class="editor-field">
+                    <select class="form-control" name="CriCriti" id="CriCriti">
+                        <option value="">Selecione</option>
+                        <option value="S">S</option>
+                        <option value="N">N</option>
+                        <option value="AV">AV</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="editor-label">
+                    <strong>
+                        PARTICIPACAO DA FAMILIA
+                    </strong>
+                </div>
+                <div class="editor-field">
+                    <select class="form-control" name="PartFamilia" id="PartFamilia">
+                        <option value="">Selecione</option>
+                        <option value="S">S</option>
+                        <option value="N">N</option>
+                        <option value="AV">AV</option>
+                    </select>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+            <div class="panel panel-footer">
+                <div class="row">
+                    <div class="col-xs-5">
+                        <h5><strong>Atenção!</strong> O campo com <i class="fa fa-asterisk text-danger"></i>é obrigatório</h5>
+                    </div>
+                    <div class="col-xs-3 col-xs-offset-1">
+                        <a class="btn btn-block btn-lg btn-danger" href="@Url.Action("Index")"><span class="glyphicon glyphicon-remove"></span>Cancelar</a>
+                    </div>
+                    <div class="col-xs-3">
+                        <button type="submit" class="btn btn-block btn-lg btn-success" value="Adicionar"><span class="glyphicon glyphicon-floppy-disk"></span>Salvar</button>
+                    </div>
+                </div>
+            </div>
+
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

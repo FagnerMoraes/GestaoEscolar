@@ -94,7 +94,7 @@ namespace GestaoEscolar.Controllers
             }
             catch (Exception ex)
             {
-                ViewBag.Voltar = Request.UrlReferrer.ToString();
+                if (Request.UrlReferrer != null) ViewBag.Voltar = Request.UrlReferrer.ToString();
                 return View("Error", new HandleErrorInfo(ex, "Escola", "Index"));
             }
         }

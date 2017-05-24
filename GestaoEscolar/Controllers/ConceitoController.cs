@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
-using System.EnterpriseServices;
 using System.Linq;
 using PagedList;
 using System.Web.Mvc;
@@ -19,7 +18,7 @@ namespace GestaoEscolar.Controllers
             const int tamanhoPagina = 5;
             int numeroPagina = pagina ?? 1;
 
-            var aluno = _banco.Matriculas.OrderBy(x => x.Aluno.Nome).ToPagedList(numeroPagina, tamanhoPagina);
+            var aluno = _banco.Matriculas.Where(x=> x.TurmaId != null).OrderBy(x => x.Aluno.Nome).ToPagedList(numeroPagina, tamanhoPagina);
 
             return View(aluno);
         }
@@ -44,15 +43,12 @@ namespace GestaoEscolar.Controllers
 
         public JsonResult GetAlunos(string term)
         {
-            List<string> aluno;
-
-            aluno = _banco.Matriculas.Where(x => x.Aluno.Nome.ToUpper().Contains(term.ToUpper()))
+            var aluno = _banco.Matriculas.Where(x => x.Aluno.Nome.ToUpper().Contains(term.ToUpper()))
                 .Select(y => y.Aluno.Nome).ToList();
 
             return Json(aluno, JsonRequestBehavior.AllowGet);
         }
-
-
+        
         public ActionResult NotaAluno(int? alunoId, int? periodo)
         {
             List<Conceito> conceitos = null;
@@ -84,21 +80,36 @@ namespace GestaoEscolar.Controllers
 
                 conceitos = _banco.Conceitos.Where(x => x.Matricula.AlunoId == alunoId).ToList();
 
+                var novoaluno = _banco.Matriculas.FirstOrDefault(x => x.AlunoId == alunoId);
+
                 var dadosaluno = conceitos.FirstOrDefault();
 
+                var conform = _banco.ConceitoFormacaos.FirstOrDefault(x => x.Matricula.AlunoId == alunoId && periodo == x.Periodo);
 
-                ViewBag.NomeAluno = dadosaluno.Matricula.Aluno.Nome;
-                ViewBag.AlunoId = dadosaluno.Matricula.AlunoId;
-                ViewBag.Turma = dadosaluno.Matricula.Turma.NomeTurma;
+                if(conform != null)
+                {
+                    ViewBag.FormConId = conform.Id;
+                    ViewBag.AtitVal = conform.AtitVal;
+                    ViewBag.CompAssid = conform.CompAssid;
+                    ViewBag.CriCriti = conform.CriCriti;
+                    ViewBag.PartFamilia = conform.PartFamilia;
+                }
+
+                if (dadosaluno != null)
+                {
+                    ViewBag.NomeAluno = dadosaluno.Matricula.Aluno.Nome;
+                    ViewBag.AlunoId = dadosaluno.Matricula.AlunoId;
+                    ViewBag.MatriculaId = dadosaluno.MatriculaId;
+                    if (novoaluno != null) ViewBag.NovoAlunoId = novoaluno.AlunoId;
+                    ViewBag.Turma = dadosaluno.Matricula.Turma.NomeTurma;
+                    ViewBag.TurmaId = dadosaluno.Matricula.TurmaId;
+                }
                 ViewBag.Periodo = periodo;
             }
 
 
             return View(conceitos);
         }
-
-
-
 
         public ActionResult Index(int? turmaId, int? disciplinaId)
         {
@@ -266,8 +277,7 @@ namespace GestaoEscolar.Controllers
 
             return RedirectToAction("ConceitoAluno", new { turmaId, disciplinaId, periodo });
         }
-
-
+        
         [HttpGet]
         public ActionResult ConceitoAluno(int? turmaId, int? disciplinaId, int? alunoId, int? periodo)
         {
@@ -280,7 +290,7 @@ namespace GestaoEscolar.Controllers
 
             ViewBag.DisciplinaId = new SelectList(disciplinas, "Id", "NomeDisciplina");
 
-            var alunos = (from al in _banco.Alunos join mat in _banco.Matriculas on al.Id equals mat.AlunoId where mat.TurmaId == turmaId select new { Id = mat.Id, Nome = al.Nome }).ToList();
+            var alunos = (from al in _banco.Alunos join mat in _banco.Matriculas on al.Id equals mat.AlunoId where mat.TurmaId == turmaId select new {mat.Id, al.Nome }).ToList();
 
             ViewBag.AlunoId = new SelectList(alunos, "Id", "Nome");
 
@@ -414,7 +424,6 @@ namespace GestaoEscolar.Controllers
             }
             return RedirectToAction("ConceitoAluno", new { turmaId, alunoId, disciplinaId });
         }   
-
 
         public ActionResult BoletimTurma(int? turmaId)
         {
@@ -552,7 +561,6 @@ namespace GestaoEscolar.Controllers
             }
             return View(conceito);
         }
-
 
         public ActionResult Excluir(long id)
         {

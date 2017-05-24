@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Web.Mvc;
 using GestaoEscolar.Models;
 using System.Data.Entity.Validation;
+using System.Globalization;
 
 namespace GestaoEscolar.Controllers
 {
@@ -12,8 +14,28 @@ namespace GestaoEscolar.Controllers
     {
         readonly Contexto _banco = new Contexto();
 
+
+        public ActionResult ListaHistoricoAluno(int id)
+        {
+            List<HistoricoAluno> histAluno = _banco.HistoricoAlunos.Where(x => x.AlunoId == id).ToList();
+
+            Aluno aluno = _banco.Alunos.FirstOrDefault(x => x.Id == id);
+
+            if (aluno != null)
+            {
+                ViewBag.NomeAluno = aluno.Nome;
+            }
+
+            
+            return View(histAluno);
+        }
+
+
+
+
         public ActionResult Index(string termoBusca)
         {
+
             var historicoaluno = _banco.HistoricoAlunos.Include("Aluno").ToList();
 
             if (!String.IsNullOrEmpty(termoBusca))
@@ -103,17 +125,22 @@ namespace GestaoEscolar.Controllers
 
         public ActionResult GerarHistoricoAluno(long id)
         {
-            var aluno = _banco.Matriculas.FirstOrDefault(x => x.AlunoId == id);
+            var aluno = _banco.Matriculas.FirstOrDefault(x => x.Aluno.Id == id);
 
             HistoricoAluno historico = new HistoricoAluno();
 
-            historico.AlunoId = aluno.AlunoId;
-            historico.DataHistoricoAluno = DateTime.Now.Date;
-            historico.AnoHistoricoAluno = Convert.ToInt32(aluno.AnoLetivo.Ano);
-            historico.TurmaAnoHistorico = aluno.Turma.NomeTurma;
-            historico.EscolaAnoAluno = aluno.Turma.Escola.NomeEscola;
-            historico.CidadeEscolaAnoAluno = aluno.Turma.Escola.EndEscola;
-            historico.UfEscolaAnoAluno = aluno.Turma.Escola.UfEscola;
+            if (aluno != null)
+            {
+                historico.AlunoId = aluno.AlunoId;
+                historico.DataHistoricoAluno = DateTime.Now.Date;
+                historico.AnoHistoricoAluno = Convert.ToInt32(aluno.AnoLetivo.Ano);
+                historico.ChCurricularBasica = Convert.ToString(aluno.AnoLetivo.ChCurrBas, CultureInfo.InvariantCulture);
+                historico.ChCurricularArtes = Convert.ToString(aluno.AnoLetivo.ChCurrArt, CultureInfo.InvariantCulture);
+                historico.TurmaAnoHistorico = aluno.Turma.Serie;
+                historico.EscolaAnoAluno = aluno.Turma.Escola.NomeEscola;
+                historico.CidadeEscolaAnoAluno = aluno.Turma.Escola.EndEscola;
+                historico.UfEscolaAnoAluno = aluno.Turma.Escola.UfEscola;
+            }
             historico.DiasLetivos = 200;
 
 

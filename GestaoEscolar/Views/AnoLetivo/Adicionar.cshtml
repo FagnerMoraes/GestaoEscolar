@@ -5,6 +5,7 @@
     Layout = "~/Views/Shared/_LayoutPadrao.cshtml";
 }
 
+
 <div class="panel panel-heading">
     <strong><span class="glyphicon glyphicon-plus-sign"></span><span>&nbsp;</span>Cadastro Ano Letivo</strong>
 </div>
@@ -15,6 +16,7 @@
     @Html.ValidationSummary(true)
 
     <div class="panel-body panel-scroll">
+        <div class="col-md-4">
             <div class="editor-label">
                 @Html.LabelFor(model => model.Ano)
             </div>
@@ -22,6 +24,8 @@
                 @Html.TextBoxFor(model => model.Ano, new { @class = "form-control", placeholder = "Ex: 2000" })
                 @Html.ValidationMessageFor(model => model.Ano)
             </div>
+        </div>
+        <div class="col-md-4">
             <div class="editor-label">
                 @Html.LabelFor(model => model.MediaAno)
             </div>
@@ -33,6 +37,8 @@
                 </select>
                 @Html.ValidationMessageFor(model => model.MediaAno)
             </div>
+        </div>
+        <div class="col-md-4">
             <div class="editor-label">
                 @Html.LabelFor(model => model.QtdDiasLetivosAno)
             </div>
@@ -41,6 +47,28 @@
                 @Html.ValidationMessageFor(model => model.QtdDiasLetivosAno)
             </div>
         </div>
+
+
+        <div class="col-md-6">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.ChCurrBas)
+            </div>
+            <div class="editor-field">
+                @Html.TextBoxFor(model => model.ChCurrBas, new { @class = "form-control", placeholder = "Ex: 800,00" })
+                @Html.ValidationMessageFor(model => model.ChCurrBas)
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.ChCurrArt)
+            </div>
+            <div class="editor-field">
+                @Html.TextBoxFor(model => model.ChCurrArt, new { @class = "form-control", placeholder = "Ex: 33,20" })
+                @Html.ValidationMessageFor(model => model.ChCurrArt)
+            </div>
+        </div>
+
+    </div>
 
         <div class="panel panel-footer">
             <div class="row">

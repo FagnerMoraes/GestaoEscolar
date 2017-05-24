@@ -43,6 +43,44 @@
 
         <div class="panel panel-default">
             <div class="panel-heading">
+                <strong><span class="glyphicon glyphicon-plus"></span><span>&nbsp;</span>Vinculação</strong>
+            </div>
+            <div class="panel-body">
+                <div class="editor-label">
+                    <i class="fa fa-asterisk text-danger"></i>
+                    <strong>Escola</strong>
+                </div>
+                <div class="editor-field">
+                    @Html.DropDownList("EscolaId", (SelectList)ViewBag.EscolaId, "SELECIONE A ESCOLA", new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.EscolaId)
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="editor-label">
+                            <i class="fa fa-asterisk text-danger"></i>
+                            @Html.LabelFor(model => model.DataAdimissaoFuncionario)
+                        </div>
+                        <div class="editor-field">
+                            @Html.TextBoxFor(model => model.DataAdimissaoFuncionario, new { @class = "form-control ajuda-data" })
+                            @Html.ValidationMessageFor(model => model.DataAdimissaoFuncionario)
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="editor-label">
+                            <i class="fa fa-asterisk text-danger"></i>
+                            <strong>Cargo</strong>
+                        </div>
+                        <div class="editor-field">
+                            @Html.DropDownList("TipoFuncionarioId", (SelectList)ViewBag.TipoFuncionarioId, "SELECIONE O CARGO", new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.TipoFuncionarioId)
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
                 <strong><span class="glyphicon glyphicon-plus"></span><span>&nbsp;</span>Dados Pessoais</strong>
             </div>
             <div class="panel-body">
@@ -256,44 +294,7 @@
                 </div>
             </div>
         </div>
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <strong><span class="glyphicon glyphicon-plus"></span><span>&nbsp;</span>Vinculação</strong>
-            </div>
-            <div class="panel-body">
-                <div class="editor-label">
-                    <i class="fa fa-asterisk text-danger"></i>
-                    <strong>Escola</strong>
-                </div>
-                <div class="editor-field">
-                    @Html.DropDownList("EscolaId", (SelectList)ViewBag.EscolaId, "SELECIONE A ESCOLA", new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.EscolaId)
-                </div>
-
-                <div class="row">
-                    <div class="col-sm-6">
-                        <div class="editor-label">
-                            <i class="fa fa-asterisk text-danger"></i>
-                            @Html.LabelFor(model => model.DataAdimissaoFuncionario)
-                        </div>
-                        <div class="editor-field">
-                            @Html.TextBoxFor(model => model.DataAdimissaoFuncionario, new { @class = "form-control ajuda-data" })
-                            @Html.ValidationMessageFor(model => model.DataAdimissaoFuncionario)
-                        </div>
-                    </div>
-                    <div class="col-sm-6">
-                        <div class="editor-label">
-                            <i class="fa fa-asterisk text-danger"></i>
-                            <strong>Cargo</strong>
-                        </div>
-                        <div class="editor-field">
-                            @Html.DropDownList("TipoFuncionarioId", (SelectList)ViewBag.TipoFuncionarioId, "SELECIONE O CARGO", new { @class = "form-control" })
-                            @Html.ValidationMessageFor(model => model.TipoFuncionarioId)
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        
 
     </div>
     <div class="panel panel-footer">

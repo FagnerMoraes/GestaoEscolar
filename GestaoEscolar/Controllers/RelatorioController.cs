@@ -1,11 +1,12 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 using GestaoEscolar.Models;
+using Microsoft.Ajax.Utilities;
 using Rotativa;
 using Rotativa.Options;
-using System.Diagnostics;
 
 
 namespace GestaoEscolar.Controllers
@@ -67,6 +68,9 @@ namespace GestaoEscolar.Controllers
                     case "5ANO":
                         ViewBag.Serie = "5º ANO";
                         break;
+                    default:
+                        ViewBag.Serie = "Selecione";
+                        break;
                 }
             }
             var bimestre = new List<Bimestre>();
@@ -76,49 +80,65 @@ namespace GestaoEscolar.Controllers
             switch (periodo)
             {
                 case 1:
-                    foreach (var item in query)
+                    bimestre.AddRange(query.Select(item => new Bimestre
                     {
-                        bimestre.Add(new Bimestre { Aluno = item.Matricula.Aluno.Nome, Disciplina = item.Disciplina.NomeDisciplina, Falta = item.Faltas1Bim, Nota = item.Conceito1Bim, Periodo = "1º bimestre" });
-                    }
+                        Aluno = item.Matricula.Aluno.Nome,
+                        Disciplina = item.Disciplina.NomeDisciplina,
+                        Falta = item.Faltas1Bim,
+                        Nota = item.Conceito1Bim,
+                        Periodo = "1º bimestre"
+                    }));
                     break;
                 case 2:
-                    foreach (var item in query)
+                    bimestre.AddRange(query.Select(item => new Bimestre
                     {
-                        bimestre.Add(new Bimestre { Aluno = item.Matricula.Aluno.Nome, Disciplina = item.Disciplina.NomeDisciplina, Falta = item.Faltas2Bim, Nota = item.Conceito2Bim, Periodo = "2º bimestre" });
-                    }
+                        Aluno = item.Matricula.Aluno.Nome,
+                        Disciplina = item.Disciplina.NomeDisciplina,
+                        Falta = item.Faltas2Bim,
+                        Nota = item.Conceito2Bim,
+                        Periodo = "2º bimestre"
+                    }));
                     break;
                 case 3:
-                    foreach (var item in query)
+                    bimestre.AddRange(query.Select(item => new Bimestre
                     {
-                        bimestre.Add(new Bimestre { Aluno = item.Matricula.Aluno.Nome, Disciplina = item.Disciplina.NomeDisciplina, Falta = item.Faltas3Bim, Nota = item.Conceito3Bim, Periodo = "3º bimestre" });
-                    }
+                        Aluno = item.Matricula.Aluno.Nome,
+                        Disciplina = item.Disciplina.NomeDisciplina,
+                        Falta = item.Faltas3Bim,
+                        Nota = item.Conceito3Bim,
+                        Periodo = "3º bimestre"
+                    }));
                     break;
                 case 4:
-                    foreach (var item in query)
+                    bimestre.AddRange(query.Select(item => new Bimestre
                     {
-                        bimestre.Add(new Bimestre { Aluno = item.Matricula.Aluno.Nome, Disciplina = item.Disciplina.NomeDisciplina, Falta = item.Faltas4Bim, Nota = item.Conceito4Bim, Periodo = "4º bimestre" });
-                    }
+                        Aluno = item.Matricula.Aluno.Nome,
+                        Disciplina = item.Disciplina.NomeDisciplina,
+                        Falta = item.Faltas4Bim,
+                        Nota = item.Conceito4Bim,
+                        Periodo = "4º bimestre"
+                    }));
                     break;
             }
 
-            int tfalta = 0;
-            foreach (var f in bimestre)
+            //int tfalta = bimestre.Aggregate(0, (current, f) => (current + Convert.ToInt32(f.Falta)));
+
+            ViewBag.Falta = bimestre.Where(f => f.Falta != "").Aggregate(0, (current, f) => (current + Convert.ToInt32(f.Falta)));
+
+            if (matricula != null)
             {
-                tfalta = (tfalta + Convert.ToInt32(f.Falta));
-
+                ViewBag.Aluno = matricula.Aluno.Nome;
+                ViewBag.AnoLetivo = matricula.AnoLetivo.Ano;
+                ViewBag.NomeResponsavel = matricula.Turma.Funcionario.NomeFuncionario;
+                ViewBag.Turma = matricula.Turma.NomeTurma;
+                ViewBag.Turno = matricula.Turma.HorarioFuncionamento;
+                ViewBag.Nivel = matricula.Turma.NivelTurma;
             }
-
-            ViewBag.Falta = tfalta;
-            ViewBag.Aluno = matricula.Aluno.Nome;
-            ViewBag.AnoLetivo = matricula.AnoLetivo.Ano;
-            ViewBag.NomeResponsavel = matricula.Turma.Funcionario.NomeFuncionario;
-            ViewBag.Turma = matricula.Turma.NomeTurma;
-            ViewBag.Turno = matricula.Turma.HorarioFuncionamento;
-            ViewBag.Nivel = matricula.Turma.NivelTurma;
 
             var bim = (from b in bimestre select b.Periodo);
 
-            ViewBag.Periodo = bim.FirstOrDefault().ToUpper();
+            var firstOrDefault = bim.FirstOrDefault();
+            if (firstOrDefault != null) ViewBag.Periodo = firstOrDefault.ToUpper();
 
             return View(bimestre);
         }
@@ -709,6 +729,7 @@ namespace GestaoEscolar.Controllers
         public ActionResult ModalHistorico(int? turmaId, int? alunoId)
         {
             ViewBag.turmaId = new SelectList(_banco.Turmas, "Id", "NomeTurma");
+
 
             var alunos = (from al in _banco.Alunos join mat in _banco.Matriculas on al.Id equals mat.AlunoId where mat.TurmaId == turmaId select new { Id = mat.Aluno.Id, Nome = al.Nome }).ToList();
 

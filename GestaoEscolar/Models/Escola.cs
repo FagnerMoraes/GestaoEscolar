@@ -59,5 +59,6 @@ namespace GestaoEscolar.Models
 
         public virtual ICollection<Turma> Turmas { get; set; } 
         public virtual ICollection<Funcionario> Funcionarios { get; set; }
+
     }
 }

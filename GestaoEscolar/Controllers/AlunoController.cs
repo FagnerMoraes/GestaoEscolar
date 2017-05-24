@@ -5,7 +5,6 @@ using System.Linq;
 using System.Web.Mvc;
 using GestaoEscolar.Models;
 using PagedList;
-using System.Collections.Generic;
 
 namespace GestaoEscolar.Controllers
 {
@@ -61,13 +60,11 @@ namespace GestaoEscolar.Controllers
 
         public JsonResult GetAlunos(string term)
         {
-            List<string> aluno;
-
-            aluno = _banco.Alunos.Where(x => x.Nome.ToUpper().Contains(term.ToUpper()))
+            var aluno = _banco.Alunos.Where(x => x.Nome.ToUpper().Contains(term.ToUpper()))
                 .Select(y => y.Nome).ToList();
-            
+
             return Json(aluno, JsonRequestBehavior.AllowGet);
-        }        
+        }
 
         public ActionResult Adicionar()
         {
@@ -147,7 +144,7 @@ namespace GestaoEscolar.Controllers
             }
             catch (Exception ex)
             {
-                ViewBag.Voltar = Request.UrlReferrer.ToString();
+                if (Request.UrlReferrer != null) ViewBag.Voltar = Request.UrlReferrer.ToString();
                 return View("Error", new HandleErrorInfo(ex, "Aluno", "Index"));
             }
         }

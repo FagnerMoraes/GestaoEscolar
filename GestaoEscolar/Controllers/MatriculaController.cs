@@ -248,6 +248,7 @@ namespace GestaoEscolar.Controllers
 
                 foreach (var i in semMatricula)
                 {
+                    
 
                     var mat = _banco.Matriculas.FirstOrDefault(x => x.AlunoId == i);
                     if (mat != null)
@@ -355,7 +356,7 @@ namespace GestaoEscolar.Controllers
             }
             catch (Exception ex)
             {
-                ViewBag.Voltar = Request.UrlReferrer.ToString();
+                if (Request.UrlReferrer != null) ViewBag.Voltar = Request.UrlReferrer.ToString();
                 return View("Error", new HandleErrorInfo(ex, "Matricula", "Index"));
             }
         }
