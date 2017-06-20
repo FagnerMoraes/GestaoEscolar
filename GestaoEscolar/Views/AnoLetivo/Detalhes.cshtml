@@ -5,56 +5,24 @@
     Layout = "~/Views/Shared/_LayoutPadrao.cshtml";
 }
 
+<script>
+    $(function () {
+        $('#MediaAno').val("@Model.MediaAno");
+
+        document.getElementById("Ano").disabled = true;
+        document.getElementById("MediaAno").disabled = true;
+        document.getElementById("QtdDiasLetivosAno").disabled = true;
+        document.getElementById("ChCurrBas").disabled = true;
+        document.getElementById("ChCurrArt").disabled = true;
+    });
+</script>
+
 <div class="panel panel-heading">
     <strong><span class="fa fa-cog"></span><span>&nbsp;</span>Ano Letivo</strong>
 </div>
 
 <div class="panel-body panel-scroll">
-    <div class="panel panel-default">
-        <div class="panel panel-heading">
-            <strong><span class="fa fa-cloud"></span><span>&nbsp;</span>Detalhes do Ano</strong>
-        </div>
-
-        <div class="panel-body">
-            <div class="col-sm-6">
-                <div class="">
-                    <strong>@Html.DisplayNameFor(model => model.Ano)</strong>
-
-                </div>
-                <div class="display-field">
-                    @Html.TextBoxFor(model => model.Ano, new { @class = "form-control", @disabled = "true" })
-                </div>
-
-                <div class="display-label">
-                    <strong>@Html.DisplayNameFor(model => model.MediaAno)</strong>
-                </div>
-                <div class="display-field">
-                    @Html.TextBoxFor(model => model.MediaAno, new { @class = "form-control", @disabled = "true" })
-                </div>
-
-                <div class="display-label">
-                    <strong>@Html.DisplayNameFor(model => model.QtdDiasLetivosAno)</strong>
-                </div>
-                <div class="display-field">
-                    @Html.TextBoxFor(model => model.QtdDiasLetivosAno, new { @class = "form-control", @disabled = "true" })
-                </div>
-
-                <div class="display-label">
-                    <strong>@Html.DisplayNameFor(model => model.ChCurrBas)</strong>
-                </div>
-                <div class="display-field">
-                    @Html.TextBoxFor(model => model.ChCurrBas, new { @class = "form-control", @disabled = "true" })
-                </div>
-
-                <div class="display-label">
-                    <strong>@Html.DisplayNameFor(model => model.ChCurrArt)</strong>
-                </div>
-                <div class="display-field">
-                    @Html.TextBoxFor(model => model.ChCurrArt, new { @class = "form-control", @disabled = "true" })
-                </div>
-            </div>
-        </div>
-    </div>
+    @Html.Partial("_PartialFormAnoLet");
 </div>
 
 <div class="panel panel-footer">

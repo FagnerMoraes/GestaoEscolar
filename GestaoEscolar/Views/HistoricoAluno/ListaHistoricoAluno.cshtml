@@ -7,6 +7,12 @@
 
 <h3>@ViewBag.NomeAluno</h3>
 
+<div class="row">
+    <p>
+        <a href="@Url.Action("Adicionar", "HistoricoAluno", new { alunoId = ViewBag.Id })" class="btn btn-block btn-lg btn-success"><span class="fa fa-plus"></span><span>&nbsp;</span>Novo Histórico</a>
+    </p>
+</div>
+
 <table class="table table-hover">
     <tr>
         <th>

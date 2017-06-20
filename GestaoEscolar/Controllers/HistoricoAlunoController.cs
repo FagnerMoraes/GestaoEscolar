@@ -15,6 +15,29 @@ namespace GestaoEscolar.Controllers
         readonly Contexto _banco = new Contexto();
 
 
+        
+        public ActionResult BuscaHistoricoAluno(int? id)
+        {
+            if (id != null)
+            {
+                var aluno = _banco.Alunos.FirstOrDefault(x => x.Id == id);
+
+                ViewBag.Nome = aluno.Nome;
+                ViewBag.DataNascimento = aluno.DataNascimento.ToShortDateString();
+                ViewBag.Sexo = aluno.Sexo;
+                ViewBag.NomeMae = aluno.NomeMae;
+                ViewBag.NomePai = aluno.NomePai;
+                ViewBag.Naturalidade = aluno.Naturalidade;
+                ViewBag.UfNaturalidade = aluno.UfNaturalidade;
+                ViewBag.Nacionalidade = aluno.Nacionalidade;
+                ViewBag.Rg = aluno.Rg;
+                ViewBag.OrgaoExpRg = aluno.OrgaoExpRg;
+                ViewBag.UfRg = aluno.UfRg;
+            }
+
+            return View();
+        }
+
         public ActionResult ListaHistoricoAluno(int id)
         {
             List<HistoricoAluno> histAluno = _banco.HistoricoAlunos.Where(x => x.AlunoId == id).ToList();
@@ -24,14 +47,12 @@ namespace GestaoEscolar.Controllers
             if (aluno != null)
             {
                 ViewBag.NomeAluno = aluno.Nome;
+                ViewBag.Id = aluno.Id;
             }
 
-            
+
             return View(histAluno);
         }
-
-
-
 
         public ActionResult Index(string termoBusca)
         {
@@ -121,7 +142,6 @@ namespace GestaoEscolar.Controllers
             _banco.SaveChanges();
             return RedirectToAction("Index");
         }
-
 
         public ActionResult GerarHistoricoAluno(long id)
         {

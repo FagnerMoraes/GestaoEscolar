@@ -7,13 +7,13 @@ namespace GestaoEscolar.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.1-30610")]
-    public sealed partial class Periodo : IMigrationMetadata
+    public sealed partial class appv10 : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(Periodo));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(appv10));
         
         string IMigrationMetadata.Id
         {
-            get { return "201704281510092_Periodo"; }
+            get { return "201706041741009_app-v1.0"; }
         }
         
         string IMigrationMetadata.Source

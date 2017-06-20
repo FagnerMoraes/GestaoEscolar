@@ -55,6 +55,8 @@ namespace GestaoEscolar.Controllers
         {
             var funcionario = _banco.Funcionarios.Include("Escola").Include("TipoFuncionario").First(x => x.Id == id);
 
+            ViewBag.EscolaId = new SelectList(_banco.Escolas, "Id", "NomeEscola");
+            ViewBag.TipoFuncionarioId = new SelectList(_banco.TipoFuncionarios, "Id", "DescricaoFuncionario");
 
             if (funcionario == null)
             {

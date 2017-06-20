@@ -3,7 +3,7 @@ namespace GestaoEscolar.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class v10 : DbMigration
+    public partial class appv10 : DbMigration
     {
         public override void Up()
         {
@@ -139,9 +139,14 @@ namespace GestaoEscolar.Migrations
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        Ano = c.String(maxLength: 10, unicode: false),
+                        Ano = c.String(nullable: false, maxLength: 10, unicode: false),
                         MediaAno = c.String(maxLength: 3, unicode: false),
-                        QtdDiasLetivosAno = c.String(maxLength: 3, unicode: false),
+                        QtdDiasLetivosAno = c.String(nullable: false, maxLength: 3, unicode: false),
+                        ChCurrBas = c.Double(nullable: false),
+                        ChCurrArt = c.Double(nullable: false),
+                        ChCurrInf = c.Double(nullable: false),
+                        ChCurrLiter = c.Double(nullable: false),
+                        ChCurrArtProj = c.Double(nullable: false),
                     })
                 .PrimaryKey(t => t.Id);
             
@@ -282,6 +287,22 @@ namespace GestaoEscolar.Migrations
                 .PrimaryKey(t => t.Id);
             
             CreateTable(
+                "dbo.ConceitoFormacao",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        MatriculaId = c.Int(nullable: false),
+                        Periodo = c.Int(nullable: false),
+                        AtitVal = c.String(maxLength: 3, unicode: false),
+                        CompAssid = c.String(maxLength: 3, unicode: false),
+                        CriCriti = c.String(maxLength: 3, unicode: false),
+                        PartFamilia = c.String(maxLength: 3, unicode: false),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.Matricula", t => t.MatriculaId, cascadeDelete: true)
+                .Index(t => t.MatriculaId);
+            
+            CreateTable(
                 "dbo.Usuario",
                 c => new
                     {
@@ -295,6 +316,7 @@ namespace GestaoEscolar.Migrations
         
         public override void Down()
         {
+            DropForeignKey("dbo.ConceitoFormacao", "MatriculaId", "dbo.Matricula");
             DropForeignKey("dbo.Conceito", "MatriculaId", "dbo.Matricula");
             DropForeignKey("dbo.DisciplinaDoProfessorNaTurma", "FuncionarioId", "dbo.Funcionario");
             DropForeignKey("dbo.Funcionario", "TipoFuncionarioId", "dbo.TipoFuncionario");
@@ -308,6 +330,7 @@ namespace GestaoEscolar.Migrations
             DropForeignKey("dbo.Matricula", "AnoLetivoId", "dbo.AnoLetivo");
             DropForeignKey("dbo.Matricula", "AlunoId", "dbo.Aluno");
             DropForeignKey("dbo.HistoricoAluno", "AlunoId", "dbo.Aluno");
+            DropIndex("dbo.ConceitoFormacao", new[] { "MatriculaId" });
             DropIndex("dbo.Turma", new[] { "FuncionarioId" });
             DropIndex("dbo.Turma", new[] { "EscolaId" });
             DropIndex("dbo.Funcionario", new[] { "TipoFuncionarioId" });
@@ -322,6 +345,7 @@ namespace GestaoEscolar.Migrations
             DropIndex("dbo.Matricula", new[] { "AlunoId" });
             DropIndex("dbo.HistoricoAluno", new[] { "AlunoId" });
             DropTable("dbo.Usuario");
+            DropTable("dbo.ConceitoFormacao");
             DropTable("dbo.TipoFuncionario");
             DropTable("dbo.Turma");
             DropTable("dbo.Escola");

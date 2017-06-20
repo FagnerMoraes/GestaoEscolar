@@ -169,28 +169,13 @@
     <Compile Include="Controllers\TipoFuncionarioController.cs" />
     <Compile Include="Controllers\TurmaController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
+    <Compile Include="DAO\AlunoDAO.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201701312349125_v1.0.cs" />
-    <Compile Include="Migrations\201701312349125_v1.0.Designer.cs">
-      <DependentUpon>201701312349125_v1.0.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201704081519035_AnoLetivo.cs" />
-    <Compile Include="Migrations\201704081519035_AnoLetivo.Designer.cs">
-      <DependentUpon>201704081519035_AnoLetivo.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201704081942238_anoletivoplus.cs" />
-    <Compile Include="Migrations\201704081942238_anoletivoplus.Designer.cs">
-      <DependentUpon>201704081942238_anoletivoplus.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201704231824369_ConceitoFormacao.cs" />
-    <Compile Include="Migrations\201704231824369_ConceitoFormacao.Designer.cs">
-      <DependentUpon>201704231824369_ConceitoFormacao.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201704281510092_Periodo.cs" />
-    <Compile Include="Migrations\201704281510092_Periodo.Designer.cs">
-      <DependentUpon>201704281510092_Periodo.cs</DependentUpon>
+    <Compile Include="Migrations\201706041741009_app-v1.0.cs" />
+    <Compile Include="Migrations\201706041741009_app-v1.0.Designer.cs">
+      <DependentUpon>201706041741009_app-v1.0.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Aluno.cs" />
@@ -412,6 +397,14 @@
     <Content Include="Views\HistoricoAluno\ListaHistoricoAluno.cshtml" />
     <Content Include="Views\ConceitoFormacao\Adicionar.cshtml" />
     <Content Include="Views\ConceitoFormacao\Editar.cshtml" />
+    <Content Include="Views\HistoricoAluno\BuscaHistoricoAluno.cshtml" />
+    <Content Include="Views\Aluno\_PartialFormAluno.cshtml" />
+    <Content Include="Views\Shared\_MenuInicial.cshtml" />
+    <Content Include="Views\Escola\_PartialFormEscola.cshtml" />
+    <Content Include="Views\Funcionario\_PartialFormFuncionario.cshtml" />
+    <Content Include="Views\Turma\_PartialFormTurma.cshtml" />
+    <Content Include="Views\Disciplina\_PartialFormDisc.cshtml" />
+    <Content Include="Views\AnoLetivo\_PartialFormAnoLet.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -420,20 +413,8 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201701312349125_v1.0.resx">
-      <DependentUpon>201701312349125_v1.0.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201704081519035_AnoLetivo.resx">
-      <DependentUpon>201704081519035_AnoLetivo.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201704081942238_anoletivoplus.resx">
-      <DependentUpon>201704081942238_anoletivoplus.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201704231824369_ConceitoFormacao.resx">
-      <DependentUpon>201704231824369_ConceitoFormacao.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201704281510092_Periodo.resx">
-      <DependentUpon>201704281510092_Periodo.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201706041741009_app-v1.0.resx">
+      <DependentUpon>201706041741009_app-v1.0.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

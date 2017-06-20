@@ -19,7 +19,7 @@ namespace GestaoEscolar.Models
         [Required(ErrorMessage = "Nome é obrigatório")]
         [StringLength(200, MinimumLength = 8, ErrorMessage = "Nome deve ser valido")]
         [RegularExpression("^([a-zA-Z .&'-]+)$", ErrorMessage = "Nome deve conter apenas Letras")]
-        [DisplayName("Nome Completo")]
+        [DisplayName("Aluno")]
         public string Nome { get; set; } // nome completo do aluno, sem abreviações, de acordo com a certidão de nascimento
 
         [DisplayName("NIS")]
@@ -45,7 +45,7 @@ namespace GestaoEscolar.Models
         [DisplayName("Raça/Cor")]
         public string RacaCor { get; set; } //branca, preta, parda, amarela, indígena ou não declarada
 
-        [DisplayName("Situação do Aluno")]
+        [DisplayName("Situação")]
         public string Situacao { get; set; }// Ativo, Transferido, Abandono, Expulsao, Saiu Por Outro motivo
 
         
@@ -56,7 +56,7 @@ namespace GestaoEscolar.Models
         [DisplayName("Parentesco do Responsavel")]
         public string ParentescoResponsavel { get; set; } // grau de parentesco
 
-        [DisplayName("Nome do Pai")]
+        [DisplayName("Pai")]
         public string NomePai { get; set; }
 
         [DisplayName("Profissão do Pai")]
@@ -65,7 +65,7 @@ namespace GestaoEscolar.Models
         [DisplayName("Telefone do Pai")]
         public string TelPai { get; set; }
 
-        [DisplayName("Nome do Mãe")]
+        [DisplayName("Mãe")]
         public string NomeMae { get; set; }
 
         [DisplayName("Profissão do Mãe")]
@@ -183,7 +183,7 @@ namespace GestaoEscolar.Models
         public string Livro { get; set; }
 
 
-        [DisplayName("Data de Emissão da Certidão")]
+        [DisplayName("Data de Emissão")]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")]
         public DateTime? DataEmissaoCertidao { get; set; }
 

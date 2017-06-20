@@ -1,0 +1,101 @@
+﻿@model GestaoEscolar.Models.Aluno
+@{
+    ViewBag.Title = "BuscaHistoricoAluno";
+    Layout = "~/Views/Shared/_LayoutPadrao.cshtml";
+}
+
+<script>
+    $(function () {
+        $('.ajuda-data').datepicker({
+            changeMonth: true,
+            changeYear: true,
+            dateFormat: 'dd/mm/yy',
+            dayNames: ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado', 'Domingo'],
+            dayNamesMin: ['D', 'S', 'T', 'Q', 'Q', 'S', 'S', 'D'],
+            dayNamesShort: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb', 'Dom'],
+            monthNames: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
+            monthNamesShort: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez']
+        });
+    });
+
+    jQuery(function ($) {
+        $("#DataNascimento").mask("99/99/9999");
+    });
+
+</script>
+
+<div class="panel panel-heading">
+    <strong><span class="fa fa-cog"></span><span>&nbsp;</span>Detalhe Aluno</strong>
+</div>
+
+<div class="panel-body">
+
+
+    <div class="btn-group" role="group">
+        <a type="button" class="btn btn-link" href="@Url.Action("BuscaHistoricoAluno","HistoricoAluno", new { Nome = ViewBag.Nome, DataNascimento = ViewBag.DataNascimento, NomeMae = ViewBag.NomeMae, NomePai = ViewBag.NomePai })" title="Localizar [Alt + L]" accesskey="L"><i class="fa fa-search fa-2x fa-fw text-info" aria-hidden="true"></i></a>
+        <a type="button" class="btn btn-link" href="@Url.Action("Adicionar","Aluno")" title="Cadastrar Aluno [Alt + C]" accesskey="C"><i class="fa fa-plus fa-2x fa-fw text-success" aria-hidden="true"></i></a>
+    </div>
+    <div class="panel panel-default panel-scroll">
+        <div class="panel panel-heading">
+            <strong><span class="fa fa-plus"></span><span>&nbsp;</span>Dados Aluno</strong>
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-sm-6">
+                    <strong>Aluno</strong><br />
+                    <input type="text" id="Nome" value="@ViewBag.Nome" title="Nome do Aluno" class="form-control" placeholder="buscar nome do aluno" />
+                </div>
+                <div class="col-sm-3">
+                    <strong>Nascimento</strong><br />
+                    <input type="text" id="DataNascimento" value="@ViewBag.DataNascimento" title="Data de Nascimento" class="form-control ajuda-data" />
+                </div>
+                <div class="col-sm-3">
+                    <strong>Sexo</strong><br />
+                    <input type="text" id="Sexo" value="@ViewBag.Sexo" title="Sexo" class="form-control" disabled />
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-sm-6">
+                    <strong>Mãe</strong><br />
+                    <input type="text" id="NomeMae" value="@ViewBag.NomeMae" title="Nome da Mãe" class="form-control" />
+                </div>
+                <div class="col-sm-6">
+                    <strong>Pai</strong><br />
+                    <input type="text" id="NomePai" value="@ViewBag.NomePai" title="Nome da Pai" class="form-control" />
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-sm-5">
+                    <strong>Naturalidade</strong><br />
+                    <input type="text" id="Naturalidade" value="@ViewBag.Naturalidade" title="Naturalidade" class="form-control" disabled />
+                </div>
+                <div class="col-sm-2">
+                    <strong>UF</strong><br />
+                    <input type="text" id="UfNaturalidade" value="@ViewBag.UfNaturalidade" title="UF Naturalidade" class="form-control" disabled />
+                </div>
+                <div class="col-sm-5">
+                    <strong>Nacionalidade</strong><br />
+                    <input type="text" id="Nacionalidade" value="@ViewBag.Nacionalidade" title="Nacionalidade" class="form-control" disabled />
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-sm-3">
+                    <strong>RG</strong><br />
+                    <input type="text" id="Rg" value="@ViewBag.Rg" title="Registro Geral" class="form-control" disabled />
+                </div>
+                <div class="col-sm-3">
+                    <strong>Orgão Emissor</strong><br />
+                    <input type="text" id="OrgaoExpRg" value="@ViewBag.OrgaoExpRg" title="Orgão Emissor" class="form-control" disabled />
+                </div>
+                <div class="col-sm-2">
+                    <strong>UF RG</strong><br />
+                    <input type="text" id="UfRg" value="@ViewBag.UfRg" title="UF RG" class="form-control" disabled />
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

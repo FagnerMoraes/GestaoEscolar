@@ -8,99 +8,48 @@
 <script>
     jQuery(function ($) {
         $("#DataNascimentoFuncionario").mask("99/99/9999");
-        $("#DataEmissaoRgFuncionario").mask("99/99/9999"); 
+        $("#DataEmissaoRgFuncionario").mask("99/99/9999");
         $("#DataAdimissaoFuncionario").mask("99/99/9999");
     });
+
+    $(function () {
+        $('#SexoFuncionario').val("@Model.SexoFuncionario");
+        $('#UfRgFuncionario').val("@Model.UfRgFuncionario");
+        $('#UfEndFuncionario').val("@Model.UfEndFuncionario");
+        $('#EscolaId').val("@Model.EscolaId");
+        $('#TipoFuncionarioId').val("@Model.TipoFuncionarioId");
+
+        document.getElementById("EscolaId").disabled = true;
+        document.getElementById("DataAdimissaoFuncionario").disabled = true;
+        document.getElementById("TipoFuncionarioId").disabled = true;
+        document.getElementById("NumRegistroFuncionario").disabled = true;
+        document.getElementById("NomeFuncionario").disabled = true;
+        document.getElementById("DataNascimentoFuncionario").disabled = true;
+        document.getElementById("SexoFuncionario").disabled = true;
+        document.getElementById("CpfFuncionario").disabled = true;
+        document.getElementById("RgFuncionario").disabled = true;
+        document.getElementById("UfRgFuncionario").disabled = true;
+        document.getElementById("OrgaoRgFuncionario").disabled = true;
+        document.getElementById("DataEmissaoRgFuncionario").disabled = true;
+        document.getElementById("CidadeEndFuncionario").disabled = true;
+        document.getElementById("UfEndFuncionario").disabled = true;
+        document.getElementById("LogradouroEndFuncionario").disabled = true;
+        document.getElementById("NumLogradouroEndFuncionario").disabled = true;
+        document.getElementById("BairroEndFuncionario").disabled = true;
+
+    });
+
+    
+
 </script>
 
 <div class="panel panel-heading">
     <strong><span class="fa fa-cog"></span><span>&nbsp;</span>Funcionário</strong>
 </div>
 
-<div class="panel-body panel-scroll font-form">
-    <div class="panel panel-default">
-        <div class="panel panel-heading">
-            <strong><span class="fa fa-plus"></span><span>&nbsp;</span>Dados do Funcionário</strong>
-        </div>
-        <div class="panel-body">
-            <div class="row">
-                <div class="col-sm-12">
-                    <strong>@Html.DisplayNameFor(model => model.Escola.NomeEscola)</strong><br />
-                    @Html.TextBoxFor(model => model.Escola.NomeEscola, new { @class = "form-control", @disabled = "true" })<br />
-                </div>
-                <div class="col-sm-12">
-                    <strong>@Html.DisplayNameFor(model => model.TipoFuncionario.DescricaoFuncionario)</strong><br />
-                    @Html.TextBoxFor(model => model.TipoFuncionario.DescricaoFuncionario, new { @class = "form-control", @disabled = "true" })<br />
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-3">
-                    <strong>@Html.DisplayNameFor(model => model.NumRegistroFuncionario)</strong><br />
-                    @Html.TextBoxFor(model => model.NumRegistroFuncionario, new { @class = "form-control", @disabled = "true" })<br />
-                </div>
-                <div class="col-sm-9">
-                    <strong>@Html.DisplayNameFor(model => model.NomeFuncionario)</strong><br />
-                    @Html.TextBoxFor(model => model.NomeFuncionario, new { @class = "form-control", @disabled = "true" })<br />
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-3">
-                    <strong>@Html.DisplayNameFor(model => model.DataNascimentoFuncionario)</strong><br />
-                    @Html.TextBoxFor(model => model.DataNascimentoFuncionario, new { @class = "form-control", @disabled = "true" })<br />
-                </div>
-                <div class="col-sm-6">
-                    <strong>@Html.DisplayNameFor(model => model.CidadeEndFuncionario)</strong><br />
-                    @Html.TextBoxFor(model => model.CidadeEndFuncionario, new { @class = "form-control", @disabled = "true" })<br />
-                </div>
-                <div class="col-sm-3">
-                    <strong>@Html.DisplayNameFor(model => model.UfEndFuncionario)</strong><br />
-                    @Html.TextBoxFor(model => model.UfEndFuncionario, new { @class = "form-control", @disabled = "true" })<br />
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-3">
-                    <strong>@Html.DisplayNameFor(model => model.LogradouroEndFuncionario)</strong><br />
-                    @Html.TextBoxFor(model => model.LogradouroEndFuncionario, new { @class = "form-control", @disabled = "true" })<br />
-                </div>
-                <div class="col-sm-3">
-                    <strong>@Html.DisplayNameFor(model => model.NumLogradouroEndFuncionario)</strong><br />
-                    @Html.TextBoxFor(model => model.NumLogradouroEndFuncionario, new { @class = "form-control", @disabled = "true" })<br />
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-3">
-                    <strong>@Html.DisplayNameFor(model => model.DataAdimissaoFuncionario)</strong><br />
-                    @Html.TextBoxFor(model => model.DataAdimissaoFuncionario, new { @class = "form-control", @disabled = "true" })<br />
-                </div>
-                <div class="col-sm-3">
-                    <strong>@Html.DisplayNameFor(model => model.CpfFuncionario)</strong><br />
-                    @Html.TextBoxFor(model => model.CpfFuncionario, new { @class = "form-control", @disabled = "true" })<br />
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-3">
-                    <strong>@Html.DisplayNameFor(model => model.RgFuncionario)</strong><br />
-                    @Html.TextBoxFor(model => model.RgFuncionario, new { @class = "form-control", @disabled = "true" })<br />
-                </div>
-                <div class="col-sm-3">
-                    <strong>@Html.DisplayNameFor(model => model.UfRgFuncionario)</strong><br />
-                    @Html.TextBoxFor(model => model.UfRgFuncionario, new { @class = "form-control", @disabled = "true" })<br />
-                </div>
-            </div>
 
-            <div class="row">
-                <div class="col-sm-3">
-                    <strong>@Html.DisplayNameFor(model => model.OrgaoRgFuncionario)</strong><br />
-                    @Html.TextBoxFor(model => model.OrgaoRgFuncionario, new { @class = "form-control", @disabled = "true" })<br />
-                </div>
-                <div class="col-sm-3">
-                    <strong>@Html.DisplayNameFor(model => model.DataEmissaoRgFuncionario)</strong><br />
-                    @Html.TextBoxFor(model => model.DataEmissaoRgFuncionario, new { @class = "form-control", @disabled = "true" })<br />
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+@Html.Partial("_PartialFormFuncionario");
+
 
 <div class="panel panel-footer">
     <div class="row">

@@ -18,11 +18,6 @@ namespace GestaoEscolar.Controllers
             _banco.Database.Log = x => Debug.Write(x);
         }
 
-        //public ActionResult Index()
-        //{
-        //    return View();
-        //}
-
 
         public ActionResult Index(int? pagina)
         {
@@ -31,9 +26,7 @@ namespace GestaoEscolar.Controllers
 
             var aluno = _banco.Alunos.OrderBy(x => x.Nome).ToPagedList(numeroPagina,tamanhoPagina);
 
-
             
-
             return View(aluno);
         }
 

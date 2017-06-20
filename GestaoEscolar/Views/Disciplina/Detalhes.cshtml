@@ -4,46 +4,22 @@
     ViewBag.Title = "Detalhes";
     Layout = "~/Views/Shared/_LayoutPadrao.cshtml";
 }
+
+<script>
+    $(function () {
+        document.getElementById("NomeDisciplina").disabled = true;
+        document.getElementById("MaximoPontos").disabled = true;
+        document.getElementById("MediaPontos").disabled = true;
+        document.getElementById("MinimoPonto").disabled = true;
+    });
+</script>
+
 <div class="panel panel-heading">
     <strong><span class="glyphicon glyphicon-cog"></span><span>&nbsp;</span>Escola</strong>
 </div>
 
 <div class="panel-body panel-scroll">
-    <div class="panel panel-default">
-        <div class="panel panel-heading">
-            <strong><span class="glyphicon glyphicon-cloud"></span><span>&nbsp;</span>Dados Principais</strong>
-        </div>
-        <div class="panel-body">
-            <div class="row">
-                <div class="col-sm-6">
-                    <div class="form-group">
-                        <label>@Html.DisplayNameFor(model => model.NomeDisciplina)</label><br />
-                        @Html.TextBoxFor(model => model.NomeDisciplina, new { @class = "form-control", @disabled = "true" })
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-4">
-                    <div class="form-group">
-                        <label>@Html.DisplayNameFor(model => model.MaximoPontos)</label><br />
-                        @Html.TextBoxFor(model => model.MaximoPontos, new { @class = "form-control", @disabled = "true" })
-                    </div>
-                </div>
-                <div class="col-sm-4">
-                    <div class="form-group">
-                        <label>@Html.DisplayNameFor(model => model.MediaPontos)</label><br />
-                        @Html.TextBoxFor(model => model.MediaPontos, new { @class = "form-control", @disabled = "true" })
-                    </div>
-                </div>
-                <div class="col-sm-4">
-                    <div class="form-group">
-                        <label>@Html.DisplayNameFor(model => model.MinimoPonto)</label><br />
-                        @Html.TextBoxFor(model => model.MinimoPonto, new { @class = "form-control", @disabled = "true" })
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    @Html.Partial("_PartialFormDisc");
 </div>
 
 <div class="panel panel-footer">

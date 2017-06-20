@@ -1,0 +1,57 @@
+﻿@model GestaoEscolar.Models.AnoLetivo
+
+<div class="row">
+    <div class="col-sm-4">
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Ano)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.Ano, new { @class = "form-control", placeholder = "Ex: 2000" })
+            @Html.ValidationMessageFor(model => model.Ano)
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div class="editor-label">
+            @Html.LabelFor(model => model.MediaAno)
+        </div>
+        <div class="editor-field">
+            <select class="form-control" id="MediaAno" name="MediaAno">
+                <option value="A">A</option>
+                <option value="B">B</option>
+                <option value="C">C</option>
+            </select>
+            @Html.ValidationMessageFor(model => model.MediaAno)
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div class="editor-label">
+            @Html.LabelFor(model => model.QtdDiasLetivosAno)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.QtdDiasLetivosAno, new { @class = "form-control", placeholder = "Ex: 200" })
+            @Html.ValidationMessageFor(model => model.QtdDiasLetivosAno)
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-6">
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ChCurrBas)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.ChCurrBas, new { @class = "form-control", placeholder = "Ex: 800,00" })
+            @Html.ValidationMessageFor(model => model.ChCurrBas)
+        </div>
+    </div>
+    <div class="col-sm-6">
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ChCurrArt)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.ChCurrArt, new { @class = "form-control", placeholder = "Ex: 33,20" })
+            @Html.ValidationMessageFor(model => model.ChCurrArt)
+        </div>
+    </div>
+</div>
+
