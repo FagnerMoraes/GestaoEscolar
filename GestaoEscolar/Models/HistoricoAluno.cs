@@ -22,50 +22,50 @@ namespace GestaoEscolar.Models
         public string CidadeEscolaAnoAluno { get; set; }
         [DisplayName("UF")]
         public string UfEscolaAnoAluno { get; set; }
-        [DisplayName("CH curricular básica")]
+        [DisplayName("básica")]
         public string ChCurricularBasica { get; set; }
-        [DisplayName("CH curricular Artes")]
+        [DisplayName("Artes")]
         public string ChCurricularArtes { get; set; }
-        [DisplayName("CH curricular Informática")]
+        [DisplayName("Informática")]
         public string ChCurricularInformatica { get; set; }
-        [DisplayName("CH curricular Lit. Infanto Juvenil")]
+        [DisplayName("Lit. Infanto Juvenil")]
         public string ChCurricularLitInfantoJuvenil { get; set; }
-        [DisplayName("CH curricular Projeto Tempo Integral")]
+        [DisplayName("Projeto Tempo Integral")]
         public string ChCurricularProjetoTempoIntegral { get; set; }
-        [DisplayName("QTD Faltas/Horas Básica")]
+        [DisplayName("Básica")]
         public string QtdFaltaHoraAnoBasica { get; set; }
-        [DisplayName("QTD Faltas/Horas Parte Diversificada")]
+        [DisplayName("Parte Diversificada")]
         public string QtdFaltaHoraAnoParte { get; set; }
-        [DisplayName("QTD Faltas/Horas Projeto Tempo Integral")]
+        [DisplayName("Projeto Tempo Integral")]
         public string QtdFaltaHoraAnoProjeto { get; set; }
 
         [DisplayName("QTD dias letivos")]
         public int DiasLetivos { get; set; }
-        [DisplayName("Aproveitamento Português")]
+        [DisplayName("Português")]
         public string AprovPortugues { get; set; }
-        [DisplayName("Aproveitamento Matemática")]
+        [DisplayName("Matemática")]
         public string AprovMatematica { get; set; }
-        [DisplayName("Aproveitamento Geografia")]
+        [DisplayName("Geografia")]
         public string AprovGeografia { get; set; }
-        [DisplayName("Aproveitamento História")]
+        [DisplayName("História")]
         public string AprovHistoria { get; set; }
-        [DisplayName("Aproveitamento Ciencia")]
+        [DisplayName("Ciencia")]
         public string AprovCiencia { get; set; }
-        [DisplayName("Aproveitamento Ed. Fisica")]
+        [DisplayName("Ed. Fisica")]
         public string AprovEduFisica { get; set; }
-        [DisplayName("Aproveitamento Ensino Religioso")]
+        [DisplayName("Ensino Religioso")]
         public string AprovEnsReligioso { get; set; }
-        [DisplayName("Aproveitamento Artes")]
+        [DisplayName("Artes")]
         public string AprovArte { get; set; }
-        [DisplayName("Aproveitamento Informática")]
+        [DisplayName("Informática")]
         public string AprovInformatica { get; set; }
-        [DisplayName("Aproveitamento Lit. Infanto Juvenil")]
+        [DisplayName("Lit. Infanto Juvenil")]
         public string AprovLitInfantilJuvenil { get; set; }
-        [DisplayName("Aproveitamento Atividade Linguagem Matematica")]
+        [DisplayName("Atividade Linguagem Matematica")]
         public string AprovAtividadeLingMat { get; set; }
-        [DisplayName("Aproveitamento Atividade Esportiva Motora")]
+        [DisplayName("Atividade Esportiva Motora")]
         public string AprovAtividadesEspMot { get; set; }
-        [DisplayName("Aproveitamento Formação pessoal")]
+        [DisplayName("Formação pessoal")]
         public string AprovFormacaoPessoal { get; set; }
         [DisplayName("Situação do Aluno")]
         public string SituacaoAluno { get; set; }

@@ -20,7 +20,6 @@ namespace GestaoEscolar
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Matricula", action = "GerenciarMatriculas", id = UrlParameter.Optional }
                 );
-
         }
     }
 }

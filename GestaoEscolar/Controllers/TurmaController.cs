@@ -64,6 +64,7 @@ namespace GestaoEscolar.Controllers
             
             var disciplinas = _banco.DisciplinaDoProfessoresNasTurmas.Where(x => x.TurmaId == turma.Id).ToList();
             
+
             return View(disciplinas);
         }
 

@@ -6,9 +6,7 @@ namespace GestaoEscolar
 {
     public class Contexto : DbContext
     {
-        public Contexto()
-            : base("BDGestao")
-        { }
+        public Contexto() : base("BDGestao") { }
 
         public DbSet<Aluno> Alunos { get; set; }
         public DbSet<AnoLetivo> AnoLetivos { get; set; }

@@ -1,5 +1,4 @@
-﻿@model GestaoEscolar.Models.Aluno
-@{
+﻿@{
     ViewBag.Title = "BuscaHistoricoAluno";
     Layout = "~/Views/Shared/_LayoutPadrao.cshtml";
 }
@@ -22,23 +21,36 @@
         $("#DataNascimento").mask("99/99/9999");
     });
 
+    function Buscar() {
+        var model = {
+            Nome: document.getElementById('Nome'),
+            DataNascimento: document.getElementById('DataNascimento')
+        };
+    };
+
+    $.ajax({
+        type: "GET",
+        data: JSON.stringify(model),
+        url: url,
+        contentType: "application/json"
+    }).done(function (res) {
+        $("#SomeDivToShowTheResult").html(res);
+    });
+
+
 </script>
 
-<div class="panel panel-heading">
-    <strong><span class="fa fa-cog"></span><span>&nbsp;</span>Detalhe Aluno</strong>
-</div>
-
 <div class="panel-body">
-
-
     <div class="btn-group" role="group">
-        <a type="button" class="btn btn-link" href="@Url.Action("BuscaHistoricoAluno","HistoricoAluno", new { Nome = ViewBag.Nome, DataNascimento = ViewBag.DataNascimento, NomeMae = ViewBag.NomeMae, NomePai = ViewBag.NomePai })" title="Localizar [Alt + L]" accesskey="L"><i class="fa fa-search fa-2x fa-fw text-info" aria-hidden="true"></i></a>
+        <button type="submit" class="btn btn-link" onclick="Buscar" title="Localizar [Alt + L]" accesskey="L"><i class="fa fa-search fa-2x fa-fw text-info" aria-hidden="true"></i></button>
         <a type="button" class="btn btn-link" href="@Url.Action("Adicionar","Aluno")" title="Cadastrar Aluno [Alt + C]" accesskey="C"><i class="fa fa-plus fa-2x fa-fw text-success" aria-hidden="true"></i></a>
     </div>
+
+    <div class="panel panel-heading">
+        <strong><span class="fa fa-cog"></span><span>&nbsp;</span>Buscar Aluno</strong>
+    </div>
+
     <div class="panel panel-default panel-scroll">
-        <div class="panel panel-heading">
-            <strong><span class="fa fa-plus"></span><span>&nbsp;</span>Dados Aluno</strong>
-        </div>
         <div class="panel-body">
             <div class="row">
                 <div class="col-sm-6">

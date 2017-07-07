@@ -1,0 +1,440 @@
+﻿@using Microsoft.Ajax.Utilities
+@model GestaoEscolar.Models.HistoricoAluno
+
+<script>
+    $(document).on('click', '.panel-heading span.clickable', function (e) {
+        var $this = $(this);
+        if (!$this.hasClass('panel-collapsed')) {
+            $this.parents('.panel').find('.panel-body').slideUp();
+            $this.addClass('panel-collapsed');
+            $this.find('i').removeClass('fa-chevron-circle-up').addClass('fa-chevron-circle-down');
+        } else {
+            $this.parents('.panel').find('.panel-body').slideDown();
+            $this.removeClass('panel-collapsed');
+            $this.find('i').removeClass('fa-chevron-circle-down').addClass('fa-chevron-circle-up');
+        }
+    })
+</script>
+
+
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">
+            Dados Histórico
+            <span class="pull-right clickable"><i class="fa fa-chevron-circle-up"></i></span>
+        </h3>
+    </div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.AnoHistoricoAluno)
+                </div>
+                <div class="editor-field">
+                    @Html.TextBoxFor(model => model.AnoHistoricoAluno, new { @class = " form-control", @placeholder = "EX: 2010" })
+                    @Html.ValidationMessageFor(model => model.AnoHistoricoAluno)
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.TurmaAnoHistorico)
+                </div>
+                <div class="editor-field">
+                    <select class="form-control" name="TurmaAnoHistorico" id="TurmaAnoHistorico">
+                        <option value="1ANO">1º ANO</option>
+                        <option value="2ANO">2º ANO</option>
+                        <option value="3ANO">3º ANO</option>
+                        <option value="4ANO">4º ANO</option>
+                        <option value="5ANO">5º ANO</option>
+                    </select>
+                    @Html.ValidationMessageFor(model => model.TurmaAnoHistorico)
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.DataHistoricoAluno)
+                </div>
+                <div class="editor-field">
+                    @Html.TextBoxFor(model => model.DataHistoricoAluno, new { @class = "form-control ajuda-data" })
+                    @Html.ValidationMessageFor(model => model.DataHistoricoAluno)
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.EscolaAnoAluno)
+                </div>
+                <div class="editor-field">
+                    @Html.TextBoxFor(model => model.EscolaAnoAluno, new { @class = " form-control , upper", @placeholder = "Digite o nome da Escola onde cursou" })
+                    @Html.ValidationMessageFor(model => model.EscolaAnoAluno)
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-8">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.CidadeEscolaAnoAluno)
+                </div>
+                <div class="editor-field">
+                    @Html.TextBoxFor(model => model.CidadeEscolaAnoAluno, new { @class = " form-control , upper", @placeholder = "Digite o nome da Cidade onde cursou" })
+                    @Html.ValidationMessageFor(model => model.CidadeEscolaAnoAluno)
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.UfEscolaAnoAluno)
+                </div>
+                <div class="editor-field">
+                    <select class="form-control" name="UfEscolaAnoAluno" id="UfEscolaAnoAluno">
+                        <option value="AC">AC</option>
+                        <option value="AL">AL</option>
+                        <option value="AP">AP</option>
+                        <option value="AM">AM</option>
+                        <option value="BA">BA</option>
+                        <option value="CE">CE</option>
+                        <option value="DF">DF</option>
+                        <option value="ES">ES</option>
+                        <option value="GO">GO</option>
+                        <option value="MA">MA</option>
+                        <option value="MT">MT</option>
+                        <option value="MS">MS</option>
+                        <option value="MG">MG</option>
+                        <option value="PA">PA</option>
+                        <option value="PB">PB</option>
+                        <option value="PR">PR</option>
+                        <option value="PE">PE</option>
+                        <option value="PI">PI</option>
+                        <option value="RJ">RJ</option>
+                        <option value="RN">RN</option>
+                        <option value="RS">RS</option>
+                        <option value="RO">RO</option>
+                        <option value="RR">RR</option>
+                        <option value="SC">SC</option>
+                        <option value="SP">SP</option>
+                        <option value="SE">SE</option>
+                        <option value="TO">TO</option>
+                    </select>
+                    @Html.ValidationMessageFor(model => model.UfEscolaAnoAluno)
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">
+            QTD Faltas/Horas
+            <span class="pull-right clickable"><i class="fa fa-chevron-circle-up"></i></span>
+        </h3>
+    </div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.DiasLetivos)
+                </div>
+                <div class="editor-field">
+                    @Html.TextBoxFor(model => model.DiasLetivos, new { @class = " form-control", @placeholder = "Digite quantidade Dias Letivos" })
+                    @Html.ValidationMessageFor(model => model.DiasLetivos)
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.QtdFaltaHoraAnoBasica)
+                </div>
+                <div class="editor-field">
+                    @Html.TextBoxFor(model => model.QtdFaltaHoraAnoBasica, new { @class = " form-control", @placeholder = "Digite quantidade de horas" })
+                    @Html.ValidationMessageFor(model => model.QtdFaltaHoraAnoBasica)
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.QtdFaltaHoraAnoParte)
+                </div>
+                <div class="editor-field">
+                    @Html.TextBoxFor(model => model.QtdFaltaHoraAnoParte, new { @class = " form-control", @placeholder = "Digite quantidade de horas" })
+                    @Html.ValidationMessageFor(model => model.QtdFaltaHoraAnoParte)
+                </div>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.QtdFaltaHoraAnoProjeto)
+                </div>
+                <div class="editor-field">
+                    @Html.TextBoxFor(model => model.QtdFaltaHoraAnoProjeto, new { @class = " form-control", @placeholder = "Digite quantidade de horas" })
+                    @Html.ValidationMessageFor(model => model.QtdFaltaHoraAnoProjeto)
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">
+            Carga Horaria Curricular
+            <span class="pull-right clickable"><i class="fa fa-chevron-circle-up"></i></span>
+        </h3>
+    </div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.ChCurricularBasica)
+                </div>
+                <div class="editor-field">
+                    @Html.TextBoxFor(model => model.ChCurricularBasica, new { @class = " form-control", @placeholder = "Digite CH básica" })
+                    @Html.ValidationMessageFor(model => model.ChCurricularBasica)
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.ChCurricularArtes)
+                </div>
+                <div class="editor-field">
+                    @Html.TextBoxFor(model => model.ChCurricularArtes, new { @class = " form-control", @placeholder = "Digite CH Artes" })
+                    @Html.ValidationMessageFor(model => model.ChCurricularArtes)
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.ChCurricularInformatica)
+                </div>
+                <div class="editor-field">
+                    @Html.TextBoxFor(model => model.ChCurricularInformatica, new { @class = " form-control", @placeholder = "Digite CH Informatica" })
+                    @Html.ValidationMessageFor(model => model.ChCurricularInformatica)
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.ChCurricularLitInfantoJuvenil)
+                </div>
+                <div class="editor-field">
+                    @Html.TextBoxFor(model => model.ChCurricularLitInfantoJuvenil, new { @class = " form-control", @placeholder = "Digite CH Literatura Infanto Juvenil" })
+                    @Html.ValidationMessageFor(model => model.ChCurricularLitInfantoJuvenil)
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.ChCurricularProjetoTempoIntegral)
+                </div>
+                <div class="editor-field">
+                    @Html.TextBoxFor(model => model.ChCurricularProjetoTempoIntegral, new { @class = " form-control", @placeholder = "Digite CH Projeto Tempo Integral" })
+                    @Html.ValidationMessageFor(model => model.ChCurricularProjetoTempoIntegral)
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">
+            Aproveitamento
+            <span class="pull-right clickable"><i class="fa fa-chevron-circle-up"></i></span>
+        </h3>
+    </div>
+    <div class="panel-body ">
+
+        <div class="row">
+            <div class="col-sm-3">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.AprovPortugues)
+                </div>
+                <div class="editor-field">
+                    <select class="form-control" name="AprovPortugues" id="AprovPortugues">
+                        <option value="A">A</option>
+                        <option value="B">B</option>
+                        <option value="C">C</option>
+                    </select>
+                    @Html.ValidationMessageFor(model => model.AprovPortugues)
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.AprovMatematica)
+                </div>
+                <div class="editor-field">
+                    <select class="form-control" name="AprovMatematica" id="AprovMatematica">
+                        <option value="A">A</option>
+                        <option value="B">B</option>
+                        <option value="C">C</option>
+                    </select>
+                    @Html.ValidationMessageFor(model => model.AprovMatematica)
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.AprovGeografia)
+                </div>
+                <div class="editor-field">
+                    <select class="form-control" name="AprovGeografia" id="AprovGeografia">
+                        <option value="A">A</option>
+                        <option value="B">B</option>
+                        <option value="C">C</option>
+                    </select>
+                    @Html.ValidationMessageFor(model => model.AprovGeografia)
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.AprovHistoria)
+                </div>
+                <div class="editor-field">
+                    <select class="form-control" name="AprovHistoria" id="AprovHistoria">
+                        <option value="A">A</option>
+                        <option value="B">B</option>
+                        <option value="C">C</option>
+                    </select>
+                    @Html.ValidationMessageFor(model => model.AprovHistoria)
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.AprovCiencia)
+                </div>
+                <div class="editor-field">
+                    <select class="form-control" name="AprovCiencia" id="AprovCiencia">
+                        <option value="A">A</option>
+                        <option value="B">B</option>
+                        <option value="C">C</option>
+                    </select>
+                    @Html.ValidationMessageFor(model => model.AprovCiencia)
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.AprovEduFisica)
+                </div>
+                <div class="editor-field">
+                    <select class="form-control" name="AprovEduFisica" id="AprovEduFisica">
+                        <option value="A">A</option>
+                        <option value="B">B</option>
+                        <option value="C">C</option>
+                    </select>
+                    @Html.ValidationMessageFor(model => model.AprovEduFisica)
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.AprovEnsReligioso)
+                </div>
+                <div class="editor-field">
+                    <select class="form-control" name="AprovEnsReligioso" id="AprovEnsReligioso">
+                        <option value="A">A</option>
+                        <option value="B">B</option>
+                        <option value="C">C</option>
+                    </select>
+                    @Html.ValidationMessageFor(model => model.AprovEnsReligioso)
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.AprovArte)
+                </div>
+                <div class="editor-field">
+                    <select class="form-control" name="AprovArte" id="AprovArte">
+                        <option value="A">A</option>
+                        <option value="B">B</option>
+                        <option value="C">C</option>
+                    </select>
+                    @Html.ValidationMessageFor(model => model.AprovArte)
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.AprovInformatica)
+                </div>
+                <div class="editor-field">
+                    <select class="form-control" name="AprovInformatica" id="AprovInformatica">
+                        <option value="A">A</option>
+                        <option value="B">B</option>
+                        <option value="C">C</option>
+                    </select>
+                    @Html.ValidationMessageFor(model => model.AprovInformatica)
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.AprovLitInfantilJuvenil)
+                </div>
+                <div class="editor-field">
+                    <select class="form-control" name="AprovLitInfantilJuvenil" id="AprovLitInfantilJuvenil">
+                        <option value="A">A</option>
+                        <option value="B">B</option>
+                        <option value="C">C</option>
+                    </select>
+                    @Html.ValidationMessageFor(model => model.AprovLitInfantilJuvenil)
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.AprovAtividadeLingMat)
+                </div>
+                <div class="editor-field">
+                    <select class="form-control" name="AprovAtividadeLingMat" id="AprovAtividadeLingMat">
+                        <option value="A">A</option>
+                        <option value="B">B</option>
+                        <option value="C">C</option>
+                    </select>
+                    @Html.ValidationMessageFor(model => model.AprovAtividadeLingMat)
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.AprovAtividadesEspMot)
+                </div>
+                <div class="editor-field">
+                    <select class="form-control" name="AprovAtividadesEspMot" id="AprovAtividadesEspMot">
+                        <option value="A">A</option>
+                        <option value="B">B</option>
+                        <option value="C">C</option>
+                    </select>
+                    @Html.ValidationMessageFor(model => model.AprovAtividadesEspMot)
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.AprovFormacaoPessoal)
+                </div>
+                <div class="editor-field">
+                    <select class="form-control" name="AprovFormacaoPessoal" id="AprovFormacaoPessoal">
+                        <option value="A">A</option>
+                        <option value="B">B</option>
+                        <option value="C">C</option>
+                    </select>
+                    @Html.ValidationMessageFor(model => model.AprovFormacaoPessoal)
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.SituacaoAluno)
+                </div>
+                <div class="editor-field">
+                    <select class="form-control" name="SituacaoAluno" id="SituacaoAluno">
+                        <option value="Apto">Apto</option>
+                        <option value="Inapto">Inapto</option>
+                    </select>
+                    @Html.ValidationMessageFor(model => model.SituacaoAluno)
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

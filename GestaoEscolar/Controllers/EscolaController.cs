@@ -1,19 +1,24 @@
 ﻿using System;
-using System.Data.Entity;
 using System.Linq;
 using System.Web.Mvc;
 using GestaoEscolar.Models;
+using GestaoEscolar.DAO;
 
 namespace GestaoEscolar.Controllers
 {
     [Authorize]
     public class EscolaController : Controller
     {
-        readonly Contexto _banco = new Contexto();
+        private EscolaDAO dao;
+
+        public EscolaController(EscolaDAO dao)
+        {
+            this.dao = dao;
+        }
 
         public ActionResult Index(string termoBusca)
         {
-            var escola = _banco.Escolas.ToList();
+            var escola = dao.ListaEscolas();
 
             if (!String.IsNullOrEmpty(termoBusca))
             {
@@ -34,28 +39,15 @@ namespace GestaoEscolar.Controllers
         {
             if (ModelState.IsValid)
             {
-                _banco.Escolas.Add(novaEscola);
-                _banco.SaveChanges();
-
-                return RedirectToAction("Index");
-
-
-
-                //if (Request.UrlReferrer != Request.Url)
-                //{
-                //    return Redirect(Request.UrlReferrer.ToString());    
-                //}
-
-
+                dao.salva(novaEscola);
+                return RedirectToAction("Index");                
             }
-
             return View();
         }
 
-        public ActionResult Detalhes(long id)
+        public ActionResult Detalhes(long Id)
         {
-            var escola = _banco.Escolas.First(x => x.Id == id);
-
+            var escola = dao.BuscaPorId(Id);
 
             if (escola == null)
             {
@@ -64,10 +56,9 @@ namespace GestaoEscolar.Controllers
             return View(escola);
         }
 
-        public ActionResult Editar(long id)
+        public ActionResult Editar(long Id)
         {
-            Escola escola = _banco.Escolas.Find(id);
-
+            Escola escola = dao.BuscaPorId(Id);
             return View(escola);
         }
 
@@ -76,20 +67,17 @@ namespace GestaoEscolar.Controllers
         {
             if (ModelState.IsValid)
             {
-                _banco.Entry(escola).State = EntityState.Modified;
-                _banco.SaveChanges();
+                dao.SalvarMudanca(escola);
                 return RedirectToAction("Index");
             }
             return View(escola);
         }
 
-        public ActionResult Excluir(long id)
-        {
-            var escola = _banco.Escolas.First(x => x.Id == id);
-            _banco.Escolas.Remove(escola);
+        public ActionResult Excluir(long Id)
+        {            
             try
             {
-                _banco.SaveChanges();
+                dao.Excluir(Id);
                 return RedirectToAction("Index");
             }
             catch (Exception ex)

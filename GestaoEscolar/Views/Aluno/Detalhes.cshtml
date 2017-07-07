@@ -54,16 +54,19 @@
 
 <div class="panel-body">
 
+    <div class="col-sm-3">
+        <div class="row text-center">
+            <span class="fa fa-5x fa-user-o"></span>
+        </div>
+        <hr />
+        <div class="row">
+            <a class="btn btn-block btn-primary" href="@Url.Action("DeclaracaoMatricula","Relatorio", new { id = Model.Id })"><span class="fa fa-list"></span><span>&nbsp;</span>Declaração de Matricula</a>
+            <a class="btn btn-block btn-primary" href="@Url.Action("ListaHistoricoAluno","HistoricoAluno", new { id = Model.Id })"><span class="fa fa-list"></span><span>&nbsp;</span>Histórico do Aluno</a>
+        </div>
+    </div>
     <div class="col-sm-9 panel-scroll">
         @Html.Partial("_PartialFormAluno");
     </div>
-
-    <div class="col-sm-3">
-        <a class="btn btn-block btn-primary" href="@Url.Action("DeclaracaoMatricula","Relatorio", new { id = Model.Id })"><span class="fa fa-list"></span><span>&nbsp;</span>Declaração de Matricula</a>
-
-        <a class="btn btn-block btn-primary" href="@Url.Action("ListaHistoricoAluno","HistoricoAluno", new { id = Model.Id })"><span class="fa fa-list"></span><span>&nbsp;</span>Histórico do Aluno</a>
-    </div>
-
 </div>
 <div class="panel panel-footer">
     <div class="row">

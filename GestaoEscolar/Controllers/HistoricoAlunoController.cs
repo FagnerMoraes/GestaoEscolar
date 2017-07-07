@@ -15,12 +15,11 @@ namespace GestaoEscolar.Controllers
         readonly Contexto _banco = new Contexto();
 
 
-        
-        public ActionResult BuscaHistoricoAluno(int? id)
+        public ActionResult BuscaHistoricoAluno(string Nome, DateTime? DataNascimento)
         {
-            if (id != null)
+            if (Nome != null)
             {
-                var aluno = _banco.Alunos.FirstOrDefault(x => x.Id == id);
+                var aluno = _banco.Alunos.FirstOrDefault(x => x.Nome.Contains(Nome) || x.DataNascimento.Equals(DataNascimento));
 
                 ViewBag.Nome = aluno.Nome;
                 ViewBag.DataNascimento = aluno.DataNascimento.ToShortDateString();
@@ -33,8 +32,8 @@ namespace GestaoEscolar.Controllers
                 ViewBag.Rg = aluno.Rg;
                 ViewBag.OrgaoExpRg = aluno.OrgaoExpRg;
                 ViewBag.UfRg = aluno.UfRg;
-            }
 
+            }
             return View();
         }
 
@@ -91,7 +90,7 @@ namespace GestaoEscolar.Controllers
             {
                 _banco.HistoricoAlunos.Add(novoHistoricoAluno);
                 _banco.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("ListaHistoricoAluno", new { Id = novoHistoricoAluno.AlunoId });
             }
             ViewBag.AlunoId = new SelectList(_banco.Alunos, "Id", "Nome", novoHistoricoAluno.AlunoId);
 
@@ -128,7 +127,7 @@ namespace GestaoEscolar.Controllers
             {
                 _banco.Entry(historicoAluno).State = EntityState.Modified;
                 _banco.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("ListaHistoricoAluno", new { Id = historicoAluno.AlunoId });
             }
             ViewBag.AlunoId = new SelectList(_banco.Alunos, "Id", "Nome", historicoAluno.AlunoId);
 

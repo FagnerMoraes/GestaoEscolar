@@ -1,4 +1,4 @@
-﻿@model IEnumerable < GestaoEscolar.Models.HistoricoAluno>
+﻿@model IEnumerable<GestaoEscolar.Models.HistoricoAluno>
 
 @{
     ViewBag.Title = "ListaHistoricoAluno";
@@ -6,28 +6,27 @@
 }
 
 <h3>@ViewBag.NomeAluno</h3>
+<div class="table-responsive">
+    <table class="table table-hover table-bordered">
+        <tr>
+            <th colspan="3">
+                <a href="@Url.Action("Adicionar", "HistoricoAluno", new { alunoId = ViewBag.Id })" class="btn btn-block btn-lg btn-success"><span class="fa fa-plus"></span><span>&nbsp;</span>Novo Histórico</a>
+            </th>
+        </tr>
+        <tr>
+            <th>
+                Ano do historico
+            </th>
+            <th>
+                Série
+            </th>
 
-<div class="row">
-    <p>
-        <a href="@Url.Action("Adicionar", "HistoricoAluno", new { alunoId = ViewBag.Id })" class="btn btn-block btn-lg btn-success"><span class="fa fa-plus"></span><span>&nbsp;</span>Novo Histórico</a>
-    </p>
-</div>
+            <th>
+                AÇÕES
+            </th>
+        </tr>
 
-<table class="table table-hover">
-    <tr>
-        <th>
-            Ano do historico
-        </th>
-        <th>
-            Série
-        </th>
-
-        <th>
-            AÇÕES
-        </th>
-    </tr>
-
-    @foreach (var item in Model)
+        @foreach (var item in Model)
     {
         <tr>
             <td>
@@ -54,4 +53,14 @@
         </tr>
     }
 
-</table>
+    </table>
+</div>
+
+<script src="~/Scripts/jquery.confirm.js"></script>
+<script>
+    $(".confirm").confirm({
+        text: "Tem certeza que deseja excluir?",
+        confirmButton: "Sim",
+        cancelButton: "Não"
+    });
+</script>

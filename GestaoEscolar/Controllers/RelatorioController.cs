@@ -7,7 +7,7 @@ using GestaoEscolar.Models;
 using Microsoft.Ajax.Utilities;
 using Rotativa;
 using Rotativa.Options;
-
+using GestaoEscolar.DAO;
 
 namespace GestaoEscolar.Controllers
 {
@@ -15,6 +15,12 @@ namespace GestaoEscolar.Controllers
     public class RelatorioController : Controller
     {
         readonly Contexto _banco = new Contexto();
+        private RelatorioDAO dao;
+
+        public RelatorioController(RelatorioDAO dao)
+        {
+            this.dao = dao;
+        }
 
         public ActionResult Index(int? alunoId)
         {
@@ -41,41 +47,11 @@ namespace GestaoEscolar.Controllers
         public ActionResult Boletim(int id, int? periodo)
         {
 
-            var matricula = _banco.Matriculas.FirstOrDefault(arg => arg.AlunoId == id);
-
-            if (matricula != null)
-            {
-                switch (matricula.Turma.Serie)
-                {
-                    case "PRE4":
-                        ViewBag.Serie = "PRÉ DE 4";
-                        break;
-                    case "PRE5":
-                        ViewBag.Serie = "PRÉ DE 5";
-                        break;
-                    case "1ANO":
-                        ViewBag.Serie = "1º ANO";
-                        break;
-                    case "2ANO":
-                        ViewBag.Serie = "2º ANO";
-                        break;
-                    case "3ANO":
-                        ViewBag.Serie = "3º ANO";
-                        break;
-                    case "4ANO":
-                        ViewBag.Serie = "4º ANO";
-                        break;
-                    case "5ANO":
-                        ViewBag.Serie = "5º ANO";
-                        break;
-                    default:
-                        ViewBag.Serie = "Selecione";
-                        break;
-                }
-            }
+            var matricula = dao.BuscaMatriculaPorID(id);
+            
             var bimestre = new List<Bimestre>();
 
-            var query = _banco.Conceitos.Where(arg => arg.Matricula.AlunoId == id).OrderBy(arg => arg.Disciplina.Id).ToList();
+            var query = _banco.Conceitos.Where(arg => arg.Matricula.AlunoId == id).ToList();
 
             switch (periodo)
             {
@@ -121,19 +97,33 @@ namespace GestaoEscolar.Controllers
                     break;
             }
 
-            //int tfalta = bimestre.Aggregate(0, (current, f) => (current + Convert.ToInt32(f.Falta)));
+            foreach (var dis in bimestre)
+            {
+                switch (dis.Disciplina)
+                {
+                    case "PORTUGUES":
+                        ViewBag.ConPortugues = dis.Nota;
+                        break;
 
+                    case "MATEMATICA":
+                        ViewBag.ConMatematica = dis.Nota;
+                        break;
+                }
+            }
+                        
             ViewBag.Falta = bimestre.Where(f => f.Falta != "").Aggregate(0, (current, f) => (current + Convert.ToInt32(f.Falta)));
 
             if (matricula != null)
             {
                 ViewBag.Aluno = matricula.Aluno.Nome;
+                ViewBag.Serie = matricula.Turma.Serie;
                 ViewBag.AnoLetivo = matricula.AnoLetivo.Ano;
                 ViewBag.NomeResponsavel = matricula.Turma.Funcionario.NomeFuncionario;
                 ViewBag.Turma = matricula.Turma.NomeTurma;
                 ViewBag.Turno = matricula.Turma.HorarioFuncionamento;
                 ViewBag.Nivel = matricula.Turma.NivelTurma;
             }
+
 
             var bim = (from b in bimestre select b.Periodo);
 
@@ -748,7 +738,6 @@ namespace GestaoEscolar.Controllers
 
             return View();
         }
-
 
     }
 }

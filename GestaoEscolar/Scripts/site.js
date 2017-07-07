@@ -15,3 +15,5 @@ jQuery(function ($) {
     $("#FaxEscola").mask("(99)99999-9999");
 });
 //-----------------------Fim Mascara Escola-------------------
+
+

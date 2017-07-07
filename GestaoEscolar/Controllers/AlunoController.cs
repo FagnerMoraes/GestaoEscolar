@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web.Mvc;
 using GestaoEscolar.Models;
 using PagedList;
+using GestaoEscolar.DAO;
 
 namespace GestaoEscolar.Controllers
 {
@@ -13,21 +14,32 @@ namespace GestaoEscolar.Controllers
     {
         readonly Contexto _banco = new Contexto();
 
-        public AlunoController()
+        private AlunoDAO alunoDAO;
+
+        public AlunoController(AlunoDAO alunoDAO)
         {
+            this.alunoDAO = alunoDAO;
+
             _banco.Database.Log = x => Debug.Write(x);
         }
 
+
+        public ActionResult Form()
+        {
+            return View();
+        }
 
         public ActionResult Index(int? pagina)
         {
             const int tamanhoPagina = 5;
             int numeroPagina = pagina ?? 1;
 
-            var aluno = _banco.Alunos.OrderBy(x => x.Nome).ToPagedList(numeroPagina,tamanhoPagina);
+            var aluno = alunoDAO.Lista();
 
-            
-            return View(aluno);
+            var lista = aluno.ToPagedList(numeroPagina, tamanhoPagina);
+
+
+            return View(lista);
         }
 
         [HttpPost]
@@ -36,29 +48,21 @@ namespace GestaoEscolar.Controllers
             const int tamanhoPagina = 5;
             int numeroPagina = pagina ?? 1;
 
-            var aluno = _banco.Alunos.OrderBy(x => x.Nome).ToPagedList(numeroPagina, tamanhoPagina);
+            var aluno = alunoDAO.Lista();
+
+            var lista = aluno.ToPagedList(numeroPagina, tamanhoPagina);
 
             if (!String.IsNullOrEmpty(termoBusca))
             {
-                aluno = _banco.Alunos.OrderBy(x => x.Nome).
-                Where(x => x.Nome.ToUpper().Contains(termoBusca.ToUpper())).
-                ToPagedList(numeroPagina, tamanhoPagina);
+                lista = lista.Where(x => x.Nome.ToUpper().Contains(termoBusca.ToUpper())).
+                    ToPagedList(numeroPagina, tamanhoPagina);
             }
 
             if (Request.IsAjaxRequest())
-                return PartialView("_ListaAlunos", aluno);
-
-            return View(aluno);
+                return PartialView("_ListaAlunos", lista);
+            return View(lista);
         }
-
-        public JsonResult GetAlunos(string term)
-        {
-            var aluno = _banco.Alunos.Where(x => x.Nome.ToUpper().Contains(term.ToUpper()))
-                .Select(y => y.Nome).ToList();
-
-            return Json(aluno, JsonRequestBehavior.AllowGet);
-        }
-
+        
         public ActionResult Adicionar()
         {
             return View();
@@ -69,13 +73,7 @@ namespace GestaoEscolar.Controllers
         {
             if (ModelState.IsValid)
             {
-                _banco.Alunos.Add(novoAluno);
-                _banco.SaveChanges();
-
-                if (novoAluno.Situacao == "Ativo")
-                {
-                    return RedirectToAction("AdicionarComId", "Matricula", new { id = novoAluno.Id });
-                }
+                alunoDAO.Salvar(novoAluno);
                 return RedirectToAction("Index");
             }
             return View(novoAluno);
@@ -90,10 +88,9 @@ namespace GestaoEscolar.Controllers
             return Json(nomealunos.All(x => x.ToUpper() != nome.ToUpper()), JsonRequestBehavior.AllowGet);
         }
 
-        public ActionResult Detalhes(long id)
+        public ActionResult Detalhes(int id)
         {
-            var aluno = _banco.Alunos.First(x => x.Id == id);
-
+            var aluno = alunoDAO.BuscarAlunoId(id);
 
             if (aluno == null)
             {
@@ -102,9 +99,9 @@ namespace GestaoEscolar.Controllers
             return View(aluno);
         }
 
-        public ActionResult Editar(long id)
+        public ActionResult Editar(int id)
         {
-            Aluno aluno = _banco.Alunos.Find(id);
+            Aluno aluno = alunoDAO.BuscarAlunoId(id);
 
             ViewBag.DataNascimento = aluno.DataNascimento.ToShortDateString();
             if (aluno.DataExpRg != null) ViewBag.DataExpRg = aluno.DataExpRg.Value.ToShortDateString();
@@ -118,21 +115,19 @@ namespace GestaoEscolar.Controllers
         {
             if (ModelState.IsValid)
             {
-                _banco.Entry(aluno).State = EntityState.Modified;
-                _banco.SaveChanges();
-                return RedirectToAction("Index");
+                alunoDAO.Alterar(aluno);
+                return RedirectToAction("Detalhes",aluno);
             }
             return View(aluno);
         }
-        
-        public ActionResult Excluir(long id)
+
+        public ActionResult Excluir(int id)
         {
-            var aluno = _banco.Alunos.First(x => x.Id == id);
-            _banco.Alunos.Remove(aluno);
+            var aluno = alunoDAO.BuscarAlunoId(id);
 
             try
             {
-                _banco.SaveChanges();
+                alunoDAO.Excluir(aluno);
                 return RedirectToAction("Index");
             }
             catch (Exception ex)

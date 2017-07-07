@@ -1,6 +1,4 @@
-﻿@model IEnumerable<GestaoEscolar.Models.DisciplinaDoProfessorNaTurma>
-
-@{
+﻿@{
     ViewBag.Title = "Detalhes";
     Layout = "~/Views/Shared/_LayoutPadrao.cshtml";
 }
@@ -8,7 +6,6 @@
 <div class="panel panel-heading">
     <strong><span class="fa fa-cog"></span><span>&nbsp;</span>Turma</strong>
 </div>
-
 
 <div class="panel-body panel-scroll">
     <div class="panel panel-default">
@@ -67,57 +64,9 @@
         </div>
     </div>
 
-    <div class="panel panel-default">
-        <div class="panel panel-heading">
-            <strong><span class="fa fa-cloud"></span><span>&nbsp;</span>Disciplinas da Turma</strong>
-        </div>
-        <div class="panel-body panel-scroll">
+    @Html.Partial("_PartialListaDisciplina")
 
-            <table class="table table-bordered table-striped">
-                <thead>
-                    <tr>
-                        <th colspan="3">
-                            <a href="@Url.Action("GerenciarDisciplinaTurma", "DisciplinaDoProfessorNaTurma", new { turmaId = ViewBag.Id })" class="btn btn-block btn-lg btn-success"><i class="fa fa-plus"></i><i>&nbsp;</i>Adicionar Disciplina</a>
-                        </th>
-                    </tr>
-                    <tr>
-                        <th>
-                            Disciplinas
-                        </th>
-                        <th>
-                            Professor
-                        </th>
-                        <th>
-                            Ação
-                        </th>
-                    </tr>
-                </thead>
-                @foreach (var item in Model)
-                {
-                    <tbody>
-                        <tr>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Disciplina.NomeDisciplina)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Funcionario.NomeFuncionario)
-                            </td>
-                            <td>
-                                <a class="btn btn-default" title="Editar" href="@Url.Action("Editar", "DisciplinaDoProfessorNaTurma", new { id = item.Id })">
-                                    <span class="fa fa-edit"></span>
-                                </a>
-                                <a class="btn btn-primary btn-danger confirm" title="Excluir" href="@Url.Action("ExcluirDaTurma", "DisciplinaDoProfessorNaTurma", new { id = item.Id })">
-                                    <span class="fa fa-trash"></span>
-                                </a>
-                            </td>
-                        </tr>
-                    </tbody>
-                }
-
-            </table>
-
-        </div>
-    </div>
+    
 </div>
 
 <div class="panel panel-footer">

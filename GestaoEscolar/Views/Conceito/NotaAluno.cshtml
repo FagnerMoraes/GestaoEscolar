@@ -22,7 +22,7 @@
 
 
 
-<div class="panel-body panel-scroll">
+<div class="panel-body">
 
     <a class="btn btn-block btn-success" title="Boletim" href="@Url.Action("ConceitoAluno", "Conceito", new {turmaId = ViewBag.TurmaId, periodo = ViewBag.Periodo, alunoId = ViewBag.MatriculaId})">
         <div>
@@ -30,7 +30,7 @@
         </div>
     </a>
 
-    <table class="table table-bordered table-hover">
+    <table class="table table-bordered table-hover table-responsive">
         <thead>
             @using (@Html.BeginForm("NotaAluno", "Conceito", FormMethod.Get))
             {

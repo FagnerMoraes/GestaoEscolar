@@ -55,8 +55,8 @@
             <td colspan="16"><strong>Base Nacional Comum</strong></td>
         </tr>
         <tr class="text-center">
-            <td colspan="2"><strong>Português&nbsp;&nbsp;&nbsp;&nbsp;</strong><hr />A</td>
-            <td colspan="2"><strong>Matemática</strong><hr />A</td>
+            <td colspan="2"><strong>Português&nbsp;&nbsp;&nbsp;&nbsp;</strong><hr />@ViewBag.ConPortugues</td>
+            <td colspan="2"><strong>Matemática</strong><hr />@ViewBag.ConMatematica</td>
             <td colspan="2"><strong>Geografia&nbsp;</strong><hr />B</td>
             <td colspan="2"><strong>História&nbsp;&nbsp;</strong><hr />A</td>
             <td colspan="2"><strong>Ciências&nbsp;&nbsp;&nbsp;</strong><hr />A</td>
@@ -81,20 +81,10 @@
                 @ViewBag.AtitVal
             </td>
             <td colspan="2">
-                <strong>
-                    COMPROMISSO/<br />
-                    ASSIDUIDADE
-                </strong>
-                <hr />
-                @ViewBag.CompAssid
+                <strong>COMPROMISSO/<br />ASSIDUIDADE</strong><hr />@ViewBag.CompAssid
             </td>
             <td colspan="2">
-                <strong>
-                    CRIATIVIDADE/<br />
-                    CRITICIDADE
-                </strong>
-                <hr />
-                @ViewBag.CriCriti
+                <strong>CRIATIVIDADE/<br />CRITICIDADE</strong><hr />@ViewBag.CriCriti
             </td>
             <td colspan="2">
                 <strong>
@@ -106,7 +96,7 @@
             </td>
             <td colspan="2">
                 <strong>
-                    TOTAL<br/> FALTAS
+                    TOTAL<br /> FALTAS
                 </strong>
                 <hr />
                 @ViewBag.Falta

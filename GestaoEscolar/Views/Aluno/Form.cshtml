@@ -1,0 +1,31 @@
+﻿@model GestaoEscolar.Models.Aluno
+@{
+    ViewBag.Title = "Form";
+}
+
+<script>
+    function Buscar() {
+        var model = {
+            Nome: document.getElementById('Nome'),
+            DataNascimento: document.getElementById('DataNascimento')
+        };
+    };
+</script>
+
+
+<form>
+    <div class="panel panel-heading">
+        <div class="btn-group" role="group">
+            <button type="submit" onclick="Buscar" class="btn btn-link" title="Localizar [Alt + L]" accesskey="L"><i class="fa fa-search fa-2x fa-fw text-info" aria-hidden="true"></i></button>
+            <button type="button" class="btn btn-link" title="Cadastrar Aluno [Alt + C]" accesskey="C"><i class="fa fa-plus fa-2x fa-fw text-success" aria-hidden="true"></i></button>
+            <button type="button" class="btn btn-link" title="Editar Aluno [Alt + A]" accesskey="A" disabled><i class="fa fa-edit fa-2x fa-fw text-primary" aria-hidden="true"></i></button>
+            <button type="button" class="btn btn-link" title="Editar Aluno [ESC]" accesskey="ESC" disabled><i class="fa fa-close fa-2x fa-fw text-danger" aria-hidden="true"></i></button>
+            <button type="button" class="btn btn-link" title="Editar Aluno [Alt + Enter]" accesskey="Enter" disabled><i class="fa fa-save fa-2x fa-fw text-success" aria-hidden="true"></i></button>
+        </div>
+    </div>
+
+
+
+    @Html.Partial("_PartialFormAluno");
+
+</form>

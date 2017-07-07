@@ -10,8 +10,15 @@ namespace GestaoEscolar.Controllers
 
         public ActionResult Index()
         {
-            ViewBag.Escola = _banco.Escolas.Any();
-            ViewBag.TipoFuncionario = _banco.TipoFuncionarios.Any();
+            ViewBag.ListaAlunos = (from al in _banco.Alunos
+                                   join mat in _banco.Matriculas on al.Id equals mat.AlunoId
+                                   into aluno
+                                   from mat in aluno.DefaultIfEmpty()
+                                   where al.Id != mat.AlunoId || mat.TurmaId == null
+                                   select al).Count();
+
+
+            ViewBag.ListaTurmas = _banco.Turmas.Count();
 
             return View();
         }

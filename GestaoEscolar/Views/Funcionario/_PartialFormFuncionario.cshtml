@@ -1,10 +1,28 @@
 ﻿@model GestaoEscolar.Models.Funcionario
 
+<script>
+    $(document).on('click', '.panel-heading span.clickable', function (e) {
+        var $this = $(this);
+        if (!$this.hasClass('panel-collapsed')) {
+            $this.parents('.panel').find('.panel-body').slideUp();
+            $this.addClass('panel-collapsed');
+            $this.find('i').removeClass('fa-chevron-circle-up').addClass('fa-chevron-circle-down');
+        } else {
+            $this.parents('.panel').find('.panel-body').slideDown();
+            $this.removeClass('panel-collapsed');
+            $this.find('i').removeClass('fa-chevron-circle-down').addClass('fa-chevron-circle-up');
+        }
+    })
+</script>
+
 <div class="panel-body panel-scroll">
 
     <div class="panel panel-default">
         <div class="panel-heading">
-            <strong><span class="glyphicon glyphicon-plus"></span><span>&nbsp;</span>Vinculação</strong>
+            <h3 class="panel-title">
+                Vinculação
+                <span class="pull-right clickable"><i class="fa fa-chevron-circle-up"></i></span>
+            </h3>
         </div>
         <div class="panel-body">
             <div class="editor-label">
@@ -42,7 +60,10 @@
     </div>
     <div class="panel panel-default">
         <div class="panel-heading">
-            <strong><span class="glyphicon glyphicon-plus"></span><span>&nbsp;</span>Dados Pessoais</strong>
+            <h3 class="panel-title">
+                Dados Pessoais
+                <span class="pull-right clickable"><i class="fa fa-chevron-circle-up"></i></span>
+            </h3>
         </div>
         <div class="panel-body">
 
@@ -171,7 +192,10 @@
     </div>
     <div class="panel panel-default">
         <div class="panel-heading">
-            <strong><span class="glyphicon glyphicon-plus"></span><span>&nbsp;</span>Endereço</strong>
+            <h3 class="panel-title">
+                Dados de Endereço
+                <span class="pull-right clickable"><i class="fa fa-chevron-circle-up"></i></span>
+            </h3>
         </div>
         <div class="panel-body">
             <div class="row">
