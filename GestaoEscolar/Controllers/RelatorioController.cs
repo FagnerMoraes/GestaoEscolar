@@ -99,14 +99,18 @@ namespace GestaoEscolar.Controllers
             {
                 switch (dis.Disciplina)
                 {
-                    case "PORTUGUES":
-                        ViewBag.ConPortugues = dis.Nota;
-                        break;
-
-                    case "MATEMATICA":
-                        ViewBag.ConMatematica = dis.Nota;
-                        break;
+                    case "LÍNGUA PORTUGUESA": ViewBag.ConLinPortuguesa = dis.Nota; break;
+                    case "ARTE": ViewBag.ConArte = dis.Nota; break;
+                    case "EDUCACAO FISICA": ViewBag.ConEdFisica = dis.Nota; break;
+                    case "HISTORIA": ViewBag.ConHistoria = dis.Nota; break;
+                    case "GEOGRAFIA": ViewBag.ConGeografia = dis.Nota; break;
+                    case "ENSINO RELIGIOSO": ViewBag.ConEnReligioso = dis.Nota; break;
+                    case "CIÊNCIAS DA NATUREZA": ViewBag.ConCiencias = dis.Nota; break;
+                    case "MATEMATICA": ViewBag.ConMatematica = dis.Nota; break;
+                    case "INFORMATICA": ViewBag.ConInformatica = dis.Nota; break;
+                    case "LITERATURA INFANTO JUVENIL": ViewBag.ConLitInfJuvenil = dis.Nota; break;
                 }
+            
             }
                         
             ViewBag.Falta = bimestre.Where(f => f.Falta != "").Aggregate(0, (current, f) => (current + Convert.ToInt32(f.Falta)));
