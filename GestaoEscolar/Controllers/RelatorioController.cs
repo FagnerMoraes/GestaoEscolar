@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 using GestaoEscolar.Models;
-using Microsoft.Ajax.Utilities;
 using Rotativa;
 using Rotativa.Options;
 using GestaoEscolar.DAO;
