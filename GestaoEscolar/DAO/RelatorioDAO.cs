@@ -20,5 +20,15 @@ namespace GestaoEscolar.DAO
             return contexto.Matriculas.FirstOrDefault(arg => arg.AlunoId == Id);
         }
 
+        public IList<Conceito> ConceitosPorId(int Id)
+        {
+            return contexto.Conceitos.Where(arg => arg.Matricula.AlunoId == Id).ToList();
+        }
+
+        public IList<ConceitoFormacao> ConceitosFormacaoPorIdPeriodo(int Id,int periodo)
+        {
+            return contexto.ConceitoFormacaos.Where(arg => arg.Matricula.AlunoId == Id && arg.Periodo == periodo).ToList();
+        }
+
     }
 }

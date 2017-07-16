@@ -42,15 +42,51 @@ namespace GestaoEscolar.Controllers
             return View();
         }
 
-        public ActionResult Boletim(int id, int? periodo)
+        public ActionResult Boletim(int id, int periodo)
         {
 
             var matricula = dao.BuscaMatriculaPorID(id);
-            
+
             var bimestre = new List<Bimestre>();
 
-            var query = _banco.Conceitos.Where(arg => arg.Matricula.AlunoId == id).ToList();
+            var query = dao.ConceitosPorId(id);
 
+            var conceitoFormacao = dao.ConceitosFormacaoPorIdPeriodo(id,periodo);
+
+            //incluir a Formação no Boletim por Periodo
+            foreach (var con in conceitoFormacao)
+            {
+                //Verificar qual periodo quer buscar a Formação
+                switch (con.Periodo)
+                {
+                    case 1:
+                        ViewBag.AtitVal = con.AtitVal;
+                        ViewBag.CompAssid = con.CompAssid;
+                        ViewBag.CriCriti = con.CriCriti;
+                        ViewBag.PartFamilia = con.PartFamilia;
+                        break;
+                    case 2:
+                        ViewBag.AtitVal = con.AtitVal;
+                        ViewBag.CompAssid = con.CompAssid;
+                        ViewBag.CriCriti = con.CriCriti;
+                        ViewBag.PartFamilia = con.PartFamilia;
+                        break;
+                    case 3:
+                        ViewBag.AtitVal = con.AtitVal;
+                        ViewBag.CompAssid = con.CompAssid;
+                        ViewBag.CriCriti = con.CriCriti;
+                        ViewBag.PartFamilia = con.PartFamilia;
+                        break;
+                    case 4:
+                        ViewBag.AtitVal = con.AtitVal;
+                        ViewBag.CompAssid = con.CompAssid;
+                        ViewBag.CriCriti = con.CriCriti;
+                        ViewBag.PartFamilia = con.PartFamilia;
+                        break;
+                }
+            }
+
+            //Verificar qual de qual periodo quer incluir no Bimestre do boletim
             switch (periodo)
             {
                 case 1:
@@ -110,9 +146,8 @@ namespace GestaoEscolar.Controllers
                     case "INFORMATICA": ViewBag.ConInformatica = dis.Nota; break;
                     case "LITERATURA INFANTO JUVENIL": ViewBag.ConLitInfJuvenil = dis.Nota; break;
                 }
-            
             }
-                        
+
             ViewBag.Falta = bimestre.Where(f => f.Falta != "").Aggregate(0, (current, f) => (current + Convert.ToInt32(f.Falta)));
 
             if (matricula != null)

@@ -66,7 +66,7 @@ namespace GestaoEscolar.Controllers
                 {
                     MatriculaId = mat.Id
                 };
-
+                //matricular nas disciplinas da turma
                 foreach (var d in disciplinas)
                 {
                     conceito.DisciplinaId = d.Id;
