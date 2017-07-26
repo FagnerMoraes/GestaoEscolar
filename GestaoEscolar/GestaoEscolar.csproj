@@ -208,6 +208,7 @@
     <Compile Include="Models\Funcionario.cs" />
     <Compile Include="Models\HistoricoAluno.cs" />
     <Compile Include="Models\Matricula.cs" />
+    <Compile Include="Models\Relatorio.cs" />
     <Compile Include="Models\TipoFuncionario.cs" />
     <Compile Include="Models\Turma.cs" />
     <Compile Include="Models\Usuario.cs" />
@@ -427,6 +428,7 @@
     <Content Include="Views\Aluno\Form.cshtml" />
     <Content Include="Views\Turma\_PartialListaDisciplina.cshtml" />
     <Content Include="Views\HistoricoAluno\_PartialFormHistorico.cshtml" />
+    <Content Include="Views\Relatorio\_ListaRelatorio.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

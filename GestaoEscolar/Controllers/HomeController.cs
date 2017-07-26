@@ -20,6 +20,8 @@ namespace GestaoEscolar.Controllers
 
             ViewBag.ListaTurmas = _banco.Turmas.Count();
 
+            ViewBag.ListaFuncionarios = _banco.Funcionarios.Where(arg => arg.TipoFuncionario.DescricaoFuncionario.Contains("PROFESSOR")).Count();
+
             return View();
         }
     }

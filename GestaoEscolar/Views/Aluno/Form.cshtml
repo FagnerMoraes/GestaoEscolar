@@ -12,6 +12,21 @@
     };
 </script>
 
+<script>
+    $(document).on('click', '.panel-heading btn-group', function (e) {
+        var $this = $(this);
+        if (!$this.hasClass('panel-collapsed')) {
+            $this.parents('.panel').find('.panel-body').slideUp();
+            $this.addClass('panel-collapsed');x
+            $this.find('i').removeClass('fa-chevron-circle-up').addClass('fa-chevron-circle-down');
+        } else {
+            $this.parents('.panel').find('.panel-body').slideDown();
+            $this.removeClass('panel-collapsed');
+            $this.find('i').removeClass('fa-chevron-circle-down').addClass('fa-chevron-circle-up');
+        }
+    })
+</script>
+
 
 <form>
     <div class="panel panel-heading">
@@ -23,9 +38,5 @@
             <button type="button" class="btn btn-link" title="Editar Aluno [Alt + Enter]" accesskey="Enter" disabled><i class="fa fa-save fa-2x fa-fw text-success" aria-hidden="true"></i></button>
         </div>
     </div>
-
-
-
-    @Html.Partial("_PartialFormAluno");
-
+    @Html.Partial("_PartialFormAluno")
 </form>

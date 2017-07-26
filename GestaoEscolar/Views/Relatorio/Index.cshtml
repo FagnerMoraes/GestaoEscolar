@@ -3,13 +3,14 @@
     Layout = "~/Views/Shared/_LayoutLista.cshtml";
 }
 
-
+<link href="~/Content/jquery-ui.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-ui-1.11.4.js"></script>
 
 
 <div class="row">
     <div class="col-sm-4">
-        @using (@Html.BeginForm("Index", "Aluno", FormMethod.Post))
-            {
+        @using (Ajax.BeginForm("Index", "Relatorio", new AjaxOptions { HttpMethod = "Post", InsertionMode = InsertionMode.Replace, UpdateTargetId = "DivListaRelatorio" }))
+        {
             <div class="editor-label">
                 <strong>Localizar relatório</strong>
             </div>
@@ -21,25 +22,7 @@
             </div>
         }
     </div>
-    <div class="col-sm-8 ">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h4><strong>Relatórios</strong></h4>
-            </div>
-            <div class="panel-body panel-scroll">
-                <table class="table table-hover">
-                    <tr>
-                        <td>
-                            <h4><a href="@Url.Action("ModalDecMatricula","Relatorio")"><i class="fa fa-file-text fa-fw text-danger" aria-hidden="true"></i>DECLARAÇÃO DE MATRICULA</a></h4>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <h4><a href="@Url.Action("ModalHistorico","Relatorio")"><i class="fa fa-file-text fa-fw text-danger" aria-hidden="true"></i>HISTÓRICO DO ALUNO</a></h4>
-                        </td>
-                    </tr>
-                </table>
-            </div>
-        </div>
-    </div>
+    @Html.Partial("_ListaRelatorio")
 </div>
+
+<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>

@@ -30,5 +30,6 @@ namespace GestaoEscolar.DAO
             return contexto.ConceitoFormacaos.Where(arg => arg.Matricula.AlunoId == Id && arg.Periodo == periodo).ToList();
         }
 
+
     }
 }

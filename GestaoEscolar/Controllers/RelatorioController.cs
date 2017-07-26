@@ -31,16 +31,37 @@ namespace GestaoEscolar.Controllers
 
             ViewBag.AlunoId = new SelectList(alunos, "Id", "Nome");
 
-
             if (alunoId != null)
             {
                 ViewBag.CodAluno = alunoId;
             }
 
+            Dictionary<string, string> ListaRelatorios = new Dictionary<string, string>();
 
+            ListaRelatorios.Add("Historico Aluno", "Relatorio/ModalHistorico");
+            ListaRelatorios.Add("Declaracao de Matricula", "Relatorio/ModalDecMatricula");
+
+            ViewBag.ListaRelatorios = ListaRelatorios;                     
 
             return View();
         }
+        [HttpPost]
+        public ActionResult Index(string termoBusca)
+        {
+            Dictionary<string, string> ListaRelatorios = new Dictionary<string, string>();
+
+            ListaRelatorios.Add("Historico Aluno", "Relatorio/ModalHistorico");
+            ListaRelatorios.Add("Declaracao de Matricula", "Relatorio/ModalDecMatricula");
+
+            if (termoBusca != null)
+                ViewBag.ListaRelatorios = ListaRelatorios.Where(arg => arg.Key.ToUpper().Contains(termoBusca.ToUpper())).ToList();
+
+            if (Request.IsAjaxRequest())
+                return PartialView("_ListaRelatorio");
+
+            return View();
+        }
+
 
         public ActionResult Boletim(int id, int periodo)
         {

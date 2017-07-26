@@ -1,0 +1,28 @@
+﻿<div id="DivListaRelatorio">
+    <div class="col-sm-8">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4><strong>Relatórios</strong></h4>
+            </div>
+
+            <div class="panel-body panel-scroll">
+                <table class="table table-hover">
+                    @foreach (var item in ViewBag.ListaRelatorios)
+            {
+                        <tr>
+                            <td>
+                                <button class="btn-link" value="Botao" onclick="location.href ='@item.Value';">
+                                    <h4>
+                                        <i class="fa fa-file-text fa-fw text-danger" aria-hidden="true"></i>
+                                        @item.Key
+                                    </h4>
+                                </button>
+                            </td>
+                        </tr>
+                    }
+                </table>
+
+            </div>
+        </div>
+    </div>
+</div>
