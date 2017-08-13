@@ -196,6 +196,10 @@
     <Compile Include="Migrations\201706041741009_app-v1.0.Designer.cs">
       <DependentUpon>201706041741009_app-v1.0.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201707260141358_IncluirEscolaaousuario.cs" />
+    <Compile Include="Migrations\201707260141358_IncluirEscolaaousuario.Designer.cs">
+      <DependentUpon>201707260141358_IncluirEscolaaousuario.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Aluno.cs" />
     <Compile Include="Models\AnoLetivo.cs" />
@@ -439,6 +443,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201706041741009_app-v1.0.resx">
       <DependentUpon>201706041741009_app-v1.0.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201707260141358_IncluirEscolaaousuario.resx">
+      <DependentUpon>201707260141358_IncluirEscolaaousuario.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

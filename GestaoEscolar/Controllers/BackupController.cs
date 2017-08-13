@@ -34,6 +34,8 @@ namespace GestaoEscolar.Controllers
 
             return RedirectToAction("Index");
         }
+
+
         public ActionResult Restaurar()
         {
 

@@ -8,13 +8,7 @@ namespace GestaoEscolar.Controllers
     public class UsuarioController : Controller
     {
         readonly Contexto _banco = new Contexto();
-
-        //public ActionResult Index()
-        //{
-        //    var usuario = banco.Usuarios.Include("Funcionario").ToList();
-        //    return View(usuario);
-        //}
-
+        
         public ActionResult LogIn() 
         {
             return View();
@@ -38,6 +32,7 @@ namespace GestaoEscolar.Controllers
 
             return View(usuario);
         }
+
         [Authorize]
         public ActionResult Registrar() 
         {
@@ -70,21 +65,13 @@ namespace GestaoEscolar.Controllers
 
         private bool ValidarUsuario(string login, string senha)
         {
-            
-
             bool isValid = false;
-
 
             var usuario = _banco.Usuarios.FirstOrDefault(u => u.Login == login && u.Senha == senha);
 
             if (usuario != null)
             {
                 isValid = true;
-
-                /*if (usuario.Senha == usuario.Senha)
-                //{
-                //    isValid = true;
-                }*/
             }
 
             return isValid;
