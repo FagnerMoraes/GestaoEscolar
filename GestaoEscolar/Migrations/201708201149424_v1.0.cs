@@ -3,7 +3,7 @@ namespace GestaoEscolar.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class appv10 : DbMigration
+    public partial class v10 : DbMigration
     {
         public override void Up()
         {
@@ -278,6 +278,19 @@ namespace GestaoEscolar.Migrations
                 .Index(t => t.FuncionarioId);
             
             CreateTable(
+                "dbo.Usuario",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        Login = c.String(nullable: false, maxLength: 200, unicode: false),
+                        Senha = c.String(nullable: false, maxLength: 200, unicode: false),
+                        EscolaId = c.Int(),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.Escola", t => t.EscolaId)
+                .Index(t => t.EscolaId);
+            
+            CreateTable(
                 "dbo.TipoFuncionario",
                 c => new
                     {
@@ -302,16 +315,6 @@ namespace GestaoEscolar.Migrations
                 .ForeignKey("dbo.Matricula", t => t.MatriculaId, cascadeDelete: true)
                 .Index(t => t.MatriculaId);
             
-            CreateTable(
-                "dbo.Usuario",
-                c => new
-                    {
-                        Id = c.Int(nullable: false, identity: true),
-                        Login = c.String(nullable: false, maxLength: 200, unicode: false),
-                        Senha = c.String(nullable: false, maxLength: 200, unicode: false),
-                    })
-                .PrimaryKey(t => t.Id);
-            
         }
         
         public override void Down()
@@ -320,6 +323,7 @@ namespace GestaoEscolar.Migrations
             DropForeignKey("dbo.Conceito", "MatriculaId", "dbo.Matricula");
             DropForeignKey("dbo.DisciplinaDoProfessorNaTurma", "FuncionarioId", "dbo.Funcionario");
             DropForeignKey("dbo.Funcionario", "TipoFuncionarioId", "dbo.TipoFuncionario");
+            DropForeignKey("dbo.Usuario", "EscolaId", "dbo.Escola");
             DropForeignKey("dbo.Matricula", "TurmaId", "dbo.Turma");
             DropForeignKey("dbo.Turma", "FuncionarioId", "dbo.Funcionario");
             DropForeignKey("dbo.Turma", "EscolaId", "dbo.Escola");
@@ -331,6 +335,7 @@ namespace GestaoEscolar.Migrations
             DropForeignKey("dbo.Matricula", "AlunoId", "dbo.Aluno");
             DropForeignKey("dbo.HistoricoAluno", "AlunoId", "dbo.Aluno");
             DropIndex("dbo.ConceitoFormacao", new[] { "MatriculaId" });
+            DropIndex("dbo.Usuario", new[] { "EscolaId" });
             DropIndex("dbo.Turma", new[] { "FuncionarioId" });
             DropIndex("dbo.Turma", new[] { "EscolaId" });
             DropIndex("dbo.Funcionario", new[] { "TipoFuncionarioId" });
@@ -344,9 +349,9 @@ namespace GestaoEscolar.Migrations
             DropIndex("dbo.Matricula", new[] { "TurmaId" });
             DropIndex("dbo.Matricula", new[] { "AlunoId" });
             DropIndex("dbo.HistoricoAluno", new[] { "AlunoId" });
-            DropTable("dbo.Usuario");
             DropTable("dbo.ConceitoFormacao");
             DropTable("dbo.TipoFuncionario");
+            DropTable("dbo.Usuario");
             DropTable("dbo.Turma");
             DropTable("dbo.Escola");
             DropTable("dbo.Funcionario");

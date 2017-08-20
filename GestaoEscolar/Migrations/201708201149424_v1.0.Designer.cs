@@ -7,13 +7,13 @@ namespace GestaoEscolar.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.1-30610")]
-    public sealed partial class IncluirEscolaaousuario : IMigrationMetadata
+    public sealed partial class v10 : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(IncluirEscolaaousuario));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(v10));
         
         string IMigrationMetadata.Id
         {
-            get { return "201707260141358_IncluirEscolaaousuario"; }
+            get { return "201708201149424_v1.0"; }
         }
         
         string IMigrationMetadata.Source

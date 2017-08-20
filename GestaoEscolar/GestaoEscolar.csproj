@@ -21,6 +21,7 @@
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
     <UseGlobalApplicationHostFile />
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -192,13 +193,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201706041741009_app-v1.0.cs" />
-    <Compile Include="Migrations\201706041741009_app-v1.0.Designer.cs">
-      <DependentUpon>201706041741009_app-v1.0.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201707260141358_IncluirEscolaaousuario.cs" />
-    <Compile Include="Migrations\201707260141358_IncluirEscolaaousuario.Designer.cs">
-      <DependentUpon>201707260141358_IncluirEscolaaousuario.cs</DependentUpon>
+    <Compile Include="Migrations\201708201149424_v1.0.cs" />
+    <Compile Include="Migrations\201708201149424_v1.0.Designer.cs">
+      <DependentUpon>201708201149424_v1.0.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Aluno.cs" />
@@ -441,11 +438,8 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201706041741009_app-v1.0.resx">
-      <DependentUpon>201706041741009_app-v1.0.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201707260141358_IncluirEscolaaousuario.resx">
-      <DependentUpon>201707260141358_IncluirEscolaaousuario.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201708201149424_v1.0.resx">
+      <DependentUpon>201708201149424_v1.0.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
