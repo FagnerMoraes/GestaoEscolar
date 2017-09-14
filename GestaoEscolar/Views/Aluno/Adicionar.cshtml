@@ -5,31 +5,28 @@
     Layout = "~/Views/Shared/_LayoutPadrao.cshtml";
 }
 
-<strong><span class="fa fa-plus"></span><span>&nbsp;</span>Cadastro Aluno</strong>
-<hr />
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
 
-    @Html.Partial("_PartialFormAluno");
-
-
-    <div class="panel panel-footer">
+    <div class="panel panel-heading">
         <div class="row">
-            <div class="col-xs-5">
+            <div class="col-sm-2">
+                <strong><span class="fa fa-plus-circle"></span><span>&nbsp;</span>Cadastro Aluno</strong>
+            </div>
+            @Html.Partial("_MenuForm")
+            <div class="col-sm-3">
                 <h5><strong>Atenção!</strong> O campo com <i class="fa fa-asterisk text-danger"></i>é obrigatório</h5>
-            </div>
-            <div class="col-xs-3 col-xs-offset-1">
-                <a class="btn btn-block btn-lg btn-danger" href="@Url.Action("Index")"><span class="glyphicon glyphicon-remove"></span>Cancelar</a>
-            </div>
-            <div class="col-xs-3">
-                <button type="submit" class="btn btn-block btn-lg btn-success" value="Adicionar"><span class="glyphicon glyphicon-floppy-disk"></span>Salvar</button>
             </div>
         </div>
     </div>
 
+
+    @Html.Partial("_PartialFormAluno");
+
+    
 }
 
 @Styles.Render("~/Content/FormAluno.css")
@@ -40,7 +37,7 @@
     @Scripts.Render("~/Scripts/jquery.maskedinput.min.js")
 }
 
-<script>
+<script type="text/javascript">
     $(function ($) {
         $(".input-group-addon").tooltip();
     });

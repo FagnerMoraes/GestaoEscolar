@@ -109,7 +109,7 @@
                     <td class="col-sm-2" colspan="1">
                         @if (ViewBag.Formacao != null)
                         {
-                            <a class="btn btn-block btn-success" title="Boletim" href="@Url.Action("ConceitoAluno", "Conceito", new {turmaId = ViewBag.TurmaId, periodo = ViewBag.Periodo, alunoId = ViewBag.MatriculaId})">
+                            <a class="btn btn-block btn-success" title="Boletim" href="@Url.Action("ConceitoAluno", "Conceito", new {turmaId = ViewBag.TurmaId, periodo = ViewBag.Periodo, MatriculaId = ViewBag.MatriculaId})">
                                 <div>
                                     <i class="fa fa-plus fa-fw" aria-hidden="true"></i>Adicionar Formação
                                 </div>
@@ -117,7 +117,7 @@
                         }
                         else
                         {
-                            <a class="btn btn-block btn-success" title="Formacao" href="@Url.Action("Editar", "ConceitoFormacao", new {id = ViewBag.FormConId, alunoId = ViewBag.MatriculaId, periodo = ViewBag.Periodo })">
+                            <a class="btn btn-block btn-success" title="Formacao" href="@Url.Action("Editar", "ConceitoFormacao", new {id = ViewBag.FormConId, MatriculaId = ViewBag.MatriculaId, periodo = ViewBag.Periodo })">
                                 <div>
                                     <i class="fa fa-plus fa-fw" aria-hidden="true"></i>Editar Formação
                                 </div>
@@ -188,7 +188,7 @@
                     }
 
                     <td>
-                        <a class="btn btn-default" title="Editar" href="@Url.Action("ConceitoAluno", "Conceito", new {turmaId = item.Matricula.TurmaId, disciplinaId = item.DisciplinaId, periodo = ViewBag.Periodo, alunoId = item.Matricula.Id})">
+                        <a class="btn btn-default" title="Editar" href="@Url.Action("ConceitoAluno", "Conceito", new {turmaId = item.Matricula.TurmaId, disciplinaId = item.DisciplinaId, periodo = ViewBag.Periodo, alunoId = item.Matricula.AlunoId})">
                             <div>
                                 <i class="fa fa-edit fa-fw text-danger" aria-hidden="true"></i>EDITAR
                             </div>

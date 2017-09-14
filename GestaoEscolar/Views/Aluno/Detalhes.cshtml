@@ -49,8 +49,15 @@
 </script>
 
 <div class="panel panel-heading">
-    <strong><span class="fa fa-cog"></span><span>&nbsp;</span>Detalhe Aluno</strong>
+    <div class="row">
+        <div class="col-sm-2">
+            <strong><span class="fa fa-cog"></span><span>&nbsp;</span>Detalhe Aluno</strong>
+        </div>
+        @Html.Partial("_MenuForm")
+    </div>
 </div>
+
+
 
 <div class="panel-body">
 
@@ -62,19 +69,11 @@
         <div class="row">
             <a class="btn btn-block btn-primary" href="@Url.Action("DeclaracaoMatricula","Relatorio", new { id = Model.Id })"><span class="fa fa-list"></span><span>&nbsp;</span>Declaração de Matricula</a>
             <a class="btn btn-block btn-primary" href="@Url.Action("ListaHistoricoAluno","HistoricoAluno", new { id = Model.Id })"><span class="fa fa-list"></span><span>&nbsp;</span>Histórico do Aluno</a>
+            <a class="btn btn-block btn-primary" href="@Url.Action("NotaAluno", "Conceito",  new {alunoId = Model.Id, periodo = 1})"><span class="fa fa-list"></span><span>&nbsp;</span>Notas do Aluno</a>
         </div>
     </div>
     <div class="col-sm-9 panel-scroll">
         @Html.Partial("_PartialFormAluno");
     </div>
 </div>
-<div class="panel panel-footer">
-    <div class="row">
-        <div class="col-sm-3 col-sm-offset-6">
-            <a class="btn btn-block btn-lg btn-default" href="@Url.Action("Index")"><span class="fa fa-reply"></span><span>&nbsp;</span>Voltar</a>
-        </div>
-        <div class="col-sm-3">
-            <a class="btn btn-block btn-lg btn-primary" href="@Url.Action("Editar", new { id = Model.Id })"><span class="fa fa-edit"></span><span>&nbsp;</span>Editar</a>
-        </div>
-    </div>
-</div>
+

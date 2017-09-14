@@ -20,6 +20,18 @@ namespace GestaoEscolar.DAO
             contexto.SaveChanges();
         }
 
+        public void Alterar(Aluno aluno)
+        {
+            contexto.Entry(aluno).State = EntityState.Modified;
+            contexto.SaveChanges();
+        }
+
+        public void Excluir(Aluno aluno)
+        {
+            contexto.Alunos.Remove(aluno);
+            contexto.SaveChanges();
+        }
+
         public IList<Aluno> Lista()
         {
             return contexto.Alunos.OrderBy(a => a.Nome).ToList();
@@ -36,18 +48,6 @@ namespace GestaoEscolar.DAO
             return contexto.Alunos
                 .Where(a => a.Nome.ToUpper()
                 .Contains(termo.ToUpper())).ToList();
-        }
-
-        public void Alterar (Aluno aluno)
-        {
-            contexto.Entry(aluno).State = EntityState.Modified;
-            contexto.SaveChanges();
-        }
-
-        public void Excluir (Aluno aluno)
-        {
-            contexto.Alunos.Remove(aluno);
-            contexto.SaveChanges();
         }
 
     }

@@ -11,7 +11,23 @@
     });
 
     $(function () {
-        
+        $('#TurmaAnoHistorico').val("@Model.TurmaAnoHistorico");
+        $('#UfEscolaAnoAluno').val("@Model.UfEscolaAnoAluno");
+        $('#AprovPortugues').val("@Model.AprovPortugues");
+        $('#AprovMatematica').val("@Model.AprovMatematica");
+        $('#AprovGeografia').val("@Model.AprovGeografia");
+        $('#AprovHistoria').val("@Model.AprovHistoria");
+        $('#AprovCiencia').val("@Model.AprovCiencia");
+        $('#AprovEduFisica').val("@Model.AprovEduFisica");
+        $('#AprovEnsReligioso').val("@Model.AprovEnsReligioso");
+        $('#AprovArte').val("@Model.AprovArte");
+        $('#AprovInformatica').val("@Model.AprovInformatica");
+        $('#AprovLitInfantilJuvenil').val("@Model.AprovLitInfantilJuvenil");
+        $('#AprovAtividadeLingMat').val("@Model.AprovAtividadeLingMat");
+        $('#AprovAtividadesEspMot').val("@Model.AprovAtividadesEspMot");
+        $('#AprovFormacaoPessoal').val("@Model.AprovFormacaoPessoal");
+        $('#SituacaoAluno').val("@Model.SituacaoAluno");
+
         document.getElementById("AnoHistoricoAluno").disabled = true;
         document.getElementById("TurmaAnoHistorico").disabled = true;
         document.getElementById("DataHistoricoAluno").disabled = true;
@@ -50,11 +66,15 @@
     <strong><span class="fa fa-cog"></span><span>&nbsp;</span>Detalhe do histórico Aluno</strong>
 </div>
 
-<div class="editor-label">
-    @Html.LabelFor(model => model.Aluno.Nome)
-</div>
-<div class="editor-field">
-    @Html.DisplayFor(model => model.Aluno.Nome)
+<div class="row">
+    <div class="col-sm-10 col-lg-offset-1">
+        <div class="form-group row">
+            <label for="inputPassword" class="col-sm-2 col-form-label">@Html.LabelFor(model => model.Aluno.Nome)</label>
+            <div class="col-sm-10">
+                @Html.DisplayFor(model => model.Aluno.Nome)
+            </div>
+        </div>
+    </div>
 </div>
 
 <div class="panel-body panel-scroll">

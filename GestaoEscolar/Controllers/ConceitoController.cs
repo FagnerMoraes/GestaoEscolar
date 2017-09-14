@@ -290,7 +290,11 @@ namespace GestaoEscolar.Controllers
 
             ViewBag.DisciplinaId = new SelectList(disciplinas, "Id", "NomeDisciplina");
 
-            var alunos = (from al in _banco.Alunos join mat in _banco.Matriculas on al.Id equals mat.AlunoId where mat.TurmaId == turmaId select new {mat.Id, al.Nome }).ToList();
+            var alunos = (from al in _banco.Alunos
+                          join mat in _banco.Matriculas
+                          on al.Id equals mat.AlunoId
+                          where mat.TurmaId == turmaId
+                          select al).ToList();
 
             ViewBag.AlunoId = new SelectList(alunos, "Id", "Nome");
 
@@ -314,7 +318,7 @@ namespace GestaoEscolar.Controllers
 
                 if (alunoId != null)
                 {
-                    query = query.Where(arg => arg.con.MatriculaId == alunoId);
+                    query = query.Where(arg => arg.con.Matricula.AlunoId == alunoId);
 
                     foreach (var item in query)
                     {
@@ -373,7 +377,9 @@ namespace GestaoEscolar.Controllers
         {
             if (ModelState.IsValid)
             {
-                Conceito conceito = new Conceito { MatriculaId = alunoId, DisciplinaId = disciplinaId };
+                var matricula = _banco.Matriculas.FirstOrDefault(arg => arg.AlunoId == alunoId);
+
+                Conceito conceito = new Conceito { MatriculaId = matricula.Id, DisciplinaId = disciplinaId };
 
                 switch (periodo)
                 {
@@ -391,9 +397,9 @@ namespace GestaoEscolar.Controllers
                         break;
                 }
 
-                var matricula = _banco.Conceitos.FirstOrDefault(x => x.MatriculaId == alunoId && x.DisciplinaId == disciplinaId);
+                var conceitoAlunoMatriculado = _banco.Conceitos.FirstOrDefault(x => x.MatriculaId == matricula.Id && x.DisciplinaId == disciplinaId);
 
-                if (matricula == null)
+                if (conceitoAlunoMatriculado == null)
                 {
                     _banco.Conceitos.Add(conceito);
                     _banco.SaveChanges();
@@ -404,23 +410,23 @@ namespace GestaoEscolar.Controllers
                 switch (periodo)
                 {
                     case 1:
-                        matricula.Conceito1Bim = nota; matricula.Faltas1Bim = falta;
+                        conceitoAlunoMatriculado.Conceito1Bim = nota; conceitoAlunoMatriculado.Faltas1Bim = falta;
                         break;
                     case 2:
-                        matricula.Conceito2Bim = nota; matricula.Faltas2Bim = falta;
+                        conceitoAlunoMatriculado.Conceito2Bim = nota; conceitoAlunoMatriculado.Faltas2Bim = falta;
                         break;
                     case 3:
-                        matricula.Conceito3Bim = nota; matricula.Faltas3Bim = falta;
+                        conceitoAlunoMatriculado.Conceito3Bim = nota; conceitoAlunoMatriculado.Faltas3Bim = falta;
                         break;
                     case 4:
-                        matricula.Conceito4Bim = nota; matricula.Faltas4Bim = falta;
+                        conceitoAlunoMatriculado.Conceito4Bim = nota; conceitoAlunoMatriculado.Faltas4Bim = falta;
                         break;
                 }
 
-                _banco.Entry(matricula).State = EntityState.Modified;
+                _banco.Entry(conceitoAlunoMatriculado).State = EntityState.Modified;
                 _banco.SaveChanges();
 
-                return RedirectToAction("NotaAluno", new { turmaId, matricula.Matricula.AlunoId, disciplinaId, periodo });
+                return RedirectToAction("NotaAluno", new { turmaId, conceitoAlunoMatriculado.Matricula.AlunoId, disciplinaId, periodo });
             }
             return RedirectToAction("ConceitoAluno", new { turmaId, alunoId, disciplinaId });
         }   

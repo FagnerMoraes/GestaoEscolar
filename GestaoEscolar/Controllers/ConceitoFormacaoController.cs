@@ -13,10 +13,10 @@ namespace GestaoEscolar.Controllers
 
         readonly Contexto _banco = new Contexto();
 
-        public ActionResult Editar(int? id, int alunoId, int periodo)
+        public ActionResult Editar(int? id, int MatriculaId, int periodo)
         {
             var conceitoformacao = _banco.ConceitoFormacaos.FirstOrDefault
-                (x => x.MatriculaId == alunoId && x.Periodo == periodo);
+                (x => x.MatriculaId == MatriculaId && x.Periodo == periodo);
 
 
             if (conceitoformacao != null)
@@ -26,17 +26,17 @@ namespace GestaoEscolar.Controllers
             else
             {
                 ConceitoFormacao novoconceito = new ConceitoFormacao
-                { MatriculaId = alunoId, Periodo = periodo };
+                { MatriculaId = MatriculaId, Periodo = periodo };
 
                 _banco.ConceitoFormacaos.Add(novoconceito);
                 _banco.SaveChanges();
 
                 conceitoformacao = _banco.ConceitoFormacaos.FirstOrDefault
-                (x => x.MatriculaId == alunoId && x.Periodo == periodo);
+                (x => x.MatriculaId == MatriculaId && x.Periodo == periodo);
 
                 id = conceitoformacao.Id;
 
-                return RedirectToAction("Editar", new { id, alunoId, periodo });
+                return RedirectToAction("Editar", new { id, MatriculaId, periodo });
             }
         }
 
@@ -47,7 +47,14 @@ namespace GestaoEscolar.Controllers
             {
                 _banco.Entry(conceitoformacao).State = EntityState.Modified;
                 _banco.SaveChanges();
-                return RedirectToAction("ListaAluno", "Conceito");
+
+                var Aluno = (from mat in _banco.Matriculas
+                               join al in _banco.Alunos on mat.AlunoId equals al.Id
+                               where mat.Id == conceitoformacao.MatriculaId 
+                               select al).FirstOrDefault();
+
+                return RedirectToAction("NotaAluno", "Conceito", new { alunoId = Aluno.Id, periodo = conceitoformacao.Periodo });
+                //return RedirectToAction("ListaAluno", "Conceito");
             }
             return View(conceitoformacao);
         }

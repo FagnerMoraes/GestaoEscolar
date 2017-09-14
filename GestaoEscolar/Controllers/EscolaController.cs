@@ -11,9 +11,9 @@ namespace GestaoEscolar.Controllers
     {
         private EscolaDAO dao;
 
-        public EscolaController(EscolaDAO dao)
+        public EscolaController(EscolaDAO EscolaDao)
         {
-            this.dao = dao;
+            this.dao = EscolaDao;
         }
 
         public ActionResult Index(string termoBusca)
@@ -67,7 +67,7 @@ namespace GestaoEscolar.Controllers
         {
             if (ModelState.IsValid)
             {
-                dao.SalvarMudanca(escola);
+                dao.Alterar(escola);
                 return RedirectToAction("Index");
             }
             return View(escola);

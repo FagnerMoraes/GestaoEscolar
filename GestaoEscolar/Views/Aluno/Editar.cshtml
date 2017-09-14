@@ -50,36 +50,33 @@
 
 </script>
 
-<div class="panel panel-heading">
-    <strong><span class="fa fa-plus-sign"></span><span>&nbsp;</span>Editar Aluno</strong>
-</div>
+
 
 @using (Html.BeginForm(new { @class = "form-inline" }))
 {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
-    
+
     @Html.HiddenFor(model => model.Id)
+
+    <div class="panel panel-heading">
+        <div class="row">
+            <div class="col-sm-2">
+                <strong><span class="fa fa-plus-sign"></span><span>&nbsp;</span>Editar Aluno</strong>
+            </div>
+            @Html.Partial("_MenuForm")
+            <div class="col-sm-3">
+                <h5><strong>Atenção!</strong> O campo com <i class="fa fa-asterisk text-danger"></i>é obrigatório</h5>
+            </div></div>
+    </div>
+
+
 
     @Html.Partial("_PartialFormAluno");
 
 
-    <div class="panel panel-footer">
-        <div class="row">
-            <div class="col-xs-5">
-                <h5><strong>Atenção!</strong> O campo com <i class="fa fa-asterisk text-danger"></i>é obrigatório</h5>
-            </div>
-            <div class="col-xs-3 col-xs-offset-1">
-                <a class="btn btn-block btn-lg btn-danger" href="@Url.Action("Index")"><span class="glyphicon glyphicon-remove"></span>Cancelar</a>
-            </div>
-            <div class="col-xs-3">
-                <button type="submit" class="btn btn-block btn-lg btn-success" value="Adicionar"><span class="glyphicon glyphicon-floppy-disk"></span>Salvar</button>
-            </div>
-        </div>
-    </div>
 
-
-}
+            }
 
 
 @section Scripts {

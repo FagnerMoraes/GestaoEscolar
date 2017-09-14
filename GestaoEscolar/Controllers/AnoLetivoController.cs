@@ -1,23 +1,26 @@
-﻿using System.Data.Entity;
-using System.Linq;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using GestaoEscolar.Models;
 using System;
+using GestaoEscolar.DAO;
 
 namespace GestaoEscolar.Controllers
 {
     public class AnoLetivoController : Controller
     {
-        readonly Contexto _banco = new Contexto();
+        private AnoLetivoDAO dao;
+
+        public AnoLetivoController(AnoLetivoDAO anoLetivoDAO)
+        {
+            this.dao = anoLetivoDAO;
+        }
 
         public ActionResult Index()
         {
-            var anosLetivos = _banco.AnoLetivos.ToList();
+            var anosLetivos = dao.ListaAnoLetivo();
 
             return View(anosLetivos);
         }
 
-        [HttpGet]
         public ActionResult Adicionar()
         {
             return View();
@@ -27,16 +30,15 @@ namespace GestaoEscolar.Controllers
         {
             if (ModelState.IsValid)
             {
-                _banco.AnoLetivos.Add(novoAnoLetivo);
-                _banco.SaveChanges();
+                dao.Salvar(novoAnoLetivo);
                 return RedirectToAction("Index");
             }
             return View();
         }
 
-        public ActionResult Detalhes(long id)
+        public ActionResult Detalhes(int id)
         {
-            var anoletivo = _banco.AnoLetivos.First(x => x.Id == id);
+            var anoletivo = dao.BuscaAnoLetivoPorId(id);
 
             if (anoletivo == null)
             {
@@ -45,10 +47,9 @@ namespace GestaoEscolar.Controllers
             return View(anoletivo);
         }
 
-        [HttpGet]
-        public ActionResult Editar(long id)
+        public ActionResult Editar(int id)
         {
-            AnoLetivo anoLetivo = _banco.AnoLetivos.Find(id);
+            AnoLetivo anoLetivo = dao.BuscaAnoLetivoPorId(id);
 
             return View(anoLetivo);
         }
@@ -57,21 +58,19 @@ namespace GestaoEscolar.Controllers
         {
             if (ModelState.IsValid)
             {
-                _banco.Entry(anoLetivo).State = EntityState.Modified;
-                _banco.SaveChanges();
+                dao.Alterar(anoLetivo);
                 return RedirectToAction("Index");
             }
             return View(anoLetivo);
         }
 
-        public ActionResult Excluir(long id)
+        public ActionResult Excluir(int id)
         {
-            var anoLetivo = _banco.AnoLetivos.First(x => x.Id == id);
-            _banco.AnoLetivos.Remove(anoLetivo);
+            var anoLetivo = dao.BuscaAnoLetivoPorId(id);            
 
             try
             {
-                _banco.SaveChanges();
+                dao.Excluir(anoLetivo);
                 return RedirectToAction("Index");
             }
             catch (Exception ex)

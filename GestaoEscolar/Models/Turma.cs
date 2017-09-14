@@ -18,6 +18,8 @@ namespace GestaoEscolar.Models
         public string NivelTurma { get; set; }
         public string HorarioFuncionamento { get; set; } //matutino , verpertino
         public string ModalidadeEnsino { get; set; } // regular
+
+        [Required(ErrorMessage ="Quantidade Obrigatória")]
         public string QtdAlunos { get; set; }
         
         [ForeignKey("EscolaId")]

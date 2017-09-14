@@ -2,31 +2,37 @@
 using System.Web.Mvc;
 using GestaoEscolar.Models;
 using System.Web.Security;
+using System;
 
 namespace GestaoEscolar.Controllers
 {
     public class UsuarioController : Controller
     {
         readonly Contexto _banco = new Contexto();
-        
-        public ActionResult LogIn() 
+
+        public ActionResult LogIn()
         {
             return View();
         }
 
         [HttpPost]
-        public ActionResult LogIn(Usuario usuario) 
+        public ActionResult LogIn(Usuario usuario)
         {
-           
+
             if (ModelState.IsValid)
             {
-                if (ValidarUsuario(usuario.Login, usuario.Senha))
+                try
                 {
-
-                    FormsAuthentication.SetAuthCookie(usuario.Login, false);
-                    return RedirectToAction("Index", "Home");
+                    if (ValidarUsuario(usuario.Login, usuario.Senha))
+                    {
+                        FormsAuthentication.SetAuthCookie(usuario.Login, false);
+                        return RedirectToAction("Index", "Home");
+                    }
                 }
-                
+                catch (Exception error)
+                {
+                    ViewBag.Mensagem = error;
+                }
                 ModelState.AddModelError("", "Dados do Login estão incorretos");
             }
 
@@ -34,7 +40,7 @@ namespace GestaoEscolar.Controllers
         }
 
         [Authorize]
-        public ActionResult Registrar() 
+        public ActionResult Registrar()
         {
             ViewBag.Funcionarios = new SelectList(_banco.Funcionarios, "Id", "NomeFuncionario");
 
@@ -44,7 +50,7 @@ namespace GestaoEscolar.Controllers
         [HttpPost]
         public ActionResult Registrar(Usuario novousuario)
         {
-            if (ModelState.IsValid) 
+            if (ModelState.IsValid)
             {
                 _banco.Usuarios.Add(novousuario);
                 _banco.SaveChanges();
@@ -52,11 +58,11 @@ namespace GestaoEscolar.Controllers
                 return RedirectToAction("Index", "Home");
 
             }
-            
+
             return View(novousuario);
         }
 
-        public ActionResult LogOut() 
+        public ActionResult LogOut()
         {
             FormsAuthentication.SignOut();
             return RedirectToAction("Index", "Home");

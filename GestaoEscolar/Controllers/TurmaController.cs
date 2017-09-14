@@ -4,12 +4,20 @@ using System.Web.Mvc;
 using GestaoEscolar.Models;
 using PagedList;
 using System;
+using GestaoEscolar.DAO;
 
 namespace GestaoEscolar.Controllers
 {
     [Authorize]
     public class TurmaController : Controller
     {
+        private TurmaDAO dao;
+
+        public TurmaController(TurmaDAO dao)
+        {
+            this.dao = dao;
+        }
+
         readonly Contexto _banco = new Contexto();
 
         public ActionResult Index(int? pagina)
@@ -26,7 +34,7 @@ namespace GestaoEscolar.Controllers
         {
             ViewBag.EscolaId = new SelectList(_banco.Escolas, "Id", "NomeEscola");
             ViewBag.FuncionarioId = new SelectList(_banco.Funcionarios.Where(x => x.TipoFuncionario.DescricaoFuncionario.Contains("Professor")), "Id", "NomeFuncionario");
-            
+
             return View();
         }
 
@@ -35,18 +43,22 @@ namespace GestaoEscolar.Controllers
         {
             if (ModelState.IsValid)
             {
-                _banco.Turmas.Add(novoTurma);
-                _banco.SaveChanges();
-                return RedirectToAction("GerenciarDisciplinaTurma", "DisciplinaDoProfessorNaTurma", new { turmaId =  novoTurma.Id});
+                dao.Salvar(novoTurma);
+
+                return RedirectToAction("Detalhes", "Turma", new { Id = novoTurma.Id });
             }
             ViewBag.EscolaId = new SelectList(_banco.Escolas, "Id", "NomeEscola", novoTurma.EscolaId);
             ViewBag.FuncionarioId = new SelectList(_banco.Funcionarios.Where(x => x.TipoFuncionario.DescricaoFuncionario.Contains("Professor")), "Id", "NomeFuncionario", novoTurma.FuncionarioId);
             return View(novoTurma);
-        }//fim adicionar
+        }
 
-        public ActionResult Detalhes(long id)
+        public ActionResult Detalhes(int id)
         {
-            var turma = _banco.Turmas.First(x => x.Id == id);
+            ViewBag.TesteTurma = true;
+
+            var turma =  dao.buscarTurmaId(id);
+
+            ViewBag.AlunosTurma = _banco.Alunos.ToList();
 
             if (turma == null)
             {
@@ -61,16 +73,19 @@ namespace GestaoEscolar.Controllers
             ViewBag.HorarioFuncionamento = turma.HorarioFuncionamento;
             ViewBag.ModalidadeEnsino = turma.ModalidadeEnsino;
             ViewBag.QtdAlunos = turma.QtdAlunos;
-            
+
             var disciplinas = _banco.DisciplinaDoProfessoresNasTurmas.Where(x => x.TurmaId == turma.Id).ToList();
-            
+
 
             return View(disciplinas);
         }
 
-        public ActionResult Editar(long id)
+        public ActionResult Editar(int id)
         {
-            Turma turma = _banco.Turmas.Find(id);
+            Turma turma = dao.buscarTurmaId(id);
+
+            ViewBag.Editar = true;
+
 
             ViewBag.EscolaId = new SelectList(_banco.Escolas, "Id", "NomeEscola", turma.EscolaId);
             ViewBag.FuncionarioId = new SelectList(_banco.Funcionarios.Where(x => x.TipoFuncionario.DescricaoFuncionario.Contains("Professor")), "Id", "NomeFuncionario", turma.FuncionarioId);
@@ -83,23 +98,23 @@ namespace GestaoEscolar.Controllers
         {
             if (ModelState.IsValid)
             {
-                _banco.Entry(turma).State = EntityState.Modified;
-                _banco.SaveChanges();
-                return RedirectToAction("Index");
+                dao.Alterar(turma);
+                return RedirectToAction("Detalhes", "Turma", new { Id = turma.Id });
             }
             ViewBag.EscolaId = new SelectList(_banco.Escolas, "Id", "NomeEscola", turma.EscolaId);
             ViewBag.FuncionarioId = new SelectList(_banco.Funcionarios.Where(x => x.TipoFuncionario.DescricaoFuncionario.Contains("Professor")), "Id", "NomeFuncionario", turma.FuncionarioId);
+
             return View(turma);
         }
 
-        public ActionResult Excluir(long id)
+        public ActionResult Excluir(int id)
         {
-            var turma = _banco.Turmas.First(x => x.Id == id);
-            _banco.Turmas.Remove(turma);
+            var turma = dao.buscarTurmaId(id);
+            
 
             try
             {
-                _banco.SaveChanges();
+                dao.Exlcuir(turma);
                 return RedirectToAction("Index");
             }
             catch (Exception ex)

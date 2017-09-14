@@ -1,9 +1,7 @@
 ﻿using GestaoEscolar.Models;
-using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System.Web;
 
 namespace GestaoEscolar.DAO
 {
@@ -22,7 +20,7 @@ namespace GestaoEscolar.DAO
             contexto.SaveChanges();
         }
 
-        public void SalvarMudanca(Escola escola)
+        public void Alterar(Escola escola)
         {
             contexto.Entry(escola).State = EntityState.Modified;
             contexto.SaveChanges();

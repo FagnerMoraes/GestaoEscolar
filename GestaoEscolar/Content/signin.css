@@ -7,7 +7,7 @@ body {
 }
 
 .form-signin {
-    opacity: 0.8;
+    opacity: 0.9;
     max-width: 330px;
     padding: 15px;
     margin: 0 auto;
@@ -29,7 +29,7 @@ body > .container {
     /* Set the fixed height of the footer here */
     height: 60px;
     background-color: #f5f5f5;
-    opacity: 0.3;
+    opacity: 0.5;
 }
 
 

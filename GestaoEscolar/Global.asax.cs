@@ -6,6 +6,7 @@ using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using GestaoEscolar.DAO;
 
 namespace GestaoEscolar
 {
@@ -14,7 +15,8 @@ namespace GestaoEscolar
 
     public class MvcApplication : System.Web.HttpApplication
     {
-        protected void Application_Start()
+
+               protected void Application_Start()
         {
             AreaRegistration.RegisterAllAreas();
 
@@ -22,6 +24,15 @@ namespace GestaoEscolar
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+
+            Contexto contexto = new Contexto();
+
+            DisciplinaDAO disciplina = new DisciplinaDAO(contexto);
+
+            disciplina.VerificarDisciplinasCadastradas();
+
+            
+
         }
     }
 }

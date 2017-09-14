@@ -12,29 +12,19 @@ namespace GestaoEscolar.Controllers
     [Authorize]
     public class AlunoController : Controller
     {
-        readonly Contexto _banco = new Contexto();
-
-        private AlunoDAO alunoDAO;
+        private AlunoDAO dao;
 
         public AlunoController(AlunoDAO alunoDAO)
         {
-            this.alunoDAO = alunoDAO;
-
-            _banco.Database.Log = x => Debug.Write(x);
-        }
-
-
-        public ActionResult Form()
-        {
-            return View();
+            this.dao = alunoDAO;
         }
 
         public ActionResult Index(int? pagina)
         {
-            const int tamanhoPagina = 5;
+            const int tamanhoPagina = 4;
             int numeroPagina = pagina ?? 1;
 
-            var aluno = alunoDAO.Lista();
+            var aluno = dao.Lista();
 
             var lista = aluno.ToPagedList(numeroPagina, tamanhoPagina);
 
@@ -48,7 +38,7 @@ namespace GestaoEscolar.Controllers
             const int tamanhoPagina = 5;
             int numeroPagina = pagina ?? 1;
 
-            var aluno = alunoDAO.Lista();
+            var aluno = dao.Lista();
 
             var lista = aluno.ToPagedList(numeroPagina, tamanhoPagina);
 
@@ -73,24 +63,17 @@ namespace GestaoEscolar.Controllers
         {
             if (ModelState.IsValid)
             {
-                alunoDAO.Salvar(novoAluno);
+                dao.Salvar(novoAluno);
                 return RedirectToAction("Index");
             }
             return View(novoAluno);
-        }//fim adicionar
-
-        public ActionResult RegistroUnico(string nome)
-        {
-            var nomealunos = ((from al in _banco.Alunos
-                               where al.Nome == nome
-                               select al.Nome).ToArray());
-
-            return Json(nomealunos.All(x => x.ToUpper() != nome.ToUpper()), JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult Detalhes(int id)
         {
-            var aluno = alunoDAO.BuscarAlunoId(id);
+            ViewBag.Detalhe = true;
+
+            var aluno = dao.BuscarAlunoId(id);
 
             if (aluno == null)
             {
@@ -101,7 +84,9 @@ namespace GestaoEscolar.Controllers
 
         public ActionResult Editar(int id)
         {
-            Aluno aluno = alunoDAO.BuscarAlunoId(id);
+            ViewBag.Editar = true;
+
+            Aluno aluno = dao.BuscarAlunoId(id);
 
             ViewBag.DataNascimento = aluno.DataNascimento.ToShortDateString();
             if (aluno.DataExpRg != null) ViewBag.DataExpRg = aluno.DataExpRg.Value.ToShortDateString();
@@ -113,21 +98,23 @@ namespace GestaoEscolar.Controllers
         [HttpPost]
         public ActionResult Editar(Aluno aluno)
         {
+
             if (ModelState.IsValid)
             {
-                alunoDAO.Alterar(aluno);
+                dao.Alterar(aluno);
                 return RedirectToAction("Detalhes",aluno);
             }
+
             return View(aluno);
         }
 
         public ActionResult Excluir(int id)
         {
-            var aluno = alunoDAO.BuscarAlunoId(id);
+            var aluno = dao.BuscarAlunoId(id);
 
             try
             {
-                alunoDAO.Excluir(aluno);
+                dao.Excluir(aluno);
                 return RedirectToAction("Index");
             }
             catch (Exception ex)

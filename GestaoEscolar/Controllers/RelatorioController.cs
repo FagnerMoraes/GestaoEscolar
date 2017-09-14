@@ -12,22 +12,16 @@ namespace GestaoEscolar.Controllers
     [Authorize]
     public class RelatorioController : Controller
     {
-        readonly Contexto _banco = new Contexto();
         private RelatorioDAO dao;
 
-        public RelatorioController(RelatorioDAO dao)
+        public RelatorioController(RelatorioDAO RelatorioDAO)
         {
-            this.dao = dao;
+            this.dao = RelatorioDAO;
         }
 
         public ActionResult Index(int? alunoId)
         {
-            var alunos = (from al in _banco.Alunos
-                          join mat in _banco.Matriculas on al.Id equals mat.AlunoId
-                          join tur in _banco.Turmas on mat.TurmaId equals tur.Id
-                          where al.Id == mat.AlunoId && tur != null
-                          select al).ToList();
-
+            var alunos = dao.ListaAlunoMatriculado();
 
             ViewBag.AlunoId = new SelectList(alunos, "Id", "Nome");
 
@@ -45,6 +39,7 @@ namespace GestaoEscolar.Controllers
 
             return View();
         }
+
         [HttpPost]
         public ActionResult Index(string termoBusca)
         {
@@ -61,7 +56,6 @@ namespace GestaoEscolar.Controllers
 
             return View();
         }
-
 
         public ActionResult Boletim(int id, int periodo)
         {
@@ -156,13 +150,13 @@ namespace GestaoEscolar.Controllers
             {
                 switch (dis.Disciplina)
                 {
-                    case "LÍNGUA PORTUGUESA": ViewBag.ConLinPortuguesa = dis.Nota; break;
+                    case "LINGUA PORTUGUESA": ViewBag.ConLinPortuguesa = dis.Nota; break;
                     case "ARTE": ViewBag.ConArte = dis.Nota; break;
                     case "EDUCACAO FISICA": ViewBag.ConEdFisica = dis.Nota; break;
                     case "HISTORIA": ViewBag.ConHistoria = dis.Nota; break;
                     case "GEOGRAFIA": ViewBag.ConGeografia = dis.Nota; break;
                     case "ENSINO RELIGIOSO": ViewBag.ConEnReligioso = dis.Nota; break;
-                    case "CIÊNCIAS DA NATUREZA": ViewBag.ConCiencias = dis.Nota; break;
+                    case "CIENCIAS DA NATUREZA": ViewBag.ConCiencias = dis.Nota; break;
                     case "MATEMATICA": ViewBag.ConMatematica = dis.Nota; break;
                     case "INFORMATICA": ViewBag.ConInformatica = dis.Nota; break;
                     case "LITERATURA INFANTO JUVENIL": ViewBag.ConLitInfJuvenil = dis.Nota; break;
@@ -193,7 +187,7 @@ namespace GestaoEscolar.Controllers
 
         public ActionResult Historico(int id)
         {
-            var aluno = _banco.Alunos.FirstOrDefault(x => x.Id == id);
+            var aluno = dao.BuscaAlunoPorId(id);
 
             if (aluno == null)
             {
@@ -222,7 +216,7 @@ namespace GestaoEscolar.Controllers
 
             }
 
-            var primeiroAnoHistorico = _banco.HistoricoAlunos.Include("Aluno").FirstOrDefault(x => x.TurmaAnoHistorico.Equals("1Ano") && x.AlunoId == id);
+            var primeiroAnoHistorico = dao.HstoricoPorPeriodo("1Ano", id);                
 
             if (primeiroAnoHistorico == null)
             {
@@ -309,7 +303,7 @@ namespace GestaoEscolar.Controllers
 
             }
 
-            var segundoAnoHistorico = _banco.HistoricoAlunos.Include("Aluno").FirstOrDefault(x => x.TurmaAnoHistorico.Equals("2Ano") && x.AlunoId == id);
+            var segundoAnoHistorico = dao.HstoricoPorPeriodo("2Ano", id);
 
             if (segundoAnoHistorico == null)
             {
@@ -396,7 +390,7 @@ namespace GestaoEscolar.Controllers
 
             }
 
-            var terceiroAnoHistorico = _banco.HistoricoAlunos.Include("Aluno").FirstOrDefault(x => x.TurmaAnoHistorico.Equals("3Ano") && x.AlunoId == id);
+            var terceiroAnoHistorico = dao.HstoricoPorPeriodo("3Ano", id);
 
             if (terceiroAnoHistorico == null)
             {
@@ -483,7 +477,7 @@ namespace GestaoEscolar.Controllers
 
             }
 
-            var quartoAnoHistorico = _banco.HistoricoAlunos.Include("Aluno").FirstOrDefault(x => x.TurmaAnoHistorico.Equals("4Ano") && x.AlunoId == id);
+            var quartoAnoHistorico = dao.HstoricoPorPeriodo("4Ano", id);
 
             if (quartoAnoHistorico == null)
             {
@@ -570,7 +564,7 @@ namespace GestaoEscolar.Controllers
 
             }
 
-            var quintoAnoHistorico = _banco.HistoricoAlunos.Include("Aluno").FirstOrDefault(x => x.TurmaAnoHistorico.Equals("5Ano") && x.AlunoId == id);
+            var quintoAnoHistorico = dao.HstoricoPorPeriodo("5Ano", id);
 
             if (quintoAnoHistorico == null)
             {
@@ -668,19 +662,13 @@ namespace GestaoEscolar.Controllers
 
             return pdf;
 
-            //return View();
-
         }
 
         public ActionResult DeclaracaoMatricula(int id)
         {
-            var aluno = _banco.Alunos.FirstOrDefault(x => x.Id == id);
+            var aluno = dao.BuscaAlunoPorId(id);
 
-            var turma = (from mat in _banco.Matriculas
-                         join tur in _banco.Turmas on mat.TurmaId equals tur.Id
-                         where mat.TurmaId == tur.Id && mat.AlunoId == id
-                         select tur).FirstOrDefault();
-
+            var turma = dao.BuscaTurmaDoAluno(id);
 
             if (aluno != null && turma != null)
             {
@@ -715,8 +703,7 @@ namespace GestaoEscolar.Controllers
         public ActionResult FichaIndividual(int id)
         {
 
-            var matricula = _banco.Matriculas.FirstOrDefault(x => x.AlunoId == id);
-            //(from mat in _banco.Matriculas where mat.Id == id select mat).ToList();
+            var matricula = dao.BuscaMatriculaPorID(id);
 
 
             if (matricula != null)
@@ -748,12 +735,7 @@ namespace GestaoEscolar.Controllers
 
             }
 
-            var notas = (from con in _banco.Conceitos
-                         where con.MatriculaId == matricula.Id
-                         select con).ToList();
-
-
-
+            var notas = dao.BuscaNotasAlunoPorMatricula(matricula);
 
             ViewBag.ChTotal = 833.20;
 
@@ -776,10 +758,17 @@ namespace GestaoEscolar.Controllers
 
         public ActionResult ModalHistorico(int? turmaId, int? alunoId)
         {
-            ViewBag.turmaId = new SelectList(_banco.Turmas, "Id", "NomeTurma");
+            var turmas = dao.ListaTurmas();
 
+            var alunosmatriculados = dao.ListaAlunoMatriculado();
 
-            var alunos = (from al in _banco.Alunos join mat in _banco.Matriculas on al.Id equals mat.AlunoId where mat.TurmaId == turmaId select new { Id = mat.Aluno.Id, Nome = al.Nome }).ToList();
+            var matriculas = dao.BuscaMatricuaPorTurma(turmaId);
+
+            ViewBag.turmaId = new SelectList(turmas, "Id", "NomeTurma");
+
+            var alunos = (from al in alunosmatriculados
+                          join mat in matriculas on al.Id equals mat.AlunoId
+                          select new { Id = mat.Aluno.Id, Nome = al.Nome }).ToList();
 
             ViewBag.AlunoId = new SelectList(alunos, "Id", "Nome");
 
@@ -788,9 +777,17 @@ namespace GestaoEscolar.Controllers
 
         public ActionResult ModalDecMatricula(int? turmaId, int? alunoId)
         {
-            ViewBag.turmaId = new SelectList(_banco.Turmas, "Id", "NomeTurma");
+            var turmas = dao.ListaTurmas();
 
-            var alunos = (from al in _banco.Alunos join mat in _banco.Matriculas on al.Id equals mat.AlunoId where mat.TurmaId == turmaId select new { Id = mat.Aluno.Id, Nome = al.Nome }).ToList();
+            var alunosmatriculados = dao.ListaAlunoMatriculado();
+
+            var matriculas = dao.BuscaMatricuaPorTurma(turmaId);
+
+            ViewBag.turmaId = new SelectList(turmas, "Id", "NomeTurma");
+
+            var alunos = (from al in alunosmatriculados
+                          join mat in matriculas on al.Id equals mat.AlunoId
+                          select new { Id = mat.Aluno.Id, Nome = al.Nome }).ToList();
 
             ViewBag.AlunoId = new SelectList(alunos, "Id", "Nome");
 

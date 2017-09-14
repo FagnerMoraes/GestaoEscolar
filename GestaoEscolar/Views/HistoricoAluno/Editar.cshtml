@@ -63,11 +63,15 @@
     @Html.HiddenFor(model => model.AlunoId)
 
 
-    <div class="editor-label">
-        @Html.LabelFor(model => model.Aluno.Nome)
-    </div>
-    <div class="editor-field">
-        @Html.DisplayFor(model => model.Aluno.Nome)
+    <div class="row">
+        <div class="col-sm-10 col-lg-offset-1">
+            <div class="form-group row">
+                <label for="inputPassword" class="col-sm-2 col-form-label">@Html.LabelFor(model => model.Aluno.Nome)</label>
+                <div class="col-sm-10">
+                    @Html.DisplayFor(model => model.Aluno.Nome)
+                </div>
+            </div>
+        </div>
     </div>
 
         <div class="panel-body panel-scroll">

@@ -3,6 +3,12 @@
     ViewBag.Title = "LogIn";
     Layout = "~/Views/Shared/_LayoutLogin.cshtml";
 }
+
+<script>
+    
+</script>
+
+
     @using (Html.BeginForm())
     {
     <div class="form-signin">
@@ -17,7 +23,7 @@
                 </div>
                 <div class="input-group">
                     <span class="input-group-addon"><i class="fa fa-user fa-fw"></i></span>
-                    @Html.TextBoxFor(model => model.Login, new { @class = "form-control", placeholder = "Usuario" })
+                    @Html.TextBoxFor(model => model.Login, new { @class = "form-control", placeholder = "Usuario", required = "required" })
                     @Html.ValidationMessageFor(model => model.Login)
                 </div>
 
@@ -26,9 +32,10 @@
                 <div class="input-group">
                     <span class="input-group-addon"><i class="fa fa-key fa-fw"></i></span>
 
-                    @Html.PasswordFor(model => model.Senha, new { @class = "form-control", placeholder = "Senha" })
+                    @Html.PasswordFor(model => model.Senha, new { @class = "form-control", placeholder = "Senha", required = "required" })
                     @Html.ValidationMessageFor(model => model.Senha)
                 </div>
+                <dov class="alert-danger">@ViewBag.Mensagem</dov>
                 <br />
                 <button type="submit" class="btn btn-lg btn-primary btn-block" value="LogIn">ENTRAR</button>
             </div>
