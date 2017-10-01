@@ -1,0 +1,60 @@
+﻿@model GestaoEscolar.Models.Usuario
+
+<script>
+    $(document).on('click', '.panel-heading span.clickable', function (e) {
+        var $this = $(this);
+        if (!$this.hasClass('panel-collapsed')) {
+            $this.parents('.panel').find('.panel-body').slideUp();
+            $this.addClass('panel-collapsed');
+            $this.find('i').removeClass('fa-chevron-circle-up').addClass('fa-chevron-circle-down');
+        } else {
+            $this.parents('.panel').find('.panel-body').slideDown();
+            $this.removeClass('panel-collapsed');
+            $this.find('i').removeClass('fa-chevron-circle-down').addClass('fa-chevron-circle-up');
+        }
+    })
+</script>
+
+<div class="panel-body panel-scroll">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">
+                Dados Usuario
+                <span class="pull-right clickable"><i class="fa fa-chevron-circle-up"></i></span>
+            </h3>
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.Login)
+                    </div>
+                    <div class="editor-field">
+                        @Html.TextBoxFor(model => model.Login, new { @class = "form-control", @placeholder = "LOGIN"})
+                        @Html.ValidationMessageFor(model => model.Login)
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.Senha)
+                    </div>
+                    <div class="editor-field">
+                        @Html.TextBoxFor(model => model.Senha, new { @class = "form-control", @placeholder = "SENHA" })
+                        @Html.ValidationMessageFor(model => model.Senha)
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.EscolaId)
+                    </div>
+                    <div class="editor-field">
+                        @Html.DropDownList("EscolaId", (SelectList)ViewBag.EscolaId, "SELECIONE A ESCOLA", new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.EscolaId)
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

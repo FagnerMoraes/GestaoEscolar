@@ -1,0 +1,24 @@
+﻿@model GestaoEscolar.Models.Usuario
+
+<script>
+     $(function () {
+        $('#EscolaId').val("@Model.EscolaId");
+
+        document.getElementById("EscolaId").disabled = true;
+        document.getElementById("Login").disabled = true;
+        document.getElementById("Senha").disabled = true;
+    });
+</script>
+
+<div class="panel panel-heading">
+    <strong><span class="fa fa-cog"></span><span>&nbsp;</span>Detalhes Usuario</strong>
+</div>
+
+@{
+    ViewBag.Title = "Detalhes";
+    Layout = "~/Views/Shared/_LayoutPadrao.cshtml";
+}
+
+
+@Html.Partial("_PartialFormUsuario");
+

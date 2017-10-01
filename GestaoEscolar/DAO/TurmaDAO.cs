@@ -1,9 +1,7 @@
 ﻿using GestaoEscolar.Models;
-using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System.Web;
 
 namespace GestaoEscolar.DAO
 {
@@ -33,7 +31,6 @@ namespace GestaoEscolar.DAO
             dao.Turmas.Add(novaTurma);
             dao.SaveChanges();
 
-
             var listaDisciplinas = listarDisciplina();
 
             foreach (var item in listaDisciplinas)
@@ -42,12 +39,10 @@ namespace GestaoEscolar.DAO
             }
         }
 
-
         public IList<Disciplina> listarDisciplina()
         {
             return dao.Disciplinas.ToList();
-        }
-        
+        }        
 
         public void SalvarDisciplinaNaTurma(Disciplina disciplina, int professorId, Turma turma)
         {
@@ -60,7 +55,6 @@ namespace GestaoEscolar.DAO
             dao.DisciplinaDoProfessoresNasTurmas.Add(novaDisciplinaProfessorTurma);
             dao.SaveChanges();
         }
-
         
         public IList<Turma> Listar()
         {
@@ -71,7 +65,6 @@ namespace GestaoEscolar.DAO
         {
             return dao.Turmas.FirstOrDefault( arg => arg.Id == Id);
         }
-
         
     }
 }

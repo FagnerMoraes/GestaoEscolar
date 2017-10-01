@@ -1,14 +1,24 @@
-﻿using System.Linq;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using GestaoEscolar.Models;
 using System.Web.Security;
 using System;
+using GestaoEscolar.DAO;
+using GestaoEscolar.Infra;
 
 namespace GestaoEscolar.Controllers
 {
     public class UsuarioController : Controller
     {
+        private UsuarioDAO dao;
+        private UsuarioInfra infra;
+
         readonly Contexto _banco = new Contexto();
+
+        public UsuarioController(UsuarioDAO dao, UsuarioInfra infra)
+        {
+            this.dao = dao;
+            this.infra = infra;
+        }
 
         public ActionResult LogIn()
         {
@@ -18,12 +28,11 @@ namespace GestaoEscolar.Controllers
         [HttpPost]
         public ActionResult LogIn(Usuario usuario)
         {
-
             if (ModelState.IsValid)
             {
                 try
                 {
-                    if (ValidarUsuario(usuario.Login, usuario.Senha))
+                    if (infra.ValidarUsuario(usuario.Login, usuario.Senha))
                     {
                         FormsAuthentication.SetAuthCookie(usuario.Login, false);
                         return RedirectToAction("Index", "Home");
@@ -35,30 +44,38 @@ namespace GestaoEscolar.Controllers
                 }
                 ModelState.AddModelError("", "Dados do Login estão incorretos");
             }
-
             return View(usuario);
         }
 
         [Authorize]
-        public ActionResult Registrar()
+        public ActionResult Adicionar()
         {
-            ViewBag.Funcionarios = new SelectList(_banco.Funcionarios, "Id", "NomeFuncionario");
-
             return View();
         }
 
+        public ActionResult Detalhes(int id)
+        {
+            ViewBag.Detalhe = true;
+
+            ViewBag.EscolaId = new SelectList(_banco.Escolas, "Id", "NomeEscola");
+
+            var usuario = dao.UsuarioPorId(id);
+
+            if (usuario == null)
+            {
+                return HttpNotFound();
+            }
+            return View(usuario);
+        }
+
         [HttpPost]
-        public ActionResult Registrar(Usuario novousuario)
+        public ActionResult Adicionar(Usuario novousuario)
         {
             if (ModelState.IsValid)
             {
-                _banco.Usuarios.Add(novousuario);
-                _banco.SaveChanges();
-
+                dao.Salva(novousuario);
                 return RedirectToAction("Index", "Home");
-
             }
-
             return View(novousuario);
         }
 
@@ -66,21 +83,6 @@ namespace GestaoEscolar.Controllers
         {
             FormsAuthentication.SignOut();
             return RedirectToAction("Index", "Home");
-        }
-
-
-        private bool ValidarUsuario(string login, string senha)
-        {
-            bool isValid = false;
-
-            var usuario = _banco.Usuarios.FirstOrDefault(u => u.Login == login && u.Senha == senha);
-
-            if (usuario != null)
-            {
-                isValid = true;
-            }
-
-            return isValid;
         }
 
     }
