@@ -18,15 +18,15 @@
 <div class="col-md-12">
     <div class="row">
         @using (@Html.BeginForm("GerenciarMatriculas", "Matricula", FormMethod.Get))
-            {
+        {
             <div class="col-sm-5">
                 <label>Turma </label>
                 @Html.DropDownList("turmaId", (SelectList)ViewBag.TurmaId, "Selecione a turma", new { onchange = "this.form.submit();" })
             </div>
-                <div class="col-sm-2">
-                    <label>Ano </label>
-                    @Html.DropDownList("anoLetivoId", (SelectList)ViewBag.AnoLetivoId, new { onchange = "this.form.submit();" })
-                </div>
+            <div class="col-sm-2">
+                <label>Ano </label>
+                @Html.DropDownList("anoLetivoId", (SelectList)ViewBag.AnoLetivoId, new { onchange = "this.form.submit();" })
+            </div>
                 <div class="col-sm-3">
                     <label>Total de Vagas: </label>
                     @ViewBag.QtdAluno<br />
@@ -37,9 +37,9 @@
     </div>
     <br />
 </div>
+
 @if (ViewBag.turmaSelecionada != null)
 {
-
     using (@Html.BeginForm("Enturmar", "Matricula", FormMethod.Post))
     {
         <div class="col-sm-6">
@@ -65,17 +65,17 @@
                         </tr>
                         @foreach (var item in @ViewBag.NaoMatriculados)
                         {
-                        <tr>
-                            <td>
-                                <input type="checkbox" value="@item.Id" name="alunos" />
-                            </td>
-                            <td>
-                                @item.Nome
-                            </td>
-                            <td>
-                                @item.Sexo
-                            </td>
-                        </tr>
+                            <tr>
+                                <td>
+                                    <input type="checkbox" value="@item.Id" name="alunos" />
+                                </td>
+                                <td>
+                                    @item.Nome
+                                </td>
+                                <td>
+                                    @item.Sexo
+                                </td>
+                            </tr>
 
                         }
                     </table>
@@ -117,17 +117,17 @@
                         </tr>
                         @foreach (var item in @ViewBag.Matriculados)
                         {
-                        <tr>
-                            <td>
-                                <input type="checkbox" value="@item.Id" name="alunos" />
-                            </td>
-                            <td>
-                                @item.Nome
-                            </td>
-                            <td>
-                                @item.Sexo
-                            </td>
-                        </tr>
+                            <tr>
+                                <td>
+                                    <input type="checkbox" value="@item.Id" name="alunos" />
+                                </td>
+                                <td>
+                                    @item.Nome
+                                </td>
+                                <td>
+                                    @item.Sexo
+                                </td>
+                            </tr>
 
                         }
                     </table>

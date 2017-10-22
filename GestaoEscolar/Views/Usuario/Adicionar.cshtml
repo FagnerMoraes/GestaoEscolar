@@ -1,0 +1,17 @@
+﻿@model GestaoEscolar.Models.Usuario
+
+@{
+    ViewBag.Title = "Cadastro Aluno";
+    Layout = "~/Views/Shared/_LayoutPadrao.cshtml";
+}
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    @Html.Partial("_PartialHeaderForm")
+
+
+}

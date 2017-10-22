@@ -18,6 +18,11 @@ namespace GestaoEscolar.DAO
             return contexto.Usuarios.ToList();
         }
 
+        public IList<Escola> listarEscola()
+        {
+            return contexto.Escolas.ToList();
+        }
+
         public void Salva(Usuario usuario)
         {
             contexto.Usuarios.Add(usuario);
@@ -32,6 +37,12 @@ namespace GestaoEscolar.DAO
         public Usuario UsuarioPorId(int id)
         {
             return contexto.Usuarios.FirstOrDefault(arg => arg.Id == id);
+        }
+
+        public bool ValidaUsuario(string login, string senha)
+        {
+            return contexto.Usuarios.Any(arg => arg.Login == login && arg.Senha == senha);
+            
         }
     }
 }

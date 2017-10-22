@@ -189,14 +189,18 @@
     <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="DAO\AlunoDAO.cs" />
     <Compile Include="DAO\AnoLetivoDAO.cs" />
+    <Compile Include="DAO\ConceitoFormacaoDAO.cs" />
     <Compile Include="DAO\DisciplinaDAO.cs" />
     <Compile Include="DAO\EscolaDAO.cs" />
+    <Compile Include="DAO\FuncionarioDAO.cs" />
     <Compile Include="DAO\RelatorioDAO.cs" />
     <Compile Include="DAO\TurmaDAO.cs" />
     <Compile Include="DAO\UsuarioDAO.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Infra\DadosParaFormulario.cs" />
+    <Compile Include="Infra\ListaEstados.cs" />
     <Compile Include="Infra\UsuarioInfra.cs" />
     <Compile Include="Migrations\201708201149424_v1.0.cs" />
     <Compile Include="Migrations\201708201149424_v1.0.Designer.cs">
@@ -445,6 +449,10 @@
     <Content Include="Views\Shared\_MenuForm.cshtml" />
     <Content Include="Views\Usuario\Detalhes.cshtml" />
     <Content Include="Views\Usuario\_PartialFormUsuario.cshtml" />
+    <Content Include="Views\Usuario\Adicionar.cshtml" />
+    <Content Include="Views\Shared\_PartialHeaderForm.cshtml" />
+    <Content Include="Views\Matricula\_ListaAlunosMatricula.cshtml" />
+    <None Include="Views\Shared\_Sidebar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

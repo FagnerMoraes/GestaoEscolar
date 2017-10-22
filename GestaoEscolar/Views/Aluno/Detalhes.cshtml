@@ -45,6 +45,14 @@
         document.getElementById("Cpf").disabled = true;
         document.getElementById("NumeroNovaCertidaoCivil").disabled = true;
         document.getElementById("DataEmissaoCertidao").disabled = true;
+        document.getElementById("EnderecoResidencia").disabled = true;
+        document.getElementById("NumeroResidencia").disabled = true;
+        document.getElementById("ComplementoResidencia").disabled = true;
+        document.getElementById("BairroResidencia").disabled = true;
+        document.getElementById("LocalZonaResidencia").disabled = true;
+        document.getElementById("CepResidencia").disabled = true;
+        document.getElementById("UfResidencia").disabled = true;
+        document.getElementById("CidadeResidencia").disabled = true;
     });
 </script>
 
@@ -61,7 +69,7 @@
 
 <div class="panel-body">
 
-    <div class="col-sm-3">
+    <div class="col-sm-2">
         <div class="row text-center">
             <span class="fa fa-5x fa-user-o"></span>
         </div>
@@ -72,7 +80,7 @@
             <a class="btn btn-block btn-primary" href="@Url.Action("NotaAluno", "Conceito",  new {alunoId = Model.Id, periodo = 1})"><span class="fa fa-list"></span><span>&nbsp;</span>Notas do Aluno</a>
         </div>
     </div>
-    <div class="col-sm-9 panel-scroll">
+    <div class="col-sm-10 panel-scroll">
         @Html.Partial("_PartialFormAluno");
     </div>
 </div>

@@ -7,29 +7,29 @@ namespace GestaoEscolar.DAO
 {
     public class TurmaDAO
     {
-        private Contexto dao;
+        private Contexto contexto;
 
         public TurmaDAO(Contexto contexto)
         {
-            this.dao = contexto;
+            this.contexto = contexto;
         }
 
         public void Alterar(Turma turma)
         {
-            dao.Entry(turma).State = EntityState.Modified;
-            dao.SaveChanges();
+            contexto.Entry(turma).State = EntityState.Modified;
+            contexto.SaveChanges();
         }
 
         public void Exlcuir(Turma turma)
         {
-            dao.Turmas.Remove(turma);
-            dao.SaveChanges();
+            contexto.Turmas.Remove(turma);
+            contexto.SaveChanges();
         }
 
         public void Salvar(Turma novaTurma)
         {
-            dao.Turmas.Add(novaTurma);
-            dao.SaveChanges();
+            contexto.Turmas.Add(novaTurma);
+            contexto.SaveChanges();
 
             var listaDisciplinas = listarDisciplina();
 
@@ -41,8 +41,30 @@ namespace GestaoEscolar.DAO
 
         public IList<Disciplina> listarDisciplina()
         {
-            return dao.Disciplinas.ToList();
-        }        
+            return contexto.Disciplinas.ToList();
+        }
+
+        public IList<DisciplinaDoProfessorNaTurma> listaDiscProfTurma( Turma turma)
+        {
+            return contexto.DisciplinaDoProfessoresNasTurmas.Where(x => x.TurmaId == turma.Id).ToList();
+        }
+
+        public IList<Aluno> listarAluno()
+        {
+            return contexto.Alunos.ToList();
+        }
+
+        public IList<Escola> listarEscola()
+        {
+            return contexto.Escolas.ToList();
+        }
+
+        public IList<Funcionario> listarProfessor()
+        {
+            return contexto.Funcionarios.Where(x => x.TipoFuncionario.DescricaoFuncionario.Contains("Professor")).ToList();
+        }
+
+        
 
         public void SalvarDisciplinaNaTurma(Disciplina disciplina, int professorId, Turma turma)
         {
@@ -52,18 +74,18 @@ namespace GestaoEscolar.DAO
             novaDisciplinaProfessorTurma.DisciplinaId = disciplina.Id;
             novaDisciplinaProfessorTurma.TurmaId = turma.Id;
 
-            dao.DisciplinaDoProfessoresNasTurmas.Add(novaDisciplinaProfessorTurma);
-            dao.SaveChanges();
+            contexto.DisciplinaDoProfessoresNasTurmas.Add(novaDisciplinaProfessorTurma);
+            contexto.SaveChanges();
         }
         
-        public IList<Turma> Listar()
+        public IList<Turma> ListarTurma()
         {
-            return dao.Turmas.ToList();
+            return contexto.Turmas.Include("Escola").OrderBy(x => x.NomeTurma).ToList();
         }
 
         public Turma buscarTurmaId(int Id)
         {
-            return dao.Turmas.FirstOrDefault( arg => arg.Id == Id);
+            return contexto.Turmas.FirstOrDefault( arg => arg.Id == Id);
         }
         
     }

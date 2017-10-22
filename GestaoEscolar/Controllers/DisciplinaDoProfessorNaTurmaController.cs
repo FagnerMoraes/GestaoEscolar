@@ -69,7 +69,7 @@ namespace GestaoEscolar.Controllers
 
             if (teste.Count != 0)
             {
-                return RedirectToAction("GerenciarDisciplinaTurma", new { turmaId = turmaSelecionada });
+                return RedirectToAction("Detalhes","Turma", new { Id = turmaSelecionada });
             }
 
 
@@ -79,7 +79,7 @@ namespace GestaoEscolar.Controllers
             {
                 _banco.DisciplinaDoProfessoresNasTurmas.Add(novocadastro);
                 _banco.SaveChanges();
-                return RedirectToAction("GerenciarDisciplinaTurma", new { turmaId = turmaSelecionada });
+                return RedirectToAction("Detalhes", "Turma", new { Id = turmaSelecionada });
             }
 
             return View();
@@ -103,7 +103,7 @@ namespace GestaoEscolar.Controllers
             {
                 _banco.Entry(valor).State = EntityState.Modified;
                 _banco.SaveChanges();
-                return RedirectToAction("GerenciarDisciplinaTurma", new { turmaId = valor.TurmaId });
+                return RedirectToAction("Detalhes", "Turma", new { Id = valor.TurmaId });
             }
             ViewBag.DisciplinaId = new SelectList(_banco.Disciplinas, "Id", "NomeDisciplina", valor.DisciplinaId);
             ViewBag.FuncionarioId = new SelectList(_banco.Funcionarios.Where(p => p.TipoFuncionarioId == 1), "Id", "NomeFuncionario", valor.FuncionarioId);

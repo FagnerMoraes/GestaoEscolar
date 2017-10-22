@@ -4,21 +4,29 @@ using System.Web.Mvc;
 using GestaoEscolar.Models;
 using PagedList;
 using System;
+using GestaoEscolar.DAO;
 
 namespace GestaoEscolar.Controllers
 {
     [Authorize]
     public class DisciplinaController : Controller
-    {
-        readonly Contexto _banco = new Contexto();
+    {        
+        private DisciplinaDAO dao;
+
+        public DisciplinaController(DisciplinaDAO dao)
+        {
+            this.dao = dao;
+        }
 
         public ActionResult Index(int? pagina)
         {
             const int tamanhoPagina = 5;
             int numeroPagina = pagina ?? 1;
 
-            var disciplina = _banco.Disciplinas.OrderBy(x => x.NomeDisciplina).ToPagedList(numeroPagina, tamanhoPagina);
-            return View(disciplina);
+            var disciplina = dao.ListarDisciplina();
+
+            var lista = disciplina.OrderBy(x => x.NomeDisciplina).ToPagedList(numeroPagina, tamanhoPagina);
+            return View(lista);
         }
 
         public ActionResult Adicionar()
@@ -31,16 +39,15 @@ namespace GestaoEscolar.Controllers
         {
             if (ModelState.IsValid)
             {
-                _banco.Disciplinas.Add(novaDisciplina);
-                _banco.SaveChanges();
+                dao.Salvar(novaDisciplina);
                 return RedirectToAction("Index");
             }
             return View(novaDisciplina);
         }//fim adicionar
 
-        public ActionResult Detalhes(long id)
+        public ActionResult Detalhes(int id)
         {
-            var disciplina = _banco.Disciplinas.First(x => x.Id == id);
+            var disciplina = dao.BuscaPorId(id);
 
 
             if (disciplina == null)
@@ -50,9 +57,9 @@ namespace GestaoEscolar.Controllers
             return View(disciplina);
         }
         
-        public ActionResult Editar(long id)
+        public ActionResult Editar(int id)
         {
-            Disciplina disciplina = _banco.Disciplinas.Find(id);
+            var disciplina = dao.BuscaPorId(id);
 
             return View(disciplina);
         }
@@ -62,21 +69,19 @@ namespace GestaoEscolar.Controllers
         {
             if (ModelState.IsValid)
             {
-                _banco.Entry(disciplina).State = EntityState.Modified;
-                _banco.SaveChanges();
+                dao.Alterar(disciplina);
                 return RedirectToAction("Index");
             }
             return View(disciplina);
         }
         
-        public ActionResult Excluir(long id)
+        public ActionResult Excluir(int id)
         {
-            var disciplina = _banco.Disciplinas.First(x => x.Id == id);
-            _banco.Disciplinas.Remove(disciplina);
+            var disciplina = dao.BuscaPorId(id);            
 
             try
             {
-                _banco.SaveChanges();
+                dao.Excluir(disciplina);
                 return RedirectToAction("Index");
             }
             catch (Exception ex)

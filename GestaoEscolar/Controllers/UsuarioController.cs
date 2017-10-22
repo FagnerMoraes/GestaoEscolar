@@ -10,9 +10,7 @@ namespace GestaoEscolar.Controllers
     public class UsuarioController : Controller
     {
         private UsuarioDAO dao;
-        private UsuarioInfra infra;
-
-        readonly Contexto _banco = new Contexto();
+        private UsuarioInfra infra;        
 
         public UsuarioController(UsuarioDAO dao, UsuarioInfra infra)
         {
@@ -57,7 +55,9 @@ namespace GestaoEscolar.Controllers
         {
             ViewBag.Detalhe = true;
 
-            ViewBag.EscolaId = new SelectList(_banco.Escolas, "Id", "NomeEscola");
+            var listaescola = dao.listarEscola();
+
+            ViewBag.EscolaId = new SelectList(listaescola, "Id", "NomeEscola");
 
             var usuario = dao.UsuarioPorId(id);
 
@@ -69,6 +69,7 @@ namespace GestaoEscolar.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Adicionar(Usuario novousuario)
         {
             if (ModelState.IsValid)

@@ -5,11 +5,19 @@
     Layout = "~/Views/Shared/_LayoutLista.cshtml";
 }
 
-<div class='col-sm-9'>
-    <h3>@ViewBag.NomeAluno</h3>
+<div class="row">
+    <div class="col-md-9">
+        <h3>@ViewBag.NomeAluno</h3>
+    </div>
+    <div class="col-md-3">
+        <a href="@Url.Action("Historico", "Relatorio", new { id = ViewBag.Id })" class="btn btn-block btn-lg btn-default"><span class="fa fa-file-pdf-o text-danger"></span><span>&nbsp;</span>Gerar Historico</a>
+    </div>
 </div>
-<div class='col-sm-3'>
-    <a href="@Url.Action("Historico", "Relatorio", new { id = ViewBag.Id })" class="btn btn-block btn-lg btn-default"><span class="fa fa-file-pdf-o text-danger"></span><span>&nbsp;</span>Gerar Historico</a>
+<div class="row">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="@Url.Action("Detalhes","Aluno", new { id = ViewBag.Id })">Aluno</a></li>
+        <li class="breadcrumb-item active">Historico</li>
+    </ol>
 </div>
 
 <div class="table-responsive">

@@ -1,6 +1,7 @@
 ﻿using GestaoEscolar.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 
@@ -20,10 +21,26 @@ namespace GestaoEscolar.DAO
             return contexto.Disciplinas.ToList();
         }
 
+        public Disciplina BuscaPorId(int Id)
+        {
+            return contexto.Disciplinas.FirstOrDefault(arg => arg.Id == Id);
+        }
 
         public void Salvar(Disciplina disciplina)
         {
             contexto.Disciplinas.Add(disciplina);
+            contexto.SaveChanges();
+        }
+
+        public void Alterar(Disciplina disciplina)
+        {
+            contexto.Entry(disciplina).State = EntityState.Modified;
+            contexto.SaveChanges();
+        }
+
+        public void Excluir(Disciplina disciplina)
+        {
+            contexto.Disciplinas.Remove(disciplina);
             contexto.SaveChanges();
         }
 

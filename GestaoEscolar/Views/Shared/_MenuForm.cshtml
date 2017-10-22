@@ -1,18 +1,18 @@
 ﻿<div class=" col-sm-5 btn-group" role="group">
     
-    @if (ViewBag.TesteTurma != null)
+    @if (ViewBag.DetalheTurma != null)
     {
         <a href="@Url.Action("Adicionar")" type="button" class="btn btn-link" title="Cadastrar [Alt + C]" accesskey="C"><i class="fa fa-plus fa-2x fa-fw text-success" aria-hidden="true"></i></a>
         <a href="@Url.Action("Editar", new { id = ViewBag.Id })" type="button" id="btn-editar" class="btn btn-link" title="Alterar [Alt + A]" accesskey="A"><i class="fa fa-edit fa-2x fa-fw text-primary" aria-hidden="true"></i></a>
         <a href="@Url.Action("Excluir", new { id = ViewBag.Id })" type="button" class="btn btn-link confirm" id="btn-excluir" title="Voltar [Alt + T]" accesskey="T"><i class="fa fa-trash fa-2x fa-fw text-warning" aria-hidden="true"></i></a>
-        <a href="@Url.Action("Index")" class="btn btn-link" title="Voltar [Alt + V]" accesskey="V"><i class="fa fa-close fa-2x fa-fw text-danger" aria-hidden="true"></i></a>
+        <a href="@Url.Action("Index")" class="btn btn-link" title="Voltar [Alt + V]" accesskey="V"><i class="fa fa-rotate-left fa-2x fa-fw text-danger" aria-hidden="true"></i></a>
         <button disabled="disabled" type="submit" class="btn btn-link" title="Salvar [Alt + S]" accesskey="S"><i class="fa fa-save fa-2x fa-fw text-success" aria-hidden="true"></i></button>
     }else if (ViewBag.Detalhe != null)
     {
         <a href="@Url.Action("Adicionar")" type="button" class="btn btn-link" title="Cadastrar [Alt + C]" accesskey="C"><i class="fa fa-plus fa-2x fa-fw text-success" aria-hidden="true"></i></a>
         <a href="@Url.Action("Editar", new { id = Model.Id })" type="button" id="btn-editar" class="btn btn-link" title="Alterar [Alt + A]" accesskey="A"><i class="fa fa-edit fa-2x fa-fw text-primary" aria-hidden="true"></i></a>
-        <a href="@Url.Action("Excluir", new { id = Model.Id })" type="button" class="btn btn-link confirm" id="btn-excluir" title="Voltar [Alt + T]" accesskey="T"><i class="fa fa-trash fa-2x fa-fw text-warning" aria-hidden="true"></i></a>
-        <a href="@Url.Action("Index")" class="btn btn-link" title="Voltar [Alt + V]" accesskey="V"><i class="fa fa-close fa-2x fa-fw text-danger" aria-hidden="true"></i></a>
+        <a href="@Url.Action("Excluir", new { id = Model.Id })" type="button" class="btn btn-link confirm" id="btn-excluir" title="Excluir [Alt + T]" accesskey="T"><i class="fa fa-trash fa-2x fa-fw text-warning" aria-hidden="true"></i></a>
+        <a href="@Url.Action("Index")" class="btn btn-link" title="Voltar [Alt + V]" accesskey="V"><i class="fa fa-rotate-left fa-2x fa-fw text-danger" aria-hidden="true"></i></a>
         <button disabled="disabled" type="submit" class="btn btn-link" title="Salvar [Alt + S]" accesskey="S"><i class="fa fa-save fa-2x fa-fw text-success" aria-hidden="true"></i></button>
     }
     else if (ViewBag.Editar != null)

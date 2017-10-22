@@ -1,6 +1,4 @@
-﻿using System.Data.Entity;
-using System.Linq;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using GestaoEscolar.Models;
 using PagedList;
 using System;
@@ -17,23 +15,26 @@ namespace GestaoEscolar.Controllers
         {
             this.dao = dao;
         }
-
-        readonly Contexto _banco = new Contexto();
-
+        
         public ActionResult Index(int? pagina)
         {
             const int tamanhoPagina = 5;
             int numeroPagina = pagina ?? 1;
 
-            var turma = _banco.Turmas.Include("Escola").OrderBy(x => x.NomeTurma).ToPagedList(numeroPagina, tamanhoPagina);
-            return View(turma);
+            var turma = dao.ListarTurma();
+
+            var lista = turma.ToPagedList(numeroPagina, tamanhoPagina);
+            return View(lista);
         }
 
         [HttpGet]
         public ActionResult Adicionar()
         {
-            ViewBag.EscolaId = new SelectList(_banco.Escolas, "Id", "NomeEscola");
-            ViewBag.FuncionarioId = new SelectList(_banco.Funcionarios.Where(x => x.TipoFuncionario.DescricaoFuncionario.Contains("Professor")), "Id", "NomeFuncionario");
+            var listaescola = dao.listarEscola();
+            var listaprofessor = dao.listarProfessor();
+
+            ViewBag.EscolaId = new SelectList(listaescola, "Id", "NomeEscola");
+            ViewBag.FuncionarioId = new SelectList(listaprofessor, "Id", "NomeFuncionario");
 
             return View();
         }
@@ -47,18 +48,22 @@ namespace GestaoEscolar.Controllers
 
                 return RedirectToAction("Detalhes", "Turma", new { Id = novoTurma.Id });
             }
-            ViewBag.EscolaId = new SelectList(_banco.Escolas, "Id", "NomeEscola", novoTurma.EscolaId);
-            ViewBag.FuncionarioId = new SelectList(_banco.Funcionarios.Where(x => x.TipoFuncionario.DescricaoFuncionario.Contains("Professor")), "Id", "NomeFuncionario", novoTurma.FuncionarioId);
+
+            var listaescola = dao.listarEscola();
+            var listaprofessor = dao.listarProfessor();
+
+            ViewBag.EscolaId = new SelectList(listaescola, "Id", "NomeEscola", novoTurma.EscolaId);
+            ViewBag.FuncionarioId = new SelectList(listaprofessor, "Id", "NomeFuncionario", novoTurma.FuncionarioId);
             return View(novoTurma);
         }
 
         public ActionResult Detalhes(int id)
         {
-            ViewBag.TesteTurma = true;
+            ViewBag.DetalheTurma = true;
 
             var turma =  dao.buscarTurmaId(id);
 
-            ViewBag.AlunosTurma = _banco.Alunos.ToList();
+            ViewBag.AlunosTurma = dao.listarAluno();
 
             if (turma == null)
             {
@@ -74,9 +79,8 @@ namespace GestaoEscolar.Controllers
             ViewBag.ModalidadeEnsino = turma.ModalidadeEnsino;
             ViewBag.QtdAlunos = turma.QtdAlunos;
 
-            var disciplinas = _banco.DisciplinaDoProfessoresNasTurmas.Where(x => x.TurmaId == turma.Id).ToList();
-
-
+            var disciplinas = dao.listaDiscProfTurma(turma);
+            
             return View(disciplinas);
         }
 
@@ -86,9 +90,11 @@ namespace GestaoEscolar.Controllers
 
             ViewBag.Editar = true;
 
+            var listaescola = dao.listarEscola();
+            var listaprofessor = dao.listarProfessor();
 
-            ViewBag.EscolaId = new SelectList(_banco.Escolas, "Id", "NomeEscola", turma.EscolaId);
-            ViewBag.FuncionarioId = new SelectList(_banco.Funcionarios.Where(x => x.TipoFuncionario.DescricaoFuncionario.Contains("Professor")), "Id", "NomeFuncionario", turma.FuncionarioId);
+            ViewBag.EscolaId = new SelectList(listaescola, "Id", "NomeEscola", turma.EscolaId);
+            ViewBag.FuncionarioId = new SelectList(listaprofessor, "Id", "NomeFuncionario", turma.FuncionarioId);
 
             return View(turma);
         }
@@ -101,16 +107,19 @@ namespace GestaoEscolar.Controllers
                 dao.Alterar(turma);
                 return RedirectToAction("Detalhes", "Turma", new { Id = turma.Id });
             }
-            ViewBag.EscolaId = new SelectList(_banco.Escolas, "Id", "NomeEscola", turma.EscolaId);
-            ViewBag.FuncionarioId = new SelectList(_banco.Funcionarios.Where(x => x.TipoFuncionario.DescricaoFuncionario.Contains("Professor")), "Id", "NomeFuncionario", turma.FuncionarioId);
+
+            var listaescola = dao.listarEscola();
+            var listaprofessor = dao.listarProfessor();
+
+            ViewBag.EscolaId = new SelectList(listaescola, "Id", "NomeEscola", turma.EscolaId);
+            ViewBag.FuncionarioId = new SelectList(listaprofessor, "Id", "NomeFuncionario", turma.FuncionarioId);
 
             return View(turma);
         }
 
         public ActionResult Excluir(int id)
         {
-            var turma = dao.buscarTurmaId(id);
-            
+            var turma = dao.buscarTurmaId(id);            
 
             try
             {

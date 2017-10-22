@@ -27,25 +27,25 @@
 
 
     @*@Scripts.Render("~/bundles/modernizr")
-    @Styles.Render("~/Content/bootstrap","~/Content/jquery-ui.css")
-    @Scripts.Render("~/bundles/jquery", "~/bundles/jqueryui", "~/bundles/jqueryval", "~/bundles/bootstrap")*@
+        @Styles.Render("~/Content/bootstrap","~/Content/jquery-ui.css")
+        @Scripts.Render("~/bundles/jquery", "~/bundles/jqueryui", "~/bundles/jqueryval", "~/bundles/bootstrap")*@
 
 </head>
 <body>
 
     <div class="row">
-        
+        @Html.Partial("_MenuInicial")
     </div>
     <div class="row">
         <div class="container">
-                @RenderBody()
+            @RenderBody()
         </div>
     </div>
     @*<footer class="bg-primary">
-        <div class="text-center">
-            <br /><p>Copyright &copy; SISGSE - @DateTime.Now.Year</p>
-        </div>
-    </footer>*@
+            <div class="text-center">
+                <br /><p>Copyright &copy; SISGSE - @DateTime.Now.Year</p>
+            </div>
+        </footer>*@
 
     @RenderSection("scripts", required: false)
 
