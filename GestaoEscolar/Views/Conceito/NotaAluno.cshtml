@@ -20,15 +20,21 @@
     <strong><span class="glyphicon glyphicon-cog"></span><span>&nbsp;</span>Conceito do Aluno</strong>
 </div>
 
-
-
 <div class="panel-body">
 
-    <a class="btn btn-block btn-success" title="Boletim" href="@Url.Action("ConceitoAluno", "Conceito", new {turmaId = ViewBag.TurmaId, periodo = ViewBag.Periodo, alunoId = ViewBag.MatriculaId})">
-        <div>
-            <i class="fa fa-plus fa-fw" aria-hidden="true"></i>Novo Conceito
-        </div>
-    </a>
+    <div class="row">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="@Url.Action("Detalhes","Aluno", new { id = ViewBag.AlunoId })">Aluno</a></li>
+            <li class="breadcrumb-item active">Historico</li>
+        </ol>
+    </div>
+    <div class="row">
+        <a class="btn btn-block btn-success" title="Boletim" href="@Url.Action("ConceitoAluno", "Conceito", new {turmaId = ViewBag.TurmaId, periodo = ViewBag.Periodo, alunoId = ViewBag.MatriculaId})">
+            <div>
+                <i class="fa fa-plus fa-fw" aria-hidden="true"></i>Novo Conceito
+            </div>
+        </a>
+    </div>
 
     <table class="table table-bordered table-hover table-responsive">
         <thead>
@@ -73,74 +79,74 @@
                         <input class="form-control" type="text" title="totalfalta" />
                     </th>
                 </tr>
-                <tr>
-                    <td colspan="1">
-                        <strong>
-                            ATITUDES E VALORES
-                        </strong><hr />
-                        <div class="text-center">
-                            @ViewBag.AtitVal
-                        </div>
-                    </td>
-                    <td colspan="1">
-                        <strong>
-                            COMPROMISSO/ASSIDUIDADE
-                        </strong><hr />
-                        <div class="text-center">
-                            @ViewBag.CompAssid
-                        </div>
-                    </td>
-                    <td colspan="1">
-                        <strong>
-                            CRIATIVIDADE/CRITICIDADE
-                        </strong><hr />
-                        <div class="text-center">
-                            @ViewBag.CriCriti
-                        </div>
-                    </td>
-                    <td>
-                        <strong>
-                            PARTICIPACAO DA FAMILIA
-                        </strong><hr />
-                        <div class="text-center">
-                            @ViewBag.PartFamilia
-                        </div>
-                    </td>
-                    <td class="col-sm-2" colspan="1">
-                        @if (ViewBag.Formacao != null)
-                        {
-                            <a class="btn btn-block btn-success" title="Boletim" href="@Url.Action("ConceitoAluno", "Conceito", new {turmaId = ViewBag.TurmaId, periodo = ViewBag.Periodo, MatriculaId = ViewBag.MatriculaId})">
-                                <div>
-                                    <i class="fa fa-plus fa-fw" aria-hidden="true"></i>Adicionar Formação
-                                </div>
-                            </a>
-                        }
-                        else
-                        {
-                            <a class="btn btn-block btn-success" title="Formacao" href="@Url.Action("Editar", "ConceitoFormacao", new {id = ViewBag.FormConId, MatriculaId = ViewBag.MatriculaId, periodo = ViewBag.Periodo })">
-                                <div>
-                                    <i class="fa fa-plus fa-fw" aria-hidden="true"></i>Editar Formação
-                                </div>
-                            </a>
-                        }
-                    </td>
-                </tr>
-                <tr>
-                    <th colspan="2">
-                        Disciplina
-                    </th>
-                    <th>
-                        Conceito
-                    </th>
-                    <th>
-                        Faltas
-                    </th>
+                    <tr>
+                        <td colspan="1">
+                            <strong>
+                                ATITUDES E VALORES
+                            </strong><hr />
+                            <div class="text-center">
+                                @ViewBag.AtitVal
+                            </div>
+                        </td>
+                        <td colspan="1">
+                            <strong>
+                                COMPROMISSO/ASSIDUIDADE
+                            </strong><hr />
+                            <div class="text-center">
+                                @ViewBag.CompAssid
+                            </div>
+                        </td>
+                        <td colspan="1">
+                            <strong>
+                                CRIATIVIDADE/CRITICIDADE
+                            </strong><hr />
+                            <div class="text-center">
+                                @ViewBag.CriCriti
+                            </div>
+                        </td>
+                        <td>
+                            <strong>
+                                PARTICIPACAO DA FAMILIA
+                            </strong><hr />
+                            <div class="text-center">
+                                @ViewBag.PartFamilia
+                            </div>
+                        </td>
+                        <td class="col-sm-2" colspan="1">
+                            @if (ViewBag.Formacao != null)
+                            {
+                                <a class="btn btn-block btn-success" title="Boletim" href="@Url.Action("ConceitoAluno", "Conceito", new {turmaId = ViewBag.TurmaId, periodo = ViewBag.Periodo, MatriculaId = ViewBag.MatriculaId})">
+                                    <div>
+                                        <i class="fa fa-plus fa-fw" aria-hidden="true"></i>Adicionar Formação
+                                    </div>
+                                </a>
+                            }
+                            else
+                            {
+                                <a class="btn btn-block btn-success" title="Formacao" href="@Url.Action("Editar", "ConceitoFormacao", new {id = ViewBag.FormConId, MatriculaId = ViewBag.MatriculaId, periodo = ViewBag.Periodo })">
+                                    <div>
+                                        <i class="fa fa-plus fa-fw" aria-hidden="true"></i>Editar Formação
+                                    </div>
+                                </a>
+                            }
+                        </td>
+                    </tr>
+                    <tr>
+                        <th colspan="2">
+                            Disciplina
+                        </th>
+                        <th>
+                            Conceito
+                        </th>
+                        <th>
+                            Faltas
+                        </th>
 
-                    <th>
-                        AÇÕES
-                    </th>
+                        <th>
+                            AÇÕES
+                        </th>
 
-                </tr>
+                    </tr>
             }
         </thead>
         <tbody>
@@ -157,33 +163,33 @@
                             <td>
                                 @Html.DisplayFor(modelItem => item.Conceito1Bim)
                             </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Faltas1Bim)
-                            </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Faltas1Bim)
+                                </td>
                             break;
                         case 2:
                             <td>
                                 @Html.DisplayFor(modelItem => item.Conceito2Bim)
                             </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Faltas2Bim)
-                            </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Faltas2Bim)
+                                </td>
                             break;
                         case 3:
                             <td>
                                 @Html.DisplayFor(modelItem => item.Conceito3Bim)
                             </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Faltas3Bim)
-                            </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Faltas3Bim)
+                                </td>
                             break;
                         case 4:
                             <td>
                                 @Html.DisplayFor(modelItem => item.Conceito4Bim)
                             </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Faltas4Bim)
-                            </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Faltas4Bim)
+                                </td>
                             break;
                     }
 

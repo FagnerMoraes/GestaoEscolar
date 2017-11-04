@@ -77,6 +77,7 @@
         <div class="row">
             <a class="btn btn-block btn-primary" href="@Url.Action("DeclaracaoMatricula","Relatorio", new { id = Model.Id })"><span class="fa fa-list"></span><span>&nbsp;</span>Declaração de Matricula</a>
             <a class="btn btn-block btn-primary" href="@Url.Action("ListaHistoricoAluno","HistoricoAluno", new { id = Model.Id })"><span class="fa fa-list"></span><span>&nbsp;</span>Histórico do Aluno</a>
+            <a class="btn btn-block btn-primary" href="@Url.Action("FichaIndividual","Relatorio", new { id = Model.Id })"><span class="fa fa-list"></span><span>&nbsp;</span>Ficha Individual</a>
             <a class="btn btn-block btn-primary" href="@Url.Action("NotaAluno", "Conceito",  new {alunoId = Model.Id, periodo = 1})"><span class="fa fa-list"></span><span>&nbsp;</span>Notas do Aluno</a>
         </div>
     </div>

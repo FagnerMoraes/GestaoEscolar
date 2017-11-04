@@ -6,6 +6,7 @@ using GestaoEscolar.Models;
 using Rotativa;
 using Rotativa.Options;
 using GestaoEscolar.DAO;
+using GestaoEscolar.Infra;
 
 namespace GestaoEscolar.Controllers
 {
@@ -30,12 +31,14 @@ namespace GestaoEscolar.Controllers
                 ViewBag.CodAluno = alunoId;
             }
 
-            Dictionary<string, string> ListaRelatorios = new Dictionary<string, string>();
+            //Dictionary<string, string> ListaRelatorios = new Dictionary<string, string>();
 
-            ListaRelatorios.Add("Historico Aluno", "Relatorio/ModalHistorico");
-            ListaRelatorios.Add("Declaracao de Matricula", "Relatorio/ModalDecMatricula");
+            //ListaRelatorios.Add("Historico Aluno", "Relatorio/ModalHistorico");
+            //ListaRelatorios.Add("Declaracao de Matricula", "Relatorio/ModalDecMatricula");
+            //ListaRelatorios.Add("Ficha Individual", "Relatorio/FichaIndivudal");
 
-            ViewBag.ListaRelatorios = ListaRelatorios;                     
+
+            ViewBag.ListaRelatorios = RelatorioInfra.listaRelatorio();
 
             return View();
         }
@@ -43,13 +46,11 @@ namespace GestaoEscolar.Controllers
         [HttpPost]
         public ActionResult Index(string termoBusca)
         {
-            Dictionary<string, string> ListaRelatorios = new Dictionary<string, string>();
-
-            ListaRelatorios.Add("Historico Aluno", "Relatorio/ModalHistorico");
-            ListaRelatorios.Add("Declaracao de Matricula", "Relatorio/ModalDecMatricula");
-
             if (termoBusca != null)
-                ViewBag.ListaRelatorios = ListaRelatorios.Where(arg => arg.Key.ToUpper().Contains(termoBusca.ToUpper())).ToList();
+            {
+                var lista = RelatorioInfra.listaRelatorio();
+                ViewBag.ListaRelatorios = lista.Where(arg => arg.Key.ToUpper().Contains(termoBusca.ToUpper())).ToList();
+            }
 
             if (Request.IsAjaxRequest())
                 return PartialView("_ListaRelatorio");
@@ -66,7 +67,7 @@ namespace GestaoEscolar.Controllers
 
             var query = dao.ConceitosPorId(id);
 
-            var conceitoFormacao = dao.ConceitosFormacaoPorIdPeriodo(id,periodo);
+            var conceitoFormacao = dao.ConceitosFormacaoPorIdPeriodo(id, periodo);
 
             //incluir a Formação no Boletim por Periodo
             foreach (var con in conceitoFormacao)
@@ -185,38 +186,9 @@ namespace GestaoEscolar.Controllers
             return View(bimestre);
         }
 
-        public ActionResult Historico(int id)
+        public void dadosHistorico(int id)
         {
-            var aluno = dao.BuscaAlunoPorId(id);
-
-            if (aluno == null)
-            {
-                Response.Redirect("~/HistoricoAluno/Index");
-            }
-            else
-            {
-                ViewBag.Nome = aluno.Nome;
-                ViewBag.Naturalidade = aluno.Naturalidade;
-                ViewBag.UFNaturalidade = aluno.UfNaturalidade;
-                ViewBag.Nacionalidade = aluno.Nacionalidade;
-                ViewBag.Sexo = aluno.Sexo;
-                ViewBag.DataNascimento = aluno.DataNascimento.Date.ToString("dd DE  MMMMMMMMMMMMMM DE yyyy");
-                ViewBag.Pai = aluno.NomePai;
-                ViewBag.Mae = aluno.NomeMae;
-
-                ViewBag.Rg = aluno.Rg ?? "------------";
-
-                ViewBag.Orgao = aluno.OrgaoExpRg ?? "-------";
-
-                ViewBag.UfRg = aluno.UfRg ?? "-------";
-
-
-                ViewBag.DateHistorico = "14 DE DEZEMBRO DE 2016";
-                //DateTime.Now.ToString("dd DE  MMMMMMMMMMMMMM DE yyyy");
-
-            }
-
-            var primeiroAnoHistorico = dao.HstoricoPorPeriodo("1Ano", id);                
+            var primeiroAnoHistorico = dao.HstoricoPorPeriodo("1Ano", id);
 
             if (primeiroAnoHistorico == null)
             {
@@ -257,11 +229,14 @@ namespace GestaoEscolar.Controllers
             }
             else
             {
+
                 var primeiroAnototalchcurricular = (Convert.ToDouble(primeiroAnoHistorico.ChCurricularBasica) + Convert.ToDouble(primeiroAnoHistorico.ChCurricularArtes));
                 var primeiroAnoTotalFaltasHoras = (Convert.ToDouble(primeiroAnoHistorico.QtdFaltaHoraAnoBasica) +
                                                    Convert.ToDouble(primeiroAnoHistorico.QtdFaltaHoraAnoParte) +
                                                    Convert.ToDouble(primeiroAnoHistorico.QtdFaltaHoraAnoProjeto));
 
+
+                ViewBag.DateHistorico = primeiroAnoHistorico.DataHistoricoAluno.Date.ToString("dd DE  MMMMMMMMMMMMMM DE yyyy");
 
                 //primeiro Ano
                 ViewBag.Ano1TurmaAnoHistorico = primeiroAnoHistorico.TurmaAnoHistorico;
@@ -299,7 +274,7 @@ namespace GestaoEscolar.Controllers
                 ViewBag.Ano1AnoHistorico = primeiroAnoHistorico.AnoHistoricoAluno;
                 ViewBag.Ano1DiasLetivos = primeiroAnoHistorico.DiasLetivos;
                 ViewBag.Ano1EscolaAnoAluno = primeiroAnoHistorico.EscolaAnoAluno;
-                ViewBag.Ano1CidadeEscolaAnoAluno = primeiroAnoHistorico.CidadeEscolaAnoAluno;
+                ViewBag.Ano1CidadeEscolaAnoAluno = Convert.ToString(primeiroAnoHistorico.CidadeEscolaAnoAluno + "/" + primeiroAnoHistorico.UfEscolaAnoAluno);
 
             }
 
@@ -350,6 +325,7 @@ namespace GestaoEscolar.Controllers
                                                    Convert.ToDouble(segundoAnoHistorico.QtdFaltaHoraAnoParte) +
                                                    Convert.ToDouble(segundoAnoHistorico.QtdFaltaHoraAnoProjeto));
 
+                ViewBag.DateHistorico = segundoAnoHistorico.DataHistoricoAluno.Date.ToString("dd DE  MMMMMMMMMMMMMM DE yyyy");
 
                 //primeiro Ano
                 ViewBag.Ano2TurmaAnoHistorico = segundoAnoHistorico.TurmaAnoHistorico;
@@ -386,7 +362,7 @@ namespace GestaoEscolar.Controllers
                 ViewBag.Ano2AnoHistorico = segundoAnoHistorico.AnoHistoricoAluno;
                 ViewBag.Ano2DiasLetivos = segundoAnoHistorico.DiasLetivos;
                 ViewBag.Ano2EscolaAnoAluno = segundoAnoHistorico.EscolaAnoAluno;
-                ViewBag.Ano2CidadeEscolaAnoAluno = segundoAnoHistorico.CidadeEscolaAnoAluno;
+                ViewBag.Ano2CidadeEscolaAnoAluno = Convert.ToString(segundoAnoHistorico.CidadeEscolaAnoAluno + "/" + segundoAnoHistorico.UfEscolaAnoAluno);
 
             }
 
@@ -431,11 +407,13 @@ namespace GestaoEscolar.Controllers
             }
             else
             {
-                var segundoAnototalchcurricular = (Convert.ToDouble(terceiroAnoHistorico.ChCurricularBasica) +
+                var terceiroAnototalchcurricular = (Convert.ToDouble(terceiroAnoHistorico.ChCurricularBasica) +
                                                     Convert.ToDouble(terceiroAnoHistorico.ChCurricularArtes));
-                var segundoAnoTotalFaltasHoras = (Convert.ToDouble(terceiroAnoHistorico.QtdFaltaHoraAnoBasica) +
+                var terceiroAnoTotalFaltasHoras = (Convert.ToDouble(terceiroAnoHistorico.QtdFaltaHoraAnoBasica) +
                                                    Convert.ToDouble(terceiroAnoHistorico.QtdFaltaHoraAnoParte) +
                                                    Convert.ToDouble(terceiroAnoHistorico.QtdFaltaHoraAnoProjeto));
+
+                ViewBag.DateHistorico = terceiroAnoHistorico.DataHistoricoAluno.Date.ToString("dd DE  MMMMMMMMMMMMMM DE yyyy");
 
 
                 //primeiro Ano
@@ -466,14 +444,14 @@ namespace GestaoEscolar.Controllers
 
 
                 ViewBag.Ano3SituacaoAluno = terceiroAnoHistorico.SituacaoAluno;
-                ViewBag.Ano3Totalchcurricular = segundoAnototalchcurricular;
-                ViewBag.Ano3TotalFaltasHoras = segundoAnoTotalFaltasHoras;
+                ViewBag.Ano3Totalchcurricular = terceiroAnototalchcurricular;
+                ViewBag.Ano3TotalFaltasHoras = terceiroAnoTotalFaltasHoras;
 
 
                 ViewBag.Ano3AnoHistorico = terceiroAnoHistorico.AnoHistoricoAluno;
                 ViewBag.Ano3DiasLetivos = terceiroAnoHistorico.DiasLetivos;
                 ViewBag.Ano3EscolaAnoAluno = terceiroAnoHistorico.EscolaAnoAluno;
-                ViewBag.Ano3CidadeEscolaAnoAluno = terceiroAnoHistorico.CidadeEscolaAnoAluno;
+                ViewBag.Ano3CidadeEscolaAnoAluno = Convert.ToString(terceiroAnoHistorico.CidadeEscolaAnoAluno + "/" + terceiroAnoHistorico.UfEscolaAnoAluno);
 
             }
 
@@ -518,12 +496,14 @@ namespace GestaoEscolar.Controllers
             }
             else
             {
-                var segundoAnototalchcurricular = (Convert.ToDouble(quartoAnoHistorico.ChCurricularBasica) +
+                var quartoAnototalchcurricular = (Convert.ToDouble(quartoAnoHistorico.ChCurricularBasica) +
                                                     Convert.ToDouble(quartoAnoHistorico.ChCurricularArtes));
-                var segundoAnoTotalFaltasHoras = (Convert.ToDouble(quartoAnoHistorico.QtdFaltaHoraAnoBasica) +
+                var quartoAnoTotalFaltasHoras = (Convert.ToDouble(quartoAnoHistorico.QtdFaltaHoraAnoBasica) +
                                                    Convert.ToDouble(quartoAnoHistorico.QtdFaltaHoraAnoParte) +
                                                    Convert.ToDouble(quartoAnoHistorico.QtdFaltaHoraAnoProjeto));
 
+
+                ViewBag.DateHistorico = quartoAnoHistorico.DataHistoricoAluno.Date.ToString("dd DE  MMMMMMMMMMMMMM DE yyyy");
 
                 //primeiro Ano
                 ViewBag.Ano4TurmaAnoHistorico = quartoAnoHistorico.TurmaAnoHistorico;
@@ -553,14 +533,14 @@ namespace GestaoEscolar.Controllers
 
 
                 ViewBag.Ano4SituacaoAluno = quartoAnoHistorico.SituacaoAluno;
-                ViewBag.Ano4Totalchcurricular = segundoAnototalchcurricular;
-                ViewBag.Ano4TotalFaltasHoras = segundoAnoTotalFaltasHoras;
+                ViewBag.Ano4Totalchcurricular = quartoAnototalchcurricular;
+                ViewBag.Ano4TotalFaltasHoras = quartoAnoTotalFaltasHoras;
 
 
                 ViewBag.Ano4AnoHistorico = quartoAnoHistorico.AnoHistoricoAluno;
                 ViewBag.Ano4DiasLetivos = quartoAnoHistorico.DiasLetivos;
                 ViewBag.Ano4EscolaAnoAluno = quartoAnoHistorico.EscolaAnoAluno;
-                ViewBag.Ano4CidadeEscolaAnoAluno = quartoAnoHistorico.CidadeEscolaAnoAluno;
+                ViewBag.Ano4CidadeEscolaAnoAluno = Convert.ToString(quartoAnoHistorico.CidadeEscolaAnoAluno + "/" + quartoAnoHistorico.UfEscolaAnoAluno);
 
             }
 
@@ -605,12 +585,13 @@ namespace GestaoEscolar.Controllers
             }
             else
             {
-                var segundoAnototalchcurricular = (Convert.ToDouble(quintoAnoHistorico.ChCurricularBasica) +
+                var quintoAnototalchcurricular = (Convert.ToDouble(quintoAnoHistorico.ChCurricularBasica) +
                                                     Convert.ToDouble(quintoAnoHistorico.ChCurricularArtes));
-                var segundoAnoTotalFaltasHoras = (Convert.ToDouble(quintoAnoHistorico.QtdFaltaHoraAnoBasica) +
+                var quintoAnoTotalFaltasHoras = (Convert.ToDouble(quintoAnoHistorico.QtdFaltaHoraAnoBasica) +
                                                    Convert.ToDouble(quintoAnoHistorico.QtdFaltaHoraAnoParte) +
                                                    Convert.ToDouble(quintoAnoHistorico.QtdFaltaHoraAnoProjeto));
 
+                ViewBag.DateHistorico = quintoAnoHistorico.DataHistoricoAluno.Date.ToString("dd DE  MMMMMMMMMMMMMM DE yyyy");
 
                 //primeiro Ano
                 ViewBag.Ano5TurmaAnoHistorico = quintoAnoHistorico.TurmaAnoHistorico;
@@ -640,28 +621,91 @@ namespace GestaoEscolar.Controllers
 
 
                 ViewBag.Ano5SituacaoAluno = quintoAnoHistorico.SituacaoAluno;
-                ViewBag.Ano5Totalchcurricular = segundoAnototalchcurricular;
-                ViewBag.Ano5TotalFaltasHoras = segundoAnoTotalFaltasHoras;
+                ViewBag.Ano5Totalchcurricular = quintoAnototalchcurricular;
+                ViewBag.Ano5TotalFaltasHoras = quintoAnoTotalFaltasHoras;
 
 
                 ViewBag.Ano5AnoHistorico = quintoAnoHistorico.AnoHistoricoAluno;
                 ViewBag.Ano5DiasLetivos = quintoAnoHistorico.DiasLetivos;
                 ViewBag.Ano5EscolaAnoAluno = quintoAnoHistorico.EscolaAnoAluno;
-                ViewBag.Ano5CidadeEscolaAnoAluno = quintoAnoHistorico.CidadeEscolaAnoAluno;
+                ViewBag.Ano5CidadeEscolaAnoAluno = Convert.ToString(quintoAnoHistorico.CidadeEscolaAnoAluno + "/" + quintoAnoHistorico.UfEscolaAnoAluno);
+
+            }
+        }
+
+        public ActionResult Historico(int id)
+        {
+            var aluno = dao.BuscaAlunoPorId(id);
+
+            if (aluno == null)
+            {
+                Response.Redirect("~/HistoricoAluno/Index");
+            }
+            else
+            {
+                ViewBag.Id = aluno.Id;
+                ViewBag.Nome = aluno.Nome;
+                ViewBag.Naturalidade = aluno.Naturalidade;
+                ViewBag.UFNaturalidade = aluno.UfNaturalidade;
+                ViewBag.Nacionalidade = aluno.Nacionalidade;
+                ViewBag.Sexo = aluno.Sexo;
+                ViewBag.DataNascimento = aluno.DataNascimento.Date.ToString("dd DE  MMMMMMMMMMMMMM DE yyyy");
+                ViewBag.Pai = aluno.NomePai;
+                ViewBag.Mae = aluno.NomeMae;
+
+                ViewBag.Rg = aluno.Rg ?? "------------";
+
+                ViewBag.Orgao = aluno.OrgaoExpRg ?? "-------";
+
+                ViewBag.UfRg = aluno.UfRg ?? "-------";
+                
 
             }
 
+            dadosHistorico(id);            
+            
+            return View();
+
+        }
+
+        public ActionResult HistoricoPDF(int id)
+        {
+            var aluno = dao.BuscaAlunoPorId(id);
+
+            if (aluno == null)
+            {
+                Response.Redirect("~/HistoricoAluno/Index");
+            }
+            else
+            {
+                ViewBag.Nome = aluno.Nome;
+                ViewBag.Naturalidade = aluno.Naturalidade;
+                ViewBag.UFNaturalidade = aluno.UfNaturalidade;
+                ViewBag.Nacionalidade = aluno.Nacionalidade;
+                ViewBag.Sexo = aluno.Sexo;
+                ViewBag.DataNascimento = aluno.DataNascimento.Date.ToString("dd DE  MMMMMMMMMMMMMM DE yyyy");
+                ViewBag.Pai = aluno.NomePai;
+                ViewBag.Mae = aluno.NomeMae;
+
+                ViewBag.Rg = aluno.Rg ?? "------------";
+
+                ViewBag.Orgao = aluno.OrgaoExpRg ?? "-------";
+
+                ViewBag.UfRg = aluno.UfRg ?? "-------";
+
+            }
+
+            dadosHistorico(id);
+
             var pdf = new ViewAsPdf
             {
-                ViewName = "Historico",
+                ViewName = "HistoricoPDF",
                 FileName = "Historico " + aluno.Nome + ".pdf",
                 PageSize = Size.A4,
                 IsGrayScale = true,
                 PageMargins = new Margins { Bottom = 2, Left = 2, Right = 2, Top = 2 }
             };
-
             return pdf;
-
         }
 
         public ActionResult DeclaracaoMatricula(int id)
@@ -702,9 +746,48 @@ namespace GestaoEscolar.Controllers
 
         public ActionResult FichaIndividual(int id)
         {
-
             var matricula = dao.BuscaMatriculaPorID(id);
 
+            if (matricula != null)
+            {
+                ViewBag.NivelEnsino = matricula.Turma.NivelTurma;
+                ViewBag.Turno = matricula.Turma.HorarioFuncionamento;
+                ViewBag.Ano = matricula.AnoLetivo.Ano;
+                ViewBag.Turma = matricula.Turma.Serie;
+                ViewBag.Aluno = matricula.Aluno.Nome;
+                ViewBag.Id = matricula.Aluno.Id;
+                ViewBag.Matricula = matricula.Id;
+                ViewBag.Nascimento = matricula.Aluno.DataNascimento.Date.ToString("dd/MM/yyyy");
+                ViewBag.Sexo = matricula.Aluno.Sexo == "M" ? "Masculino" : "Feminino"; // Se Sexo igual a M....
+                ViewBag.EstadoCivil = matricula.Aluno.EstadoCivilAluno;
+                ViewBag.Nacionalidade = matricula.Aluno.Nacionalidade;
+                ViewBag.Naturalidade = matricula.Aluno.Naturalidade;
+                ViewBag.Profissao = matricula.Aluno.ProfissaoAluno;
+                ViewBag.Pai = matricula.Aluno.NomePai;
+                ViewBag.Mae = matricula.Aluno.NomeMae;
+                ViewBag.Logradouro = matricula.Aluno.EnderecoResidencia;
+                ViewBag.Numero = matricula.Aluno.NumeroResidencia;
+                ViewBag.Complemento = matricula.Aluno.ComplementoResidencia;
+                ViewBag.Bairro = matricula.Aluno.BairroResidencia;
+                ViewBag.Cep = matricula.Aluno.CepResidencia;
+                ViewBag.Municipio = matricula.Aluno.CidadeResidencia;
+                ViewBag.Uf = matricula.Aluno.UfResidencia;
+                ViewBag.Telefone = matricula.Aluno.TelMae ?? matricula.Aluno.TelPai; // Se telefone da mãe nulo usar o do pai
+                ViewBag.CondicaoAluno = "Aprovado";
+                ViewBag.AnoLetivoAnual = matricula.AnoLetivo.QtdDiasLetivosAno;
+
+            }
+
+            var notas = dao.BuscaNotasAlunoPorMatricula(matricula);
+
+            ViewBag.ChTotal = 833.20;
+            
+            return View(notas);
+        }
+
+        public ActionResult FichaIndividualPDF(int id)
+        {
+            var matricula = dao.BuscaMatriculaPorID(id);
 
             if (matricula != null)
             {
@@ -739,11 +822,10 @@ namespace GestaoEscolar.Controllers
 
             ViewBag.ChTotal = 833.20;
 
-
             var pdf = new ViewAsPdf
             {
                 Model = notas,
-                ViewName = "FichaIndividual",
+                ViewName = "FichaIndividualPDF",
                 FileName = "Ficha.pdf",
                 PageSize = Size.A4,
                 IsGrayScale = true,
@@ -751,9 +833,6 @@ namespace GestaoEscolar.Controllers
             };
 
             return pdf;
-
-
-            //return View(notas);
         }
 
         public ActionResult ModalHistorico(int? turmaId, int? alunoId)
@@ -776,6 +855,25 @@ namespace GestaoEscolar.Controllers
         }
 
         public ActionResult ModalDecMatricula(int? turmaId, int? alunoId)
+        {
+            var turmas = dao.ListaTurmas();
+
+            var alunosmatriculados = dao.ListaAlunoMatriculado();
+
+            var matriculas = dao.BuscaMatricuaPorTurma(turmaId);
+
+            ViewBag.turmaId = new SelectList(turmas, "Id", "NomeTurma");
+
+            var alunos = (from al in alunosmatriculados
+                          join mat in matriculas on al.Id equals mat.AlunoId
+                          select new { Id = mat.Aluno.Id, Nome = al.Nome }).ToList();
+
+            ViewBag.AlunoId = new SelectList(alunos, "Id", "Nome");
+
+            return View();
+        }
+
+        public ActionResult ModalFichaIndividual(int? turmaId, int? alunoId)
         {
             var turmas = dao.ListaTurmas();
 

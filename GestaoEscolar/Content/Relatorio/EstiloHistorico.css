@@ -1,6 +1,5 @@
 ﻿/*definição da base do relatório*/
 
-
 .corpo-historico {
     margin: auto;
     width: 1024px;
@@ -14,7 +13,6 @@
     height: 180px;
     border: 1px black solid;
 }
-
 .Cabecalho-esquerdo {
     position:absolute;
     display: inline-block;
@@ -53,47 +51,38 @@
     height: 280px;
     border: 1px black solid;
 }
-
 .sub-cabeca-titulo {
     background-color: #a9a9a9;
     border-bottom: 1px black solid;
     font-size: 20px;
 }
-
 .sub-cabeca-corpo {
     text-align: justify;
 }
-
-    .sub-cabeca-corpo span {
+.sub-cabeca-corpo span {
         text-decoration: underline;
         text-transform: uppercase;
     }
-
-    .sub-cabeca-corpo-centro span {
+.sub-cabeca-corpo-centro span {
         text-decoration: underline;
         text-transform: uppercase;
     }
-
 .sub-cabeca-corpo-esquerdo {
     display: inline-block;
     width: 30%;
     vertical-align: text-top;
     padding-top: 30px;
 }
-
 .sub-cabeca-corpo-direito {
     display: inline-block;
     width: 30%;
     vertical-align: text-top;
     padding-top: 30px;
 }
-
-
 .sub-cabeca-corpo-centro {
     display: inline-block;
     width: 30%;
 }
-
 .dados-historico {
     width: 1024px;
     position: relative;
@@ -102,19 +91,15 @@
     height: 872px;
     border: 1px black solid;
 }
-
 .sub-cabeca-historico-escolar {
     text-align: center;
     background-color: #a9a9a9;
     border-bottom: 1px black solid;
     font-size: 20px;
 }
-
-
 .assinatura-historico{
     text-decoration: overline;
 }
-
 
 .barra {
     position: absolute;
@@ -161,7 +146,6 @@
     /*Mozila*/
     -moz-transform: rotate(-90deg);
 }
-
 
 .barra-portugues {
     width: 177px;
@@ -1498,8 +1482,6 @@
     left: 410px;
     font-size: 12px;
 }
-
-
 .barra-rodape-municipio-estado {
     width: 244px;
     height: 30px;
@@ -1543,34 +1525,26 @@
     font-size: 12px;
 }
 
-
-
 .rodape-historico {
+    position:relative;
     margin: auto;
     width: 1024px;
     height: 130px;
     text-align: center;
     font-family: Arial, sans-serif;
 }
-
 .rodape-corpo-esquerdo {
     display: inline-block;
     width: 30%;
     padding-top: 30px;
 }
-
 .rodape-corpo-direito {
     display: inline-block;
-    width: 30%;
-    
+    width: 30%;    
     padding-top: 30px;
 }
-
-
-.rodape-corpo-centro {
-    
+.rodape-corpo-centro {    
     display: inline-block;
     width: 30%;
-    vertical-align: text-top;
-   
+    vertical-align: text-top;   
 }

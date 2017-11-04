@@ -201,6 +201,7 @@
     </Compile>
     <Compile Include="Infra\DadosParaFormulario.cs" />
     <Compile Include="Infra\ListaEstados.cs" />
+    <Compile Include="Infra\RelatorioInfra.cs" />
     <Compile Include="Infra\UsuarioInfra.cs" />
     <Compile Include="Migrations\201708201149424_v1.0.cs" />
     <Compile Include="Migrations\201708201149424_v1.0.Designer.cs">
@@ -452,6 +453,11 @@
     <Content Include="Views\Usuario\Adicionar.cshtml" />
     <Content Include="Views\Shared\_PartialHeaderForm.cshtml" />
     <Content Include="Views\Matricula\_ListaAlunosMatricula.cshtml" />
+    <Content Include="Views\Relatorio\_PartialHistorico.cshtml" />
+    <Content Include="Views\Relatorio\HistoricoPDF.cshtml" />
+    <Content Include="Views\Relatorio\_PartialFichaIndividual.cshtml" />
+    <Content Include="Views\Relatorio\FichaIndividualPDF.cshtml" />
+    <Content Include="Views\Relatorio\ModalFichaIndividual.cshtml" />
     <None Include="Views\Shared\_Sidebar.cshtml" />
   </ItemGroup>
   <ItemGroup>
