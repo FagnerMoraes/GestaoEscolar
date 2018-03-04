@@ -269,7 +269,7 @@ namespace GestaoEscolar.Migrations
                         NivelTurma = c.String(nullable: false, maxLength: 40, unicode: false),
                         HorarioFuncionamento = c.String(maxLength: 30, unicode: false),
                         ModalidadeEnsino = c.String(maxLength: 300, unicode: false),
-                        QtdAlunos = c.String(maxLength: 3, unicode: false),
+                        QtdAlunos = c.String(nullable: false, maxLength: 3, unicode: false),
                     })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.Escola", t => t.EscolaId, cascadeDelete: true)

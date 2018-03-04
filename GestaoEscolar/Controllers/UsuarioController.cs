@@ -26,6 +26,20 @@ namespace GestaoEscolar.Controllers
         [HttpPost]
         public ActionResult LogIn(Usuario usuario)
         {
+            Contexto contexto = new Contexto();
+
+            var users = new UsuarioDAO(contexto);
+
+            if (!users.ValidaUsuario("adm", "adm"))
+            {
+                var usuer = new Usuario();
+                usuer.Login = "adm";
+                usuer.Senha = "adm";
+
+                users.Salva(usuer);
+            }
+
+
             if (ModelState.IsValid)
             {
                 try

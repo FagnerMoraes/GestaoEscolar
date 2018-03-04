@@ -194,6 +194,7 @@
     <Compile Include="DAO\EscolaDAO.cs" />
     <Compile Include="DAO\FuncionarioDAO.cs" />
     <Compile Include="DAO\RelatorioDAO.cs" />
+    <Compile Include="DAO\TipoFuncionarioDAO.cs" />
     <Compile Include="DAO\TurmaDAO.cs" />
     <Compile Include="DAO\UsuarioDAO.cs" />
     <Compile Include="Global.asax.cs">
@@ -203,13 +204,9 @@
     <Compile Include="Infra\ListaEstados.cs" />
     <Compile Include="Infra\RelatorioInfra.cs" />
     <Compile Include="Infra\UsuarioInfra.cs" />
-    <Compile Include="Migrations\201708201149424_v1.0.cs" />
-    <Compile Include="Migrations\201708201149424_v1.0.Designer.cs">
-      <DependentUpon>201708201149424_v1.0.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201709050107431_ExigirDadoTumar.cs" />
-    <Compile Include="Migrations\201709050107431_ExigirDadoTumar.Designer.cs">
-      <DependentUpon>201709050107431_ExigirDadoTumar.cs</DependentUpon>
+    <Compile Include="Migrations\201712261658303_v1.0.cs" />
+    <Compile Include="Migrations\201712261658303_v1.0.Designer.cs">
+      <DependentUpon>201712261658303_v1.0.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Aluno.cs" />
@@ -300,7 +297,7 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
-    <None Include="Properties\PublishProfiles\GestaoEscolar.pubxml" />
+    <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
     <None Include="Properties\PublishProfiles\godaddy.pubxml" />
     <None Include="Properties\PublishProfiles\sisgse.pubxml" />
     <None Include="Scripts\jquery-2.1.4.intellisense.js" />
@@ -467,11 +464,8 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201708201149424_v1.0.resx">
-      <DependentUpon>201708201149424_v1.0.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201709050107431_ExigirDadoTumar.resx">
-      <DependentUpon>201709050107431_ExigirDadoTumar.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201712261658303_v1.0.resx">
+      <DependentUpon>201712261658303_v1.0.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -29,21 +29,22 @@ namespace GestaoEscolar
             Contexto contexto = new Contexto();
 
             DisciplinaDAO disciplina = new DisciplinaDAO(contexto);
+            TipoFuncionarioDAO cargo = new TipoFuncionarioDAO(contexto);
+
 
             disciplina.VerificarDisciplinasCadastradas();
+            cargo.VerificarCargos();
 
-            var users = new UsuarioDAO(contexto);
+            //var users = new UsuarioDAO(contexto);
 
+            //if (!users.ValidaUsuario("admin", "admin"))
+            //{
+            //    var usuario = new Usuario();
+            //    usuario.Login = "admin";
+            //    usuario.Senha = "admin";
 
-
-            if (!users.ValidaUsuario("admin", "admin"))
-            {
-                var usuario = new Usuario();
-                usuario.Login = "admin";
-                usuario.Senha = "admin";
-
-                users.Salva(usuario);
-            }
+            //    users.Salva(usuario);
+            //}
 
 
         }

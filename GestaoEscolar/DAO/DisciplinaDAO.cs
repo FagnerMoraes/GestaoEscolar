@@ -50,7 +50,6 @@ namespace GestaoEscolar.DAO
 
             var disciplinas = new List<Disciplina>();
 
-
             if (!contexto.Disciplinas.Any(arg => arg.NomeDisciplina == "LINGUA PORTUGUESA"))
             {
                 var disciplina = new Disciplina();

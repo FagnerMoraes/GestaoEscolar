@@ -13,7 +13,7 @@ namespace GestaoEscolar.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201708201149424_v1.0"; }
+            get { return "201712261658303_v1.0"; }
         }
         
         string IMigrationMetadata.Source
