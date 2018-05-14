@@ -5,10 +5,6 @@
     Layout = "~/Views/Shared/_LayoutPadrao.cshtml";
 }
 
-<div class="panel panel-heading font-form">
-    <strong><span class="glyphicon glyphicon-plus-sign"></span><span>&nbsp;</span>Cadastro Escola</strong>
-</div>
-
 <script>
     $(function () {
         $('#UfEscola').val("@Model.UfEscola");
@@ -23,24 +19,19 @@
 
     @Html.HiddenFor(model => model.Id)
 
-    @Html.Partial("_PartialFormEscola");
-
-    <div class="panel panel-footer">
+    <div class="panel panel-heading">
         <div class="row">
-            <div class="col-sm-5">
-                <h5><strong>Atenção!</strong> O campo com <i class="fa fa-asterisk text-danger"></i>é obrigatório</h5>
+            <div class="col-sm-2">
+                <strong><span class="fa fa-plus-sign"></span><span>&nbsp;</span>Editar Escola</strong>
             </div>
-            <div class="col-sm-3 col-sm-offset-1">
-                <a class="btn btn-block btn-lg btn-danger" href="@Url.Action("Index")"><span class="glyphicon glyphicon-remove"></span>Cancelar</a>
-            </div>
+            @Html.Partial("_MenuForm")
             <div class="col-sm-3">
-                <button type="submit" class="btn btn-block btn-lg btn-success" value="Adicionar"><span class="glyphicon glyphicon-floppy-disk"></span>Salvar</button>
+                <h5><strong>Atenção!</strong> O campo com <i class="fa fa-asterisk text-danger"></i>é obrigatório</h5>
             </div>
         </div>
     </div>
 
+    @Html.Partial("_PartialFormEscola");
+
 }
 
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}

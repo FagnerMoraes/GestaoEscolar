@@ -65,6 +65,7 @@ namespace GestaoEscolar.Controllers
 
         public ActionResult Detalhes(int id)
         {
+            ViewBag.Detalhe = true;
             var funcionario = dao.BuscaPorId(id);
 
             var listaescola = dao.listarEscola();
@@ -82,6 +83,7 @@ namespace GestaoEscolar.Controllers
 
         public ActionResult Editar(int id)
         {
+            ViewBag.Editar = true;
             Funcionario funcionario = dao.BuscaPorId(id);
 
             var listaescola = dao.listarEscola();

@@ -27,12 +27,12 @@
                 <label>Ano </label>
                 @Html.DropDownList("anoLetivoId", (SelectList)ViewBag.AnoLetivoId, new { onchange = "this.form.submit();" })
             </div>
-                <div class="col-sm-3">
-                    <label>Total de Vagas: </label>
-                    @ViewBag.QtdAluno<br />
-                    <label>Vagas Abertas: </label>
-                    @ViewBag.QtdVagas
-                </div>
+            <div class="col-sm-3">
+                <label>Total de Vagas: </label>
+                @ViewBag.QtdAluno<br />
+                <label>Vagas Abertas: </label>
+                @ViewBag.QtdVagas
+            </div>
         }
     </div>
     <br />
@@ -40,16 +40,54 @@
 
 @if (ViewBag.turmaSelecionada != null)
 {
-    using (@Html.BeginForm("Enturmar", "Matricula", FormMethod.Post))
-    {
-        <div class="col-sm-6">
-            <div class="panel panel-success">
+
+    <div class="col-md-6">
+        <div class="panel panel-success">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-md-4">
+                        <h4>Sem Matricula </h4>
+                    </div>
+                    <div class="col-md-3">
+                        @using (@Html.BeginForm("GerenciarMatriculas", "Matricula", FormMethod.Get))
+                        {
+                            <div class="input-group">
+                                <input type="text" class="form-control" name="idade" id="idade" placeholder="Idade">
+
+                                @Html.Hidden("turmaId")
+                                @Html.Hidden("anoLetivoId")
+
+                                <span class="input-group-btn">
+                                    <button type="submit" class="btn btn-default"><span class="fa fa-search"></span></button>
+                                </span>
+                            </div>
+                        }
+                    </div>
+                    <div class="col-md-5">
+                        @using (@Html.BeginForm("GerenciarMatriculas", "Matricula", FormMethod.Get))
+                {
+                            <div class="input-group">
+                                <input type="text" class="form-control" name="termoBusca" id="termoBusca" placeholder="Nome..">
+                                @Html.Hidden("turmaId")
+                                @Html.Hidden("anoLetivoId")
+
+
+                                <span class="input-group-btn">
+                                    <input type="submit" class="btn btn-success btn-block" value="Buscar" />
+                                </span>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+
+
+            @using (@Html.BeginForm("Enturmar", "Matricula", FormMethod.Post))
+            {
                 @Html.Hidden("turmaSelecionada")
                 @Html.Hidden("anoLetivoselecionado")
 
-                <div class="panel-heading">
-                    <h4>Sem Matricula </h4>
-                </div>
+
                 <div class="panel-body" style="height: 300px; overflow: scroll">
                     <table class="table table-hover">
                         <tr>
@@ -84,16 +122,16 @@
                 <div class="panel-footer">
                     <input type="submit" class="btn btn-success btn-block" value="Entumar" />
                 </div>
-
-            </div>
+            }
         </div>
+    </div>
 
-    }
+
 
     using (@Html.BeginForm("Desenturmar", "Matricula", FormMethod.Post))
     {
 
-        <div class="col-sm-6">
+        <div class="col-md-6">
             <div class="panel panel-success">
                 @Html.Hidden("turmaSelecionada")
                 @Html.Hidden("anoLetivoselecionado")

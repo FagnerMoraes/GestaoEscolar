@@ -147,7 +147,7 @@ namespace GestaoEscolar.Controllers
         }//fim adicionar
 
         [HttpGet]
-        public ActionResult GerenciarMatriculas(int? turmaId, int? anoLetivoId)
+        public ActionResult GerenciarMatriculas(string idade, string termoBusca, int? turmaId, int? anoLetivoId)
         {
             ViewBag.turmaId = new SelectList(_banco.Turmas, "Id", "NomeTurma");
             ViewBag.anoLetivoId = new SelectList(_banco.AnoLetivos, "Id", "Ano");
@@ -156,12 +156,30 @@ namespace GestaoEscolar.Controllers
             if (anoLetivoId != null) { ViewBag.anoLetivoselecionado = anoLetivoId; }
 
 
-            ViewBag.NaoMatriculados = (from al in _banco.Alunos
+            var NaoMatriculados = (from al in _banco.Alunos
                                        join mat in _banco.Matriculas on al.Id equals mat.AlunoId
                                        into aluno
                                        from mat in aluno.DefaultIfEmpty()
                                        where al.Id != mat.AlunoId || mat.TurmaId == null
                                        select al).OrderBy(x => x.Nome).ToList();
+            
+
+            ViewBag.NaoMatriculados = NaoMatriculados;
+
+
+            if (!String.IsNullOrEmpty(idade))
+            {
+                var hoje = DateTime.Today;
+                ViewBag.NaoMatriculados = NaoMatriculados.Where(x => Convert.ToInt32(hoje.Year - x.DataNascimento.Year) == Convert.ToInt32(idade));
+            }
+
+
+            if (!String.IsNullOrEmpty(termoBusca))
+            {
+                ViewBag.NaoMatriculados = NaoMatriculados.Where(x => x.Nome.ToUpper().Contains(termoBusca.ToUpper()));
+            }
+
+
 
             var matriculados =
                 (from al in _banco.Alunos

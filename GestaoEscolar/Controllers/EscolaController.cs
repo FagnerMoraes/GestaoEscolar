@@ -47,6 +47,7 @@ namespace GestaoEscolar.Controllers
 
         public ActionResult Detalhes(long Id)
         {
+            ViewBag.Detalhe = true;
             var escola = dao.BuscaPorId(Id);
 
             if (escola == null)
@@ -58,6 +59,7 @@ namespace GestaoEscolar.Controllers
 
         public ActionResult Editar(long Id)
         {
+            ViewBag.Editar = true;
             Escola escola = dao.BuscaPorId(Id);
             return View(escola);
         }

@@ -44,7 +44,7 @@ namespace GestaoEscolar.Controllers
 
             if (!String.IsNullOrEmpty(termoBusca))
             {
-                lista = lista.Where(x => x.Nome.ToUpper().Contains(termoBusca.ToUpper())).
+                lista = aluno.Where(x => x.Nome.ToUpper().Contains(termoBusca.ToUpper())).
                     ToPagedList(numeroPagina, tamanhoPagina);
             }
 

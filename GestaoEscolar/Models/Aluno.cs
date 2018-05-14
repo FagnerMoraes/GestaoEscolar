@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using System.Web.Mvc;
-using GestaoEscolar.Controllers;
 
 namespace GestaoEscolar.Models
 {
@@ -28,6 +26,7 @@ namespace GestaoEscolar.Models
         [DisplayName("Nascimento")]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")]
         public DateTime DataNascimento { get; set; } // formato dd/mm/aaaa
+        
 
         // [Required(ErrorMessage = "Sexo é obrigatório")]
         [DisplayName("Sexo")]
